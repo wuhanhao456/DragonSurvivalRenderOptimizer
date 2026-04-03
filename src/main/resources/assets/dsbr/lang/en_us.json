@@ -1,0 +1,23 @@
+{
+  "dsbr.config.general": "General",
+  "dsbr.config.general.normal_render_mode": "Normal Dragon Renderer",
+  "dsbr.config.general.normal_render_mode.original": "Dragon Survival Original",
+  "dsbr.config.general.normal_render_mode.bedrock": "Bedrock Renderer",
+  "dsbr.config.general.normal_render_mode.tooltip": "Switches how the regular dragon form is rendered.",
+  "dsbr.config.general.special_animation_mode": "Special Animation Render Path",
+  "dsbr.config.general.special_animation_mode.original_gecko": "Original GeckoLib",
+  "dsbr.config.general.special_animation_mode.bedrock": "Bedrock Animation Engine",
+  "dsbr.config.general.special_animation_mode.tooltip": "Switches how abilities, emotes and item-use animations are rendered.",
+  "dsbr.config.general.render_head_in_first_person": "Render Head In First-Person",
+  "dsbr.config.general.render_head_in_first_person.tooltip": "Controls whether the dragon head stays visible in first-person view.",
+  "dsbr.config.general.first_person_model_offset_x": "First-Person Model Offset X",
+  "dsbr.config.general.first_person_model_offset_x.tooltip": "Additional X offset applied to first-person dragon rendering.",
+  "dsbr.config.general.first_person_model_offset_y": "First-Person Model Offset Y",
+  "dsbr.config.general.first_person_model_offset_y.tooltip": "Additional Y offset applied to first-person dragon rendering.",
+  "dsbr.config.general.first_person_model_offset_z": "First-Person Model Offset Z",
+  "dsbr.config.general.first_person_model_offset_z.tooltip": "Additional Z offset applied to first-person dragon rendering.",
+  "dsbr.config.general.animation_speed_multiplier": "Animation Speed Multiplier",
+  "dsbr.config.general.animation_speed_multiplier.tooltip": "Applies an extra multiplier after the Dragon Survival-compatible animation speed calculation. 1.0 matches the original speed.",
+  "dsbr.config.general.fallback_to_gecko_for_special_animations": "Fallback For Special Animations",
+  "dsbr.config.general.fallback_to_gecko_for_special_animations.tooltip": "When enabled, abilities, emotes and item-use animations fall back to Dragon Survival's original GeckoLib renderer."
+}

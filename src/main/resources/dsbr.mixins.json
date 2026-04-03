@@ -1,0 +1,14 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "top.wu949.dsbr.mixin",
+  "compatibilityLevel": "JAVA_21",
+  "refmap": "dsbr.refmap.json",
+  "mixins": [],
+  "client": [
+    "client.InventoryScreenMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}
