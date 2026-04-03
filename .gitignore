@@ -17,3 +17,5 @@ logs/
 crash-reports/
 
 *.log
+*.bak
+*.bak
