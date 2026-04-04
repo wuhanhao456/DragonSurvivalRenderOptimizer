@@ -37,9 +37,26 @@ public final class DSBRRenderConfig {
         }
     }
 
+    public enum ArmorRenderMode implements TranslatableEnum {
+        ORIGINAL("original"),
+        BEDROCK("bedrock");
+
+        private final String translationSuffix;
+
+        ArmorRenderMode(final String translationSuffix) {
+            this.translationSuffix = translationSuffix;
+        }
+
+        @Override
+        public Component getTranslatedName() {
+            return Component.translatable("dsbr.config.general.armor_render_mode." + translationSuffix);
+        }
+    }
+
     public static final ModConfigSpec SPEC;
     public static final ModConfigSpec.EnumValue<NormalRenderMode> NORMAL_RENDER_MODE;
     public static final ModConfigSpec.EnumValue<SpecialAnimationMode> SPECIAL_ANIMATION_MODE;
+    public static final ModConfigSpec.EnumValue<ArmorRenderMode> ARMOR_RENDER_MODE;
     public static final ModConfigSpec.BooleanValue RENDER_HEAD_IN_FIRST_PERSON;
     public static final ModConfigSpec.DoubleValue FIRST_PERSON_MODEL_OFFSET_X;
     public static final ModConfigSpec.DoubleValue FIRST_PERSON_MODEL_OFFSET_Y;
@@ -62,6 +79,11 @@ public final class DSBRRenderConfig {
                 .translation("dsbr.config.general.special_animation_mode")
                 .comment("Controls how abilities, emotes and item-use animations are rendered.", "ORIGINAL_GECKO uses Dragon Survival's original GeckoLib renderer.", "BEDROCK uses this mod's Bedrock animation engine.")
                 .defineEnum("special_animation_mode", SpecialAnimationMode.ORIGINAL_GECKO);
+
+        ARMOR_RENDER_MODE = builder
+                .translation("dsbr.config.general.armor_render_mode")
+                .comment("Controls how dragon armor appearance changes are rendered.", "ORIGINAL falls back to Dragon Survival's original renderer while armor is visible.", "BEDROCK keeps the Bedrock renderer active and draws Dragon Survival's armor overlay on top.")
+                .defineEnum("armor_render_mode", ArmorRenderMode.BEDROCK);
 
         RENDER_HEAD_IN_FIRST_PERSON = builder
                 .translation("dsbr.config.general.render_head_in_first_person")
@@ -98,6 +120,10 @@ public final class DSBRRenderConfig {
 
     public static boolean useBedrockRendererForSpecialAnimations() {
         return SPECIAL_ANIMATION_MODE.get() == SpecialAnimationMode.BEDROCK;
+    }
+
+    public static boolean useBedrockRendererForArmor() {
+        return ARMOR_RENDER_MODE.get() == ArmorRenderMode.BEDROCK;
     }
 
     public static boolean renderHeadInFirstPerson() {

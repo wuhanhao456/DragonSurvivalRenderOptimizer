@@ -36,6 +36,7 @@ public final class DSRuntimeBridge {
     private Method dragonModelGetAnimationResourceMethod;
     private Field dragonModelField;
     private Method handlerGetVisualScaleMethod;
+    private Method handlerGetModelMethod;
     private Method handlerBodyMethod;
     private Method handlerGetCurrentStageCustomizationMethod;
     private Field handlerIsOnMagicSourceField;
@@ -91,6 +92,10 @@ public final class DSRuntimeBridge {
     private Field clientConfigMaxAnimationSpeedFactorField;
     private Field clientConfigMaxAnimationSpeedField;
     private Field clientConfigMinAnimationSpeedField;
+    private Method dragonArmorRenderLayerInitArmorMasksMethod;
+    private Method dragonArmorRenderLayerConstructTrimmedDragonArmorTextureMethod;
+    private Object dragonArmorRenderLayerInstance;
+    private boolean armorRenderingAvailable;
 
     public PreparedDragonRender prepare(final AbstractClientPlayer player, final float partialTick) {
         ensureInitialized();
@@ -243,6 +248,52 @@ public final class DSRuntimeBridge {
         );
     }
 
+    public boolean canRenderArmorWithBedrock() {
+        ensureInitialized();
+        return armorRenderingAvailable;
+    }
+
+    public boolean hasVisibleArmor(final Player player) {
+        for (net.minecraft.world.entity.EquipmentSlot slot : net.minecraft.world.entity.EquipmentSlot.values()) {
+            if (!slot.isArmor()) {
+                continue;
+            }
+
+            if (!player.getItemBySlot(slot).isEmpty()) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    public ResourceLocation resolveArmorTexture(final PreparedDragonRender prepared) {
+        ensureInitialized();
+        if (!armorRenderingAvailable || prepared == null || !hasVisibleArmor(prepared.player())) {
+            return null;
+        }
+
+        try {
+            ResourceLocation armorModel = (ResourceLocation) handlerGetModelMethod.invoke(prepared.handler());
+            if (armorModel == null) {
+                return null;
+            }
+
+            dragonArmorRenderLayerInitArmorMasksMethod.invoke(dragonArmorRenderLayerInstance, armorModel);
+            Object result = dragonArmorRenderLayerConstructTrimmedDragonArmorTextureMethod.invoke(null, prepared.player());
+            if (result instanceof java.util.Optional<?> optional) {
+                Object value = optional.orElse(null);
+                if (value instanceof ResourceLocation resourceLocation) {
+                    return resourceLocation;
+                }
+            }
+        } catch (Throwable throwable) {
+            DragonSurvivalBedrockRenderer.LOGGER.error("DSBR 读取 Dragon Survival 装备贴图失败，本帧将继续只渲染 Bedrock 本体", throwable);
+        }
+
+        return null;
+    }
+
     private PreparedAbilityAnimation resolveAbilityAnimation(final Object dragon) throws Exception {
         Object abilityPair = dragonCurrentAbilityAnimationField.get(dragon);
         if (abilityPair == null) {
@@ -340,6 +391,7 @@ public final class DSRuntimeBridge {
         initialized = true;
         if (!ModList.get().isLoaded(DRAGON_SURVIVAL_MOD_ID)) {
             available = false;
+            armorRenderingAvailable = false;
             return;
         }
 
@@ -350,6 +402,7 @@ public final class DSRuntimeBridge {
             Class<?> movementDataClass = Class.forName("by.dragonsurvivalteam.dragonsurvival.registry.attachments.MovementData");
             Class<?> dragonSurvivalClientClass = Class.forName("by.dragonsurvivalteam.dragonsurvival.client.DragonSurvivalClient");
             Class<?> dragonStateHandlerClass = Class.forName("by.dragonsurvivalteam.dragonsurvival.common.capability.DragonStateHandler");
+            Class<?> dragonArmorRenderLayerClass = Class.forName("by.dragonsurvivalteam.dragonsurvival.client.render.entity.dragon.DragonArmorRenderLayer");
             Class<?> serverFlightHandlerClass = Class.forName("by.dragonsurvivalteam.dragonsurvival.server.handlers.ServerFlightHandler");
             Class<?> dragonSizeHandlerClass = Class.forName("by.dragonsurvivalteam.dragonsurvival.common.handlers.DragonSizeHandler");
             Class<?> dragonFoodHandlerClass = Class.forName("by.dragonsurvivalteam.dragonsurvival.common.handlers.DragonFoodHandler");
@@ -358,6 +411,7 @@ public final class DSRuntimeBridge {
             Class<?> dragonEmoteClass = Class.forName("by.dragonsurvivalteam.dragonsurvival.registry.dragon.body.emotes.DragonEmote");
             Class<?> pairClass = Class.forName("com.mojang.datafixers.util.Pair");
             Class<?> abilityAnimationClass = Class.forName("by.dragonsurvivalteam.dragonsurvival.common.codecs.ability.animation.AbilityAnimation");
+            Class<?> geoEntityRendererClass = Class.forName("software.bernie.geckolib.renderer.GeoEntityRenderer");
             simpleAbilityAnimationClass = Class.forName("by.dragonsurvivalteam.dragonsurvival.common.codecs.ability.animation.SimpleAbilityAnimation");
             compoundAbilityAnimationClass = Class.forName("by.dragonsurvivalteam.dragonsurvival.common.codecs.ability.animation.CompoundAbilityAnimation");
             Class<?> skyhookHelperClass = Class.forName("by.dragonsurvivalteam.dragonsurvival.compat.create.SkyhookRendererHelper");
@@ -380,9 +434,16 @@ public final class DSRuntimeBridge {
             dragonModelGetAnimationResourceMethod = dragonModel.getClass().getMethod("getAnimationResource", dragonEntityClass);
 
             handlerGetVisualScaleMethod = dragonStateHandlerClass.getMethod("getVisualScale", Player.class, float.class);
+            handlerGetModelMethod = dragonStateHandlerClass.getMethod("getModel");
             handlerBodyMethod = dragonStateHandlerClass.getMethod("body");
             handlerGetCurrentStageCustomizationMethod = dragonStateHandlerClass.getMethod("getCurrentStageCustomization");
             handlerIsOnMagicSourceField = dragonStateHandlerClass.getField("isOnMagicSource");
+
+            dragonArmorRenderLayerInitArmorMasksMethod = dragonArmorRenderLayerClass.getDeclaredMethod("initArmorMasks", ResourceLocation.class);
+            dragonArmorRenderLayerInitArmorMasksMethod.setAccessible(true);
+            dragonArmorRenderLayerConstructTrimmedDragonArmorTextureMethod = dragonArmorRenderLayerClass.getDeclaredMethod("constructTrimmedDragonArmorTexture", Player.class);
+            dragonArmorRenderLayerConstructTrimmedDragonArmorTextureMethod.setAccessible(true);
+            dragonArmorRenderLayerInstance = dragonArmorRenderLayerClass.getConstructor(geoEntityRendererClass).newInstance(new Object[] { null });
 
             serverFlightIsFlyingMethod = serverFlightHandlerClass.getMethod("isFlying", Player.class);
             serverFlightIsGlidingMethod = serverFlightHandlerClass.getMethod("isGliding", Player.class);
@@ -474,8 +535,13 @@ public final class DSRuntimeBridge {
                     && dragonEmoteBlendMethod != null
                     && dragonEmoteLocksHeadMethod != null
                     && dragonEmoteLocksTailMethod != null;
+            armorRenderingAvailable = handlerGetModelMethod != null
+                    && dragonArmorRenderLayerInitArmorMasksMethod != null
+                    && dragonArmorRenderLayerConstructTrimmedDragonArmorTextureMethod != null
+                    && dragonArmorRenderLayerInstance != null;
         } catch (Throwable throwable) {
             available = false;
+            armorRenderingAvailable = false;
             DragonSurvivalBedrockRenderer.LOGGER.error("DSBR 初始化 Dragon Survival 反射桥失败，模组将保持旁路状态", throwable);
         }
     }

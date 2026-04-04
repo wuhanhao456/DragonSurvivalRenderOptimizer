@@ -35,6 +35,10 @@ public final class BedrockDragonRenderer {
             return false;
         }
 
+        if (shouldFallbackToOriginalArmorRenderer(prepared)) {
+            return false;
+        }
+
         return !prepared.usesSpecialAnimation() || DSBRRenderConfig.useBedrockRendererForSpecialAnimations();
     }
 
@@ -67,6 +71,7 @@ public final class BedrockDragonRenderer {
         int packedOverlay = LivingEntityRenderer.getOverlayCoords(prepared.player(), 0.0F);
 
         model.renderWithColor(poseStack, consumer, packedLight, packedOverlay, 1.0F, 1.0F, 1.0F, alpha);
+        renderArmorOverlay(model, prepared, poseStack, bufferSource, packedLight, packedOverlay, alpha);
         poseStack.popPose();
     }
 
@@ -130,5 +135,31 @@ public final class BedrockDragonRenderer {
         return prepared.player() == minecraft.player
                 && minecraft.options.getCameraType().isFirstPerson()
                 && !InventoryEntityRenderContext.isRenderingInventoryEntity();
+    }
+
+    private boolean hasArmorAppearanceChanges(final DSRuntimeBridge.PreparedDragonRender prepared) {
+        return bridge.hasVisibleArmor(prepared.player());
+    }
+
+    private boolean shouldFallbackToOriginalArmorRenderer(final DSRuntimeBridge.PreparedDragonRender prepared) {
+        return hasArmorAppearanceChanges(prepared)
+                && (!DSBRRenderConfig.useBedrockRendererForArmor() || !bridge.canRenderArmorWithBedrock());
+    }
+
+    private void renderArmorOverlay(final DragonBedrockModel model, final DSRuntimeBridge.PreparedDragonRender prepared, final PoseStack poseStack, final MultiBufferSource bufferSource, final int packedLight, final int packedOverlay, final float alpha) {
+        if (!hasArmorAppearanceChanges(prepared) || !DSBRRenderConfig.useBedrockRendererForArmor()) {
+            return;
+        }
+
+        ResourceLocation armorTexture = bridge.resolveArmorTexture(prepared);
+        if (armorTexture == null) {
+            return;
+        }
+
+        RenderType armorRenderType = alpha < 1.0F
+                ? RenderType.entityTranslucentCull(armorTexture)
+                : RenderType.entityCutoutNoCullZOffset(armorTexture);
+        VertexConsumer armorConsumer = bufferSource.getBuffer(armorRenderType);
+        model.renderWithColor(poseStack, armorConsumer, packedLight, packedOverlay, 1.0F, 1.0F, 1.0F, alpha);
     }
 }
