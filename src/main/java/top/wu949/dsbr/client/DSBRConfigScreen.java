@@ -27,6 +27,20 @@ final class DSBRConfigScreen extends Screen {
     private final Screen lastScreen;
     private final Map<AbstractWidget, Component> baseTooltips = new HashMap<>();
     private final Map<AbstractWidget, Component> inactiveReasons = new HashMap<>();
+    private final DSBRRenderConfig.NormalRenderMode initialNormalRenderMode;
+    private final DSBRRenderConfig.TakeoverScope initialTakeoverScope;
+    private final DSBRRenderConfig.SpecialAnimationMode initialSpecialAnimationMode;
+    private final DSBRRenderConfig.ArmorRenderMode initialArmorRenderMode;
+    private final DSBRRenderConfig.HeldItemRenderMode initialHeldItemRenderMode;
+    private final boolean initialRenderGlowLayer;
+    private final boolean initialRenderArmorLayer;
+    private final boolean initialRenderHeldItemLayer;
+    private final boolean initialRenderBackpackLayer;
+    private final boolean initialRenderHeadInFirstPerson;
+    private final double initialFirstPersonModelOffsetX;
+    private final double initialFirstPersonModelOffsetY;
+    private final double initialFirstPersonModelOffsetZ;
+    private final double initialAnimationSpeedMultiplier;
 
     private DSBRRenderConfig.NormalRenderMode normalRenderMode = DSBRRenderConfig.NORMAL_RENDER_MODE.get();
     private DSBRRenderConfig.TakeoverScope takeoverScope = DSBRRenderConfig.TAKEOVER_SCOPE.get();
@@ -61,6 +75,20 @@ final class DSBRConfigScreen extends Screen {
     DSBRConfigScreen(final Screen lastScreen) {
         super(Component.translatable("dsbr.config.screen.title"));
         this.lastScreen = lastScreen;
+        this.initialNormalRenderMode = normalRenderMode;
+        this.initialTakeoverScope = takeoverScope;
+        this.initialSpecialAnimationMode = specialAnimationMode;
+        this.initialArmorRenderMode = armorRenderMode;
+        this.initialHeldItemRenderMode = heldItemRenderMode;
+        this.initialRenderGlowLayer = renderGlowLayer;
+        this.initialRenderArmorLayer = renderArmorLayer;
+        this.initialRenderHeldItemLayer = renderHeldItemLayer;
+        this.initialRenderBackpackLayer = renderBackpackLayer;
+        this.initialRenderHeadInFirstPerson = renderHeadInFirstPerson;
+        this.initialFirstPersonModelOffsetX = firstPersonModelOffsetX;
+        this.initialFirstPersonModelOffsetY = firstPersonModelOffsetY;
+        this.initialFirstPersonModelOffsetZ = firstPersonModelOffsetZ;
+        this.initialAnimationSpeedMultiplier = animationSpeedMultiplier;
     }
 
     @Override
@@ -80,6 +108,7 @@ final class DSBRConfigScreen extends Screen {
                         normalRenderMode,
                         value -> {
                             normalRenderMode = value;
+                            applyCurrentSettings();
                             refreshDependencyStates();
                         }
                 ),
@@ -93,7 +122,10 @@ final class DSBRConfigScreen extends Screen {
                         y,
                         Component.translatable("dsbr.config.general.takeover_scope"),
                         takeoverScope,
-                        value -> takeoverScope = value
+                        value -> {
+                            takeoverScope = value;
+                            applyCurrentSettings();
+                        }
                 ),
                 Component.translatable("dsbr.config.general.takeover_scope.tooltip")
         );
@@ -105,7 +137,10 @@ final class DSBRConfigScreen extends Screen {
                         y,
                         Component.translatable("dsbr.config.general.special_animation_mode"),
                         specialAnimationMode,
-                        value -> specialAnimationMode = value
+                        value -> {
+                            specialAnimationMode = value;
+                            applyCurrentSettings();
+                        }
                 ),
                 Component.translatable("dsbr.config.general.special_animation_mode.tooltip")
         );
@@ -117,7 +152,10 @@ final class DSBRConfigScreen extends Screen {
                         y,
                         Component.translatable("dsbr.config.general.armor_render_mode"),
                         armorRenderMode,
-                        value -> armorRenderMode = value
+                        value -> {
+                            armorRenderMode = value;
+                            applyCurrentSettings();
+                        }
                 ),
                 Component.translatable("dsbr.config.general.armor_render_mode.tooltip")
         );
@@ -129,7 +167,10 @@ final class DSBRConfigScreen extends Screen {
                         y,
                         Component.translatable("dsbr.config.general.held_item_render_mode"),
                         heldItemRenderMode,
-                        value -> heldItemRenderMode = value
+                        value -> {
+                            heldItemRenderMode = value;
+                            applyCurrentSettings();
+                        }
                 ),
                 Component.translatable("dsbr.config.general.held_item_render_mode.tooltip")
         );
@@ -137,7 +178,10 @@ final class DSBRConfigScreen extends Screen {
 
         renderGlowLayerButton = addConfigWidget(
                 CycleButton.onOffBuilder(renderGlowLayer)
-                        .create(x, y, WIDGET_WIDTH, WIDGET_HEIGHT, Component.translatable("dsbr.config.general.render_glow_layer"), (button, value) -> renderGlowLayer = value),
+                        .create(x, y, WIDGET_WIDTH, WIDGET_HEIGHT, Component.translatable("dsbr.config.general.render_glow_layer"), (button, value) -> {
+                            renderGlowLayer = value;
+                            applyCurrentSettings();
+                        }),
                 Component.translatable("dsbr.config.general.render_glow_layer.tooltip")
         );
         y += ROW_SPACING;
@@ -146,6 +190,7 @@ final class DSBRConfigScreen extends Screen {
                 CycleButton.onOffBuilder(renderArmorLayer)
                         .create(x, y, WIDGET_WIDTH, WIDGET_HEIGHT, Component.translatable("dsbr.config.general.render_armor_layer"), (button, value) -> {
                             renderArmorLayer = value;
+                            applyCurrentSettings();
                             refreshDependencyStates();
                         }),
                 Component.translatable("dsbr.config.general.render_armor_layer.tooltip")
@@ -156,6 +201,7 @@ final class DSBRConfigScreen extends Screen {
                 CycleButton.onOffBuilder(renderHeldItemLayer)
                         .create(x, y, WIDGET_WIDTH, WIDGET_HEIGHT, Component.translatable("dsbr.config.general.render_held_item_layer"), (button, value) -> {
                             renderHeldItemLayer = value;
+                            applyCurrentSettings();
                             refreshDependencyStates();
                         }),
                 Component.translatable("dsbr.config.general.render_held_item_layer.tooltip")
@@ -164,14 +210,20 @@ final class DSBRConfigScreen extends Screen {
 
         renderBackpackLayerButton = addConfigWidget(
                 CycleButton.onOffBuilder(renderBackpackLayer)
-                        .create(x, y, WIDGET_WIDTH, WIDGET_HEIGHT, Component.translatable("dsbr.config.general.render_backpack_layer"), (button, value) -> renderBackpackLayer = value),
+                        .create(x, y, WIDGET_WIDTH, WIDGET_HEIGHT, Component.translatable("dsbr.config.general.render_backpack_layer"), (button, value) -> {
+                            renderBackpackLayer = value;
+                            applyCurrentSettings();
+                        }),
                 Component.translatable("dsbr.config.general.render_backpack_layer.tooltip")
         );
         y += ROW_SPACING;
 
         renderHeadInFirstPersonButton = addConfigWidget(
                 CycleButton.onOffBuilder(renderHeadInFirstPerson)
-                        .create(x, y, WIDGET_WIDTH, WIDGET_HEIGHT, Component.translatable("dsbr.config.general.render_head_in_first_person"), (button, value) -> renderHeadInFirstPerson = value),
+                        .create(x, y, WIDGET_WIDTH, WIDGET_HEIGHT, Component.translatable("dsbr.config.general.render_head_in_first_person"), (button, value) -> {
+                            renderHeadInFirstPerson = value;
+                            applyCurrentSettings();
+                        }),
                 Component.translatable("dsbr.config.general.render_head_in_first_person.tooltip")
         );
         y += ROW_SPACING;
@@ -185,7 +237,10 @@ final class DSBRConfigScreen extends Screen {
                         -8.0D,
                         8.0D,
                         firstPersonModelOffsetX,
-                        value -> firstPersonModelOffsetX = value
+                        value -> {
+                            firstPersonModelOffsetX = value;
+                            applyCurrentSettings();
+                        }
                 ),
                 Component.translatable("dsbr.config.general.first_person_model_offset_x.tooltip")
         );
@@ -200,7 +255,10 @@ final class DSBRConfigScreen extends Screen {
                         -8.0D,
                         8.0D,
                         firstPersonModelOffsetY,
-                        value -> firstPersonModelOffsetY = value
+                        value -> {
+                            firstPersonModelOffsetY = value;
+                            applyCurrentSettings();
+                        }
                 ),
                 Component.translatable("dsbr.config.general.first_person_model_offset_y.tooltip")
         );
@@ -215,7 +273,10 @@ final class DSBRConfigScreen extends Screen {
                         -8.0D,
                         8.0D,
                         firstPersonModelOffsetZ,
-                        value -> firstPersonModelOffsetZ = value
+                        value -> {
+                            firstPersonModelOffsetZ = value;
+                            applyCurrentSettings();
+                        }
                 ),
                 Component.translatable("dsbr.config.general.first_person_model_offset_z.tooltip")
         );
@@ -230,16 +291,19 @@ final class DSBRConfigScreen extends Screen {
                         0.1D,
                         3.0D,
                         animationSpeedMultiplier,
-                        value -> animationSpeedMultiplier = value
+                        value -> {
+                            animationSpeedMultiplier = value;
+                            applyCurrentSettings();
+                        }
                 ),
                 Component.translatable("dsbr.config.general.animation_speed_multiplier.tooltip")
         );
 
         int footerY = this.height - 28;
-        addRenderableWidget(Button.builder(CommonComponents.GUI_DONE, button -> saveAndClose())
+        addRenderableWidget(Button.builder(CommonComponents.GUI_DONE, button -> persistAndClose())
                 .bounds(this.width / 2 - FOOTER_BUTTON_WIDTH - 4, footerY, FOOTER_BUTTON_WIDTH, WIDGET_HEIGHT)
                 .build());
-        addRenderableWidget(Button.builder(CommonComponents.GUI_CANCEL, button -> onClose())
+        addRenderableWidget(Button.builder(CommonComponents.GUI_CANCEL, button -> cancelAndClose())
                 .bounds(this.width / 2 + 4, footerY, FOOTER_BUTTON_WIDTH, WIDGET_HEIGHT)
                 .build());
 
@@ -256,10 +320,14 @@ final class DSBRConfigScreen extends Screen {
 
     @Override
     public void onClose() {
+        cancelAndClose();
+    }
+
+    private void closeScreen() {
         this.minecraft.setScreen(lastScreen);
     }
 
-    private void saveAndClose() {
+    private void applyCurrentSettings() {
         DSBRRenderConfig.NORMAL_RENDER_MODE.set(normalRenderMode);
         DSBRRenderConfig.TAKEOVER_SCOPE.set(takeoverScope);
         DSBRRenderConfig.SPECIAL_ANIMATION_MODE.set(specialAnimationMode);
@@ -274,8 +342,36 @@ final class DSBRConfigScreen extends Screen {
         DSBRRenderConfig.FIRST_PERSON_MODEL_OFFSET_Y.set(firstPersonModelOffsetY);
         DSBRRenderConfig.FIRST_PERSON_MODEL_OFFSET_Z.set(firstPersonModelOffsetZ);
         DSBRRenderConfig.ANIMATION_SPEED_MULTIPLIER.set(animationSpeedMultiplier);
+    }
+
+    private void persistAndClose() {
+        applyCurrentSettings();
         DSBRRenderConfig.SPEC.save();
-        onClose();
+        closeScreen();
+    }
+
+    private void cancelAndClose() {
+        restoreInitialSettings();
+        DSBRRenderConfig.SPEC.save();
+        closeScreen();
+    }
+
+    private void restoreInitialSettings() {
+        normalRenderMode = initialNormalRenderMode;
+        takeoverScope = initialTakeoverScope;
+        specialAnimationMode = initialSpecialAnimationMode;
+        armorRenderMode = initialArmorRenderMode;
+        heldItemRenderMode = initialHeldItemRenderMode;
+        renderGlowLayer = initialRenderGlowLayer;
+        renderArmorLayer = initialRenderArmorLayer;
+        renderHeldItemLayer = initialRenderHeldItemLayer;
+        renderBackpackLayer = initialRenderBackpackLayer;
+        renderHeadInFirstPerson = initialRenderHeadInFirstPerson;
+        firstPersonModelOffsetX = initialFirstPersonModelOffsetX;
+        firstPersonModelOffsetY = initialFirstPersonModelOffsetY;
+        firstPersonModelOffsetZ = initialFirstPersonModelOffsetZ;
+        animationSpeedMultiplier = initialAnimationSpeedMultiplier;
+        applyCurrentSettings();
     }
 
     private void refreshDependencyStates() {
