@@ -19,6 +19,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
+import java.util.function.Supplier;
 
 public final class DSRuntimeBridge {
     private static final String DRAGON_SURVIVAL_MOD_ID = "dragonsurvival";
@@ -52,6 +53,7 @@ public final class DSRuntimeBridge {
     private Method treasureRestIsRestingMethod;
     private Method skyhookRidingMethod;
     private Method dragonFoodHandlerIsEdibleMethod;
+    private Method dragonEntityGetPlayerMethod;
     private Method dragonGetCurrentlyPlayingEmotesMethod;
     private Field clientDragonRendererRenderItemsInMouthField;
     private Field clientDragonRendererRenderHeldItemField;
@@ -121,6 +123,10 @@ public final class DSRuntimeBridge {
     private Method slotResultSlotContextMethod;
     private Method slotContextVisibleMethod;
     private Method slotResultStackMethod;
+    private Class<?> dragonEntityClass;
+    private Class<?> fakeClientPlayerClass;
+    private Field fakeClientPlayerHandlerField;
+    private Field fakeClientPlayerAnimationSupplierField;
     private Object dragonArmorRenderLayerInstance;
     private boolean armorRenderingAvailable;
     private boolean glowRenderingAvailable;
@@ -145,90 +151,173 @@ public final class DSRuntimeBridge {
 
             Object movement = movementDataGetDataMethod.invoke(null, player);
             clientDragonRendererHandleFlightMovementMethod.invoke(null, player, dragon, movement, partialTick);
-
-            Object dragonModel = dragonModelField.get(null);
-            if (dragonModel == null) {
-                return null;
-            }
-
-            ResourceLocation modelLocation = (ResourceLocation) dragonModelGetModelResourceMethod.invoke(dragonModel, dragon);
-            ResourceLocation textureLocation = (ResourceLocation) dragonModelGetTextureResourceMethod.invoke(dragonModel, dragon);
-            ResourceLocation animationLocation = (ResourceLocation) dragonModelGetAnimationResourceMethod.invoke(dragonModel, dragon);
-            float visualScale = ((Double) handlerGetVisualScaleMethod.invoke(handler, player, partialTick)).floatValue();
-
-            double bodyYaw = movementBodyYawField.getDouble(movement);
-            double headYaw = movementHeadYawField.getDouble(movement);
-            double headPitch = movementHeadPitchField.getDouble(movement);
-            Vec3 deltaMovement = (Vec3) movementDeltaMovementField.get(movement);
-            Vec3 desiredMoveVec = (Vec3) movementDesiredMoveVecField.get(movement);
-            float movementPrevXRot = movementPrevXRotField.getFloat(movement);
-            boolean dig = movementDigField.getBoolean(movement);
-            boolean bite = movementBiteField.getBoolean(movement);
-            boolean flying = (boolean) serverFlightIsFlyingMethod.invoke(null, player);
-            boolean gliding = (boolean) serverFlightIsGlidingMethod.invoke(null, player);
-            boolean spin = (boolean) serverFlightIsSpinMethod.invoke(null, player);
-            double distanceFromGround = ((Double) serverFlightDistanceFromGroundMethod.invoke(null, player)).doubleValue();
-            boolean consideredSwimming = (boolean) dragonEntityIsSwimmingMethod.invoke(null, player);
-            boolean resting = (boolean) treasureRestIsRestingMethod.invoke(treasureRestGetDataMethod.invoke(null, player));
-            boolean ridingSkyhook = (boolean) skyhookRidingMethod.invoke(null, player.getUUID());
-            boolean canPoseFitStanding = (boolean) dragonSizeCanPoseFitMethod.invoke(null, player, Pose.STANDING);
-            boolean canPoseFitCrouching = (boolean) dragonSizeCanPoseFitMethod.invoke(null, player, Pose.CROUCHING);
-            boolean onMagicSource = handlerIsOnMagicSourceField.getBoolean(handler);
-            boolean renderItemsInMouth = Boolean.TRUE.equals(clientDragonRendererRenderItemsInMouthField.get(null));
-            boolean usingEdibleItem = player.isUsingItem() && (boolean) dragonFoodHandlerIsEdibleMethod.invoke(null, player, player.getItemInHand(player.getUsedItemHand()));
-            PreparedAbilityAnimation abilityAnimation = resolveAbilityAnimation(dragon);
-            List<PreparedEmoteSlot> activeEmoteSlots = resolveActiveEmoteSlots(dragon);
-            boolean jumpTriggered = isJumpTriggered(player.getId());
-
-            RenderCustomization customization = resolveCustomization(handler);
-            PreparedAnimationSpeedConfig animationSpeedConfig = resolveAnimationSpeedConfig();
-
-            return new PreparedDragonRender(
-                    player,
-                    dragon,
-                    handler,
-                    movement,
-                    modelLocation,
-                    textureLocation,
-                    animationLocation,
-                    partialTick,
-                    visualScale,
-                    bodyYaw,
-                    headYaw,
-                    headPitch,
-                    deltaMovement,
-                    desiredMoveVec,
-                    movementPrevXRot,
-                    dragonPrevXRotField.getFloat(dragon),
-                    dragonPrevZRotField.getFloat(dragon),
-                    flying,
-                    gliding,
-                    spin,
-                    consideredSwimming,
-                    resting,
-                    onMagicSource,
-                    canPoseFitStanding,
-                    canPoseFitCrouching,
-                    ridingSkyhook,
-                    jumpTriggered,
-                    dig,
-                    bite,
-                    usingEdibleItem,
-                    renderItemsInMouth,
-                    abilityAnimation,
-                    activeEmoteSlots,
-                    desiredMoveVec.x * desiredMoveVec.x + desiredMoveVec.z * desiredMoveVec.z > 1.0E-12,
-                    player.isUsingItem() || !activeEmoteSlots.isEmpty() || abilityAnimation != null || ridingSkyhook,
-                    animationSpeedConfig,
-                    customization.renderWings(),
-                    customization.bodyScaleMultiplier(),
-                    customization.bonesToHideForToggle(),
-                    distanceFromGround
-            );
+            return buildPreparedDragonRender(player, dragon, handler, movement, partialTick, null, false);
         } catch (Throwable throwable) {
             DragonSurvivalBedrockRenderer.LOGGER.error("DSBR 读取 Dragon Survival 运行时状态失败，本帧已回退到原版渲染", throwable);
             return null;
         }
+    }
+
+    public PreparedDragonRender prepareExternalDragonRender(final Entity dragonEntity, final float partialTick) {
+        ensureInitialized();
+        if (!available || dragonEntity == null || dragonEntityClass == null || !dragonEntityClass.isInstance(dragonEntity)) {
+            return null;
+        }
+
+        try {
+            Object playerObject = dragonEntityGetPlayerMethod.invoke(dragonEntity);
+            if (!(playerObject instanceof AbstractClientPlayer player)) {
+                return null;
+            }
+
+            boolean fakePlayer = fakeClientPlayerClass != null && fakeClientPlayerClass.isInstance(player);
+            Object handler;
+            String forcedAnimationKey = null;
+
+            if (fakePlayer) {
+                handler = fakeClientPlayerHandlerField != null ? fakeClientPlayerHandlerField.get(player) : null;
+                forcedAnimationKey = resolveForcedAnimationKey(player);
+            } else {
+                if (!(boolean) dragonStateProviderIsDragonMethod.invoke(null, player)) {
+                    return null;
+                }
+
+                handler = dragonStateProviderGetDataMethod.invoke(null, player);
+
+                float realtimeDeltaTick = Minecraft.getInstance().getTimer().getRealtimeDeltaTicks();
+                clientDragonRendererSetDragonMovementDataMethod.invoke(null, player, realtimeDeltaTick);
+            }
+
+            if (handler == null) {
+                return null;
+            }
+
+            Object movement = movementDataGetDataMethod.invoke(null, player);
+            if (movement == null) {
+                return null;
+            }
+
+            if (!fakePlayer) {
+                clientDragonRendererHandleFlightMovementMethod.invoke(null, player, dragonEntity, movement, partialTick);
+            }
+
+            return buildPreparedDragonRender(player, dragonEntity, handler, movement, partialTick, forcedAnimationKey, fakePlayer);
+        } catch (Throwable throwable) {
+            DragonSurvivalBedrockRenderer.LOGGER.error("DSBR 璇诲彇 Dragon Survival 闈瀹剁帺瀹舵覆鏌撶姸鎬佸け璐ワ紝鏈抚宸插洖閫€鍒板師鐗堟覆鏌?", throwable);
+            return null;
+        }
+    }
+
+    private PreparedDragonRender buildPreparedDragonRender(
+            final AbstractClientPlayer player,
+            final Object dragon,
+            final Object handler,
+            final Object movement,
+            final float partialTick,
+            final String forcedAnimationKey,
+            final boolean fakePlayer
+    ) throws Exception {
+        Object dragonModel = dragonModelField.get(null);
+        if (dragonModel == null) {
+            return null;
+        }
+
+        ResourceLocation modelLocation = (ResourceLocation) dragonModelGetModelResourceMethod.invoke(dragonModel, dragon);
+        ResourceLocation textureLocation = (ResourceLocation) dragonModelGetTextureResourceMethod.invoke(dragonModel, dragon);
+        ResourceLocation animationLocation = (ResourceLocation) dragonModelGetAnimationResourceMethod.invoke(dragonModel, dragon);
+        float visualScale = ((Double) handlerGetVisualScaleMethod.invoke(handler, player, partialTick)).floatValue();
+
+        double bodyYaw = movementBodyYawField.getDouble(movement);
+        double headYaw = movementHeadYawField.getDouble(movement);
+        double headPitch = movementHeadPitchField.getDouble(movement);
+        Vec3 deltaMovement = (Vec3) movementDeltaMovementField.get(movement);
+        Vec3 desiredMoveVec = (Vec3) movementDesiredMoveVecField.get(movement);
+        float movementPrevXRot = movementPrevXRotField.getFloat(movement);
+        boolean dig = movementDigField.getBoolean(movement);
+        boolean bite = movementBiteField.getBoolean(movement);
+        boolean flying = !fakePlayer && (boolean) serverFlightIsFlyingMethod.invoke(null, player);
+        boolean gliding = !fakePlayer && (boolean) serverFlightIsGlidingMethod.invoke(null, player);
+        boolean spin = !fakePlayer && (boolean) serverFlightIsSpinMethod.invoke(null, player);
+        double distanceFromGround = fakePlayer ? 0.0D : ((Double) serverFlightDistanceFromGroundMethod.invoke(null, player)).doubleValue();
+        boolean consideredSwimming = !fakePlayer && (boolean) dragonEntityIsSwimmingMethod.invoke(null, player);
+        boolean resting = !fakePlayer && (boolean) treasureRestIsRestingMethod.invoke(treasureRestGetDataMethod.invoke(null, player));
+        boolean ridingSkyhook = !fakePlayer && (boolean) skyhookRidingMethod.invoke(null, player.getUUID());
+        boolean canPoseFitStanding = fakePlayer || (boolean) dragonSizeCanPoseFitMethod.invoke(null, player, Pose.STANDING);
+        boolean canPoseFitCrouching = fakePlayer || (boolean) dragonSizeCanPoseFitMethod.invoke(null, player, Pose.CROUCHING);
+        boolean onMagicSource = handlerIsOnMagicSourceField.getBoolean(handler);
+        boolean renderItemsInMouth = Boolean.TRUE.equals(clientDragonRendererRenderItemsInMouthField.get(null));
+        boolean usingEdibleItem = !fakePlayer
+                && player.isUsingItem()
+                && (boolean) dragonFoodHandlerIsEdibleMethod.invoke(null, player, player.getItemInHand(player.getUsedItemHand()));
+        PreparedAbilityAnimation abilityAnimation = fakePlayer ? null : resolveAbilityAnimation(dragon);
+        List<PreparedEmoteSlot> activeEmoteSlots = fakePlayer ? List.of() : resolveActiveEmoteSlots(dragon);
+        boolean jumpTriggered = !fakePlayer && isJumpTriggered(player.getId());
+
+        RenderCustomization customization = resolveCustomization(handler);
+        PreparedAnimationSpeedConfig animationSpeedConfig = resolveAnimationSpeedConfig();
+        boolean movingHorizontally = desiredMoveVec.x * desiredMoveVec.x + desiredMoveVec.z * desiredMoveVec.z > 1.0E-12;
+
+        return new PreparedDragonRender(
+                player,
+                dragon,
+                handler,
+                movement,
+                modelLocation,
+                textureLocation,
+                animationLocation,
+                partialTick,
+                visualScale,
+                bodyYaw,
+                headYaw,
+                headPitch,
+                deltaMovement,
+                desiredMoveVec,
+                movementPrevXRot,
+                dragonPrevXRotField.getFloat(dragon),
+                dragonPrevZRotField.getFloat(dragon),
+                flying,
+                gliding,
+                spin,
+                consideredSwimming,
+                resting,
+                onMagicSource,
+                canPoseFitStanding,
+                canPoseFitCrouching,
+                ridingSkyhook,
+                jumpTriggered,
+                dig,
+                bite,
+                usingEdibleItem,
+                renderItemsInMouth,
+                abilityAnimation,
+                activeEmoteSlots,
+                movingHorizontally,
+                !fakePlayer && (player.isUsingItem() || !activeEmoteSlots.isEmpty() || abilityAnimation != null || ridingSkyhook),
+                animationSpeedConfig,
+                customization.renderWings(),
+                customization.bodyScaleMultiplier(),
+                customization.bonesToHideForToggle(),
+                distanceFromGround,
+                forcedAnimationKey
+        );
+    }
+
+    private String resolveForcedAnimationKey(final AbstractClientPlayer player) throws IllegalAccessException {
+        if (fakeClientPlayerClass == null || fakeClientPlayerAnimationSupplierField == null || player == null || !fakeClientPlayerClass.isInstance(player)) {
+            return null;
+        }
+
+        Object supplierObject = fakeClientPlayerAnimationSupplierField.get(player);
+        if (!(supplierObject instanceof Supplier<?> supplier)) {
+            return null;
+        }
+
+        Object value = supplier.get();
+        if (!(value instanceof String animationKey) || animationKey.isBlank()) {
+            return null;
+        }
+
+        return animationKey;
     }
 
     private RenderCustomization resolveCustomization(final Object handler) throws Exception {
@@ -628,7 +717,7 @@ public final class DSRuntimeBridge {
 
         try {
             Class<?> dragonStateProviderClass = Class.forName("by.dragonsurvivalteam.dragonsurvival.common.capability.DragonStateProvider");
-            Class<?> dragonEntityClass = Class.forName("by.dragonsurvivalteam.dragonsurvival.common.entity.DragonEntity");
+            dragonEntityClass = Class.forName("by.dragonsurvivalteam.dragonsurvival.common.entity.DragonEntity");
             Class<?> clientDragonRendererClass = Class.forName("by.dragonsurvivalteam.dragonsurvival.client.render.ClientDragonRenderer");
             Class<?> movementDataClass = Class.forName("by.dragonsurvivalteam.dragonsurvival.registry.attachments.MovementData");
             Class<?> dragonModelClass = Class.forName("by.dragonsurvivalteam.dragonsurvival.client.models.DragonModel");
@@ -657,6 +746,7 @@ public final class DSRuntimeBridge {
             simpleAbilityAnimationClass = Class.forName("by.dragonsurvivalteam.dragonsurvival.common.codecs.ability.animation.SimpleAbilityAnimation");
             compoundAbilityAnimationClass = Class.forName("by.dragonsurvivalteam.dragonsurvival.common.codecs.ability.animation.CompoundAbilityAnimation");
             Class<?> skyhookHelperClass = Class.forName("by.dragonsurvivalteam.dragonsurvival.compat.create.SkyhookRendererHelper");
+            fakeClientPlayerClass = Class.forName("by.dragonsurvivalteam.dragonsurvival.client.util.FakeClientPlayer");
 
             dragonStateProviderIsDragonMethod = dragonStateProviderClass.getMethod("isDragon", Entity.class);
             dragonStateProviderGetDataMethod = dragonStateProviderClass.getMethod("getData", Player.class);
@@ -713,11 +803,14 @@ public final class DSRuntimeBridge {
             serverFlightDistanceFromGroundMethod = serverFlightHandlerClass.getMethod("distanceFromGround", Player.class);
 
             dragonEntityIsSwimmingMethod = dragonEntityClass.getMethod("isConsideredSwimmingForAnimation", Player.class);
+            dragonEntityGetPlayerMethod = dragonEntityClass.getMethod("getPlayer");
             dragonSizeCanPoseFitMethod = dragonSizeHandlerClass.getMethod("canPoseFit", Player.class, Pose.class);
             dragonFoodHandlerIsEdibleMethod = dragonFoodHandlerClass.getMethod("isEdible", Player.class, net.minecraft.world.item.ItemStack.class);
             treasureRestGetDataMethod = treasureRestDataClass.getMethod("getData", Player.class);
             treasureRestIsRestingMethod = treasureRestDataClass.getMethod("isResting");
             skyhookRidingMethod = skyhookHelperClass.getMethod("isPlayerRidingSkyhook", java.util.UUID.class);
+            fakeClientPlayerHandlerField = fakeClientPlayerClass.getField("handler");
+            fakeClientPlayerAnimationSupplierField = fakeClientPlayerClass.getField("animationSupplier");
 
             dragonGetCurrentlyPlayingEmotesMethod = dragonEntityClass.getMethod("getCurrentlyPlayingEmotes");
             dragonCurrentAbilityAnimationField = dragonEntityClass.getDeclaredField("currentAbilityAnimation");
@@ -892,7 +985,8 @@ public final class DSRuntimeBridge {
             boolean renderWings,
             double bodyScaleMultiplier,
             List<String> bonesToHideForToggle,
-            double distanceFromGround
+            double distanceFromGround,
+            String forcedAnimationKey
     ) {
         public List<String> bonesToHideForToggle() {
             return bonesToHideForToggle == null ? Collections.emptyList() : bonesToHideForToggle;

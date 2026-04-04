@@ -6,6 +6,8 @@
   "refmap": "dsbr.refmap.json",
   "mixins": [],
   "client": [
+    "client.DragonSoulRendererMixin",
+    "client.GeoEntityRendererMixin",
     "client.InventoryScreenMixin"
   ],
   "injectors": {

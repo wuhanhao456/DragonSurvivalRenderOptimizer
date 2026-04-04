@@ -28,6 +28,10 @@ public final class DragonAnimationEngine {
     private final Map<ResourceLocation, AnimationLibrary> libraries = new HashMap<>();
     private final Map<String, ExpressionNode> expressionCache = new HashMap<>();
     private final Map<UUID, PlayerAnimationState> playerStates = new HashMap<>();
+    private final Map<String, BoneTransformAccumulator> sampledTransforms = new HashMap<>();
+    private final List<BoneTransformAccumulator> usedTransforms = new ArrayList<>();
+    private final Vector3f interpolationStart = new Vector3f();
+    private final Vector3f interpolationEnd = new Vector3f();
 
     public void animate(final DragonBedrockModel model, final DSRuntimeBridge.PreparedDragonRender renderState) throws Exception {
         AnimationLibrary library = libraries.get(renderState.animationLocation());
@@ -48,9 +52,7 @@ public final class DragonAnimationEngine {
             return;
         }
 
-        Map<String, Vector3f> rotations = new HashMap<>();
-        Map<String, Vector3f> positions = new HashMap<>();
-        Map<String, Vector3f> scales = new HashMap<>();
+        usedTransforms.clear();
         QuerySnapshot querySnapshot = plan.querySnapshot();
         for (AnimationFrame frame : plan.frames()) {
             if (frame == null || frame.clip() == null) {
@@ -59,27 +61,44 @@ public final class DragonAnimationEngine {
 
             for (Map.Entry<String, BoneAnimation> boneEntry : frame.clip().bones().entrySet()) {
                 BoneAnimation boneAnimation = boneEntry.getValue();
+                BoneTransformAccumulator accumulator = acquireTransformAccumulator(boneEntry.getKey());
                 if (boneAnimation.rotation() != null) {
-                    rotations.put(boneEntry.getKey(), boneAnimation.rotation().sample(frame.timeSeconds(), querySnapshot));
+                    boneAnimation.rotation().sampleInto(frame.timeSeconds(), querySnapshot, accumulator.rotation, interpolationStart, interpolationEnd);
+                    accumulator.hasRotation = true;
                 }
                 if (boneAnimation.position() != null) {
-                    positions.put(boneEntry.getKey(), boneAnimation.position().sample(frame.timeSeconds(), querySnapshot));
+                    boneAnimation.position().sampleInto(frame.timeSeconds(), querySnapshot, accumulator.position, interpolationStart, interpolationEnd);
+                    accumulator.hasPosition = true;
                 }
                 if (boneAnimation.scale() != null) {
-                    scales.put(boneEntry.getKey(), boneAnimation.scale().sample(frame.timeSeconds(), querySnapshot));
+                    boneAnimation.scale().sampleInto(frame.timeSeconds(), querySnapshot, accumulator.scale, interpolationStart, interpolationEnd);
+                    accumulator.hasScale = true;
                 }
             }
         }
 
-        for (Map.Entry<String, Vector3f> entry : rotations.entrySet()) {
-            model.addRotationDegrees(entry.getKey(), entry.getValue());
+        for (BoneTransformAccumulator accumulator : usedTransforms) {
+            if (accumulator.hasRotation) {
+                model.addRotationDegrees(accumulator.boneName, accumulator.rotation);
+            }
+            if (accumulator.hasPosition) {
+                model.addPosition(accumulator.boneName, accumulator.position);
+            }
+            if (accumulator.hasScale) {
+                model.applyScale(accumulator.boneName, accumulator.scale);
+            }
+            accumulator.clearFrameState();
         }
-        for (Map.Entry<String, Vector3f> entry : positions.entrySet()) {
-            model.addPosition(entry.getKey(), entry.getValue());
+        usedTransforms.clear();
+    }
+
+    private BoneTransformAccumulator acquireTransformAccumulator(final String boneName) {
+        BoneTransformAccumulator accumulator = sampledTransforms.computeIfAbsent(boneName, BoneTransformAccumulator::new);
+        if (!accumulator.usedThisFrame) {
+            accumulator.usedThisFrame = true;
+            usedTransforms.add(accumulator);
         }
-        for (Map.Entry<String, Vector3f> entry : scales.entrySet()) {
-            model.applyScale(entry.getKey(), entry.getValue());
-        }
+        return accumulator;
     }
 
     private AnimationLibrary loadLibrary(final ResourceLocation resourceLocation) throws Exception {
@@ -214,7 +233,9 @@ public final class DragonAnimationEngine {
 
         private String currentBaseAnimation = "idle";
         private double currentBaseTimeSeconds;
-        private OneShotAnimation activeOneShot;
+        private String currentForcedAnimation;
+        private double currentForcedTimeSeconds;
+        private final OneShotAnimationState activeOneShot = new OneShotAnimationState();
         private boolean lastJumpTriggered;
         private final QueryState queryState = new QueryState();
         private final AbilityTrackState baseAbilityState = new AbilityTrackState();
@@ -226,8 +247,10 @@ public final class DragonAnimationEngine {
                 new EmoteTrackState(),
                 new EmoteTrackState()
         };
+        private final boolean[] usedEmoteSlots = new boolean[emoteStates.length];
         private final double[] continuousTimes = new double[CONTINUOUS_SLOT_COUNT];
         private final TransientClipState biteLayerState = new TransientClipState();
+        private final List<AnimationFrame> workingFrames = new ArrayList<>();
         private String edibleClip;
         private double edibleTimeSeconds;
 
@@ -235,14 +258,37 @@ public final class DragonAnimationEngine {
             double deltaSeconds = getDeltaSeconds();
             double animationSpeedMultiplier = DSBRRenderConfig.animationSpeedMultiplier();
             double overlayDeltaSeconds = deltaSeconds * animationSpeedMultiplier;
+
+            AnimationFrame forcedFrame = advanceForcedAnimation(library, renderState.forcedAnimationKey(), overlayDeltaSeconds);
+            if (forcedFrame != null) {
+                clearTransientTracks();
+                queryState.update(renderState, renderState.forcedAnimationKey());
+                workingFrames.clear();
+                workingFrames.add(forcedFrame);
+                return new AnimationPlan(workingFrames, queryState.snapshot(renderState, false, false));
+            }
+
             String selectedBaseAnimation = selectBaseAnimation(renderState, library);
             queryState.update(renderState, selectedBaseAnimation);
 
             AnimationFrame normalBaseFrame = advanceNormalBase(renderState, library, selectedBaseAnimation, deltaSeconds, animationSpeedMultiplier);
             List<DSRuntimeBridge.PreparedEmoteSlot> activeEmoteSlots = renderState.activeEmoteSlots();
-            boolean hasBlockingEmote = activeEmoteSlots.stream().anyMatch(slot -> !slot.emote().blend());
-            boolean neckLocked = activeEmoteSlots.stream().anyMatch(slot -> slot.emote().locksHead());
-            boolean tailLocked = activeEmoteSlots.stream().anyMatch(slot -> slot.emote().locksTail());
+            boolean hasBlockingEmote = false;
+            boolean neckLocked = false;
+            boolean tailLocked = false;
+
+            for (DSRuntimeBridge.PreparedEmoteSlot activeEmoteSlot : activeEmoteSlots) {
+                DSRuntimeBridge.PreparedEmote emote = activeEmoteSlot.emote();
+                if (!emote.blend()) {
+                    hasBlockingEmote = true;
+                }
+                if (emote.locksHead()) {
+                    neckLocked = true;
+                }
+                if (emote.locksTail()) {
+                    tailLocked = true;
+                }
+            }
 
             DSRuntimeBridge.PreparedAbilityAnimation abilityAnimation = renderState.abilityAnimation();
             if (abilityAnimation != null) {
@@ -251,7 +297,8 @@ public final class DragonAnimationEngine {
             }
 
             QuerySnapshot querySnapshot = queryState.snapshot(renderState, neckLocked, tailLocked);
-            List<AnimationFrame> frames = new ArrayList<>();
+            List<AnimationFrame> frames = workingFrames;
+            frames.clear();
 
             AnimationFrame baseLayerFrame = selectBaseLayerFrame(renderState, library, overlayDeltaSeconds, abilityAnimation, hasBlockingEmote, normalBaseFrame);
             if (baseLayerFrame != null) {
@@ -263,6 +310,54 @@ public final class DragonAnimationEngine {
             addSpecialOverlayFrames(frames, renderState, library, overlayDeltaSeconds, abilityAnimation);
 
             return new AnimationPlan(frames, querySnapshot);
+        }
+
+        private AnimationFrame advanceForcedAnimation(
+                final AnimationLibrary library,
+                final String forcedAnimationKey,
+                final double deltaSeconds
+        ) {
+            if (forcedAnimationKey == null || forcedAnimationKey.isBlank()) {
+                clearForcedAnimation();
+                return null;
+            }
+
+            AnimationClip clip = library.get(forcedAnimationKey);
+            if (clip == null) {
+                clearForcedAnimation();
+                return null;
+            }
+
+            if (!Objects.equals(currentForcedAnimation, forcedAnimationKey)) {
+                currentForcedAnimation = forcedAnimationKey;
+                currentForcedTimeSeconds = 0.0D;
+            } else {
+                currentForcedTimeSeconds += deltaSeconds;
+            }
+
+            double sampleTime = clip.length() > 0.0D ? currentForcedTimeSeconds % clip.length() : 0.0D;
+            return new AnimationFrame(clip, sampleTime);
+        }
+
+        private void clearForcedAnimation() {
+            currentForcedAnimation = null;
+            currentForcedTimeSeconds = 0.0D;
+        }
+
+        private void clearTransientTracks() {
+            activeOneShot.clear();
+            lastJumpTriggered = false;
+            baseAbilityState.clear();
+            biteAbilityState.clear();
+            breathAbilityState.clear();
+            biteLayerState.clear();
+            clearEdibleClip();
+            for (EmoteTrackState emoteState : emoteStates) {
+                emoteState.clear();
+            }
+            for (int slot = 0; slot < continuousTimes.length; slot++) {
+                continuousTimes[slot] = 0.0D;
+            }
         }
 
         private AnimationFrame selectBaseLayerFrame(
@@ -305,13 +400,16 @@ public final class DragonAnimationEngine {
                 final AnimationLibrary library,
                 final double deltaSeconds
         ) {
-            boolean[] usedSlots = new boolean[emoteStates.length];
+            for (int slot = 0; slot < usedEmoteSlots.length; slot++) {
+                usedEmoteSlots[slot] = false;
+            }
+
             for (DSRuntimeBridge.PreparedEmoteSlot slot : activeEmoteSlots) {
                 if (slot.slot() < 0 || slot.slot() >= emoteStates.length) {
                     continue;
                 }
 
-                usedSlots[slot.slot()] = true;
+                usedEmoteSlots[slot.slot()] = true;
                 AnimationFrame frame = emoteStates[slot.slot()].frameFor(slot.emote(), library, deltaSeconds);
                 if (frame != null) {
                     frames.add(frame);
@@ -319,7 +417,7 @@ public final class DragonAnimationEngine {
             }
 
             for (int slot = 0; slot < emoteStates.length; slot++) {
-                if (!usedSlots[slot]) {
+                if (!usedEmoteSlots[slot]) {
                     emoteStates[slot].clear();
                 }
             }
@@ -443,12 +541,12 @@ public final class DragonAnimationEngine {
             lastJumpTriggered = renderState.jumpTriggered();
 
             if (jumpJustTriggered && library.get("jump") != null) {
-                activeOneShot = new OneShotAnimation("jump", 0.0D);
+                activeOneShot.trigger("jump");
             }
 
             if (!Objects.equals(currentBaseAnimation, selectedBaseAnimation)) {
                 if ("fly_land".equals(currentBaseAnimation) && library.get("fly_land_end") != null && !"fly_land".equals(selectedBaseAnimation)) {
-                    activeOneShot = new OneShotAnimation("fly_land_end", 0.0D);
+                    activeOneShot.trigger("fly_land_end");
                 }
 
                 currentBaseAnimation = selectedBaseAnimation;
@@ -457,18 +555,18 @@ public final class DragonAnimationEngine {
                 currentBaseTimeSeconds += deltaSeconds * getAnimationSpeed(currentBaseAnimation, renderState, animationSpeedMultiplier);
             }
 
-            if (activeOneShot != null) {
+            if (activeOneShot.isActive()) {
                 AnimationClip clip = library.get(activeOneShot.name());
                 if (clip == null) {
-                    activeOneShot = null;
+                    activeOneShot.clear();
                 } else {
-                    activeOneShot = activeOneShot.advance(deltaSeconds * animationSpeedMultiplier);
-                    if (activeOneShot.elapsedSeconds() >= clip.length()) {
+                    double elapsedSeconds = activeOneShot.advance(deltaSeconds * animationSpeedMultiplier);
+                    if (elapsedSeconds >= clip.length()) {
                         AnimationFrame frame = new AnimationFrame(clip, clip.length());
-                        activeOneShot = null;
+                        activeOneShot.clear();
                         return frame;
                     }
-                    return new AnimationFrame(clip, activeOneShot.elapsedSeconds());
+                    return new AnimationFrame(clip, elapsedSeconds);
                 }
             }
 
@@ -789,15 +887,59 @@ public final class DragonAnimationEngine {
         }
     }
 
+    private static final class BoneTransformAccumulator {
+        private final String boneName;
+        private final Vector3f rotation = new Vector3f();
+        private final Vector3f position = new Vector3f();
+        private final Vector3f scale = new Vector3f();
+        private boolean hasRotation;
+        private boolean hasPosition;
+        private boolean hasScale;
+        private boolean usedThisFrame;
+
+        private BoneTransformAccumulator(final String boneName) {
+            this.boneName = boneName;
+        }
+
+        private void clearFrameState() {
+            hasRotation = false;
+            hasPosition = false;
+            hasScale = false;
+            usedThisFrame = false;
+        }
+    }
+
     private record AnimationPlan(List<AnimationFrame> frames, QuerySnapshot querySnapshot) {
     }
 
     private record AnimationFrame(AnimationClip clip, double timeSeconds) {
     }
 
-    private record OneShotAnimation(String name, double elapsedSeconds) {
-        private OneShotAnimation advance(final double deltaSeconds) {
-            return new OneShotAnimation(name, elapsedSeconds + deltaSeconds);
+    private static final class OneShotAnimationState {
+        private String name;
+        private double elapsedSeconds;
+
+        private void trigger(final String clipName) {
+            name = clipName;
+            elapsedSeconds = 0.0D;
+        }
+
+        private boolean isActive() {
+            return name != null;
+        }
+
+        private String name() {
+            return name;
+        }
+
+        private double advance(final double deltaSeconds) {
+            elapsedSeconds += deltaSeconds;
+            return elapsedSeconds;
+        }
+
+        private void clear() {
+            name = null;
+            elapsedSeconds = 0.0D;
         }
     }
 
@@ -1003,18 +1145,28 @@ public final class DragonAnimationEngine {
             return new AnimationChannel(null, sorted);
         }
 
-        private Vector3f sample(final double time, final QuerySnapshot querySnapshot) {
+        private void sampleInto(
+                final double time,
+                final QuerySnapshot querySnapshot,
+                final Vector3f destination,
+                final Vector3f interpolationStart,
+                final Vector3f interpolationEnd
+        ) {
             if (constantValue != null) {
-                return constantValue.evaluate(querySnapshot);
+                constantValue.evaluateInto(querySnapshot, destination);
+                return;
             }
             if (keyframes.isEmpty()) {
-                return new Vector3f();
+                destination.zero();
+                return;
             }
             if (time <= keyframes.get(0).time()) {
-                return keyframes.get(0).value().evaluate(querySnapshot);
+                keyframes.get(0).value().evaluateInto(querySnapshot, destination);
+                return;
             }
             if (time >= keyframes.get(keyframes.size() - 1).time()) {
-                return keyframes.get(keyframes.size() - 1).value().evaluate(querySnapshot);
+                keyframes.get(keyframes.size() - 1).value().evaluateInto(querySnapshot, destination);
+                return;
             }
 
             Keyframe previous = keyframes.get(0);
@@ -1022,14 +1174,15 @@ public final class DragonAnimationEngine {
                 Keyframe next = keyframes.get(index);
                 if (time <= next.time()) {
                     float progress = (float) ((time - previous.time()) / (next.time() - previous.time()));
-                    Vector3f start = previous.value().evaluate(querySnapshot);
-                    Vector3f end = next.value().evaluate(querySnapshot);
-                    return start.lerp(end, progress, new Vector3f());
+                    previous.value().evaluateInto(querySnapshot, interpolationStart);
+                    next.value().evaluateInto(querySnapshot, interpolationEnd);
+                    interpolationStart.lerp(interpolationEnd, progress, destination);
+                    return;
                 }
                 previous = next;
             }
 
-            return previous.value().evaluate(querySnapshot);
+            previous.value().evaluateInto(querySnapshot, destination);
         }
     }
 
@@ -1037,8 +1190,8 @@ public final class DragonAnimationEngine {
     }
 
     private record VectorValue(ExpressionNode x, ExpressionNode y, ExpressionNode z) {
-        private Vector3f evaluate(final QuerySnapshot querySnapshot) {
-            return new Vector3f((float) x.evaluate(querySnapshot), (float) y.evaluate(querySnapshot), (float) z.evaluate(querySnapshot));
+        private void evaluateInto(final QuerySnapshot querySnapshot, final Vector3f destination) {
+            destination.set((float) x.evaluate(querySnapshot), (float) y.evaluate(querySnapshot), (float) z.evaluate(querySnapshot));
         }
     }
 

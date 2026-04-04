@@ -29,9 +29,14 @@ final class DSBRConfigScreen extends Screen {
     private final Map<AbstractWidget, Component> inactiveReasons = new HashMap<>();
 
     private DSBRRenderConfig.NormalRenderMode normalRenderMode = DSBRRenderConfig.NORMAL_RENDER_MODE.get();
+    private DSBRRenderConfig.TakeoverScope takeoverScope = DSBRRenderConfig.TAKEOVER_SCOPE.get();
     private DSBRRenderConfig.SpecialAnimationMode specialAnimationMode = DSBRRenderConfig.SPECIAL_ANIMATION_MODE.get();
     private DSBRRenderConfig.ArmorRenderMode armorRenderMode = DSBRRenderConfig.ARMOR_RENDER_MODE.get();
     private DSBRRenderConfig.HeldItemRenderMode heldItemRenderMode = DSBRRenderConfig.HELD_ITEM_RENDER_MODE.get();
+    private boolean renderGlowLayer = DSBRRenderConfig.RENDER_GLOW_LAYER.get();
+    private boolean renderArmorLayer = DSBRRenderConfig.RENDER_ARMOR_LAYER.get();
+    private boolean renderHeldItemLayer = DSBRRenderConfig.RENDER_HELD_ITEM_LAYER.get();
+    private boolean renderBackpackLayer = DSBRRenderConfig.RENDER_BACKPACK_LAYER.get();
     private boolean renderHeadInFirstPerson = DSBRRenderConfig.RENDER_HEAD_IN_FIRST_PERSON.get();
     private double firstPersonModelOffsetX = DSBRRenderConfig.FIRST_PERSON_MODEL_OFFSET_X.get();
     private double firstPersonModelOffsetY = DSBRRenderConfig.FIRST_PERSON_MODEL_OFFSET_Y.get();
@@ -39,9 +44,14 @@ final class DSBRConfigScreen extends Screen {
     private double animationSpeedMultiplier = DSBRRenderConfig.ANIMATION_SPEED_MULTIPLIER.get();
 
     private CycleButton<DSBRRenderConfig.NormalRenderMode> normalRenderModeButton;
+    private CycleButton<DSBRRenderConfig.TakeoverScope> takeoverScopeButton;
     private CycleButton<DSBRRenderConfig.SpecialAnimationMode> specialAnimationModeButton;
     private CycleButton<DSBRRenderConfig.ArmorRenderMode> armorRenderModeButton;
     private CycleButton<DSBRRenderConfig.HeldItemRenderMode> heldItemRenderModeButton;
+    private CycleButton<Boolean> renderGlowLayerButton;
+    private CycleButton<Boolean> renderArmorLayerButton;
+    private CycleButton<Boolean> renderHeldItemLayerButton;
+    private CycleButton<Boolean> renderBackpackLayerButton;
     private CycleButton<Boolean> renderHeadInFirstPersonButton;
     private DoubleSlider firstPersonModelOffsetXSlider;
     private DoubleSlider firstPersonModelOffsetYSlider;
@@ -74,6 +84,18 @@ final class DSBRConfigScreen extends Screen {
                         }
                 ),
                 Component.translatable("dsbr.config.general.normal_render_mode.tooltip")
+        );
+        y += ROW_SPACING;
+
+        takeoverScopeButton = addConfigWidget(
+                createEnumButton(
+                        x,
+                        y,
+                        Component.translatable("dsbr.config.general.takeover_scope"),
+                        takeoverScope,
+                        value -> takeoverScope = value
+                ),
+                Component.translatable("dsbr.config.general.takeover_scope.tooltip")
         );
         y += ROW_SPACING;
 
@@ -110,6 +132,40 @@ final class DSBRConfigScreen extends Screen {
                         value -> heldItemRenderMode = value
                 ),
                 Component.translatable("dsbr.config.general.held_item_render_mode.tooltip")
+        );
+        y += ROW_SPACING;
+
+        renderGlowLayerButton = addConfigWidget(
+                CycleButton.onOffBuilder(renderGlowLayer)
+                        .create(x, y, WIDGET_WIDTH, WIDGET_HEIGHT, Component.translatable("dsbr.config.general.render_glow_layer"), (button, value) -> renderGlowLayer = value),
+                Component.translatable("dsbr.config.general.render_glow_layer.tooltip")
+        );
+        y += ROW_SPACING;
+
+        renderArmorLayerButton = addConfigWidget(
+                CycleButton.onOffBuilder(renderArmorLayer)
+                        .create(x, y, WIDGET_WIDTH, WIDGET_HEIGHT, Component.translatable("dsbr.config.general.render_armor_layer"), (button, value) -> {
+                            renderArmorLayer = value;
+                            refreshDependencyStates();
+                        }),
+                Component.translatable("dsbr.config.general.render_armor_layer.tooltip")
+        );
+        y += ROW_SPACING;
+
+        renderHeldItemLayerButton = addConfigWidget(
+                CycleButton.onOffBuilder(renderHeldItemLayer)
+                        .create(x, y, WIDGET_WIDTH, WIDGET_HEIGHT, Component.translatable("dsbr.config.general.render_held_item_layer"), (button, value) -> {
+                            renderHeldItemLayer = value;
+                            refreshDependencyStates();
+                        }),
+                Component.translatable("dsbr.config.general.render_held_item_layer.tooltip")
+        );
+        y += ROW_SPACING;
+
+        renderBackpackLayerButton = addConfigWidget(
+                CycleButton.onOffBuilder(renderBackpackLayer)
+                        .create(x, y, WIDGET_WIDTH, WIDGET_HEIGHT, Component.translatable("dsbr.config.general.render_backpack_layer"), (button, value) -> renderBackpackLayer = value),
+                Component.translatable("dsbr.config.general.render_backpack_layer.tooltip")
         );
         y += ROW_SPACING;
 
@@ -205,9 +261,14 @@ final class DSBRConfigScreen extends Screen {
 
     private void saveAndClose() {
         DSBRRenderConfig.NORMAL_RENDER_MODE.set(normalRenderMode);
+        DSBRRenderConfig.TAKEOVER_SCOPE.set(takeoverScope);
         DSBRRenderConfig.SPECIAL_ANIMATION_MODE.set(specialAnimationMode);
         DSBRRenderConfig.ARMOR_RENDER_MODE.set(armorRenderMode);
         DSBRRenderConfig.HELD_ITEM_RENDER_MODE.set(heldItemRenderMode);
+        DSBRRenderConfig.RENDER_GLOW_LAYER.set(renderGlowLayer);
+        DSBRRenderConfig.RENDER_ARMOR_LAYER.set(renderArmorLayer);
+        DSBRRenderConfig.RENDER_HELD_ITEM_LAYER.set(renderHeldItemLayer);
+        DSBRRenderConfig.RENDER_BACKPACK_LAYER.set(renderBackpackLayer);
         DSBRRenderConfig.RENDER_HEAD_IN_FIRST_PERSON.set(renderHeadInFirstPerson);
         DSBRRenderConfig.FIRST_PERSON_MODEL_OFFSET_X.set(firstPersonModelOffsetX);
         DSBRRenderConfig.FIRST_PERSON_MODEL_OFFSET_Y.set(firstPersonModelOffsetY);
@@ -221,10 +282,21 @@ final class DSBRConfigScreen extends Screen {
         Component bedrockNormalReason = normalRenderMode == DSBRRenderConfig.NormalRenderMode.BEDROCK
                 ? null
                 : Component.translatable("dsbr.config.requirement.normal_render_mode_bedrock");
+        Component armorLayerDisabledReason = renderArmorLayer
+                ? null
+                : Component.translatable("dsbr.config.requirement.armor_layer_enabled");
+        Component heldItemLayerDisabledReason = renderHeldItemLayer
+                ? null
+                : Component.translatable("dsbr.config.requirement.held_item_layer_enabled");
 
+        applyDependencyState(takeoverScopeButton, bedrockNormalReason);
         applyDependencyState(specialAnimationModeButton, bedrockNormalReason);
-        applyDependencyState(armorRenderModeButton, bedrockNormalReason);
-        applyDependencyState(heldItemRenderModeButton, bedrockNormalReason);
+        applyDependencyState(armorRenderModeButton, firstNonNull(bedrockNormalReason, armorLayerDisabledReason));
+        applyDependencyState(heldItemRenderModeButton, firstNonNull(bedrockNormalReason, heldItemLayerDisabledReason));
+        applyDependencyState(renderGlowLayerButton, bedrockNormalReason);
+        applyDependencyState(renderArmorLayerButton, bedrockNormalReason);
+        applyDependencyState(renderHeldItemLayerButton, bedrockNormalReason);
+        applyDependencyState(renderBackpackLayerButton, bedrockNormalReason);
         applyDependencyState(renderHeadInFirstPersonButton, bedrockNormalReason);
         applyDependencyState(firstPersonModelOffsetXSlider, bedrockNormalReason);
         applyDependencyState(firstPersonModelOffsetYSlider, bedrockNormalReason);
@@ -249,6 +321,10 @@ final class DSBRConfigScreen extends Screen {
                 .append(baseTooltip)
                 .append(Component.literal("\n"))
                 .append(reason);
+    }
+
+    private Component firstNonNull(final Component first, final Component second) {
+        return first != null ? first : second;
     }
 
     private void renderInactiveReason(final GuiGraphics guiGraphics) {

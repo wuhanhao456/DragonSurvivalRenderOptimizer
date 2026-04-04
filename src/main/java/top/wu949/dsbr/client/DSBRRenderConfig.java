@@ -70,11 +70,33 @@ public final class DSBRRenderConfig {
         }
     }
 
+    public enum TakeoverScope implements TranslatableEnum {
+        PLAYER_ONLY("player_only"),
+        PLAYER_AND_DRAGON_SOUL("player_and_dragon_soul"),
+        GLOBAL("global");
+
+        private final String translationSuffix;
+
+        TakeoverScope(final String translationSuffix) {
+            this.translationSuffix = translationSuffix;
+        }
+
+        @Override
+        public Component getTranslatedName() {
+            return Component.translatable("dsbr.config.general.takeover_scope." + translationSuffix);
+        }
+    }
+
     public static final ModConfigSpec SPEC;
     public static final ModConfigSpec.EnumValue<NormalRenderMode> NORMAL_RENDER_MODE;
+    public static final ModConfigSpec.EnumValue<TakeoverScope> TAKEOVER_SCOPE;
     public static final ModConfigSpec.EnumValue<SpecialAnimationMode> SPECIAL_ANIMATION_MODE;
     public static final ModConfigSpec.EnumValue<ArmorRenderMode> ARMOR_RENDER_MODE;
     public static final ModConfigSpec.EnumValue<HeldItemRenderMode> HELD_ITEM_RENDER_MODE;
+    public static final ModConfigSpec.BooleanValue RENDER_GLOW_LAYER;
+    public static final ModConfigSpec.BooleanValue RENDER_ARMOR_LAYER;
+    public static final ModConfigSpec.BooleanValue RENDER_HELD_ITEM_LAYER;
+    public static final ModConfigSpec.BooleanValue RENDER_BACKPACK_LAYER;
     public static final ModConfigSpec.BooleanValue RENDER_HEAD_IN_FIRST_PERSON;
     public static final ModConfigSpec.DoubleValue FIRST_PERSON_MODEL_OFFSET_X;
     public static final ModConfigSpec.DoubleValue FIRST_PERSON_MODEL_OFFSET_Y;
@@ -93,6 +115,11 @@ public final class DSBRRenderConfig {
                 .comment("Controls how the normal dragon form is rendered.", "ORIGINAL uses Dragon Survival's original renderer.", "BEDROCK uses this mod's Bedrock renderer.")
                 .defineEnum("normal_render_mode", NormalRenderMode.BEDROCK);
 
+        TAKEOVER_SCOPE = builder
+                .translation("dsbr.config.general.takeover_scope")
+                .comment("Controls how widely DSBR replaces Dragon Survival's DragonEntity renderer.", "PLAYER_ONLY only affects actual player dragon rendering.", "PLAYER_AND_DRAGON_SOUL additionally affects dragon soul statues.", "GLOBAL affects all DragonEntity renders such as soul statues and preview screens.")
+                .defineEnum("takeover_scope", TakeoverScope.PLAYER_ONLY);
+
         SPECIAL_ANIMATION_MODE = builder
                 .translation("dsbr.config.general.special_animation_mode")
                 .comment("Controls how abilities, emotes and item-use animations are rendered.", "ORIGINAL_GECKO uses Dragon Survival's original GeckoLib renderer.", "BEDROCK uses this mod's Bedrock animation engine.")
@@ -107,6 +134,26 @@ public final class DSBRRenderConfig {
                 .translation("dsbr.config.general.held_item_render_mode")
                 .comment("Controls where held items attach on the dragon model.", "ORIGINAL follows Dragon Survival's renderItemsInMouth setting.", "ALWAYS_MOUTH keeps held items attached to the jaw bones.", "ALWAYS_HAND keeps held items attached to the side hand bones.")
                 .defineEnum("held_item_render_mode", HeldItemRenderMode.ORIGINAL);
+
+        RENDER_GLOW_LAYER = builder
+                .translation("dsbr.config.general.render_glow_layer")
+                .comment("Controls whether the dragon glow overlay is rendered at all.", "Disabling this also skips Bedrock-side glow texture lookup work.")
+                .define("render_glow_layer", true);
+
+        RENDER_ARMOR_LAYER = builder
+                .translation("dsbr.config.general.render_armor_layer")
+                .comment("Controls whether dragon armor appearance changes are rendered at all.", "Disabling this keeps Bedrock body rendering active and skips armor state and texture work.")
+                .define("render_armor_layer", true);
+
+        RENDER_HELD_ITEM_LAYER = builder
+                .translation("dsbr.config.general.render_held_item_layer")
+                .comment("Controls whether held items are rendered on the dragon model at all.", "Disabling this also skips held-item layer checks and Better Combat attack checks.")
+                .define("render_held_item_layer", true);
+
+        RENDER_BACKPACK_LAYER = builder
+                .translation("dsbr.config.general.render_backpack_layer")
+                .comment("Controls whether backpack layers are rendered on the dragon model at all.", "Disabling this also skips backpack lookup and offset calculations.")
+                .define("render_backpack_layer", true);
 
         RENDER_HEAD_IN_FIRST_PERSON = builder
                 .translation("dsbr.config.general.render_head_in_first_person")
@@ -141,6 +188,10 @@ public final class DSBRRenderConfig {
         return NORMAL_RENDER_MODE.get() == NormalRenderMode.BEDROCK;
     }
 
+    public static TakeoverScope takeoverScope() {
+        return TAKEOVER_SCOPE.get();
+    }
+
     public static boolean useBedrockRendererForSpecialAnimations() {
         return SPECIAL_ANIMATION_MODE.get() == SpecialAnimationMode.BEDROCK;
     }
@@ -151,6 +202,22 @@ public final class DSBRRenderConfig {
 
     public static HeldItemRenderMode heldItemRenderMode() {
         return HELD_ITEM_RENDER_MODE.get();
+    }
+
+    public static boolean renderGlowLayer() {
+        return RENDER_GLOW_LAYER.get();
+    }
+
+    public static boolean renderArmorLayer() {
+        return RENDER_ARMOR_LAYER.get();
+    }
+
+    public static boolean renderHeldItemLayer() {
+        return RENDER_HELD_ITEM_LAYER.get();
+    }
+
+    public static boolean renderBackpackLayer() {
+        return RENDER_BACKPACK_LAYER.get();
     }
 
     public static boolean renderHeadInFirstPerson() {

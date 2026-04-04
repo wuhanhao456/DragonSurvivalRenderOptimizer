@@ -146,7 +146,7 @@ public final class BedrockDragonRenderer {
     }
 
     private boolean hasArmorAppearanceChanges(final DSRuntimeBridge.PreparedDragonRender prepared) {
-        return bridge.hasVisibleArmor(prepared.player());
+        return DSBRRenderConfig.renderArmorLayer() && bridge.hasVisibleArmor(prepared.player());
     }
 
     private boolean shouldFallbackToOriginalArmorRenderer(final DSRuntimeBridge.PreparedDragonRender prepared) {
@@ -155,7 +155,7 @@ public final class BedrockDragonRenderer {
     }
 
     private void renderArmorOverlay(final DragonBedrockModel model, final DSRuntimeBridge.PreparedDragonRender prepared, final PoseStack poseStack, final MultiBufferSource bufferSource, final int packedLight, final int packedOverlay, final float alpha) {
-        if (!hasArmorAppearanceChanges(prepared) || !DSBRRenderConfig.useBedrockRendererForArmor()) {
+        if (!DSBRRenderConfig.renderArmorLayer() || !hasArmorAppearanceChanges(prepared) || !DSBRRenderConfig.useBedrockRendererForArmor()) {
             return;
         }
 
@@ -172,6 +172,10 @@ public final class BedrockDragonRenderer {
     }
 
     private void renderGlowOverlay(final DragonBedrockModel model, final DSRuntimeBridge.PreparedDragonRender prepared, final PoseStack poseStack, final MultiBufferSource bufferSource, final int packedLight, final float alpha) {
+        if (!DSBRRenderConfig.renderGlowLayer()) {
+            return;
+        }
+
         ResourceLocation glowTexture = bridge.resolveGlowTexture(prepared);
         if (glowTexture == null) {
             return;
@@ -183,7 +187,10 @@ public final class BedrockDragonRenderer {
     }
 
     private void renderHeldItems(final DragonBedrockModel model, final DSRuntimeBridge.PreparedDragonRender prepared, final PoseStack poseStack, final MultiBufferSource bufferSource, final int packedLight, final int packedOverlay) {
-        if (!bridge.shouldRenderHeldItems() || bridge.isBetterCombatAttacking(prepared.player()) || isAttachedLocalFirstPersonWorldRender(prepared)) {
+        if (!DSBRRenderConfig.renderHeldItemLayer()
+                || !bridge.shouldRenderHeldItems()
+                || bridge.isBetterCombatAttacking(prepared.player())
+                || isAttachedLocalFirstPersonWorldRender(prepared)) {
             return;
         }
 
@@ -250,6 +257,10 @@ public final class BedrockDragonRenderer {
     }
 
     private void renderBackpack(final DragonBedrockModel model, final DSRuntimeBridge.PreparedDragonRender prepared, final PoseStack poseStack, final MultiBufferSource bufferSource, final int packedLight, final int packedOverlay) {
+        if (!DSBRRenderConfig.renderBackpackLayer()) {
+            return;
+        }
+
         DSRuntimeBridge.PreparedBackpackRender backpackRender = bridge.resolveBackpackRender(prepared);
         ItemDisplayContext displayContext = resolveBackpackDisplayContext();
         if (backpackRender == null || displayContext == null) {
