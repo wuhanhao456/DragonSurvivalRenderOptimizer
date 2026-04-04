@@ -6,8 +6,10 @@ import net.minecraft.client.player.AbstractClientPlayer;
 import net.minecraft.core.Holder;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.Pose;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.phys.Vec3;
 import net.neoforged.fml.ModList;
 
@@ -52,7 +54,10 @@ public final class DSRuntimeBridge {
     private Method dragonFoodHandlerIsEdibleMethod;
     private Method dragonGetCurrentlyPlayingEmotesMethod;
     private Field clientDragonRendererRenderItemsInMouthField;
+    private Field clientDragonRendererRenderHeldItemField;
     private Field dragonCurrentAbilityAnimationField;
+    private Method handlerSpeciesMethod;
+    private Method handlerStageKeyMethod;
     private Method pairGetFirstMethod;
     private Method pairGetSecondMethod;
     private Method abilityAnimationGetLayerMethod;
@@ -92,10 +97,34 @@ public final class DSRuntimeBridge {
     private Field clientConfigMaxAnimationSpeedFactorField;
     private Field clientConfigMaxAnimationSpeedField;
     private Field clientConfigMinAnimationSpeedField;
+    private Field customizationDefaultSkinField;
+    private Field customizationLayerSettingsField;
+    private Method lazyGetMethod;
+    private Field layerSettingsIsGlowingField;
+    private Method dragonSkinsGetGlowTextureMethod;
+    private Method stageResourcesGetDefaultSkinMethod;
+    private Method dragonModelDynamicTextureMethod;
+    private Method renderingUtilsHasTextureMethod;
+    private Field dragonBodyDefaultModelField;
+    private Method betterCombatIsAttackingMethod;
     private Method dragonArmorRenderLayerInitArmorMasksMethod;
     private Method dragonArmorRenderLayerConstructTrimmedDragonArmorTextureMethod;
+    private Method bodyBackpackOffsetsMethod;
+    private Method backpackOffsetsPosOffsetMethod;
+    private Method backpackOffsetsRotOffsetMethod;
+    private Method backpackOffsetsScaleMethod;
+    private Field dragonBackpackShouldRenderField;
+    private Field dragonBackpackCuriosSlotField;
+    private Class<?> sophisticatedBackpackItemClass;
+    private Method curiosApiGetCuriosInventoryMethod;
+    private Method curiosHandlerFindCuriosMethod;
+    private Method slotResultSlotContextMethod;
+    private Method slotContextVisibleMethod;
+    private Method slotResultStackMethod;
     private Object dragonArmorRenderLayerInstance;
     private boolean armorRenderingAvailable;
+    private boolean glowRenderingAvailable;
+    private boolean backpackRenderingAvailable;
 
     public PreparedDragonRender prepare(final AbstractClientPlayer player, final float partialTick) {
         ensureInitialized();
@@ -248,13 +277,121 @@ public final class DSRuntimeBridge {
         );
     }
 
+    public ResourceLocation resolveGlowTexture(final PreparedDragonRender prepared) {
+        ensureInitialized();
+        if (!glowRenderingAvailable || prepared == null) {
+            return null;
+        }
+
+        try {
+            ResourceLocation currentModel = (ResourceLocation) handlerGetModelMethod.invoke(prepared.handler());
+            ResourceLocation defaultModel = dragonBodyDefaultModelField != null ? (ResourceLocation) dragonBodyDefaultModelField.get(null) : null;
+            Object stageKey = handlerStageKeyMethod.invoke(prepared.handler());
+            Object customization = handlerGetCurrentStageCustomizationMethod.invoke(prepared.handler());
+            ResourceLocation glowTexture = null;
+
+            if (defaultModel != null && defaultModel.equals(currentModel)) {
+                Object customGlow = dragonSkinsGetGlowTextureMethod.invoke(null, prepared.player(), stageKey);
+                if (customGlow instanceof ResourceLocation resourceLocation && hasTexture(resourceLocation)) {
+                    glowTexture = resourceLocation;
+                }
+            }
+
+            if (glowTexture == null && customization != null && customizationDefaultSkinField.getBoolean(customization)) {
+                Object species = handlerSpeciesMethod.invoke(prepared.handler());
+                Object defaultGlow = stageResourcesGetDefaultSkinMethod.invoke(null, species, stageKey, true);
+                if (defaultGlow instanceof ResourceLocation resourceLocation && hasTexture(resourceLocation)) {
+                    glowTexture = resourceLocation;
+                }
+            }
+
+            if (glowTexture == null && hasGlowingCustomLayer(customization)) {
+                Object dynamicGlow = dragonModelDynamicTextureMethod.invoke(null, prepared.player(), prepared.handler(), true);
+                if (dynamicGlow instanceof ResourceLocation resourceLocation && hasTexture(resourceLocation)) {
+                    glowTexture = resourceLocation;
+                }
+            }
+
+            return glowTexture;
+        } catch (Throwable throwable) {
+            DragonSurvivalBedrockRenderer.LOGGER.error("DSBR 读取 Dragon Survival 发光层贴图失败，本帧将跳过发光层", throwable);
+            return null;
+        }
+    }
+
+    public boolean shouldRenderHeldItems() {
+        ensureInitialized();
+        if (clientDragonRendererRenderHeldItemField == null) {
+            return false;
+        }
+
+        try {
+            return clientDragonRendererRenderHeldItemField.getBoolean(null);
+        } catch (IllegalAccessException exception) {
+            return false;
+        }
+    }
+
+    public boolean isBetterCombatAttacking(final Player player) {
+        ensureInitialized();
+        if (betterCombatIsAttackingMethod == null || player == null) {
+            return false;
+        }
+
+        try {
+            return (boolean) betterCombatIsAttackingMethod.invoke(null, player);
+        } catch (Throwable ignored) {
+            return false;
+        }
+    }
+
+    public PreparedBackpackRender resolveBackpackRender(final PreparedDragonRender prepared) {
+        ensureInitialized();
+        if (!backpackRenderingAvailable || prepared == null) {
+            return null;
+        }
+
+        try {
+            if (!Boolean.TRUE.equals(dragonBackpackShouldRenderField.get(null))) {
+                return null;
+            }
+
+            ItemStack backpack = resolveVisibleBackpack(prepared.player());
+            if (backpack.isEmpty()) {
+                return null;
+            }
+
+            Vec3 posOffset = Vec3.ZERO;
+            Vec3 rotOffset = Vec3.ZERO;
+            Vec3 scale = new Vec3(1, 1, 1);
+
+            Object bodyHolder = handlerBodyMethod.invoke(prepared.handler());
+            if (bodyHolder instanceof Holder<?> holder && holder.value() != null) {
+                Object offsetsOptional = bodyBackpackOffsetsMethod.invoke(holder.value());
+                if (offsetsOptional instanceof java.util.Optional<?> optional) {
+                    Object offsets = optional.orElse(null);
+                    if (offsets != null) {
+                        posOffset = (Vec3) backpackOffsetsPosOffsetMethod.invoke(offsets);
+                        rotOffset = (Vec3) backpackOffsetsRotOffsetMethod.invoke(offsets);
+                        scale = (Vec3) backpackOffsetsScaleMethod.invoke(offsets);
+                    }
+                }
+            }
+
+            return new PreparedBackpackRender(backpack, posOffset, rotOffset, scale);
+        } catch (Throwable throwable) {
+            DragonSurvivalBedrockRenderer.LOGGER.error("DSBR 读取 Dragon Survival 背包层状态失败，本帧将跳过背包层", throwable);
+            return null;
+        }
+    }
+
     public boolean canRenderArmorWithBedrock() {
         ensureInitialized();
         return armorRenderingAvailable;
     }
 
     public boolean hasVisibleArmor(final Player player) {
-        for (net.minecraft.world.entity.EquipmentSlot slot : net.minecraft.world.entity.EquipmentSlot.values()) {
+        for (EquipmentSlot slot : EquipmentSlot.values()) {
             if (!slot.isArmor()) {
                 continue;
             }
@@ -292,6 +429,98 @@ public final class DSRuntimeBridge {
         }
 
         return null;
+    }
+
+    private boolean hasTexture(final ResourceLocation resourceLocation) throws Exception {
+        return resourceLocation != null && (boolean) renderingUtilsHasTextureMethod.invoke(null, resourceLocation);
+    }
+
+    private boolean hasGlowingCustomLayer(final Object customization) throws Exception {
+        if (customization == null || customizationLayerSettingsField == null || lazyGetMethod == null || layerSettingsIsGlowingField == null) {
+            return false;
+        }
+
+        Object layerSettingsObject = customizationLayerSettingsField.get(customization);
+        if (!(layerSettingsObject instanceof Map<?, ?> layerSettings)) {
+            return false;
+        }
+
+        for (Object lazyValue : layerSettings.values()) {
+            Object settings = lazyGetMethod.invoke(lazyValue);
+            if (settings != null && layerSettingsIsGlowingField.getBoolean(settings)) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    private ItemStack resolveVisibleBackpack(final Player player) throws Exception {
+        ItemStack curiosBackpack = resolveCuriosBackpack(player);
+        if (!curiosBackpack.isEmpty()) {
+            return curiosBackpack;
+        }
+
+        ItemStack chestStack = player.getItemBySlot(EquipmentSlot.CHEST);
+        if (sophisticatedBackpackItemClass != null && sophisticatedBackpackItemClass.isInstance(chestStack.getItem())) {
+            return chestStack;
+        }
+
+        return ItemStack.EMPTY;
+    }
+
+    private ItemStack resolveCuriosBackpack(final Player player) throws Exception {
+        if (curiosApiGetCuriosInventoryMethod == null || dragonBackpackCuriosSlotField == null) {
+            return ItemStack.EMPTY;
+        }
+
+        Object curiosInventoryOptional = curiosApiGetCuriosInventoryMethod.invoke(null, player);
+        if (!(curiosInventoryOptional instanceof java.util.Optional<?> optional) || optional.isEmpty()) {
+            return ItemStack.EMPTY;
+        }
+
+        Object curiosInventory = optional.get();
+        if (curiosHandlerFindCuriosMethod == null) {
+            curiosHandlerFindCuriosMethod = curiosInventory.getClass().getMethod("findCurios", String.class);
+        }
+
+        Object results = curiosHandlerFindCuriosMethod.invoke(curiosInventory, (String) dragonBackpackCuriosSlotField.get(null));
+        if (!(results instanceof Iterable<?> iterable)) {
+            return ItemStack.EMPTY;
+        }
+
+        for (Object slotResult : iterable) {
+            if (slotResult == null) {
+                continue;
+            }
+
+            if (slotResultSlotContextMethod == null) {
+                slotResultSlotContextMethod = slotResult.getClass().getMethod("slotContext");
+            }
+            if (slotResultStackMethod == null) {
+                slotResultStackMethod = slotResult.getClass().getMethod("stack");
+            }
+
+            Object slotContext = slotResultSlotContextMethod.invoke(slotResult);
+            if (slotContext != null) {
+                if (slotContextVisibleMethod == null) {
+                    slotContextVisibleMethod = slotContext.getClass().getMethod("visible");
+                }
+
+                if (!(boolean) slotContextVisibleMethod.invoke(slotContext)) {
+                    continue;
+                }
+            }
+
+            Object stackObject = slotResultStackMethod.invoke(slotResult);
+            if (stackObject instanceof ItemStack stack && sophisticatedBackpackItemClass != null && sophisticatedBackpackItemClass.isInstance(stack.getItem())) {
+                return stack;
+            }
+
+            return ItemStack.EMPTY;
+        }
+
+        return ItemStack.EMPTY;
     }
 
     private PreparedAbilityAnimation resolveAbilityAnimation(final Object dragon) throws Exception {
@@ -392,6 +621,8 @@ public final class DSRuntimeBridge {
         if (!ModList.get().isLoaded(DRAGON_SURVIVAL_MOD_ID)) {
             available = false;
             armorRenderingAvailable = false;
+            glowRenderingAvailable = false;
+            backpackRenderingAvailable = false;
             return;
         }
 
@@ -400,18 +631,29 @@ public final class DSRuntimeBridge {
             Class<?> dragonEntityClass = Class.forName("by.dragonsurvivalteam.dragonsurvival.common.entity.DragonEntity");
             Class<?> clientDragonRendererClass = Class.forName("by.dragonsurvivalteam.dragonsurvival.client.render.ClientDragonRenderer");
             Class<?> movementDataClass = Class.forName("by.dragonsurvivalteam.dragonsurvival.registry.attachments.MovementData");
+            Class<?> dragonModelClass = Class.forName("by.dragonsurvivalteam.dragonsurvival.client.models.DragonModel");
             Class<?> dragonSurvivalClientClass = Class.forName("by.dragonsurvivalteam.dragonsurvival.client.DragonSurvivalClient");
             Class<?> dragonStateHandlerClass = Class.forName("by.dragonsurvivalteam.dragonsurvival.common.capability.DragonStateHandler");
+            Class<?> dragonStageCustomizationClass = Class.forName("by.dragonsurvivalteam.dragonsurvival.client.skin_editor_system.objects.DragonStageCustomization");
+            Class<?> layerSettingsClass = Class.forName("by.dragonsurvivalteam.dragonsurvival.client.skin_editor_system.objects.LayerSettings");
             Class<?> dragonArmorRenderLayerClass = Class.forName("by.dragonsurvivalteam.dragonsurvival.client.render.entity.dragon.DragonArmorRenderLayer");
             Class<?> serverFlightHandlerClass = Class.forName("by.dragonsurvivalteam.dragonsurvival.server.handlers.ServerFlightHandler");
             Class<?> dragonSizeHandlerClass = Class.forName("by.dragonsurvivalteam.dragonsurvival.common.handlers.DragonSizeHandler");
             Class<?> dragonFoodHandlerClass = Class.forName("by.dragonsurvivalteam.dragonsurvival.common.handlers.DragonFoodHandler");
             Class<?> clientConfigClass = Class.forName("by.dragonsurvivalteam.dragonsurvival.config.ClientConfig");
+            Class<?> dragonSkinsClass = Class.forName("by.dragonsurvivalteam.dragonsurvival.client.skins.DragonSkins");
+            Class<?> stageResourcesClass = Class.forName("by.dragonsurvivalteam.dragonsurvival.common.codecs.StageResources");
+            Class<?> renderingUtilsClass = Class.forName("by.dragonsurvivalteam.dragonsurvival.client.util.RenderingUtils");
             Class<?> treasureRestDataClass = Class.forName("by.dragonsurvivalteam.dragonsurvival.registry.attachments.TreasureRestData");
+            Class<?> dragonBodyClass = Class.forName("by.dragonsurvivalteam.dragonsurvival.registry.dragon.body.DragonBody");
+            Class<?> backpackOffsetsClass = Class.forName("by.dragonsurvivalteam.dragonsurvival.registry.dragon.body.DragonBody$BackpackOffsets");
             Class<?> dragonEmoteClass = Class.forName("by.dragonsurvivalteam.dragonsurvival.registry.dragon.body.emotes.DragonEmote");
             Class<?> pairClass = Class.forName("com.mojang.datafixers.util.Pair");
             Class<?> abilityAnimationClass = Class.forName("by.dragonsurvivalteam.dragonsurvival.common.codecs.ability.animation.AbilityAnimation");
             Class<?> geoEntityRendererClass = Class.forName("software.bernie.geckolib.renderer.GeoEntityRenderer");
+            Class<?> lazyClass = Class.forName("net.neoforged.neoforge.common.util.Lazy");
+            Class<?> resourceKeyClass = Class.forName("net.minecraft.resources.ResourceKey");
+            Class<?> betterCombatClass = Class.forName("by.dragonsurvivalteam.dragonsurvival.compat.bettercombat.BetterCombat");
             simpleAbilityAnimationClass = Class.forName("by.dragonsurvivalteam.dragonsurvival.common.codecs.ability.animation.SimpleAbilityAnimation");
             compoundAbilityAnimationClass = Class.forName("by.dragonsurvivalteam.dragonsurvival.common.codecs.ability.animation.CompoundAbilityAnimation");
             Class<?> skyhookHelperClass = Class.forName("by.dragonsurvivalteam.dragonsurvival.compat.create.SkyhookRendererHelper");
@@ -424,6 +666,7 @@ public final class DSRuntimeBridge {
             clientDragonRendererHandleFlightMovementMethod = clientDragonRendererClass.getDeclaredMethod("handleFlightMovement", Player.class, dragonEntityClass, movementDataClass, float.class);
             clientDragonRendererHandleFlightMovementMethod.setAccessible(true);
             clientDragonRendererRenderItemsInMouthField = clientDragonRendererClass.getField("renderItemsInMouth");
+            clientDragonRendererRenderHeldItemField = clientDragonRendererClass.getField("renderHeldItem");
 
             movementDataGetDataMethod = movementDataClass.getMethod("getData", Entity.class);
 
@@ -432,18 +675,37 @@ public final class DSRuntimeBridge {
             dragonModelGetModelResourceMethod = dragonModel.getClass().getMethod("getModelResource", dragonEntityClass);
             dragonModelGetTextureResourceMethod = dragonModel.getClass().getMethod("getTextureResource", dragonEntityClass);
             dragonModelGetAnimationResourceMethod = dragonModel.getClass().getMethod("getAnimationResource", dragonEntityClass);
+            dragonModelDynamicTextureMethod = dragonModelClass.getMethod("dynamicTexture", Player.class, dragonStateHandlerClass, boolean.class);
 
             handlerGetVisualScaleMethod = dragonStateHandlerClass.getMethod("getVisualScale", Player.class, float.class);
             handlerGetModelMethod = dragonStateHandlerClass.getMethod("getModel");
             handlerBodyMethod = dragonStateHandlerClass.getMethod("body");
+            handlerSpeciesMethod = dragonStateHandlerClass.getMethod("species");
+            handlerStageKeyMethod = dragonStateHandlerClass.getMethod("stageKey");
             handlerGetCurrentStageCustomizationMethod = dragonStateHandlerClass.getMethod("getCurrentStageCustomization");
             handlerIsOnMagicSourceField = dragonStateHandlerClass.getField("isOnMagicSource");
+
+            customizationDefaultSkinField = dragonStageCustomizationClass.getField("defaultSkin");
+            customizationLayerSettingsField = dragonStageCustomizationClass.getField("layerSettings");
+            lazyGetMethod = lazyClass.getMethod("get");
+            layerSettingsIsGlowingField = layerSettingsClass.getField("isGlowing");
+
+            dragonSkinsGetGlowTextureMethod = dragonSkinsClass.getMethod("getGlowTexture", Player.class, resourceKeyClass);
+            stageResourcesGetDefaultSkinMethod = stageResourcesClass.getMethod("getDefaultSkin", Holder.class, resourceKeyClass, boolean.class);
+            renderingUtilsHasTextureMethod = renderingUtilsClass.getMethod("hasTexture", ResourceLocation.class);
+            dragonBodyDefaultModelField = dragonBodyClass.getField("DEFAULT_MODEL");
+            betterCombatIsAttackingMethod = betterCombatClass.getMethod("isAttacking", Player.class);
 
             dragonArmorRenderLayerInitArmorMasksMethod = dragonArmorRenderLayerClass.getDeclaredMethod("initArmorMasks", ResourceLocation.class);
             dragonArmorRenderLayerInitArmorMasksMethod.setAccessible(true);
             dragonArmorRenderLayerConstructTrimmedDragonArmorTextureMethod = dragonArmorRenderLayerClass.getDeclaredMethod("constructTrimmedDragonArmorTexture", Player.class);
             dragonArmorRenderLayerConstructTrimmedDragonArmorTextureMethod.setAccessible(true);
             dragonArmorRenderLayerInstance = dragonArmorRenderLayerClass.getConstructor(geoEntityRendererClass).newInstance(new Object[] { null });
+
+            bodyBackpackOffsetsMethod = dragonBodyClass.getMethod("backpackOffsets");
+            backpackOffsetsPosOffsetMethod = backpackOffsetsClass.getMethod("posOffset");
+            backpackOffsetsRotOffsetMethod = backpackOffsetsClass.getMethod("rotOffset");
+            backpackOffsetsScaleMethod = backpackOffsetsClass.getMethod("scale");
 
             serverFlightIsFlyingMethod = serverFlightHandlerClass.getMethod("isFlying", Player.class);
             serverFlightIsGlidingMethod = serverFlightHandlerClass.getMethod("isGliding", Player.class);
@@ -495,6 +757,30 @@ public final class DSRuntimeBridge {
             clientConfigMaxAnimationSpeedField = getOptionalField(clientConfigClass, "maxAnimationSpeed");
             clientConfigMinAnimationSpeedField = getOptionalField(clientConfigClass, "minAnimationSpeed");
 
+            try {
+                Class<?> dragonBackpackRenderLayerClass = Class.forName("by.dragonsurvivalteam.dragonsurvival.compat.sophisticatedBackpacks.DragonBackpackRenderLayer");
+                dragonBackpackShouldRenderField = dragonBackpackRenderLayerClass.getField("SHOULD_RENDER");
+                dragonBackpackCuriosSlotField = dragonBackpackRenderLayerClass.getField("CURIOS_SLOT");
+                sophisticatedBackpackItemClass = Class.forName("net.p3pp3rf1y.sophisticatedbackpacks.backpack.BackpackItem");
+
+                try {
+                    Class<?> curiosApiClass = Class.forName("top.theillusivec4.curios.api.CuriosApi");
+                    for (Method method : curiosApiClass.getMethods()) {
+                        if (method.getName().equals("getCuriosInventory") && method.getParameterCount() == 1) {
+                            curiosApiGetCuriosInventoryMethod = method;
+                            break;
+                        }
+                    }
+                } catch (Throwable ignored) {
+                    curiosApiGetCuriosInventoryMethod = null;
+                }
+            } catch (Throwable ignored) {
+                dragonBackpackShouldRenderField = null;
+                dragonBackpackCuriosSlotField = null;
+                sophisticatedBackpackItemClass = null;
+                curiosApiGetCuriosInventoryMethod = null;
+            }
+
             Player localPlayer = Minecraft.getInstance().player;
             if (localPlayer != null) {
                 Object localHandler = dragonStateProviderGetDataMethod.invoke(null, localPlayer);
@@ -539,9 +825,29 @@ public final class DSRuntimeBridge {
                     && dragonArmorRenderLayerInitArmorMasksMethod != null
                     && dragonArmorRenderLayerConstructTrimmedDragonArmorTextureMethod != null
                     && dragonArmorRenderLayerInstance != null;
+            glowRenderingAvailable = handlerStageKeyMethod != null
+                    && handlerSpeciesMethod != null
+                    && handlerGetCurrentStageCustomizationMethod != null
+                    && customizationDefaultSkinField != null
+                    && customizationLayerSettingsField != null
+                    && lazyGetMethod != null
+                    && layerSettingsIsGlowingField != null
+                    && dragonSkinsGetGlowTextureMethod != null
+                    && stageResourcesGetDefaultSkinMethod != null
+                    && dragonModelDynamicTextureMethod != null
+                    && renderingUtilsHasTextureMethod != null
+                    && dragonBodyDefaultModelField != null;
+            backpackRenderingAvailable = bodyBackpackOffsetsMethod != null
+                    && backpackOffsetsPosOffsetMethod != null
+                    && backpackOffsetsRotOffsetMethod != null
+                    && backpackOffsetsScaleMethod != null
+                    && dragonBackpackShouldRenderField != null
+                    && sophisticatedBackpackItemClass != null;
         } catch (Throwable throwable) {
             available = false;
             armorRenderingAvailable = false;
+            glowRenderingAvailable = false;
+            backpackRenderingAvailable = false;
             DragonSurvivalBedrockRenderer.LOGGER.error("DSBR 初始化 Dragon Survival 反射桥失败，模组将保持旁路状态", throwable);
         }
     }
@@ -650,6 +956,14 @@ public final class DSRuntimeBridge {
     }
 
     public record PreparedEmoteSlot(int slot, PreparedEmote emote) {
+    }
+
+    public record PreparedBackpackRender(
+            ItemStack stack,
+            Vec3 posOffset,
+            Vec3 rotOffset,
+            Vec3 scale
+    ) {
     }
 
     private record RenderCustomization(boolean renderWings, double bodyScaleMultiplier, List<String> bonesToHideForToggle) {

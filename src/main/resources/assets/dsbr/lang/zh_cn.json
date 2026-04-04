@@ -1,4 +1,6 @@
 ﻿{
+  "dsbr.config.screen.title": "DSBR 配置",
+  "dsbr.config.requirement.normal_render_mode_bedrock": "这个选项当前未生效，因为“常态龙形渲染方式”仍然是 Dragon Survival 原版。",
   "dsbr.config.general": "\u901a\u7528",
   "dsbr.config.general.normal_render_mode": "\u5e38\u6001\u9f99\u5f62\u6e32\u67d3\u65b9\u5f0f",
   "dsbr.config.general.normal_render_mode.original": "Dragon Survival \u539f\u7248",
@@ -12,6 +14,11 @@
   "dsbr.config.general.armor_render_mode.original": "\u88c5\u5907\u65f6\u56de\u9000\u539f\u7248",
   "dsbr.config.general.armor_render_mode.bedrock": "Bedrock \u88c5\u5907\u5c42",
   "dsbr.config.general.armor_render_mode.tooltip": "\u5207\u6362\u9f99\u5f62\u7a7f\u88c5\u5907\u540e\u7684\u5916\u89c2\u53d8\u5316\u7531\u539f\u7248\u6e32\u67d3\u8fd8\u662f\u7531 Bedrock \u6a21\u578b\u53e0\u52a0\u88c5\u5907\u5c42\u6765\u5904\u7406\u3002",
+  "dsbr.config.general.held_item_render_mode": "\u624b\u6301\u7269\u54c1\u6302\u70b9\u65b9\u5f0f",
+  "dsbr.config.general.held_item_render_mode.original": "\u8ddf\u968f\u539f\u7248\u903b\u8f91",
+  "dsbr.config.general.held_item_render_mode.always_mouth": "\u59cb\u7ec8\u53fc\u5728\u5634\u91cc",
+  "dsbr.config.general.held_item_render_mode.always_hand": "\u59cb\u7ec8\u6302\u5728\u624b\u8fb9",
+  "dsbr.config.general.held_item_render_mode.tooltip": "\u5207\u6362\u9f99\u5f62\u624b\u6301\u7269\u54c1\u662f\u8ddf\u968f Dragon Survival \u539f\u7248\u903b\u8f91\uff0c\u8fd8\u662f\u5f3a\u5236\u4f7f\u7528\u5634\u90e8\u6302\u70b9\u6216\u624b\u4fa7\u6302\u70b9\u3002",
   "dsbr.config.general.render_head_in_first_person": "\u7b2c\u4e00\u4eba\u79f0\u663e\u793a\u5934\u90e8",
   "dsbr.config.general.render_head_in_first_person.tooltip": "\u63a7\u5236\u7b2c\u4e00\u4eba\u79f0\u89c6\u89d2\u4e0b\u662f\u5426\u4fdd\u6301\u6e32\u67d3\u9f99\u5934\u3002",
   "dsbr.config.general.first_person_model_offset_x": "\u7b2c\u4e00\u4eba\u79f0\u6a21\u578b X \u504f\u79fb",

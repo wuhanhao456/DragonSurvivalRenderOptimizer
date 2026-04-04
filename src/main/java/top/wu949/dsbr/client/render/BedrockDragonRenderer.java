@@ -11,9 +11,13 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.entity.LivingEntityRenderer;
+import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
+import net.minecraft.world.item.ItemDisplayContext;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.phys.Vec3;
+import org.joml.Quaternionf;
 
 import java.util.HashMap;
 import java.util.List;
@@ -25,6 +29,7 @@ public final class BedrockDragonRenderer {
     private final DSRuntimeBridge bridge;
     private final DragonAnimationEngine animationEngine = new DragonAnimationEngine();
     private final Map<ResourceLocation, DragonBedrockModel> modelCache = new HashMap<>();
+    private ItemDisplayContext backpackDisplayContext;
 
     public BedrockDragonRenderer(final DSRuntimeBridge bridge) {
         this.bridge = bridge;
@@ -71,7 +76,10 @@ public final class BedrockDragonRenderer {
         int packedOverlay = LivingEntityRenderer.getOverlayCoords(prepared.player(), 0.0F);
 
         model.renderWithColor(poseStack, consumer, packedLight, packedOverlay, 1.0F, 1.0F, 1.0F, alpha);
+        renderGlowOverlay(model, prepared, poseStack, bufferSource, packedLight, alpha);
         renderArmorOverlay(model, prepared, poseStack, bufferSource, packedLight, packedOverlay, alpha);
+        renderHeldItems(model, prepared, poseStack, bufferSource, packedLight, packedOverlay);
+        renderBackpack(model, prepared, poseStack, bufferSource, packedLight, packedOverlay);
         poseStack.popPose();
     }
 
@@ -161,5 +169,121 @@ public final class BedrockDragonRenderer {
                 : RenderType.entityCutoutNoCullZOffset(armorTexture);
         VertexConsumer armorConsumer = bufferSource.getBuffer(armorRenderType);
         model.renderWithColor(poseStack, armorConsumer, packedLight, packedOverlay, 1.0F, 1.0F, 1.0F, alpha);
+    }
+
+    private void renderGlowOverlay(final DragonBedrockModel model, final DSRuntimeBridge.PreparedDragonRender prepared, final PoseStack poseStack, final MultiBufferSource bufferSource, final int packedLight, final float alpha) {
+        ResourceLocation glowTexture = bridge.resolveGlowTexture(prepared);
+        if (glowTexture == null) {
+            return;
+        }
+
+        RenderType glowRenderType = RenderType.EYES.apply(glowTexture, RenderType.LIGHTNING_TRANSPARENCY);
+        VertexConsumer glowConsumer = bufferSource.getBuffer(glowRenderType);
+        model.renderWithColor(poseStack, glowConsumer, packedLight, OverlayTexture.NO_OVERLAY, 1.0F, 1.0F, 1.0F, alpha);
+    }
+
+    private void renderHeldItems(final DragonBedrockModel model, final DSRuntimeBridge.PreparedDragonRender prepared, final PoseStack poseStack, final MultiBufferSource bufferSource, final int packedLight, final int packedOverlay) {
+        if (!bridge.shouldRenderHeldItems() || bridge.isBetterCombatAttacking(prepared.player()) || isAttachedLocalFirstPersonWorldRender(prepared)) {
+            return;
+        }
+
+        boolean renderItemsInMouth = switch (DSBRRenderConfig.heldItemRenderMode()) {
+            case ALWAYS_MOUTH -> true;
+            case ALWAYS_HAND -> false;
+            case ORIGINAL -> prepared.renderItemsInMouth();
+        };
+
+        String rightBone = renderItemsInMouth ? "RightItem_jaw" : "RightItem";
+        String leftBone = renderItemsInMouth ? "LeftItem_jaw" : "LeftItem";
+
+        if (!renderItemOnBone(model, poseStack, bufferSource, packedLight, packedOverlay, prepared.player().getMainHandItem(), prepared.player(), rightBone)
+                && renderItemsInMouth) {
+            renderItemOnBone(model, poseStack, bufferSource, packedLight, packedOverlay, prepared.player().getMainHandItem(), prepared.player(), "RightItem");
+        }
+
+        if (!renderItemOnBone(model, poseStack, bufferSource, packedLight, packedOverlay, prepared.player().getOffhandItem(), prepared.player(), leftBone)
+                && renderItemsInMouth) {
+            renderItemOnBone(model, poseStack, bufferSource, packedLight, packedOverlay, prepared.player().getOffhandItem(), prepared.player(), "LeftItem");
+        }
+    }
+
+    private boolean renderItemOnBone(final DragonBedrockModel model, final PoseStack poseStack, final MultiBufferSource bufferSource, final int packedLight, final int packedOverlay, final ItemStack stack, final net.minecraft.world.entity.player.Player player, final String boneName) {
+        if (stack.isEmpty()) {
+            return false;
+        }
+
+        poseStack.pushPose();
+        if (!model.applyBoneTransform(boneName, poseStack)) {
+            poseStack.popPose();
+            return false;
+        }
+
+        applyItemBoneAdjustments(poseStack, boneName);
+        Minecraft.getInstance().getItemRenderer().renderStatic(player, stack, resolveItemDisplayContext(boneName), false, poseStack, bufferSource, player.level(), packedLight, packedOverlay, player.getId());
+        poseStack.popPose();
+        return true;
+    }
+
+    private void applyItemBoneAdjustments(final PoseStack poseStack, final String boneName) {
+        if (boneName.equals("RightItem")) {
+            Quaternionf rotation = new Quaternionf();
+            rotation.rotateY((float) Math.toRadians(90));
+            rotation.rotateX((float) Math.toRadians(60));
+            poseStack.rotateAround(rotation, 0, 0, 0);
+            poseStack.scale(0.75F, 0.75F, 0.75F);
+        } else if (boneName.equals("LeftItem")) {
+            Quaternionf rotation = new Quaternionf();
+            rotation.rotateZ((float) Math.toRadians(90));
+            rotation.rotateY((float) Math.toRadians(90));
+            rotation.rotateX((float) Math.toRadians(-120));
+            poseStack.rotateAround(rotation, 0, 0, 0);
+            poseStack.scale(0.75F, 0.75F, 0.75F);
+        }
+    }
+
+    private ItemDisplayContext resolveItemDisplayContext(final String boneName) {
+        return switch (boneName) {
+            case "RightItem" -> ItemDisplayContext.THIRD_PERSON_RIGHT_HAND;
+            case "LeftItem" -> ItemDisplayContext.THIRD_PERSON_LEFT_HAND;
+            default -> ItemDisplayContext.GROUND;
+        };
+    }
+
+    private void renderBackpack(final DragonBedrockModel model, final DSRuntimeBridge.PreparedDragonRender prepared, final PoseStack poseStack, final MultiBufferSource bufferSource, final int packedLight, final int packedOverlay) {
+        DSRuntimeBridge.PreparedBackpackRender backpackRender = bridge.resolveBackpackRender(prepared);
+        ItemDisplayContext displayContext = resolveBackpackDisplayContext();
+        if (backpackRender == null || displayContext == null) {
+            return;
+        }
+
+        poseStack.pushPose();
+        if (!model.applyBoneTransform("BackpackBone", poseStack)) {
+            poseStack.popPose();
+            return;
+        }
+
+        Quaternionf rotation = new Quaternionf().rotationZYX(
+                (float) Math.toRadians(backpackRender.rotOffset().z),
+                (float) Math.toRadians(backpackRender.rotOffset().y),
+                (float) Math.toRadians(backpackRender.rotOffset().x)
+        );
+        poseStack.rotateAround(rotation, 0, 0, 0);
+        poseStack.translate(backpackRender.posOffset().x, backpackRender.posOffset().y, backpackRender.posOffset().z);
+        poseStack.scale((float) backpackRender.scale().x, (float) backpackRender.scale().y, (float) backpackRender.scale().z);
+        Minecraft.getInstance().getItemRenderer().renderStatic(backpackRender.stack(), displayContext, packedLight, packedOverlay, poseStack, bufferSource, prepared.player().level(), 0);
+        poseStack.popPose();
+    }
+
+    private ItemDisplayContext resolveBackpackDisplayContext() {
+        if (backpackDisplayContext != null) {
+            return backpackDisplayContext;
+        }
+
+        try {
+            backpackDisplayContext = ItemDisplayContext.valueOf("SOPHISTICATEDBACKPACKS_WORN");
+            return backpackDisplayContext;
+        } catch (IllegalArgumentException ignored) {
+            return null;
+        }
     }
 }

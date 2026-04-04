@@ -99,6 +99,24 @@ public final class DragonBedrockModel extends AbstractBedrockEntityModel<Entity>
         }
     }
 
+    public boolean applyBoneTransform(final String boneName, final PoseStack poseStack) {
+        BedrockPart part = modelMap.get(boneName);
+        if (part == null) {
+            return false;
+        }
+
+        applyPartTransform(part, poseStack);
+        return true;
+    }
+
+    private void applyPartTransform(final BedrockPart part, final PoseStack poseStack) {
+        if (part.getParent() != null) {
+            applyPartTransform(part.getParent(), poseStack);
+        }
+
+        part.translateAndRotateAndScale(poseStack);
+    }
+
     private void captureBasePoses() {
         for (Map.Entry<String, BedrockPart> entry : modelMap.entrySet()) {
             BedrockPart part = entry.getValue();

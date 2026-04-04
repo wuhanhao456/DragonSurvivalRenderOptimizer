@@ -1,4 +1,6 @@
 {
+  "dsbr.config.screen.title": "DSBR Config",
+  "dsbr.config.requirement.normal_render_mode_bedrock": "This option is inactive because the Normal Dragon Renderer is set to Dragon Survival Original.",
   "dsbr.config.general": "General",
   "dsbr.config.general.normal_render_mode": "Normal Dragon Renderer",
   "dsbr.config.general.normal_render_mode.original": "Dragon Survival Original",
@@ -12,6 +14,11 @@
   "dsbr.config.general.armor_render_mode.original": "Fallback To Original",
   "dsbr.config.general.armor_render_mode.bedrock": "Bedrock Armor Overlay",
   "dsbr.config.general.armor_render_mode.tooltip": "Switches whether armor appearance changes fall back to Dragon Survival's original renderer or stay on the Bedrock renderer with an armor overlay.",
+  "dsbr.config.general.held_item_render_mode": "Held Item Attachment",
+  "dsbr.config.general.held_item_render_mode.original": "Follow Original Logic",
+  "dsbr.config.general.held_item_render_mode.always_mouth": "Always In Mouth",
+  "dsbr.config.general.held_item_render_mode.always_hand": "Always On Side",
+  "dsbr.config.general.held_item_render_mode.tooltip": "Switches whether held items follow Dragon Survival's original renderItemsInMouth logic or are forced onto the jaw bones or side hand bones.",
   "dsbr.config.general.render_head_in_first_person": "Render Head In First-Person",
   "dsbr.config.general.render_head_in_first_person.tooltip": "Controls whether the dragon head stays visible in first-person view.",
   "dsbr.config.general.first_person_model_offset_x": "First-Person Model Offset X",
