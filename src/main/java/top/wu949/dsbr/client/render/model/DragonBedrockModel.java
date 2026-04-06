@@ -9,12 +9,11 @@ import org.joml.Quaternionf;
 import org.joml.Vector3f;
 
 import java.io.InputStream;
-import java.util.HashMap;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 public final class DragonBedrockModel extends AbstractBedrockEntityModel<Entity> {
-    private final Map<String, BasePose> basePoses = new HashMap<>();
+    private final List<ResetEntry> resetEntries = new ArrayList<>();
 
     public DragonBedrockModel(final InputStream stream) {
         super(stream);
@@ -27,13 +26,9 @@ public final class DragonBedrockModel extends AbstractBedrockEntityModel<Entity>
     }
 
     public void resetPose() {
-        for (Map.Entry<String, BedrockPart> entry : modelMap.entrySet()) {
-            BedrockPart part = entry.getValue();
-            BasePose basePose = basePoses.get(entry.getKey());
-            if (basePose == null) {
-                continue;
-            }
-
+        for (ResetEntry resetEntry : resetEntries) {
+            BedrockPart part = resetEntry.part();
+            BasePose basePose = resetEntry.basePose();
             part.setPos(basePose.x(), basePose.y(), basePose.z());
             part.xRot = basePose.xRot();
             part.yRot = basePose.yRot();
@@ -44,7 +39,11 @@ public final class DragonBedrockModel extends AbstractBedrockEntityModel<Entity>
             part.xScale = 1.0F;
             part.yScale = 1.0F;
             part.zScale = 1.0F;
-            part.additionalQuaternion = new Quaternionf(0, 0, 0, 1);
+            if (part.additionalQuaternion == null) {
+                part.additionalQuaternion = new Quaternionf();
+            } else {
+                part.additionalQuaternion.identity();
+            }
             part.visible = true;
         }
     }
@@ -118,12 +117,14 @@ public final class DragonBedrockModel extends AbstractBedrockEntityModel<Entity>
     }
 
     private void captureBasePoses() {
-        for (Map.Entry<String, BedrockPart> entry : modelMap.entrySet()) {
-            BedrockPart part = entry.getValue();
-            basePoses.put(entry.getKey(), new BasePose(part.x, part.y, part.z, part.getInitRotX(), part.getInitRotY(), part.getInitRotZ()));
+        for (BedrockPart part : modelMap.values()) {
+            resetEntries.add(new ResetEntry(part, new BasePose(part.x, part.y, part.z, part.getInitRotX(), part.getInitRotY(), part.getInitRotZ())));
         }
     }
 
     private record BasePose(float x, float y, float z, float xRot, float yRot, float zRot) {
+    }
+
+    private record ResetEntry(BedrockPart part, BasePose basePose) {
     }
 }

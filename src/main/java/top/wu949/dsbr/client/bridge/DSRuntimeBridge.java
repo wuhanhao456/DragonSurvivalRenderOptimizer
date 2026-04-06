@@ -17,8 +17,11 @@ import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
+import java.util.UUID;
 import java.util.function.Supplier;
 
 public final class DSRuntimeBridge {
@@ -131,6 +134,10 @@ public final class DSRuntimeBridge {
     private boolean armorRenderingAvailable;
     private boolean glowRenderingAvailable;
     private boolean backpackRenderingAvailable;
+    private final Map<UUID, GlowTextureCacheEntry> glowTextureCache = new HashMap<>();
+    private final Map<UUID, ArmorVisibilityCacheEntry> armorVisibilityCache = new HashMap<>();
+    private final Map<UUID, ArmorTextureCacheEntry> armorTextureCache = new HashMap<>();
+    private final Map<UUID, BackpackRenderCacheEntry> backpackRenderCache = new HashMap<>();
 
     public PreparedDragonRender prepare(final AbstractClientPlayer player, final float partialTick) {
         ensureInitialized();
@@ -377,6 +384,15 @@ public final class DSRuntimeBridge {
             ResourceLocation defaultModel = dragonBodyDefaultModelField != null ? (ResourceLocation) dragonBodyDefaultModelField.get(null) : null;
             Object stageKey = handlerStageKeyMethod.invoke(prepared.handler());
             Object customization = handlerGetCurrentStageCustomizationMethod.invoke(prepared.handler());
+            boolean defaultSkin = customization != null && customizationDefaultSkinField.getBoolean(customization);
+            boolean glowingCustomLayer = hasGlowingCustomLayer(customization);
+            Object species = defaultSkin ? handlerSpeciesMethod.invoke(prepared.handler()) : null;
+            GlowTextureCacheKey cacheKey = new GlowTextureCacheKey(prepared.textureLocation(), currentModel, stageKey, species, defaultSkin, glowingCustomLayer);
+            GlowTextureCacheEntry cachedEntry = glowTextureCache.get(prepared.player().getUUID());
+            if (cachedEntry != null && cachedEntry.matches(cacheKey)) {
+                return cachedEntry.texture();
+            }
+
             ResourceLocation glowTexture = null;
 
             if (defaultModel != null && defaultModel.equals(currentModel)) {
@@ -386,21 +402,21 @@ public final class DSRuntimeBridge {
                 }
             }
 
-            if (glowTexture == null && customization != null && customizationDefaultSkinField.getBoolean(customization)) {
-                Object species = handlerSpeciesMethod.invoke(prepared.handler());
+            if (glowTexture == null && defaultSkin) {
                 Object defaultGlow = stageResourcesGetDefaultSkinMethod.invoke(null, species, stageKey, true);
                 if (defaultGlow instanceof ResourceLocation resourceLocation && hasTexture(resourceLocation)) {
                     glowTexture = resourceLocation;
                 }
             }
 
-            if (glowTexture == null && hasGlowingCustomLayer(customization)) {
+            if (glowTexture == null && glowingCustomLayer) {
                 Object dynamicGlow = dragonModelDynamicTextureMethod.invoke(null, prepared.player(), prepared.handler(), true);
                 if (dynamicGlow instanceof ResourceLocation resourceLocation && hasTexture(resourceLocation)) {
                     glowTexture = resourceLocation;
                 }
             }
 
+            putCacheEntry(glowTextureCache, prepared.player().getUUID(), new GlowTextureCacheEntry(cacheKey, glowTexture));
             return glowTexture;
         } catch (Throwable throwable) {
             DragonSurvivalBedrockRenderer.LOGGER.error("DSBR 读取 Dragon Survival 发光层贴图失败，本帧将跳过发光层", throwable);
@@ -450,13 +466,24 @@ public final class DSRuntimeBridge {
                 return null;
             }
 
+            Object bodyValue = null;
+            Object bodyHolder = handlerBodyMethod.invoke(prepared.handler());
+            if (bodyHolder instanceof Holder<?> holder) {
+                bodyValue = holder.value();
+            }
+
+            BackpackRenderCacheKey cacheKey = new BackpackRenderCacheKey(bodyValue, hashItemStack(backpack));
+            BackpackRenderCacheEntry cachedEntry = backpackRenderCache.get(prepared.player().getUUID());
+            if (cachedEntry != null && cachedEntry.matches(cacheKey)) {
+                return cachedEntry.render();
+            }
+
             Vec3 posOffset = Vec3.ZERO;
             Vec3 rotOffset = Vec3.ZERO;
             Vec3 scale = new Vec3(1, 1, 1);
 
-            Object bodyHolder = handlerBodyMethod.invoke(prepared.handler());
-            if (bodyHolder instanceof Holder<?> holder && holder.value() != null) {
-                Object offsetsOptional = bodyBackpackOffsetsMethod.invoke(holder.value());
+            if (bodyValue != null) {
+                Object offsetsOptional = bodyBackpackOffsetsMethod.invoke(bodyValue);
                 if (offsetsOptional instanceof java.util.Optional<?> optional) {
                     Object offsets = optional.orElse(null);
                     if (offsets != null) {
@@ -467,7 +494,9 @@ public final class DSRuntimeBridge {
                 }
             }
 
-            return new PreparedBackpackRender(backpack, posOffset, rotOffset, scale);
+            PreparedBackpackRender render = new PreparedBackpackRender(backpack, posOffset, rotOffset, scale);
+            putCacheEntry(backpackRenderCache, prepared.player().getUUID(), new BackpackRenderCacheEntry(cacheKey, render));
+            return render;
         } catch (Throwable throwable) {
             DragonSurvivalBedrockRenderer.LOGGER.error("DSBR 读取 Dragon Survival 背包层状态失败，本帧将跳过背包层", throwable);
             return null;
@@ -480,22 +509,29 @@ public final class DSRuntimeBridge {
     }
 
     public boolean hasVisibleArmor(final Player player) {
-        for (EquipmentSlot slot : EquipmentSlot.values()) {
-            if (!slot.isArmor()) {
-                continue;
-            }
-
-            if (!player.getItemBySlot(slot).isEmpty()) {
-                return true;
-            }
+        if (player == null) {
+            return false;
         }
 
-        return false;
+        int armorSignature = computeArmorSignature(player);
+        ArmorVisibilityCacheEntry cachedEntry = armorVisibilityCache.get(player.getUUID());
+        if (cachedEntry != null && cachedEntry.signature() == armorSignature) {
+            return cachedEntry.visible();
+        }
+
+        boolean visible = armorSignature != 0;
+        putCacheEntry(armorVisibilityCache, player.getUUID(), new ArmorVisibilityCacheEntry(armorSignature, visible));
+        return visible;
     }
 
     public ResourceLocation resolveArmorTexture(final PreparedDragonRender prepared) {
         ensureInitialized();
-        if (!armorRenderingAvailable || prepared == null || !hasVisibleArmor(prepared.player())) {
+        if (!armorRenderingAvailable || prepared == null) {
+            return null;
+        }
+
+        int armorSignature = computeArmorSignature(prepared.player());
+        if (armorSignature == 0) {
             return null;
         }
 
@@ -505,19 +541,56 @@ public final class DSRuntimeBridge {
                 return null;
             }
 
+            ArmorTextureCacheKey cacheKey = new ArmorTextureCacheKey(armorModel, armorSignature);
+            ArmorTextureCacheEntry cachedEntry = armorTextureCache.get(prepared.player().getUUID());
+            if (cachedEntry != null && cachedEntry.matches(cacheKey)) {
+                return cachedEntry.texture();
+            }
+
             dragonArmorRenderLayerInitArmorMasksMethod.invoke(dragonArmorRenderLayerInstance, armorModel);
             Object result = dragonArmorRenderLayerConstructTrimmedDragonArmorTextureMethod.invoke(null, prepared.player());
             if (result instanceof java.util.Optional<?> optional) {
                 Object value = optional.orElse(null);
                 if (value instanceof ResourceLocation resourceLocation) {
+                    putCacheEntry(armorTextureCache, prepared.player().getUUID(), new ArmorTextureCacheEntry(cacheKey, resourceLocation));
                     return resourceLocation;
                 }
             }
+            putCacheEntry(armorTextureCache, prepared.player().getUUID(), new ArmorTextureCacheEntry(cacheKey, null));
         } catch (Throwable throwable) {
             DragonSurvivalBedrockRenderer.LOGGER.error("DSBR 读取 Dragon Survival 装备贴图失败，本帧将继续只渲染 Bedrock 本体", throwable);
         }
 
         return null;
+    }
+
+    private int computeArmorSignature(final Player player) {
+        int signature = 0;
+        for (EquipmentSlot slot : EquipmentSlot.values()) {
+            if (!slot.isArmor()) {
+                continue;
+            }
+
+            ItemStack stack = player.getItemBySlot(slot);
+            if (stack.isEmpty()) {
+                continue;
+            }
+
+            signature = 31 * signature + slot.ordinal() + 1;
+            signature = 31 * signature + hashItemStack(stack);
+        }
+        return signature;
+    }
+
+    private int hashItemStack(final ItemStack stack) {
+        return stack == null || stack.isEmpty() ? 0 : 31 * ItemStack.hashItemAndComponents(stack) + stack.getCount();
+    }
+
+    private <T> void putCacheEntry(final Map<UUID, T> cache, final UUID key, final T value) {
+        if (cache.size() > 256 && !cache.containsKey(key)) {
+            cache.clear();
+        }
+        cache.put(key, value);
     }
 
     private boolean hasTexture(final ResourceLocation resourceLocation) throws Exception {
@@ -1062,6 +1135,43 @@ public final class DSRuntimeBridge {
 
     private record RenderCustomization(boolean renderWings, double bodyScaleMultiplier, List<String> bonesToHideForToggle) {
         private static final RenderCustomization DEFAULT = new RenderCustomization(true, 1.0D, List.of());
+    }
+
+    private record GlowTextureCacheKey(
+            ResourceLocation baseTexture,
+            ResourceLocation currentModel,
+            Object stageKey,
+            Object species,
+            boolean defaultSkin,
+            boolean glowingCustomLayer
+    ) {
+    }
+
+    private record GlowTextureCacheEntry(GlowTextureCacheKey key, ResourceLocation texture) {
+        private boolean matches(final GlowTextureCacheKey other) {
+            return Objects.equals(key, other);
+        }
+    }
+
+    private record ArmorVisibilityCacheEntry(int signature, boolean visible) {
+    }
+
+    private record ArmorTextureCacheKey(ResourceLocation armorModel, int armorSignature) {
+    }
+
+    private record ArmorTextureCacheEntry(ArmorTextureCacheKey key, ResourceLocation texture) {
+        private boolean matches(final ArmorTextureCacheKey other) {
+            return Objects.equals(key, other);
+        }
+    }
+
+    private record BackpackRenderCacheKey(Object bodyValue, int backpackSignature) {
+    }
+
+    private record BackpackRenderCacheEntry(BackpackRenderCacheKey key, PreparedBackpackRender render) {
+        private boolean matches(final BackpackRenderCacheKey other) {
+            return Objects.equals(key, other);
+        }
     }
 
     private Field getOptionalField(final Class<?> owner, final String name) {

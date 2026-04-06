@@ -41,6 +41,7 @@ final class DSBRConfigScreen extends Screen {
     private final double initialFirstPersonModelOffsetY;
     private final double initialFirstPersonModelOffsetZ;
     private final double initialAnimationSpeedMultiplier;
+    private boolean closingScreen;
 
     private DSBRRenderConfig.NormalRenderMode normalRenderMode = DSBRRenderConfig.NORMAL_RENDER_MODE.get();
     private DSBRRenderConfig.TakeoverScope takeoverScope = DSBRRenderConfig.TAKEOVER_SCOPE.get();
@@ -320,10 +321,14 @@ final class DSBRConfigScreen extends Screen {
 
     @Override
     public void onClose() {
+        if (closingScreen) {
+            return;
+        }
         cancelAndClose();
     }
 
     private void closeScreen() {
+        closingScreen = true;
         this.minecraft.setScreen(lastScreen);
     }
 
