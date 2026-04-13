@@ -30,7 +30,7 @@ public abstract class GeoEntityRendererMixin {
             cancellable = true,
             require = 0
     )
-    private void dsbr$renderDragonEntityWithBedrock(
+    private void dsbr(
             final Entity entity,
             final float entityYaw,
             final float partialTick,
@@ -39,7 +39,7 @@ public abstract class GeoEntityRendererMixin {
             final int packedLight,
             final CallbackInfo callbackInfo
     ) {
-        if (!DSBRRenderConfig.useBedrockRendererForNormalDragonRender()) {
+        if (!DSBRRenderConfig.useBedrockRendererForNonLocalDragonRenders()) {
             return;
         }
 
@@ -60,7 +60,10 @@ public abstract class GeoEntityRendererMixin {
             DSBR_RENDERER.render(prepared, poseStack, bufferSource, packedLight);
             callbackInfo.cancel();
         } catch (Throwable throwable) {
-            DragonSurvivalBedrockRenderer.LOGGER.error("DSBR 鎺ョ DragonEntity 娓叉煋澶辫触锛屾湰娆℃父鎴忓抚灏嗙户缁娇鐢?Dragon Survival 鍘熺増娓叉煋", throwable);
+            DragonSurvivalBedrockRenderer.LOGGER.error(
+                    "DSBR failed to replace DragonEntity rendering, continuing with Dragon Survival's original renderer for this frame.",
+                    throwable
+            );
         }
     }
 }

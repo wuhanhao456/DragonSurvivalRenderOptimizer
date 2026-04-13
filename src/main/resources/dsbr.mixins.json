@@ -6,7 +6,12 @@
   "refmap": "dsbr.refmap.json",
   "mixins": [],
   "client": [
+    "client.ClientDragonRendererMixin",
+    "client.ClientFlightHandlerMixin",
+    "client.ClientProxyMixin",
+    "client.DragonSizeHandlerMixin",
     "client.DragonSoulRendererMixin",
+    "client.GameRendererAccessor",
     "client.GeoEntityRendererMixin",
     "client.InventoryScreenMixin"
   ],

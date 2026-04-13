@@ -30,7 +30,7 @@ public abstract class DragonSoulRendererMixin {
             ),
             require = 0
     )
-    private void dsbr$renderDragonSoulWithBedrock(
+    private void dsbr(
             final EntityRenderer renderer,
             final Entity entity,
             final float entityYaw,
@@ -39,7 +39,7 @@ public abstract class DragonSoulRendererMixin {
             final MultiBufferSource bufferSource,
             final int packedLight
     ) {
-        if (!DSBRRenderConfig.useBedrockRendererForNormalDragonRender()
+        if (!DSBRRenderConfig.useBedrockRendererForNonLocalDragonRenders()
                 || DSBRRenderConfig.takeoverScope() == DSBRRenderConfig.TakeoverScope.PLAYER_ONLY) {
             renderer.render(entity, entityYaw, partialTick, poseStack, bufferSource, packedLight);
             return;
@@ -54,7 +54,10 @@ public abstract class DragonSoulRendererMixin {
         try {
             DSBR_RENDERER.render(prepared, poseStack, bufferSource, packedLight);
         } catch (Throwable throwable) {
-            DragonSurvivalBedrockRenderer.LOGGER.error("DSBR 鎺ョ DragonSoulRenderer 澶辫触锛屾湰娆℃父鎴忓抚灏嗗洖閫€鍒伴緳涔嬬敓鍘熺増娓叉煋", throwable);
+            DragonSurvivalBedrockRenderer.LOGGER.error(
+                    "DSBR failed to replace DragonSoulRenderer rendering, falling back to Dragon Survival's original renderer for this frame.",
+                    throwable
+            );
             renderer.render(entity, entityYaw, partialTick, poseStack, bufferSource, packedLight);
         }
     }

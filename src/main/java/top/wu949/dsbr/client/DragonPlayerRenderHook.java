@@ -1,12 +1,13 @@
 package top.wu949.dsbr.client;
 
-import top.wu949.dsbr.DragonSurvivalBedrockRenderer;
-import top.wu949.dsbr.client.bridge.DSRuntimeBridge;
-import top.wu949.dsbr.client.render.BedrockDragonRenderer;
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.player.AbstractClientPlayer;
 import net.neoforged.bus.api.EventPriority;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.neoforge.client.event.RenderPlayerEvent;
+import top.wu949.dsbr.DragonSurvivalBedrockRenderer;
+import top.wu949.dsbr.client.bridge.DSRuntimeBridge;
+import top.wu949.dsbr.client.render.BedrockDragonRenderer;
 
 public final class DragonPlayerRenderHook {
     private final DSRuntimeBridge bridge = new DSRuntimeBridge();
@@ -14,11 +15,15 @@ public final class DragonPlayerRenderHook {
 
     @SubscribeEvent(priority = EventPriority.HIGHEST)
     public void onRenderPlayer(final RenderPlayerEvent.Pre event) {
-        if (!DSBRRenderConfig.useBedrockRendererForNormalDragonRender() || event.isCanceled()) {
+        if (event.isCanceled()) {
             return;
         }
 
         if (!(event.getEntity() instanceof AbstractClientPlayer player)) {
+            return;
+        }
+
+        if (!shouldRenderWithBedrock(player)) {
             return;
         }
 
@@ -31,7 +36,22 @@ public final class DragonPlayerRenderHook {
             renderer.render(prepared, event.getPoseStack(), event.getMultiBufferSource(), event.getPackedLight());
             event.setCanceled(true);
         } catch (Throwable throwable) {
-            DragonSurvivalBedrockRenderer.LOGGER.error("DSBR 渲染龙模型失败，已自动回退到 Dragon Survival 原版渲染", throwable);
+            DragonSurvivalBedrockRenderer.LOGGER.error(
+                    "DSBR failed to render the dragon model, falling back to Dragon Survival's original renderer for this frame.",
+                    throwable
+            );
         }
+    }
+
+    private boolean shouldRenderWithBedrock(final AbstractClientPlayer player) {
+        if (DSBRRenderConfig.useBedrockRendererForNormalDragonRender()) {
+            return true;
+        }
+
+        if (!DSBRRenderConfig.useYsmRendererForNormalDragonRender()) {
+            return false;
+        }
+
+        return Minecraft.getInstance().player != player;
     }
 }

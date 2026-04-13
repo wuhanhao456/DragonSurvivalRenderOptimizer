@@ -1,13 +1,15 @@
 package top.wu949.dsbr.client;
 
 import net.minecraft.network.chat.Component;
+import net.neoforged.fml.ModList;
 import net.neoforged.neoforge.common.ModConfigSpec;
 import net.neoforged.neoforge.common.TranslatableEnum;
 
 public final class DSBRRenderConfig {
     public enum NormalRenderMode implements TranslatableEnum {
         ORIGINAL("original"),
-        BEDROCK("bedrock");
+        BEDROCK("bedrock"),
+        YSM("ysm");
 
         private final String translationSuffix;
 
@@ -70,6 +72,31 @@ public final class DSBRRenderConfig {
         }
     }
 
+    public enum AnimationComputeInterval implements TranslatableEnum {
+        ORIGINAL("original", 0),
+        EVERY_1_TICK("every_1_tick", 1),
+        EVERY_2_TICKS("every_2_ticks", 2),
+        EVERY_3_TICKS("every_3_ticks", 3),
+        EVERY_4_TICKS("every_4_ticks", 4);
+
+        private final String translationSuffix;
+        private final int tickInterval;
+
+        AnimationComputeInterval(final String translationSuffix, final int tickInterval) {
+            this.translationSuffix = translationSuffix;
+            this.tickInterval = tickInterval;
+        }
+
+        @Override
+        public Component getTranslatedName() {
+            return Component.translatable("dsbr.config.general.animation_compute_interval." + translationSuffix);
+        }
+
+        public int tickInterval() {
+            return tickInterval;
+        }
+    }
+
     public enum TakeoverScope implements TranslatableEnum {
         PLAYER_ONLY("player_only"),
         PLAYER_AND_DRAGON_SOUL("player_and_dragon_soul"),
@@ -102,6 +129,7 @@ public final class DSBRRenderConfig {
     public static final ModConfigSpec.DoubleValue FIRST_PERSON_MODEL_OFFSET_Y;
     public static final ModConfigSpec.DoubleValue FIRST_PERSON_MODEL_OFFSET_Z;
     public static final ModConfigSpec.DoubleValue ANIMATION_SPEED_MULTIPLIER;
+    public static final ModConfigSpec.EnumValue<AnimationComputeInterval> ANIMATION_COMPUTE_INTERVAL;
 
     static {
         ModConfigSpec.Builder builder = new ModConfigSpec.Builder();
@@ -112,7 +140,7 @@ public final class DSBRRenderConfig {
 
         NORMAL_RENDER_MODE = builder
                 .translation("dsbr.config.general.normal_render_mode")
-                .comment("Controls how the normal dragon form is rendered.", "ORIGINAL uses Dragon Survival's original renderer.", "BEDROCK uses this mod's Bedrock renderer.")
+                .comment("Controls how the normal dragon form is rendered.", "ORIGINAL uses Dragon Survival's original renderer.", "BEDROCK uses this mod's Bedrock renderer.", "YSM keeps the local player on the player render path so Yes Steve Model can render it, while other players and external dragon renders still use the Bedrock backend.")
                 .defineEnum("normal_render_mode", NormalRenderMode.BEDROCK);
 
         TAKEOVER_SCOPE = builder
@@ -180,12 +208,29 @@ public final class DSBRRenderConfig {
                 .comment("Global multiplier applied after the Dragon Survival-compatible animation speed calculation.", "1.0 matches Dragon Survival's original speed.", "Values above 1.0 speed animations up, values below 1.0 slow them down.")
                 .defineInRange("animation_speed_multiplier", 0.5D, 0.1D, 3.0D);
 
+        ANIMATION_COMPUTE_INTERVAL = builder
+                .translation("dsbr.config.general.animation_compute_interval")
+                .comment("Controls how often the Bedrock animation engine recomputes dragon animation poses.", "ORIGINAL keeps per-frame animation calculation.", "EVERY_X_TICKS reuses the last sampled pose between recalculation ticks to reduce CPU cost.")
+                .defineEnum("animation_compute_interval", AnimationComputeInterval.ORIGINAL);
+
         builder.pop();
         SPEC = builder.build();
     }
 
     public static boolean useBedrockRendererForNormalDragonRender() {
         return NORMAL_RENDER_MODE.get() == NormalRenderMode.BEDROCK;
+    }
+
+    public static boolean useYsmRendererForNormalDragonRender() {
+        return NORMAL_RENDER_MODE.get() == NormalRenderMode.YSM && isYsmInstalled();
+    }
+
+    public static boolean useBedrockRendererForNonLocalDragonRenders() {
+        return useBedrockRendererForNormalDragonRender() || useYsmRendererForNormalDragonRender();
+    }
+
+    public static boolean isYsmInstalled() {
+        return ModList.get().isLoaded("yes_steve_model");
     }
 
     public static TakeoverScope takeoverScope() {
@@ -238,6 +283,10 @@ public final class DSBRRenderConfig {
 
     public static double animationSpeedMultiplier() {
         return ANIMATION_SPEED_MULTIPLIER.get();
+    }
+
+    public static AnimationComputeInterval animationComputeInterval() {
+        return ANIMATION_COMPUTE_INTERVAL.get();
     }
 
     private DSBRRenderConfig() {

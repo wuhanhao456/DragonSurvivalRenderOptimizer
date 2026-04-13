@@ -1,5 +1,7 @@
 .gradle/
+.gradle-local/
 build/
+bin/
 runs/
 out/
 
@@ -16,7 +18,7 @@ out/
 logs/
 crash-reports/
 repacked/
+manual-package-*/
 
 *.log
-*.bak
 *.bak

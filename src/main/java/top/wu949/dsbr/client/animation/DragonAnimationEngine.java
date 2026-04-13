@@ -41,14 +41,27 @@ public final class DragonAnimationEngine {
         }
 
         PlayerAnimationState animationState = playerStates.computeIfAbsent(renderState.player().getUUID(), ignored -> new PlayerAnimationState());
-        AnimationPlan plan = animationState.advance(renderState, library);
+        PoseComputationResult poseComputation = animationState.resolvePoseComputation(renderState, library);
+        if (poseComputation.requiresRecompute()) {
+            cachePose(animationState, poseComputation.plan());
+        }
 
         model.resetPose();
         if (!renderState.renderWings()) {
             model.hideBones(renderState.bonesToHideForToggle());
         }
 
+        if (!animationState.hasCachedPose()) {
+            return;
+        }
+
+        applyCachedPose(model, animationState);
+    }
+
+    private void cachePose(final PlayerAnimationState animationState, final AnimationPlan plan) {
+        animationState.beginCachedPoseUpdate();
         if (plan == null || plan.frames().isEmpty()) {
+            animationState.finishCachedPoseUpdate();
             return;
         }
 
@@ -78,18 +91,25 @@ public final class DragonAnimationEngine {
         }
 
         for (BoneTransformAccumulator accumulator : usedTransforms) {
-            if (accumulator.hasRotation) {
-                model.addRotationDegrees(accumulator.boneName, accumulator.rotation);
-            }
-            if (accumulator.hasPosition) {
-                model.addPosition(accumulator.boneName, accumulator.position);
-            }
-            if (accumulator.hasScale) {
-                model.applyScale(accumulator.boneName, accumulator.scale);
-            }
+            animationState.cacheTransform(accumulator);
             accumulator.clearFrameState();
         }
         usedTransforms.clear();
+        animationState.finishCachedPoseUpdate();
+    }
+
+    private void applyCachedPose(final DragonBedrockModel model, final PlayerAnimationState animationState) {
+        for (CachedBoneTransform transform : animationState.cachedPose()) {
+            if (transform.hasRotation) {
+                model.addRotationDegrees(transform.boneName, transform.rotation);
+            }
+            if (transform.hasPosition) {
+                model.addPosition(transform.boneName, transform.position);
+            }
+            if (transform.hasScale) {
+                model.applyScale(transform.boneName, transform.scale);
+            }
+        }
     }
 
     private BoneTransformAccumulator acquireTransformAccumulator(final String boneName) {
@@ -251,11 +271,76 @@ public final class DragonAnimationEngine {
         private final double[] continuousTimes = new double[CONTINUOUS_SLOT_COUNT];
         private final TransientClipState biteLayerState = new TransientClipState();
         private final List<AnimationFrame> workingFrames = new ArrayList<>();
+        private final Map<String, CachedBoneTransform> cachedTransformsByBone = new HashMap<>();
+        private final List<CachedBoneTransform> cachedTransformsInUse = new ArrayList<>();
         private String edibleClip;
         private double edibleTimeSeconds;
+        private double accumulatedDeltaSeconds;
+        private int lastPoseComputationTick = Integer.MIN_VALUE;
+        private DSBRRenderConfig.AnimationComputeInterval lastPoseComputationInterval = DSBRRenderConfig.AnimationComputeInterval.ORIGINAL;
+        private AnimationInvalidationState lastInvalidationState;
+        private boolean cachedPoseValid;
 
-        private AnimationPlan advance(final DSRuntimeBridge.PreparedDragonRender renderState, final AnimationLibrary library) {
-            double deltaSeconds = getDeltaSeconds();
+        private PoseComputationResult resolvePoseComputation(final DSRuntimeBridge.PreparedDragonRender renderState, final AnimationLibrary library) {
+            accumulatedDeltaSeconds += getDeltaSeconds();
+
+            DSBRRenderConfig.AnimationComputeInterval interval = DSBRRenderConfig.animationComputeInterval();
+            AnimationInvalidationState invalidationState = AnimationInvalidationState.capture(renderState);
+            boolean requiresRecompute = interval == DSBRRenderConfig.AnimationComputeInterval.ORIGINAL
+                    || !cachedPoseValid
+                    || interval != lastPoseComputationInterval
+                    || !Objects.equals(lastInvalidationState, invalidationState)
+                    || hasReachedComputationTick(renderState, interval);
+
+            if (!requiresRecompute) {
+                return PoseComputationResult.reuse();
+            }
+
+            double deltaSeconds = accumulatedDeltaSeconds;
+            accumulatedDeltaSeconds = 0.0D;
+            lastPoseComputationTick = renderState.player().tickCount;
+            lastPoseComputationInterval = interval;
+            lastInvalidationState = invalidationState;
+            return PoseComputationResult.recompute(advance(renderState, library, deltaSeconds));
+        }
+
+        private boolean hasReachedComputationTick(
+                final DSRuntimeBridge.PreparedDragonRender renderState,
+                final DSBRRenderConfig.AnimationComputeInterval interval
+        ) {
+            int tickInterval = interval.tickInterval();
+            return tickInterval > 0
+                    && (lastPoseComputationTick == Integer.MIN_VALUE
+                    || renderState.player().tickCount - lastPoseComputationTick >= tickInterval);
+        }
+
+        private void beginCachedPoseUpdate() {
+            cachedTransformsInUse.clear();
+        }
+
+        private void cacheTransform(final BoneTransformAccumulator accumulator) {
+            CachedBoneTransform transform = cachedTransformsByBone.computeIfAbsent(accumulator.boneName, CachedBoneTransform::new);
+            transform.copyFrom(accumulator);
+            cachedTransformsInUse.add(transform);
+        }
+
+        private void finishCachedPoseUpdate() {
+            cachedPoseValid = true;
+        }
+
+        private boolean hasCachedPose() {
+            return cachedPoseValid;
+        }
+
+        private List<CachedBoneTransform> cachedPose() {
+            return cachedTransformsInUse;
+        }
+
+        private AnimationPlan advance(
+                final DSRuntimeBridge.PreparedDragonRender renderState,
+                final AnimationLibrary library,
+                final double deltaSeconds
+        ) {
             double animationSpeedMultiplier = DSBRRenderConfig.animationSpeedMultiplier();
             double overlayDeltaSeconds = deltaSeconds * animationSpeedMultiplier;
 
@@ -887,6 +972,40 @@ public final class DragonAnimationEngine {
         }
     }
 
+    private record AnimationInvalidationState(
+            ResourceLocation modelLocation,
+            ResourceLocation animationLocation,
+            String forcedAnimationKey,
+            boolean jumpTriggered,
+            boolean bite,
+            boolean dig,
+            boolean usingEdibleItem,
+            boolean playerUsingItem,
+            String usingItemHand,
+            boolean renderItemsInMouth,
+            DSRuntimeBridge.PreparedAbilityAnimation abilityAnimation,
+            int activeEmoteHash
+    ) {
+        private static AnimationInvalidationState capture(final DSRuntimeBridge.PreparedDragonRender renderState) {
+            return new AnimationInvalidationState(
+                    renderState.modelLocation(),
+                    renderState.animationLocation(),
+                    renderState.forcedAnimationKey(),
+                    renderState.jumpTriggered(),
+                    renderState.bite(),
+                    renderState.dig(),
+                    renderState.usingEdibleItem(),
+                    renderState.player().isUsingItem(),
+                    renderState.player().isUsingItem() && renderState.player().getUsedItemHand() != null
+                            ? renderState.player().getUsedItemHand().name()
+                            : null,
+                    renderState.renderItemsInMouth(),
+                    renderState.abilityAnimation(),
+                    renderState.activeEmoteSlots().hashCode()
+            );
+        }
+    }
+
     private static final class BoneTransformAccumulator {
         private final String boneName;
         private final Vector3f rotation = new Vector3f();
@@ -906,6 +1025,45 @@ public final class DragonAnimationEngine {
             hasPosition = false;
             hasScale = false;
             usedThisFrame = false;
+        }
+    }
+
+    private static final class CachedBoneTransform {
+        private final String boneName;
+        private final Vector3f rotation = new Vector3f();
+        private final Vector3f position = new Vector3f();
+        private final Vector3f scale = new Vector3f();
+        private boolean hasRotation;
+        private boolean hasPosition;
+        private boolean hasScale;
+
+        private CachedBoneTransform(final String boneName) {
+            this.boneName = boneName;
+        }
+
+        private void copyFrom(final BoneTransformAccumulator accumulator) {
+            hasRotation = accumulator.hasRotation;
+            hasPosition = accumulator.hasPosition;
+            hasScale = accumulator.hasScale;
+            if (hasRotation) {
+                rotation.set(accumulator.rotation);
+            }
+            if (hasPosition) {
+                position.set(accumulator.position);
+            }
+            if (hasScale) {
+                scale.set(accumulator.scale);
+            }
+        }
+    }
+
+    private record PoseComputationResult(AnimationPlan plan, boolean requiresRecompute) {
+        private static PoseComputationResult recompute(final AnimationPlan plan) {
+            return new PoseComputationResult(plan, true);
+        }
+
+        private static PoseComputationResult reuse() {
+            return new PoseComputationResult(null, false);
         }
     }
 

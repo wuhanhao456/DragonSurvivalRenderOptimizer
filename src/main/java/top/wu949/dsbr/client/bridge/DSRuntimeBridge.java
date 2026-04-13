@@ -160,7 +160,7 @@ public final class DSRuntimeBridge {
             clientDragonRendererHandleFlightMovementMethod.invoke(null, player, dragon, movement, partialTick);
             return buildPreparedDragonRender(player, dragon, handler, movement, partialTick, null, false);
         } catch (Throwable throwable) {
-            DragonSurvivalBedrockRenderer.LOGGER.error("DSBR 读取 Dragon Survival 运行时状态失败，本帧已回退到原版渲染", throwable);
+            DragonSurvivalBedrockRenderer.LOGGER.error("DSBR failed to read Dragon Survival runtime state, falling back to the original renderer for this frame.", throwable);
             return null;
         }
     }
@@ -210,7 +210,7 @@ public final class DSRuntimeBridge {
 
             return buildPreparedDragonRender(player, dragonEntity, handler, movement, partialTick, forcedAnimationKey, fakePlayer);
         } catch (Throwable throwable) {
-            DragonSurvivalBedrockRenderer.LOGGER.error("DSBR 璇诲彇 Dragon Survival 闈瀹剁帺瀹舵覆鏌撶姸鎬佸け璐ワ紝鏈抚宸插洖閫€鍒板師鐗堟覆鏌?", throwable);
+            DragonSurvivalBedrockRenderer.LOGGER.error("DSBR failed to read Dragon Survival player render state, falling back to the original renderer for this frame.", throwable);
             return null;
         }
     }
@@ -419,7 +419,7 @@ public final class DSRuntimeBridge {
             putCacheEntry(glowTextureCache, prepared.player().getUUID(), new GlowTextureCacheEntry(cacheKey, glowTexture));
             return glowTexture;
         } catch (Throwable throwable) {
-            DragonSurvivalBedrockRenderer.LOGGER.error("DSBR 读取 Dragon Survival 发光层贴图失败，本帧将跳过发光层", throwable);
+            DragonSurvivalBedrockRenderer.LOGGER.error("DSBR failed to read Dragon Survival glow-layer texture, skipping the glow layer for this frame.", throwable);
             return null;
         }
     }
@@ -498,7 +498,7 @@ public final class DSRuntimeBridge {
             putCacheEntry(backpackRenderCache, prepared.player().getUUID(), new BackpackRenderCacheEntry(cacheKey, render));
             return render;
         } catch (Throwable throwable) {
-            DragonSurvivalBedrockRenderer.LOGGER.error("DSBR 读取 Dragon Survival 背包层状态失败，本帧将跳过背包层", throwable);
+            DragonSurvivalBedrockRenderer.LOGGER.error("DSBR failed to read Dragon Survival backpack-layer state, skipping the backpack layer for this frame.", throwable);
             return null;
         }
     }
@@ -558,7 +558,7 @@ public final class DSRuntimeBridge {
             }
             putCacheEntry(armorTextureCache, prepared.player().getUUID(), new ArmorTextureCacheEntry(cacheKey, null));
         } catch (Throwable throwable) {
-            DragonSurvivalBedrockRenderer.LOGGER.error("DSBR 读取 Dragon Survival 装备贴图失败，本帧将继续只渲染 Bedrock 本体", throwable);
+            DragonSurvivalBedrockRenderer.LOGGER.error("DSBR failed to read Dragon Survival armor textures, continuing with only the Bedrock base body for this frame.", throwable);
         }
 
         return null;
@@ -1014,7 +1014,7 @@ public final class DSRuntimeBridge {
             armorRenderingAvailable = false;
             glowRenderingAvailable = false;
             backpackRenderingAvailable = false;
-            DragonSurvivalBedrockRenderer.LOGGER.error("DSBR 初始化 Dragon Survival 反射桥失败，模组将保持旁路状态", throwable);
+            DragonSurvivalBedrockRenderer.LOGGER.error("DSBR failed to initialize Dragon Survival reflection bridges, disabling the compatibility backend.", throwable);
         }
     }
 

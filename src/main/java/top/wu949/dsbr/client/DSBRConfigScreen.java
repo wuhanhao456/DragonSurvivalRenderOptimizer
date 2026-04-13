@@ -32,6 +32,7 @@ final class DSBRConfigScreen extends Screen {
     private final DSBRRenderConfig.SpecialAnimationMode initialSpecialAnimationMode;
     private final DSBRRenderConfig.ArmorRenderMode initialArmorRenderMode;
     private final DSBRRenderConfig.HeldItemRenderMode initialHeldItemRenderMode;
+    private final DSBRRenderConfig.AnimationComputeInterval initialAnimationComputeInterval;
     private final boolean initialRenderGlowLayer;
     private final boolean initialRenderArmorLayer;
     private final boolean initialRenderHeldItemLayer;
@@ -48,6 +49,7 @@ final class DSBRConfigScreen extends Screen {
     private DSBRRenderConfig.SpecialAnimationMode specialAnimationMode = DSBRRenderConfig.SPECIAL_ANIMATION_MODE.get();
     private DSBRRenderConfig.ArmorRenderMode armorRenderMode = DSBRRenderConfig.ARMOR_RENDER_MODE.get();
     private DSBRRenderConfig.HeldItemRenderMode heldItemRenderMode = DSBRRenderConfig.HELD_ITEM_RENDER_MODE.get();
+    private DSBRRenderConfig.AnimationComputeInterval animationComputeInterval = DSBRRenderConfig.ANIMATION_COMPUTE_INTERVAL.get();
     private boolean renderGlowLayer = DSBRRenderConfig.RENDER_GLOW_LAYER.get();
     private boolean renderArmorLayer = DSBRRenderConfig.RENDER_ARMOR_LAYER.get();
     private boolean renderHeldItemLayer = DSBRRenderConfig.RENDER_HELD_ITEM_LAYER.get();
@@ -63,6 +65,7 @@ final class DSBRConfigScreen extends Screen {
     private CycleButton<DSBRRenderConfig.SpecialAnimationMode> specialAnimationModeButton;
     private CycleButton<DSBRRenderConfig.ArmorRenderMode> armorRenderModeButton;
     private CycleButton<DSBRRenderConfig.HeldItemRenderMode> heldItemRenderModeButton;
+    private CycleButton<DSBRRenderConfig.AnimationComputeInterval> animationComputeIntervalButton;
     private CycleButton<Boolean> renderGlowLayerButton;
     private CycleButton<Boolean> renderArmorLayerButton;
     private CycleButton<Boolean> renderHeldItemLayerButton;
@@ -81,6 +84,7 @@ final class DSBRConfigScreen extends Screen {
         this.initialSpecialAnimationMode = specialAnimationMode;
         this.initialArmorRenderMode = armorRenderMode;
         this.initialHeldItemRenderMode = heldItemRenderMode;
+        this.initialAnimationComputeInterval = animationComputeInterval;
         this.initialRenderGlowLayer = renderGlowLayer;
         this.initialRenderArmorLayer = renderArmorLayer;
         this.initialRenderHeldItemLayer = renderHeldItemLayer;
@@ -299,6 +303,21 @@ final class DSBRConfigScreen extends Screen {
                 ),
                 Component.translatable("dsbr.config.general.animation_speed_multiplier.tooltip")
         );
+        y += ROW_SPACING;
+
+        animationComputeIntervalButton = addConfigWidget(
+                createEnumButton(
+                        x,
+                        y,
+                        Component.translatable("dsbr.config.general.animation_compute_interval"),
+                        animationComputeInterval,
+                        value -> {
+                            animationComputeInterval = value;
+                            applyCurrentSettings();
+                        }
+                ),
+                Component.translatable("dsbr.config.general.animation_compute_interval.tooltip")
+        );
 
         int footerY = this.height - 28;
         addRenderableWidget(Button.builder(CommonComponents.GUI_DONE, button -> persistAndClose())
@@ -338,6 +357,7 @@ final class DSBRConfigScreen extends Screen {
         DSBRRenderConfig.SPECIAL_ANIMATION_MODE.set(specialAnimationMode);
         DSBRRenderConfig.ARMOR_RENDER_MODE.set(armorRenderMode);
         DSBRRenderConfig.HELD_ITEM_RENDER_MODE.set(heldItemRenderMode);
+        DSBRRenderConfig.ANIMATION_COMPUTE_INTERVAL.set(animationComputeInterval);
         DSBRRenderConfig.RENDER_GLOW_LAYER.set(renderGlowLayer);
         DSBRRenderConfig.RENDER_ARMOR_LAYER.set(renderArmorLayer);
         DSBRRenderConfig.RENDER_HELD_ITEM_LAYER.set(renderHeldItemLayer);
@@ -367,6 +387,7 @@ final class DSBRConfigScreen extends Screen {
         specialAnimationMode = initialSpecialAnimationMode;
         armorRenderMode = initialArmorRenderMode;
         heldItemRenderMode = initialHeldItemRenderMode;
+        animationComputeInterval = initialAnimationComputeInterval;
         renderGlowLayer = initialRenderGlowLayer;
         renderArmorLayer = initialRenderArmorLayer;
         renderHeldItemLayer = initialRenderHeldItemLayer;
@@ -380,9 +401,12 @@ final class DSBRConfigScreen extends Screen {
     }
 
     private void refreshDependencyStates() {
-        Component bedrockNormalReason = normalRenderMode == DSBRRenderConfig.NormalRenderMode.BEDROCK
+        Component bedrockBackedReason = isBedrockBackedModeActive()
                 ? null
                 : Component.translatable("dsbr.config.requirement.normal_render_mode_bedrock");
+        Component localPlayerYsmReason = isLocalPlayerHandledByYsm()
+                ? Component.translatable("dsbr.config.requirement.local_player_uses_ysm")
+                : null;
         Component armorLayerDisabledReason = renderArmorLayer
                 ? null
                 : Component.translatable("dsbr.config.requirement.armor_layer_enabled");
@@ -390,19 +414,44 @@ final class DSBRConfigScreen extends Screen {
                 ? null
                 : Component.translatable("dsbr.config.requirement.held_item_layer_enabled");
 
-        applyDependencyState(takeoverScopeButton, bedrockNormalReason);
-        applyDependencyState(specialAnimationModeButton, bedrockNormalReason);
-        applyDependencyState(armorRenderModeButton, firstNonNull(bedrockNormalReason, armorLayerDisabledReason));
-        applyDependencyState(heldItemRenderModeButton, firstNonNull(bedrockNormalReason, heldItemLayerDisabledReason));
-        applyDependencyState(renderGlowLayerButton, bedrockNormalReason);
-        applyDependencyState(renderArmorLayerButton, bedrockNormalReason);
-        applyDependencyState(renderHeldItemLayerButton, bedrockNormalReason);
-        applyDependencyState(renderBackpackLayerButton, bedrockNormalReason);
-        applyDependencyState(renderHeadInFirstPersonButton, bedrockNormalReason);
-        applyDependencyState(firstPersonModelOffsetXSlider, bedrockNormalReason);
-        applyDependencyState(firstPersonModelOffsetYSlider, bedrockNormalReason);
-        applyDependencyState(firstPersonModelOffsetZSlider, bedrockNormalReason);
-        applyDependencyState(animationSpeedMultiplierSlider, bedrockNormalReason);
+        applyDependencyState(takeoverScopeButton, bedrockBackedReason);
+        applyDependencyState(specialAnimationModeButton, bedrockBackedReason);
+        applyDependencyState(armorRenderModeButton, firstNonNull(bedrockBackedReason, armorLayerDisabledReason));
+        applyDependencyState(heldItemRenderModeButton, firstNonNull(bedrockBackedReason, heldItemLayerDisabledReason));
+        applyDependencyState(renderGlowLayerButton, bedrockBackedReason);
+        applyDependencyState(renderArmorLayerButton, bedrockBackedReason);
+        applyDependencyState(renderHeldItemLayerButton, bedrockBackedReason);
+        applyDependencyState(renderBackpackLayerButton, bedrockBackedReason);
+        applyDependencyState(renderHeadInFirstPersonButton, firstNonNull(bedrockBackedReason, localPlayerYsmReason));
+        applyDependencyState(firstPersonModelOffsetXSlider, firstNonNull(bedrockBackedReason, localPlayerYsmReason));
+        applyDependencyState(firstPersonModelOffsetYSlider, firstNonNull(bedrockBackedReason, localPlayerYsmReason));
+        applyDependencyState(firstPersonModelOffsetZSlider, firstNonNull(bedrockBackedReason, localPlayerYsmReason));
+        applyDependencyState(animationSpeedMultiplierSlider, bedrockBackedReason);
+        applyDependencyState(animationComputeIntervalButton, bedrockBackedReason);
+        updateNormalRenderModeTooltip();
+    }
+
+    private boolean isBedrockBackedModeActive() {
+        return normalRenderMode == DSBRRenderConfig.NormalRenderMode.BEDROCK
+                || (normalRenderMode == DSBRRenderConfig.NormalRenderMode.YSM && DSBRRenderConfig.isYsmInstalled());
+    }
+
+    private boolean isLocalPlayerHandledByYsm() {
+        return normalRenderMode == DSBRRenderConfig.NormalRenderMode.YSM && DSBRRenderConfig.isYsmInstalled();
+    }
+
+    private void updateNormalRenderModeTooltip() {
+        Component baseTooltip = baseTooltips.get(normalRenderModeButton);
+        if (baseTooltip == null) {
+            return;
+        }
+
+        if (normalRenderMode == DSBRRenderConfig.NormalRenderMode.YSM && !DSBRRenderConfig.isYsmInstalled()) {
+            normalRenderModeButton.setTooltip(Tooltip.create(joinTooltip(baseTooltip, Component.translatable("dsbr.config.requirement.ysm_not_installed"))));
+            return;
+        }
+
+        normalRenderModeButton.setTooltip(Tooltip.create(baseTooltip));
     }
 
     private void applyDependencyState(final AbstractWidget widget, final Component reason) {

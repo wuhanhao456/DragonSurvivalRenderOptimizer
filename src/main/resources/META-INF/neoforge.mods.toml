@@ -9,9 +9,9 @@ displayName = "${mod_name}"
 authors = "${mod_authors}"
 displayTest = "IGNORE_SERVER_VERSION"
 description = '''
-    一个面向 Dragon Survival 的实验性客户端渲染后端。
-    该模组会在常规龙形态渲染时切换到 BedrockPart 渲染路径，
-    特殊动画则自动回退到 Dragon Survival 原版 GeckoLib 渲染。
+    Experimental client-side renderer backend for Dragon Survival.
+    Bedrock mode renders dragon forms with a custom BedrockPart pipeline.
+    YSM mode keeps the local player on the player render path while other players and external dragon renders continue using the Bedrock backend.
     '''
 
 [[dependencies.${mod_id}]]
