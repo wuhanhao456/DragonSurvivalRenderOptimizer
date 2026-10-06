@@ -1,0 +1,58 @@
+#version 430 core
+layout(local_size_x=64) in;
+struct Quad { vec4 p[4]; vec4 n; vec4 uv01; vec4 uv23; uvec4 meta; };
+struct Bone { mat4 position; mat4 normal; uvec4 draw; };
+layout(std430,binding=0) readonly buffer Geometry { Quad quads[]; };
+layout(std430,binding=1) readonly buffer Poses { Bone bones[]; };
+layout(std430,binding=2) writeonly buffer Output { uint outputWords[]; };
+uniform uint quadCount;
+uniform uint stride;
+uniform uvec3 entityIds;
+uniform bool recalculateNormal;
+uint words[54]; // Four Iris vertices are 216 bytes: no cross-invocation unaligned writes.
+void byteAt(uint offset,uint v) { words[offset/4u] |= (v&255u) << ((offset%4u)*8u); }
+void shortAt(uint offset,uint v) { byteAt(offset,v); byteAt(offset+1u,v>>8u); }
+void uintAt(uint offset,uint v) { for(uint i=0u;i<4u;i++) byteAt(offset+i,v>>(8u*i)); }
+void floatAt(uint offset,float v) { uintAt(offset,floatBitsToUint(v)); }
+uint normByte(float x) { return uint(int(clamp(x,-1.0,1.0)*127.0))&255u; }
+vec3 safeUnit(vec3 v) { float s=dot(v,v); return s>1e-30 ? v*inversesqrt(s) : vec3(0.0); }
+void main() {
+    uint id=gl_GlobalInvocationID.x;
+    if(id>=quadCount) return;
+    Quad q=quads[id]; Bone b=bones[q.meta.x];
+    vec3 p[4]; vec2 uv[4];
+    uv[0]=q.uv01.xy; uv[1]=q.uv01.zw; uv[2]=q.uv23.xy; uv[3]=q.uv23.zw;
+    for(int i=0;i<4;i++) p[i]=(b.position*q.p[i]).xyz;
+    vec3 n=(b.normal*vec4(q.n.xyz,0.0)).xyz;
+    if((q.meta.y&1u)!=0u) n.x=abs(n.x);
+    if((q.meta.y&2u)!=0u) n.y=abs(n.y);
+    if((q.meta.y&4u)!=0u) n.z=abs(n.z);
+    vec3 face=safeUnit(cross(p[2]-p[0],p[3]-p[1]));
+    if(stride==54u && recalculateNormal) n=face;
+    vec2 a=uv[1]-uv[0], c=uv[2]-uv[0];
+    float determinant=a.x*c.y-c.x*a.y;
+    float f=determinant==0.0?1.0:1.0/determinant;
+    vec3 tangent=safeUnit(f*(c.y*(p[1]-p[0])-a.y*(p[2]-p[0])));
+    vec3 bitangent=safeUnit(f*(-c.x*(p[1]-p[0])+a.x*(p[2]-p[0])));
+    float handedness=dot(bitangent,cross(tangent,face))<0.0?-1.0:1.0;
+    vec2 mid=(uv[0]+uv[1]+uv[2]+uv[3])*0.25;
+    for(int i=0;i<54;i++) words[i]=0u;
+    uint colour=b.draw.x;
+    uint rgba=((colour>>16u)&255u)|(colour&65280u)|((colour&255u)<<16u)|(colour&4278190080u);
+    // Unvisited/hidden bones emit degenerate, zero-alpha quads while keeping static indices.
+    if(b.draw.w==0u) { for(int i=0;i<4;i++) p[i]=vec3(0.0); rgba=0u; }
+    for(uint i=0u;i<4u;i++) {
+        uint at=i*stride;
+        floatAt(at,p[i].x); floatAt(at+4u,p[i].y); floatAt(at+8u,p[i].z);
+        uintAt(at+12u,rgba); floatAt(at+16u,uv[i].x); floatAt(at+20u,uv[i].y);
+        uintAt(at+24u,b.draw.z); uintAt(at+28u,b.draw.y);
+        byteAt(at+32u,normByte(n.x)); byteAt(at+33u,normByte(n.y)); byteAt(at+34u,normByte(n.z));
+        if(stride==54u) {
+            shortAt(at+36u,entityIds.x); shortAt(at+38u,entityIds.y); shortAt(at+40u,entityIds.z);
+            floatAt(at+42u,mid.x); floatAt(at+46u,mid.y);
+            byteAt(at+50u,normByte(tangent.x)); byteAt(at+51u,normByte(tangent.y)); byteAt(at+52u,normByte(tangent.z)); byteAt(at+53u,normByte(handedness));
+        }
+    }
+    uint count=stride; // four vertices * stride / four bytes per uint
+    for(uint i=0u;i<count;i++) outputWords[id*count+i]=words[i];
+}

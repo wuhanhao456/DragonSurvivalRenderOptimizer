@@ -1,0 +1,238 @@
+{
+  "date": "2026-10-06",
+  "version": "0.2.0-alpha.1",
+  "testedJarSha256": "3477641f5476dcdf3d6804865df972f4f2ab6b34497085663969308c8fdd89bd",
+  "hardware": {
+    "cpu": "Intel Core i7-13700K",
+    "gpu": "NVIDIA RTX 5070 Ti",
+    "driver": "596.49"
+  },
+  "javaTests": [
+    {
+      "class": "top.wu949.dsbr.optimizer.CachePolicyTest",
+      "name": "PoseSnapshotsDoNotChangeWhenNextPlayerMutatesSharedStack()",
+      "seconds": 0.523,
+      "pass": true
+    },
+    {
+      "class": "top.wu949.dsbr.optimizer.CachePolicyTest",
+      "name": "ContentKeysSurviveEquivalentSyncAndChangeForAppearance()",
+      "seconds": 0.023,
+      "pass": true
+    },
+    {
+      "class": "top.wu949.dsbr.optimizer.CachePolicyTest",
+      "name": "lruRespectsPendingBatchLeasesAndReleasesExactlyOnce()",
+      "seconds": 0.002,
+      "pass": true
+    },
+    {
+      "class": "top.wu949.dsbr.optimizer.CachePolicyTest",
+      "name": "retentionPreservesUnseenTexturesAndExpiresAfterThirtySeconds()",
+      "seconds": 0.0,
+      "pass": true
+    },
+    {
+      "class": "top.wu949.dsbr.optimizer.ContractTest",
+      "name": "pinnedDsJarHasAllTextureInjectionContractsIncludingFramebufferOwner()",
+      "seconds": 0.021,
+      "pass": true
+    },
+    {
+      "class": "top.wu949.dsbr.optimizer.ContractTest",
+      "name": "modifiedSignatureFailsClosed()",
+      "seconds": 0.002,
+      "pass": true
+    },
+    {
+      "class": "top.wu949.dsbr.optimizer.DiagnosticsTest",
+      "name": "boundedQuantilesKeepTotalFrameDenominator()",
+      "seconds": 0.01,
+      "pass": true
+    },
+    {
+      "class": "top.wu949.dsbr.optimizer.DiagnosticsTest",
+      "name": "snapshotRetainsOwnerValuesAcrossLaterMutation()",
+      "seconds": 0.001,
+      "pass": true
+    }
+  ],
+  "benchmarkToolSyntheticTests": {
+    "count": 4,
+    "pass": true,
+    "performanceMeasurements": false
+  },
+  "openGLTests": {
+    "vendor": "NVIDIA Corporation",
+    "renderer": "NVIDIA GeForce RTX 5070 Ti/PCIe/SSE2",
+    "version": "4.3.0 NVIDIA 596.49",
+    "gpuTextureCopyAndLazyReadback": "pass",
+    "computeVanillaAndIris54ByteOutput": "pass",
+    "glError": 0
+  },
+  "compatibility": "versions=[dragonsurvival=2.0.71, dsbr=0.2.0-alpha.1, geckolib=4.9.3, iris=1.8.14-beta.1+mc1.21.1, sodium=0.8.13+mc1.21.1]; texture=true; GPU=true; Iris=true; legacy=false",
+  "optionalDependencyFallback": {
+    "pass": true,
+    "compatibility": "versions=[dsbr=0.2.0-alpha.1]; texture=false; GPU=false; Iris=false; legacy=false",
+    "scenario": "DS and Gecko absent; startup and cleanup remain usable"
+  },
+  "upgradeMigration": {
+    "modId": "dsbr",
+    "oldRenderModePreserved": "BEDROCK",
+    "legacyConfigFlag": true,
+    "legacyActiveOnDS2071": false
+  },
+  "cache": {
+    "equivalentSyncs": 100,
+    "equivalentGenerated": 0,
+    "changedSkinGenerated": 1,
+    "changedArmorGenerated": 1,
+    "restoredGenerated": 0
+  },
+  "cleanup": {
+    "textureBytes": 0,
+    "meshBytes": 0
+  },
+  "shaderSmokeTests": [
+    {
+      "name": "BSL_v10.1.1.zip",
+      "pass": true,
+      "gpuPasses": 4152,
+      "phasePasses": {
+        "shadow": 1384,
+        "glow/shadow": 692,
+        "entity": 1384,
+        "glow/entity": 692
+      },
+      "normalTextureReadbacks": 0,
+      "cpuFallbacks": 0,
+      "resourcePeaks": {
+        "GPU_RESOURCE_BYTES": 2736000,
+        "TEXTURE_RESOURCE_BYTES": 5242880
+      }
+    },
+    {
+      "name": "Bliss_v2.1.2_(Chocapic13_Shaders_edit).zip",
+      "pass": true,
+      "gpuPasses": 4158,
+      "phasePasses": {
+        "shadow": 1386,
+        "glow/shadow": 693,
+        "entity": 1386,
+        "glow/entity": 693
+      },
+      "normalTextureReadbacks": 0,
+      "cpuFallbacks": 0,
+      "resourcePeaks": {
+        "GPU_RESOURCE_BYTES": 2736000,
+        "TEXTURE_RESOURCE_BYTES": 5242880
+      }
+    },
+    {
+      "name": "ComplementaryReimagined_r5.9.zip",
+      "pass": true,
+      "gpuPasses": 4158,
+      "phasePasses": {
+        "shadow": 1386,
+        "glow/shadow": 693,
+        "entity": 1386,
+        "glow/entity": 693
+      },
+      "normalTextureReadbacks": 0,
+      "cpuFallbacks": 0,
+      "resourcePeaks": {
+        "GPU_RESOURCE_BYTES": 2736000,
+        "TEXTURE_RESOURCE_BYTES": 5242880
+      }
+    },
+    {
+      "name": "ComplementaryUnbound_r5.9.zip",
+      "pass": true,
+      "gpuPasses": 4158,
+      "phasePasses": {
+        "shadow": 1386,
+        "glow/shadow": 693,
+        "entity": 1386,
+        "glow/entity": 693
+      },
+      "normalTextureReadbacks": 0,
+      "cpuFallbacks": 0,
+      "resourcePeaks": {
+        "GPU_RESOURCE_BYTES": 2736000,
+        "TEXTURE_RESOURCE_BYTES": 5242880
+      }
+    },
+    {
+      "name": "MakeUp-UltraFast-9.5e.zip",
+      "pass": true,
+      "gpuPasses": 3834,
+      "phasePasses": {
+        "shadow": 1278,
+        "glow/shadow": 639,
+        "entity": 1278,
+        "glow/entity": 639
+      },
+      "normalTextureReadbacks": 0,
+      "cpuFallbacks": 0,
+      "resourcePeaks": {
+        "GPU_RESOURCE_BYTES": 2736000,
+        "TEXTURE_RESOURCE_BYTES": 5242880
+      }
+    },
+    {
+      "name": "Sildur's Vibrant Shaders v2.01 Extreme.zip",
+      "pass": true,
+      "gpuPasses": 4194,
+      "phasePasses": {
+        "shadow": 1398,
+        "glow/shadow": 699,
+        "entity": 1398,
+        "glow/entity": 699
+      },
+      "normalTextureReadbacks": 0,
+      "cpuFallbacks": 0,
+      "resourcePeaks": {
+        "GPU_RESOURCE_BYTES": 2736000,
+        "TEXTURE_RESOURCE_BYTES": 5242880
+      }
+    },
+    {
+      "name": "Solas Shader V3.7b.zip",
+      "pass": true,
+      "gpuPasses": 4176,
+      "phasePasses": {
+        "shadow": 1392,
+        "glow/shadow": 696,
+        "entity": 1392,
+        "glow/entity": 696
+      },
+      "normalTextureReadbacks": 0,
+      "cpuFallbacks": 0,
+      "resourcePeaks": {
+        "GPU_RESOURCE_BYTES": 2736000,
+        "TEXTURE_RESOURCE_BYTES": 5242880
+      }
+    },
+    {
+      "name": "photon_v1.3b.zip",
+      "pass": true,
+      "gpuPasses": 4152,
+      "phasePasses": {
+        "shadow": 1384,
+        "glow/shadow": 692,
+        "entity": 1384,
+        "glow/entity": 692
+      },
+      "normalTextureReadbacks": 0,
+      "cpuFallbacks": 0,
+      "resourcePeaks": {
+        "GPU_RESOURCE_BYTES": 2736000,
+        "TEXTURE_RESOURCE_BYTES": 5242880
+      }
+    }
+  ],
+  "formalPerformanceMatrixCompleted": false,
+  "fullModpackVisualRegressionCompleted": false,
+  "releaseAcceptanceComplete": false,
+  "method": "Fresh isolated flat world; DS/Gecko/optimizer/test driver/Iris/Sodium only; 1280x720, view distance 6, FPS cap 120; short functional checks, not 60/300-second benchmarks"
+}

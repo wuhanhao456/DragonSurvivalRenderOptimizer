@@ -15,7 +15,7 @@ public final class DragonSurvivalBedrockRenderer {
 
     public DragonSurvivalBedrockRenderer(final IEventBus modBus, final ModContainer modContainer) {
         if (FMLLoader.getDist().isClient()) {
-            DSBRClient.bootstrap(modContainer);
+            DSBRClient.bootstrap(modBus, modContainer);
         }
     }
 }

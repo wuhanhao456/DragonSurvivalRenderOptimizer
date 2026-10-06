@@ -3,7 +3,7 @@
   "minVersion": "0.8",
   "package": "top.wu949.dsbr.mixin",
   "compatibilityLevel": "JAVA_21",
-  "refmap": "dsbr.refmap.json",
+  "plugin": "top.wu949.dsbr.optimizer.compat.OptimizerMixinPlugin",
   "mixins": [],
   "client": [
     "client.ClientDragonRendererMixin",

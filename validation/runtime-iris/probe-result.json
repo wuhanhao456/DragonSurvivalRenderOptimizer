@@ -1,0 +1,88 @@
+{
+  "pass": true,
+  "stats": {
+    "totals": {
+      "ARMOR_GENERATE_NANOS": 258801,
+      "COPY": 3,
+      "FRAME_CPU_NANOS": 1971021712,
+      "GENERATED": 2,
+      "GPU_BONE_SUBMIT_NANOS": 66628084,
+      "GPU_DRAW_CPU_NANOS": 280308739,
+      "GPU_PASS": 4152,
+      "GPU_POSE_CAPTURE_NANOS": 392775635,
+      "GPU_VERTEX_COUNT": 37666944,
+      "HIT": 5535,
+      "RELEASE": 3,
+      "REQUEST": 12,
+      "SKIN_GENERATE_NANOS": 872899
+    },
+    "peaks": {
+      "GPU_RESOURCE_BYTES": 2736000,
+      "TEXTURE_RESOURCE_BYTES": 5242880
+    },
+    "fallbacks": {
+      "benchmark cancelled": "validation command test"
+    },
+    "attribution": {
+      "dragonsurvival:dynamic_normal_d58937b6-e8cc-32a1-beeb-eac48149c137_cave_dragon_newborn_bro_405b6d1f8ef6faf7ce720e7c3e67b0a701bd1acf6994171280206048c141d04c": {
+        "RELEASE": 1
+      },
+      "dragonsurvival:armor_f16aeb9b21fbe5a84f4a27259488d7e36027d57d6513cd96b1f2184b60e6273e": {
+        "RELEASE": 1
+      },
+      "dragonsurvival:dynamic_glow_d58937b6-e8cc-32a1-beeb-eac48149c137_cave_dragon_newborn_bro_405b6d1f8ef6faf7ce720e7c3e67b0a701bd1acf6994171280206048c141d04c": {
+        "RELEASE": 1
+      },
+      "d58937b6-e8cc-32a1-beeb-eac48149c137/dragonsurvival:newborn/dragonsurvival:dynamic_normal_d58937b6-e8cc-32a1-beeb-eac48149c137_cave_dragon_newborn_bro_405b6d1f8ef6faf7ce720e7c3e67b0a701bd1acf6994171280206048c141d04c": {
+        "COPY": 1,
+        "GENERATED": 1,
+        "HIT": 4151,
+        "REQUEST": 6,
+        "SKIN_GENERATE_NANOS": 872899
+      },
+      "d58937b6-e8cc-32a1-beeb-eac48149c137/dragonsurvival:newborn/dragonsurvival:dynamic_glow_d58937b6-e8cc-32a1-beeb-eac48149c137_cave_dragon_newborn_bro_405b6d1f8ef6faf7ce720e7c3e67b0a701bd1acf6994171280206048c141d04c": {
+        "COPY": 1
+      },
+      "d58937b6-e8cc-32a1-beeb-eac48149c137/armor/dragonsurvival:armor_f16aeb9b21fbe5a84f4a27259488d7e36027d57d6513cd96b1f2184b60e6273e": {
+        "ARMOR_GENERATE_NANOS": 258801,
+        "COPY": 1,
+        "GENERATED": 1,
+        "HIT": 1384
+      },
+      "shadow": {
+        "GPU_PASS": 1384
+      },
+      "glow/shadow": {
+        "GPU_PASS": 692
+      },
+      "entity": {
+        "GPU_PASS": 1384
+      },
+      "glow/entity": {
+        "GPU_PASS": 692
+      },
+      "dirty/dragonsurvival:newborn": {
+        "REQUEST": 6
+      }
+    },
+    "dirtyTraces": [],
+    "frameSamples": 692,
+    "quantileSamples": 692,
+    "frameTimeMs": {
+      "p50": 8.347301,
+      "p99": 10.138699,
+      "p95": 9.2002
+    }
+  },
+  "textureBytes": 5242880,
+  "meshBytes": 1148832,
+  "beforeReloadTextureBytes": 5242880,
+  "beforeReloadMeshBytes": 985536,
+  "afterClearTextureBytes": 0,
+  "afterClearMeshBytes": 0,
+  "compatibility": "versions\u003d[dragonsurvival\u003d2.0.71, dsbr\u003d0.2.0-alpha.1, geckolib\u003d4.9.3, iris\u003d1.8.14-beta.1+mc1.21.1, sodium\u003d0.8.13+mc1.21.1]; texture\u003dtrue; GPU\u003dtrue; Iris\u003dtrue; legacy\u003dfalse",
+  "modId": "dsbr",
+  "legacyActive": false,
+  "legacyConfigFlag": true,
+  "savedOldRenderMode": "BEDROCK"
+}

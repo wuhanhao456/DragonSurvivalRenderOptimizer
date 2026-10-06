@@ -1,32 +1,32 @@
-modLoader = "javafml"
-loaderVersion = "${loader_version_range}"
-license = "${mod_license}"
-
+modLoader="javafml"
+loaderVersion="[4,)"
+license="MIT"
 [[mods]]
-modId = "${mod_id}"
-version = "${mod_version}"
-displayName = "${mod_name}"
-authors = "${mod_authors}"
-displayTest = "IGNORE_SERVER_VERSION"
-description = '''
-    Experimental client-side renderer backend for Dragon Survival.
-    Bedrock mode renders dragon forms with a custom BedrockPart pipeline.
-    YSM mode keeps the local player on the player render path while other players and external dragon renders continue using the Bedrock backend.
-    '''
-
-[[dependencies.${mod_id}]]
-modId = "neoforge"
-type = "required"
-versionRange = "${neo_version_range}"
-ordering = "NONE"
-side = "CLIENT"
-
-[[dependencies.${mod_id}]]
-modId = "dragonsurvival"
-type = "required"
-versionRange = "[0,)"
-ordering = "AFTER"
-side = "CLIENT"
-
+modId="dsbr"
+version="${version}"
+displayName="Dragon Survival Bedrock Renderer"
+authors="wuhanhao456, BeLoong contributors"
+displayTest="IGNORE_SERVER_VERSION"
+description="Client texture optimization and experimental GPU/Iris rendering for Dragon Survival. Legacy Bedrock/YSM is opt-in for compatible old DS versions."
 [[mixins]]
-config = "${mod_id}.mixins.json"
+config="dsbr.mixins.json"
+[[mixins]]
+config="dsbr.optimizer.mixins.json"
+[[dependencies.dsbr]]
+modId="neoforge"
+type="required"
+versionRange="[21.1.248,)"
+ordering="NONE"
+side="CLIENT"
+[[dependencies.dsbr]]
+modId="minecraft"
+type="required"
+versionRange="[1.21.1]"
+ordering="NONE"
+side="CLIENT"
+[[dependencies.dsbr]]
+modId="dragonsurvival"
+type="optional"
+versionRange="[0,)"
+ordering="AFTER"
+side="CLIENT"

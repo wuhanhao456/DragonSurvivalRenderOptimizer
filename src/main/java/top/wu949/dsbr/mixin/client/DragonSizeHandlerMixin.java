@@ -10,7 +10,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import top.wu949.dsbr.client.DSBRRenderConfig;
 
 @Pseudo
-@Mixin(targets = "by.dragonsurvivalteam.dragonsurvival.common.handlers.DragonSizeHandler")
+@Mixin(remap = false, targets = "by.dragonsurvivalteam.dragonsurvival.common.handlers.DragonSizeHandler")
 public abstract class DragonSizeHandlerMixin {
     @Inject(method = "getDragonSize", at = @At("HEAD"), cancellable = true, require = 0)
     private static void dsbr$skipLocalPlayerDragonSizeForYsm(

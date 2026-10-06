@@ -22,3 +22,7 @@ manual-package-*/
 
 *.log
 *.bak
+dist/
+tools/__pycache__/
+validation/last-launch.json
+validation/runtime-iris/*.png

@@ -12,7 +12,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import top.wu949.dsbr.client.DSBRRenderConfig;
 
 @Pseudo
-@Mixin(targets = "by.dragonsurvivalteam.dragonsurvival.client.handlers.ClientFlightHandler")
+@Mixin(remap = false, targets = "by.dragonsurvivalteam.dragonsurvival.client.handlers.ClientFlightHandler")
 public abstract class ClientFlightHandlerMixin {
     private static boolean dsbr$shouldForceVanillaCamera() {
         if (!DSBRRenderConfig.useYsmRendererForNormalDragonRender()) {

@@ -1,0 +1,32 @@
+{
+  "totals": {
+    "CPU_VERTEX_SUBMIT_NANOS": 63909000,
+    "FRAME_CPU_NANOS": 342885800,
+    "HIT": 525,
+    "REQUEST": 3
+  },
+  "peaks": {
+    "TEXTURE_RESOURCE_BYTES": 10485760
+  },
+  "fallbacks": {},
+  "attribution": {
+    "d58937b6-e8cc-32a1-beeb-eac48149c137/dragonsurvival:newborn/dragonsurvival:dynamic_normal_d58937b6-e8cc-32a1-beeb-eac48149c137_cave_dragon_newborn_bro_c31fa273017200ff0dce79b3b6df9dd622359a0677a1927976f1ff4dbcc462d0": {
+      "HIT": 350,
+      "REQUEST": 2
+    },
+    "d58937b6-e8cc-32a1-beeb-eac48149c137/armor/dragonsurvival:armor_f16aeb9b21fbe5a84f4a27259488d7e36027d57d6513cd96b1f2184b60e6273e": {
+      "HIT": 175
+    },
+    "dirty/dragonsurvival:newborn": {
+      "REQUEST": 1
+    }
+  },
+  "dirtyTraces": [],
+  "frameSamples": 175,
+  "quantileSamples": 175,
+  "frameTimeMs": {
+    "p50": 8.3502,
+    "p99": 14.2673,
+    "p95": 9.8696
+  }
+}

@@ -1,0 +1,68 @@
+{
+  "totals": {
+    "ARMOR_GENERATE_NANOS": 3770600,
+    "COPY": 5,
+    "CPU_VERTEX_SUBMIT_NANOS": 387137200,
+    "FRAME_CPU_NANOS": 3627866000,
+    "GENERATED": 3,
+    "HIT": 3160,
+    "REQUEST": 159,
+    "SKIN_GENERATE_NANOS": 26550800,
+    "STATE_SYNC": 2
+  },
+  "peaks": {
+    "TEXTURE_RESOURCE_BYTES": 7340032
+  },
+  "fallbacks": {},
+  "attribution": {
+    "SkinData@1422285217/deserializeNBT": {
+      "STATE_SYNC": 1
+    },
+    "dirty/dragonsurvival:adult": {
+      "REQUEST": 2
+    },
+    "SkinData@786877322/deserializeNBT": {
+      "STATE_SYNC": 1
+    },
+    "dirty/dragonsurvival:young": {
+      "REQUEST": 5
+    },
+    "d58937b6-e8cc-32a1-beeb-eac48149c137/dragonsurvival:young/dragonsurvival:dynamic_normal_d58937b6-e8cc-32a1-beeb-eac48149c137_cave_dragon_young_bro_5e28e5d3629cdef87e4331a9bc9aa2fc41d3ed1f9e4a907225a1f13cfeadb9f6": {
+      "COPY": 1,
+      "GENERATED": 1,
+      "HIT": 1,
+      "REQUEST": 1,
+      "SKIN_GENERATE_NANOS": 14363500
+    },
+    "d58937b6-e8cc-32a1-beeb-eac48149c137/dragonsurvival:young/dragonsurvival:dynamic_glow_d58937b6-e8cc-32a1-beeb-eac48149c137_cave_dragon_young_bro_5e28e5d3629cdef87e4331a9bc9aa2fc41d3ed1f9e4a907225a1f13cfeadb9f6": {
+      "COPY": 1
+    },
+    "d58937b6-e8cc-32a1-beeb-eac48149c137/armor/dragonsurvival:armor_a2e74581ae42d116124c5df2412278505fd1131913ed08f03f56db1ec618a069": {
+      "ARMOR_GENERATE_NANOS": 3770600,
+      "COPY": 1,
+      "GENERATED": 1,
+      "HIT": 1054
+    },
+    "dirty/dragonsurvival:newborn": {
+      "REQUEST": 78
+    },
+    "d58937b6-e8cc-32a1-beeb-eac48149c137/dragonsurvival:newborn/dragonsurvival:dynamic_normal_d58937b6-e8cc-32a1-beeb-eac48149c137_cave_dragon_newborn_bro_c31fa273017200ff0dce79b3b6df9dd622359a0677a1927976f1ff4dbcc462d0": {
+      "COPY": 1,
+      "GENERATED": 1,
+      "HIT": 2105,
+      "REQUEST": 73,
+      "SKIN_GENERATE_NANOS": 12187300
+    },
+    "d58937b6-e8cc-32a1-beeb-eac48149c137/dragonsurvival:newborn/dragonsurvival:dynamic_glow_d58937b6-e8cc-32a1-beeb-eac48149c137_cave_dragon_newborn_bro_c31fa273017200ff0dce79b3b6df9dd622359a0677a1927976f1ff4dbcc462d0": {
+      "COPY": 1
+    }
+  },
+  "dirtyTraces": [],
+  "frameSamples": 1055,
+  "quantileSamples": 1055,
+  "frameTimeMs": {
+    "p50": 8.3443,
+    "p99": 12.9256,
+    "p95": 10.0583
+  }
+}

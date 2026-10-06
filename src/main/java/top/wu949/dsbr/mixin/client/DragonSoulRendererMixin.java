@@ -15,7 +15,7 @@ import top.wu949.dsbr.client.bridge.DSRuntimeBridge;
 import top.wu949.dsbr.client.render.BedrockDragonRenderer;
 
 @Pseudo
-@Mixin(targets = "by.dragonsurvivalteam.dragonsurvival.client.render.blocks.DragonSoulRenderer")
+@Mixin(remap = false, targets = "by.dragonsurvivalteam.dragonsurvival.client.render.blocks.DragonSoulRenderer")
 public abstract class DragonSoulRendererMixin {
     @Unique
     private static final DSRuntimeBridge DSBR_BRIDGE = new DSRuntimeBridge();

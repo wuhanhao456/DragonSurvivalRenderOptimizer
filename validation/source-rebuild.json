@@ -1,0 +1,11 @@
+{
+  "pass": true,
+  "jarSha256": "3477641f5476dcdf3d6804865df972f4f2ab6b34497085663969308c8fdd89bd",
+  "independentDirectory": true,
+  "gradleDependencyAndTaskCacheReused": true,
+  "tasks": [
+    "test",
+    "jar",
+    "sourcesJar"
+  ]
+}

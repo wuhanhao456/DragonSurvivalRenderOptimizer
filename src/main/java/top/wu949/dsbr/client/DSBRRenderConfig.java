@@ -115,6 +115,7 @@ public final class DSBRRenderConfig {
     }
 
     public static final ModConfigSpec SPEC;
+    public static final ModConfigSpec.BooleanValue LEGACY_BACKEND_ENABLED;
     public static final ModConfigSpec.EnumValue<NormalRenderMode> NORMAL_RENDER_MODE;
     public static final ModConfigSpec.EnumValue<TakeoverScope> TAKEOVER_SCOPE;
     public static final ModConfigSpec.EnumValue<SpecialAnimationMode> SPECIAL_ANIMATION_MODE;
@@ -137,6 +138,9 @@ public final class DSBRRenderConfig {
         builder.translation("dsbr.config.general")
                 .comment("Settings for switching the normal dragon renderer.")
                 .push("general");
+
+        LEGACY_BACKEND_ENABLED = builder.comment("Explicit opt-in to the old DS 2.0.67 Bedrock/YSM backend. Disabled on DS 2.0.71 and in VANILLA/GPU modes.")
+                .define("legacy_backend_enabled", false);
 
         NORMAL_RENDER_MODE = builder
                 .translation("dsbr.config.general.normal_render_mode")
@@ -218,11 +222,16 @@ public final class DSBRRenderConfig {
     }
 
     public static boolean useBedrockRendererForNormalDragonRender() {
-        return NORMAL_RENDER_MODE.get() == NormalRenderMode.BEDROCK;
+        return legacyActive() && NORMAL_RENDER_MODE.get() == NormalRenderMode.BEDROCK;
     }
 
     public static boolean useYsmRendererForNormalDragonRender() {
-        return NORMAL_RENDER_MODE.get() == NormalRenderMode.YSM && isYsmInstalled();
+        return legacyActive() && NORMAL_RENDER_MODE.get() == NormalRenderMode.YSM && isYsmInstalled();
+    }
+
+    public static boolean legacyActive() {
+        return top.wu949.dsbr.optimizer.compat.OptimizerMixinPlugin.legacyCompatible && LEGACY_BACKEND_ENABLED.get()
+                && top.wu949.dsbr.optimizer.OptimizerConfig.MODE.get() == top.wu949.dsbr.optimizer.OptimizerConfig.Mode.TEXTURES;
     }
 
     public static boolean useBedrockRendererForNonLocalDragonRenders() {

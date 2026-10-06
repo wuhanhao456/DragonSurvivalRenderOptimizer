@@ -1,35 +1,63 @@
 # Dragon Survival Bedrock Renderer
 
-`Dragon Survival Bedrock Renderer` (`dsbr`) 是一个面向 `Minecraft 1.21.1 NeoForge` 的客户端附加模组，用于为 `Dragon Survival` 提供可切换的 Bedrock 渲染路径。完全由AI完成，所以可能存在BUG等问题。对此，使用期间产生的任何问题请自行处理。
+DSBR 的新版本，合入化龙客户端纹理优化与实验 GPU 后端，`dsbr`，Minecraft 1.21.1 / Java 21 / NeoForge 21.1.248。当前版本 **0.2.0-alpha.1**，默认开启纹理优化，计算着色器 GPU 后端默认关闭。
 
-## 功能
+## 安装和操作
 
-- 配置文件调整渲染方式
-- 支持在 `Dragon Survival` 原生 GeckoLib 渲染与本模组 Bedrock 渲染之间切换
-- 支持特殊动画走 Bedrock 动画引擎或原版回退路径
-- 提供第一人称头部显示、第一人称模型偏移、动画速度等游戏内配置
-- 兼容常见第一人称和自由视角使用场景
+将 `dist/dsbr-0.2.0-alpha.1.jar` 放入客户端 `mods`。不需要装到服务器，不增加网络协议，不修改存档。首版纹理补丁要求 Dragon Survival 2.0.71 和 GeckoLib 4.9.3；GPU 与光影同时使用时要求 Iris 1.8.14-beta.1+mc1.21.1、Sodium 0.8.13+mc1.21.1。版本或目标方法不匹配时关闭补丁，并在日志和命令中说明。详见 [兼容清单](COMPATIBILITY.md)。
 
-## 环境
+客户端命令：
 
-- Minecraft `1.21.1`
-- NeoForge `21.1.213`
-- Java `21`
-- 需要安装 `Dragon Survival`
+| 命令 | 用途 |
+| --- | --- |
+| `/dsbr` | 显示模式、启用状态和兼容检测 |
+| `/dsbr vanilla` | 恢复 DS 原纹理生成与 CPU 顶点提交 |
+| `/dsbr textures` | 默认纹理优化模式 |
+| `/dsbr gpu` | 纹理优化 + 实验 GPU 模式，要求 OpenGL 4.3 |
+| `/dsbr stats` | 计数、帧时间分位数、资源估算和回退原因 |
+| `/dsbr reset` | 重置统计计数和帧样本，保留故障原因 |
+| `/dsbr export` | 写出游戏目录 `logs/dsbr-render-stats.json` |
+| `/dsbr benchmark 1 1` | 固定场景，按三种模式各预热 60 秒、采样 300 秒 |
+| `/dsbr benchmark` / `benchmark stop` | 基准进度 / 停止并恢复原模式 |
 
-## 构建
+配置文件为 `config/dsbr-optimizer-client.toml`，也可从 NeoForge 模组配置界面编辑：`mode = "TEXTURES"`、`textureBudgetMiB = 64`、`meshBudgetMiB = 128`、`unusedTextureSeconds = 30`、`traceDirtyFlags = false`。开启最后一项可保存最多 32 条皮肤同步/失效调用栈。运行中严重异常会停用相关优化；修复原因后重启客户端，避免反复尝试失败的 GPU 功能。
+
+## 从旧版更新
+
+下载 [0.2.0-alpha.1 发布包](https://github.com/wuhanhao456/DragonSurvivalBedrockRenderer/releases/tag/0.2.0-alpha.1)，用 `dsbr-0.2.0-alpha.1.jar` 替换客户端中旧的 `dsbr` jar，并移除独立原型 `beloong_render_optimizer` jar。同一实例只留一个 DSBR；保留旧 jar 在 `mods` 之外可回退。新版本仍使用 mod ID `dsbr`，不需要同时安装第二个优化 mod。
+
+旧 `config/dsbr-client.toml` 保留原有 Bedrock/YSM 设置；新增 `general.legacy_backend_enabled = false`，旧配置中的 `normal_render_mode = "BEDROCK"` 不会自动接管新优化模式。新优化配置单独位于 `config/dsbr-optimizer-client.toml`。NeoForge 配置界面可以编辑两个配置。
+
+旧 Bedrock/YSM 源码保留为显式兼容选项：仅在 DS 2.0.67 且旧桥接接口存在时可用 `/dsbr legacy` 启用；旧路径没有进行本次完整运行回归。DS 2.0.71 上关闭旧接管，使用 DS/GeckoLib 原动画和本次优化路径。`/dsbr vanilla`、`textures`、`gpu` 都关闭旧接管；只有纹理模式加显式 legacy 开关才可能走旧路径。历史引擎说明见 [实现说明.md](实现说明.md)。
+
+## 实现
+
+纹理键包含种族、身体、模型、阶段、纹理尺寸和每一层的实际设置；盔甲沿用 DS 的合成与装备判定，补充可见装备组件、染色、Curios 内容等，排除耐久和维修费用。同内容同步后恢复当前 `SkinData` 编译标记。只在渲染需要时准备纹理，替换 DS 每帧遍历所有玩家的生成/清理逻辑。纹理名携带内容摘要，避免覆盖尚待绘制的旧外观。
+
+保留 DS 原合成 shader，复用按尺寸分组的 framebuffer，直接从 framebuffer 复制到 GPU 纹理。`GpuComposedTexture` 保留 `DynamicTexture` 接口，只有编辑器、导出等明确调用 `getPixels()` 时才延迟回读；显式像素上传仍可用。未使用纹理保留 30 秒，LRU 控制预算。当前帧在用纹理受保护，因此当前可见工作集超过预算时会暂时超过纹理软预算，随后清理未使用内容。
+
+GPU 后端从 GeckoLib 烘焙模型缓存几何，原有动画、骨骼遍历、矩阵跟踪和渲染层照常执行。`renderCubesOfBone` 只保存独立姿态快照，计算着色器变换顶点；待原 `MultiBufferSource` / Iris 批次刷新时，用该阶段实体 shader 绘制。本体、盔甲与 DS 加法发光层可进入 GPU；其他需要排序的透明材质、特殊消费者和自定义立方体实现继续 CPU 渲染。Iris 扩展顶点布局为经检查的 54 字节，包括实体编号、中点 UV、法线和切线；阴影批次沿用 Iris 排序和 shader。
+
+网格、待绘制姿态和工作缓冲参与预算计算；提交前预留容量，网格有批次租约，绘制后释放。重载、模式切换、退出世界、断线时统一清理。同一个 `dsbr` jar 统一协调后端，GPU 模式关闭旧 Bedrock/YSM 接管；发现独立原型 `beloong_render_optimizer` 时停用集成补丁，避免重复注入。没有 JNI、自带本地库或新的动画引擎。
+
+## 构建与测试
 
 ```powershell
-./gradlew build
+$env:JAVA_HOME='C:/Program Files/Java/jdk-21'
+./gradlew.bat test jar sourcesJar
+./gradlew.bat glCheck
 ```
 
-构建产物会输出到 `build/libs/`。
+`glCheck` 需要本机 OpenGL 4.3，创建隐藏 GLFW 测试窗口。网络盘构建可指定本地输出，避免压缩/转换工具在网络盘上逐字节写文件：
 
-## 说明文档
+```powershell
+./gradlew.bat test glCheck jar sourcesJar validationJar '-PdsbrBuildDir=C:/Users/wu949/AppData/Local/Temp/DSBR-build'
+```
 
-- 详细实现记录见 [实现说明.md](./实现说明.md)
-- 第三方来源说明见 [THIRD_PARTY_NOTICES.md](./THIRD_PARTY_NOTICES.md)
+验证驱动是独立 `validationJar`，**不包含在客户端发布 jar 中**。`tools/launch_probe.py` 只创建新的临时实例和测试存档，使用离线测试身份；需要已有合法安装的 libraries/assets、展开后的 NeoForge 启动 JSON 和客户端 jar，路径可用 `--runtime`、`--manifest`、`--game-jar`、`--pack`、`--java`、`--build` 指定。`--iris --shaderpacks` 会读取指定整合包目录中的八个光影包。该工具不会读取账号文件或现有存档。
 
-## 许可证
+已执行的检查、配对截图和验收缺口见 [验证记录](VALIDATION.md)；正式性能对比步骤见 [基准流程](BENCHMARK.md)。**目前是可安装测试版，尚未达到整合包正式发布验收：多人性能矩阵、龙娘/附属形态全部动作与特殊渲染场景仍需完成。** 不用短时功能测试推断整体 FPS 增益。
 
-本项目使用 [MIT License](./LICENSE)。
+主命令为 `/dsbr`，保留 `/beloongrender` 别名。
+
+源码 MIT；参考来源和外部依赖见 [第三方说明](THIRD_PARTY_NOTICES.md)。

@@ -11,7 +11,7 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
-@Mixin(InventoryScreen.class)
+@Mixin(value = InventoryScreen.class, remap = false)
 public abstract class InventoryScreenMixin {
     @Inject(method = "renderEntityInInventory", at = @At("HEAD"))
     private static void dsbr$pushInventoryRenderContext(final GuiGraphics graphics, final float x, final float y, final float scale, final Vector3f translate,

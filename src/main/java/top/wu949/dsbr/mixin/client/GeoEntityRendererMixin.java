@@ -15,7 +15,7 @@ import top.wu949.dsbr.client.bridge.DSRuntimeBridge;
 import top.wu949.dsbr.client.render.BedrockDragonRenderer;
 
 @Pseudo
-@Mixin(targets = "software.bernie.geckolib.renderer.GeoEntityRenderer")
+@Mixin(remap = false, targets = "software.bernie.geckolib.renderer.GeoEntityRenderer")
 public abstract class GeoEntityRendererMixin {
     @Unique
     private static final String DS_DRAGON_RENDERER_CLASS = "by.dragonsurvivalteam.dragonsurvival.client.render.entity.dragon.DragonRenderer";

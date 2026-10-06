@@ -1,68 +1,60 @@
 plugins {
-	id 'eclipse'
-	id 'idea'
-	id 'net.neoforged.gradle.userdev' version '7.0.190'
+    id 'java-library'
+    id 'net.neoforged.moddev' version '2.0.141'
 }
-
 version = mod_version
-group = mod_group
-
-base {
-	archivesName = mod_id
-}
-
+if (providers.gradleProperty('dsbrBuildDir').isPresent()) layout.buildDirectory = file(providers.gradleProperty('dsbrBuildDir').get())
+group = 'top.wu949.dsbr'
+base { archivesName = 'dsbr' }
 java.toolchain.languageVersion = JavaLanguageVersion.of(21)
-
-runs {
-	configureEach {
-		systemProperty 'neoforge.logging.console.level', 'debug'
-		modSource project.sourceSets.main
-	}
-
-	client {
-		arguments '--username', 'DSBRDev'
-	}
-}
-
+java.withSourcesJar()
 repositories {
-	maven {
-		url = 'https://maven.neoforged.net/releases'
-	}
+    mavenCentral()
+    maven { url = 'https://cursemaven.com'; content { includeGroup 'curse.maven' } }
 }
-
+neoForge {
+    version = project.neo_version
+    runs { client { client() } }
+    mods { dsbr { sourceSet(sourceSets.main) } }
+}
 dependencies {
-	implementation "net.neoforged:neoforge:${neo_version}"
+    implementation 'curse.maven:dragons-survival-420799:8973485'
+    implementation 'curse.maven:geckolib-388172:8350073'
+    annotationProcessor 'net.fabricmc:sponge-mixin:0.15.2+mixin.0.8.7'
+    testImplementation platform('org.junit:junit-bom:5.11.4')
+    testImplementation 'org.junit.jupiter:junit-jupiter'
+    testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
 }
-
-tasks.withType(ProcessResources).configureEach {
-	var replaceProperties = [
-			minecraft_version       : minecraft_version,
-			minecraft_version_range : minecraft_version_range,
-			neo_version             : neo_version,
-			neo_version_range       : neo_version_range,
-			loader_version_range    : loader_version_range,
-			mod_id                  : mod_id,
-			mod_name                : mod_name,
-			mod_license             : mod_license,
-			mod_version             : mod_version,
-			mod_authors             : mod_authors,
-			pack_format_number      : pack_format_number
-	]
-
-	inputs.properties replaceProperties
-
-	filesMatching(['META-INF/neoforge.mods.toml', 'pack.mcmeta']) {
-		expand replaceProperties
-	}
+sourceSets.test.compileClasspath += sourceSets.main.compileClasspath
+sourceSets.test.runtimeClasspath += sourceSets.main.compileClasspath + sourceSets.main.runtimeClasspath
+sourceSets.create('validation') {
+    compileClasspath += sourceSets.main.compileClasspath + sourceSets.main.output
+    runtimeClasspath += compileClasspath
 }
-
-tasks.withType(JavaCompile).configureEach {
-	options.encoding = 'UTF-8'
+tasks.register('validationJar', Jar) {
+    dependsOn validationClasses
+    archiveFileName = 'dsbr-render-validation.jar'
+    destinationDirectory = layout.buildDirectory.dir('validation')
+    from(sourceSets.validation.output) { exclude '**/FallbackProbe.class' }
 }
-
-idea {
-	module {
-		downloadSources = true
-		downloadJavadoc = true
-	}
+tasks.register('fallbackValidationJar', Jar) {
+    dependsOn validationClasses
+    archiveFileName = 'dsbr-render-fallback-validation.jar'
+    destinationDirectory = layout.buildDirectory.dir('validation')
+    from(sourceSets.validation.output) { include '**/FallbackProbe.class' }
+    from 'src/fallbackValidation/resources'
+}
+tasks.withType(JavaCompile).configureEach { options.encoding = 'UTF-8' }
+tasks.named('processResources') {
+    inputs.property('version', project.version)
+    filesMatching('META-INF/neoforge.mods.toml') { expand(version: project.version) }
+}
+tasks.named('jar') { from('LICENSE'); from('THIRD_PARTY_NOTICES.md') }
+tasks.named('sourcesJar') { from('LICENSE'); from('THIRD_PARTY_NOTICES.md') }
+test { useJUnitPlatform() }
+tasks.register('glCheck', JavaExec) {
+    dependsOn testClasses
+    classpath = sourceSets.test.runtimeClasspath
+    mainClass = 'top.wu949.dsbr.optimizer.GlIntegrationCheck'
+    workingDir = projectDir
 }

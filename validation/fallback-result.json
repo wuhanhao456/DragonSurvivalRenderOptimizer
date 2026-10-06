@@ -1,0 +1,5 @@
+{
+  "pass": true,
+  "compatibility": "versions\u003d[dsbr\u003d0.2.0-alpha.1]; texture\u003dfalse; GPU\u003dfalse; Iris\u003dfalse; legacy\u003dfalse",
+  "scenario": "DS and Gecko absent; startup and cleanup remain usable"
+}

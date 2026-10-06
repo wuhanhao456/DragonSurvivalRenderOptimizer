@@ -1,0 +1,24 @@
+{
+  "required": false,
+  "minVersion": "0.8",
+  "package": "top.wu949.dsbr.optimizer.mixin",
+  "plugin": "top.wu949.dsbr.optimizer.compat.OptimizerMixinPlugin",
+  "compatibilityLevel": "JAVA_21",
+  "client": [
+    "SkinHandlerMixin",
+    "SkinRegistryAccessor",
+    "DragonModelMixin",
+    "ArmorLayerMixin",
+    "ArmorRegistryAccessor",
+    "RenderingUtilsMixin",
+    "SkinDirtyMixin",
+    "GeoRendererMixin",
+    "DragonGlowMixin",
+    "BufferSourceMixin",
+    "BufferFormatAccessor",
+    "IrisBufferSourceMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

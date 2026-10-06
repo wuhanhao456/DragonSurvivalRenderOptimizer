@@ -10,7 +10,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 import top.wu949.dsbr.client.DSBRRenderConfig;
 
 @Pseudo
-@Mixin(targets = "by.dragonsurvivalteam.dragonsurvival.util.proxy.ClientProxy")
+@Mixin(remap = false, targets = "by.dragonsurvivalteam.dragonsurvival.util.proxy.ClientProxy")
 public abstract class ClientProxyMixin {
     @Inject(method = "dragonRenderingWasCancelled", at = @At("HEAD"), cancellable = true, require = 0)
     private void dsbr$forceDragonRenderingCancelledForLocalYsmPlayer(
