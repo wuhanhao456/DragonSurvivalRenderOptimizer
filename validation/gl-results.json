@@ -4,5 +4,6 @@
   "version": "4.3.0 NVIDIA 596.49",
   "gpuTextureCopyAndLazyReadback": "pass",
   "computeVanillaAndIris54ByteOutput": "pass",
+  "batchBindingsRestoredAfterException": "pass",
   "glError": 0
 }

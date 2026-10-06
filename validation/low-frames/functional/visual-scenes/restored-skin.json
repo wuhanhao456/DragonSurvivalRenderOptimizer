@@ -1,0 +1,24 @@
+{
+  "totals": {
+    "ARMOR_CHECK_NANOS": 1582100,
+    "CPU_VERTEX_SUBMIT_NANOS": 222970900,
+    "FRAME_CPU_NANOS": 882102400,
+    "HIT": 1044,
+    "REQUEST": 5,
+    "SKIN_CHECK_NANOS": 1103000
+  },
+  "peaks": {
+    "TEXTURE_RESOURCE_BYTES": 8388608
+  },
+  "fallbacks": {},
+  "attribution": {},
+  "dirtyTraces": [],
+  "frameSamples": 174,
+  "quantileSamples": 174,
+  "frameTimeMs": {
+    "p95": 10.9,
+    "p50": 8.3585,
+    "p999": 17.9445,
+    "p99": 15.5396
+  }
+}

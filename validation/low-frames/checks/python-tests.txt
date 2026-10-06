@@ -1,0 +1,20 @@
+test_changed_resolution_is_rejected (test_benchmark_summary.BenchmarkAcceptance.test_changed_resolution_is_rejected) ... ok
+test_cpu_only_fallback_cannot_pass_gpu_acceptance (test_benchmark_summary.BenchmarkAcceptance.test_cpu_only_fallback_cannot_pass_gpu_acceptance) ... ok
+test_full_matrix_and_missing_matrix_are_distinct (test_benchmark_summary.BenchmarkAcceptance.test_full_matrix_and_missing_matrix_are_distinct) ... ok
+test_readback_or_sustained_generation_fails (test_benchmark_summary.BenchmarkAcceptance.test_readback_or_sustained_generation_fails) ... ok
+test_ceil_tail (test_low_metrics.LowMetricsTest.test_ceil_tail) ... ok
+test_invalid_interval (test_low_metrics.LowMetricsTest.test_invalid_interval) ... ok
+test_tail_mean (test_low_metrics.LowMetricsTest.test_tail_mean) ... ok
+test_empty_and_missing_pair_are_invalid (test_low_suite.PairedAcceptanceTest.test_empty_and_missing_pair_are_invalid) ... ok
+test_median_of_paired_changes_not_ratio_of_medians (test_low_suite.PairedAcceptanceTest.test_median_of_paired_changes_not_ratio_of_medians) ... ok
+test_rejects_low_target_miss (test_low_suite.PairedAcceptanceTest.test_rejects_low_target_miss) ... ok
+test_bounds (test_pack_fixture.FixtureRangesTest.test_bounds) ... ok
+test_complete_evidence_passes (test_release_acceptance.ReleaseAcceptanceTest.test_complete_evidence_passes) ... ok
+test_disconnect_leak_blocks_release (test_release_acceptance.ReleaseAcceptanceTest.test_disconnect_leak_blocks_release) ... ok
+test_duplicate_pair_rejected (test_release_acceptance.ReleaseAcceptanceTest.test_duplicate_pair_rejected) ... ok
+test_unresolved_crash_blocks_release (test_release_acceptance.ReleaseAcceptanceTest.test_unresolved_crash_blocks_release) ... ok
+
+----------------------------------------------------------------------
+Ran 15 tests in 0.909s
+
+OK

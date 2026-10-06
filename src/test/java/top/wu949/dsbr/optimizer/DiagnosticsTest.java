@@ -7,7 +7,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class DiagnosticsTest {
     @Test void snapshotRetainsOwnerValuesAcrossLaterMutation() {
-        var d = new Diagnostics(); d.count(Diagnostics.Counter.REQUEST, "player/skin");
+        var d = new Diagnostics(); d.detailed(true); d.count(Diagnostics.Counter.REQUEST, "player/skin");
         d.nanos("SKIN_GENERATE", 23, "player/skin"); var snapshot = d.snapshot();
         d.count(Diagnostics.Counter.REQUEST, "player/skin");
         var owners = (Map<?, ?>)snapshot.get("attribution"); var player = (Map<?, ?>)owners.get("player/skin");

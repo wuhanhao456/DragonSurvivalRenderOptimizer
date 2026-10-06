@@ -1,0 +1,1478 @@
+[
+  {
+    "species": "tundra_dragon_human",
+    "pose": "idle",
+    "mode": "TEXTURES",
+    "stats": {
+      "totals": {
+        "ARMOR_CHECK_NANOS": 984700,
+        "ARMOR_GENERATE_NANOS": 600700,
+        "COPY": 1,
+        "CPU_VERTEX_SUBMIT_NANOS": 1526523700,
+        "FRAME_CPU_NANOS": 2762343900,
+        "GENERATED": 1,
+        "HIT": 268,
+        "RELEASE": 4,
+        "SKIN_CHECK_NANOS": 499600
+      },
+      "peaks": {
+        "TEXTURE_RESOURCE_BYTES": 2097152
+      },
+      "fallbacks": {
+        "benchmark cancelled": "validation command test"
+      },
+      "attribution": {},
+      "dirtyTraces": [],
+      "frameSamples": 134,
+      "quantileSamples": 134,
+      "frameTimeMs": {
+        "p95": 28.4505,
+        "p50": 20.8818,
+        "p999": 43.1604,
+        "p99": 40.2511
+      }
+    },
+    "cameraType": "THIRD_PERSON_FRONT",
+    "windowFpsLimit": 120,
+    "swapInterval": 0,
+    "breathWorldPosition": [
+      5.5,
+      -58.64353561401367,
+      -6.371670722961426
+    ]
+  },
+  {
+    "species": "tundra_dragon_human",
+    "pose": "idle",
+    "mode": "GPU",
+    "stats": {
+      "totals": {
+        "ARMOR_CHECK_NANOS": 1897500,
+        "ARMOR_GENERATE_NANOS": 932300,
+        "COPY": 1,
+        "FRAME_CPU_NANOS": 1116054800,
+        "GENERATED": 1,
+        "GPU_BATCH_CPU_NANOS": 142616200,
+        "GPU_BONE_SUBMIT_NANOS": 52001800,
+        "GPU_DRAW_CPU_NANOS": 135802100,
+        "GPU_PASS": 1992,
+        "GPU_POSE_CAPTURE_NANOS": 188433100,
+        "GPU_VERTEX_COUNT": 113113728,
+        "HIT": 664,
+        "RELEASE": 1,
+        "SKIN_CHECK_NANOS": 1116800
+      },
+      "peaks": {
+        "GPU_RESOURCE_BYTES": 16502400,
+        "TEXTURE_RESOURCE_BYTES": 2097152
+      },
+      "fallbacks": {
+        "benchmark cancelled": "validation command test"
+      },
+      "attribution": {
+        "shadow": {
+          "GPU_PASS": 664
+        },
+        "glow/shadow": {
+          "GPU_PASS": 332
+        },
+        "entity": {
+          "GPU_PASS": 664
+        },
+        "glow/entity": {
+          "GPU_PASS": 332
+        }
+      },
+      "dirtyTraces": [],
+      "frameSamples": 332,
+      "quantileSamples": 332,
+      "frameTimeMs": {
+        "p95": 10.2635,
+        "p50": 8.343,
+        "p999": 24.7648,
+        "p99": 10.7735
+      }
+    },
+    "cameraType": "THIRD_PERSON_FRONT",
+    "windowFpsLimit": 120,
+    "swapInterval": 0,
+    "breathWorldPosition": [
+      5.5,
+      -58.674224853515625,
+      -6.371670722961426
+    ]
+  },
+  {
+    "species": "tundra_dragon_human",
+    "pose": "flight",
+    "mode": "TEXTURES",
+    "stats": {
+      "totals": {
+        "ARMOR_CHECK_NANOS": 894100,
+        "ARMOR_GENERATE_NANOS": 520400,
+        "COPY": 1,
+        "CPU_VERTEX_SUBMIT_NANOS": 1471692800,
+        "FRAME_CPU_NANOS": 2660744300,
+        "GENERATED": 1,
+        "HIT": 270,
+        "RELEASE": 1,
+        "SKIN_CHECK_NANOS": 481100
+      },
+      "peaks": {
+        "TEXTURE_RESOURCE_BYTES": 2097152
+      },
+      "fallbacks": {
+        "benchmark cancelled": "validation command test"
+      },
+      "attribution": {},
+      "dirtyTraces": [],
+      "frameSamples": 135,
+      "quantileSamples": 135,
+      "frameTimeMs": {
+        "p95": 24.0978,
+        "p50": 20.7206,
+        "p999": 34.5411,
+        "p99": 30.0984
+      }
+    },
+    "cameraType": "THIRD_PERSON_FRONT",
+    "windowFpsLimit": 120,
+    "swapInterval": 0,
+    "breathWorldPosition": [
+      5.5,
+      81.29548645019531,
+      -6.368375301361084
+    ]
+  },
+  {
+    "species": "tundra_dragon_human",
+    "pose": "flight",
+    "mode": "GPU",
+    "stats": {
+      "totals": {
+        "ARMOR_CHECK_NANOS": 1904100,
+        "ARMOR_GENERATE_NANOS": 496800,
+        "COPY": 1,
+        "FRAME_CPU_NANOS": 1145135200,
+        "GENERATED": 1,
+        "GPU_BATCH_CPU_NANOS": 175830800,
+        "GPU_BONE_SUBMIT_NANOS": 54155300,
+        "GPU_DRAW_CPU_NANOS": 168474200,
+        "GPU_PASS": 2028,
+        "GPU_POSE_CAPTURE_NANOS": 192745900,
+        "GPU_VERTEX_COUNT": 115157952,
+        "HIT": 676,
+        "RELEASE": 1,
+        "SKIN_CHECK_NANOS": 926500
+      },
+      "peaks": {
+        "GPU_RESOURCE_BYTES": 16502400,
+        "TEXTURE_RESOURCE_BYTES": 2097152
+      },
+      "fallbacks": {
+        "benchmark cancelled": "validation command test"
+      },
+      "attribution": {
+        "shadow": {
+          "GPU_PASS": 676
+        },
+        "glow/shadow": {
+          "GPU_PASS": 338
+        },
+        "entity": {
+          "GPU_PASS": 676
+        },
+        "glow/entity": {
+          "GPU_PASS": 338
+        }
+      },
+      "dirtyTraces": [],
+      "frameSamples": 338,
+      "quantileSamples": 338,
+      "frameTimeMs": {
+        "p95": 10.1994,
+        "p50": 8.3508,
+        "p999": 12.7855,
+        "p99": 10.8185
+      }
+    },
+    "cameraType": "THIRD_PERSON_FRONT",
+    "windowFpsLimit": 120,
+    "swapInterval": 0,
+    "breathWorldPosition": [
+      5.5,
+      81.31072235107422,
+      -6.368375301361084
+    ]
+  },
+  {
+    "species": "tundra_dragon_human",
+    "pose": "first-person",
+    "mode": "TEXTURES",
+    "stats": {
+      "totals": {
+        "ARMOR_CHECK_NANOS": 875900,
+        "ARMOR_GENERATE_NANOS": 452400,
+        "COPY": 1,
+        "CPU_VERTEX_SUBMIT_NANOS": 1361177100,
+        "FRAME_CPU_NANOS": 2679018600,
+        "GENERATED": 1,
+        "HIT": 270,
+        "RELEASE": 1,
+        "SKIN_CHECK_NANOS": 444800
+      },
+      "peaks": {
+        "TEXTURE_RESOURCE_BYTES": 2097152
+      },
+      "fallbacks": {
+        "benchmark cancelled": "validation command test"
+      },
+      "attribution": {},
+      "dirtyTraces": [],
+      "frameSamples": 135,
+      "quantileSamples": 135,
+      "frameTimeMs": {
+        "p95": 24.164,
+        "p50": 20.4395,
+        "p999": 74.5586,
+        "p99": 28.3043
+      }
+    },
+    "cameraType": "FIRST_PERSON",
+    "windowFpsLimit": 120,
+    "swapInterval": 0
+  },
+  {
+    "species": "tundra_dragon_human",
+    "pose": "first-person",
+    "mode": "GPU",
+    "stats": {
+      "totals": {
+        "ARMOR_CHECK_NANOS": 1801600,
+        "ARMOR_GENERATE_NANOS": 417400,
+        "COPY": 1,
+        "FRAME_CPU_NANOS": 1289025000,
+        "GENERATED": 1,
+        "GPU_BATCH_CPU_NANOS": 177014000,
+        "GPU_BONE_SUBMIT_NANOS": 46665400,
+        "GPU_DRAW_CPU_NANOS": 168984300,
+        "GPU_PASS": 1992,
+        "GPU_POSE_CAPTURE_NANOS": 169468100,
+        "GPU_VERTEX_COUNT": 113113728,
+        "HIT": 664,
+        "RELEASE": 1,
+        "SKIN_CHECK_NANOS": 565900
+      },
+      "peaks": {
+        "GPU_RESOURCE_BYTES": 16502400,
+        "TEXTURE_RESOURCE_BYTES": 2097152
+      },
+      "fallbacks": {
+        "benchmark cancelled": "validation command test"
+      },
+      "attribution": {
+        "shadow": {
+          "GPU_PASS": 664
+        },
+        "glow/shadow": {
+          "GPU_PASS": 332
+        },
+        "entity": {
+          "GPU_PASS": 664
+        },
+        "glow/entity": {
+          "GPU_PASS": 332
+        }
+      },
+      "dirtyTraces": [],
+      "frameSamples": 332,
+      "quantileSamples": 332,
+      "frameTimeMs": {
+        "p95": 10.4992,
+        "p50": 8.3577,
+        "p999": 23.6707,
+        "p99": 11.3373
+      }
+    },
+    "cameraType": "FIRST_PERSON",
+    "windowFpsLimit": 120,
+    "swapInterval": 0
+  },
+  {
+    "species": "tundra_dragon_human",
+    "pose": "inventory",
+    "mode": "TEXTURES",
+    "stats": {
+      "totals": {
+        "ARMOR_CHECK_NANOS": 670900,
+        "ARMOR_GENERATE_NANOS": 486600,
+        "COPY": 1,
+        "CPU_VERTEX_SUBMIT_NANOS": 1397454800,
+        "FRAME_CPU_NANOS": 2684942500,
+        "GENERATED": 1,
+        "HIT": 293,
+        "RELEASE": 1,
+        "SKIN_CHECK_NANOS": 270500
+      },
+      "peaks": {
+        "TEXTURE_RESOURCE_BYTES": 2097152
+      },
+      "fallbacks": {
+        "benchmark cancelled": "validation command test"
+      },
+      "attribution": {},
+      "dirtyTraces": [],
+      "frameSamples": 98,
+      "quantileSamples": 98,
+      "frameTimeMs": {
+        "p95": 34.5035,
+        "p50": 28.1551,
+        "p999": 69.5898,
+        "p99": 69.5898
+      }
+    },
+    "cameraType": "THIRD_PERSON_FRONT",
+    "screen": "by.dragonsurvivalteam.dragonsurvival.client.gui.screens.DragonInventoryScreen",
+    "windowFpsLimit": 120,
+    "swapInterval": 0
+  },
+  {
+    "species": "tundra_dragon_human",
+    "pose": "inventory",
+    "mode": "GPU",
+    "stats": {
+      "totals": {
+        "ARMOR_CHECK_NANOS": 1515000,
+        "ARMOR_GENERATE_NANOS": 522400,
+        "COPY": 1,
+        "CPU_VERTEX_SUBMIT_NANOS": 841587800,
+        "FRAME_CPU_NANOS": 2612182800,
+        "GENERATED": 1,
+        "GPU_BATCH_CPU_NANOS": 122047400,
+        "GPU_BONE_SUBMIT_NANOS": 37912700,
+        "GPU_DRAW_CPU_NANOS": 116742800,
+        "GPU_PASS": 1416,
+        "GPU_POSE_CAPTURE_NANOS": 140563600,
+        "GPU_VERTEX_COUNT": 80406144,
+        "GUI_CPU_PASS": 705,
+        "HIT": 707,
+        "RELEASE": 1,
+        "SKIN_CHECK_NANOS": 471200
+      },
+      "peaks": {
+        "GPU_RESOURCE_BYTES": 16502400,
+        "TEXTURE_RESOURCE_BYTES": 2097152
+      },
+      "fallbacks": {
+        "benchmark cancelled": "validation command test"
+      },
+      "attribution": {
+        "shadow": {
+          "GPU_PASS": 472
+        },
+        "glow/shadow": {
+          "GPU_PASS": 236
+        },
+        "entity": {
+          "GPU_PASS": 472
+        },
+        "glow/entity": {
+          "GPU_PASS": 236
+        },
+        "gui": {
+          "GUI_CPU_PASS": 705
+        }
+      },
+      "dirtyTraces": [],
+      "frameSamples": 236,
+      "quantileSamples": 236,
+      "frameTimeMs": {
+        "p95": 16.8316,
+        "p50": 11.3683,
+        "p999": 30.2982,
+        "p99": 22.4812
+      }
+    },
+    "cameraType": "THIRD_PERSON_FRONT",
+    "screen": "by.dragonsurvivalteam.dragonsurvival.client.gui.screens.DragonInventoryScreen",
+    "windowFpsLimit": 120,
+    "swapInterval": 0
+  },
+  {
+    "species": "tundra_dragon_human",
+    "pose": "hidden-head",
+    "mode": "TEXTURES",
+    "stats": {
+      "totals": {
+        "ARMOR_CHECK_NANOS": 1157700,
+        "ARMOR_GENERATE_NANOS": 500500,
+        "COPY": 1,
+        "CPU_VERTEX_SUBMIT_NANOS": 1463765100,
+        "FRAME_CPU_NANOS": 2676953200,
+        "GENERATED": 1,
+        "HIT": 348,
+        "RELEASE": 1,
+        "SKIN_CHECK_NANOS": 478200
+      },
+      "peaks": {
+        "TEXTURE_RESOURCE_BYTES": 2097152
+      },
+      "fallbacks": {
+        "benchmark cancelled": "validation command test"
+      },
+      "attribution": {},
+      "dirtyTraces": [],
+      "frameSamples": 174,
+      "quantileSamples": 174,
+      "frameTimeMs": {
+        "p95": 19.0821,
+        "p50": 16.2275,
+        "p999": 22.8218,
+        "p99": 21.7673
+      }
+    },
+    "cameraType": "THIRD_PERSON_FRONT",
+    "windowFpsLimit": 120,
+    "swapInterval": 0
+  },
+  {
+    "species": "tundra_dragon_human",
+    "pose": "hidden-head",
+    "mode": "GPU",
+    "stats": {
+      "totals": {
+        "ARMOR_CHECK_NANOS": 1783100,
+        "ARMOR_GENERATE_NANOS": 464400,
+        "COPY": 1,
+        "FRAME_CPU_NANOS": 1002474200,
+        "GENERATED": 1,
+        "GPU_BATCH_CPU_NANOS": 154342200,
+        "GPU_BONE_SUBMIT_NANOS": 39299100,
+        "GPU_DRAW_CPU_NANOS": 147691900,
+        "GPU_PASS": 2010,
+        "GPU_POSE_CAPTURE_NANOS": 150550400,
+        "GPU_VERTEX_COUNT": 114135840,
+        "HIT": 670,
+        "RELEASE": 1,
+        "SKIN_CHECK_NANOS": 570200
+      },
+      "peaks": {
+        "GPU_RESOURCE_BYTES": 16502400,
+        "TEXTURE_RESOURCE_BYTES": 2097152
+      },
+      "fallbacks": {
+        "benchmark cancelled": "validation command test"
+      },
+      "attribution": {
+        "shadow": {
+          "GPU_PASS": 670
+        },
+        "glow/shadow": {
+          "GPU_PASS": 335
+        },
+        "entity": {
+          "GPU_PASS": 670
+        },
+        "glow/entity": {
+          "GPU_PASS": 335
+        }
+      },
+      "dirtyTraces": [],
+      "frameSamples": 335,
+      "quantileSamples": 335,
+      "frameTimeMs": {
+        "p95": 9.8917,
+        "p50": 8.3501,
+        "p999": 22.818,
+        "p99": 10.7431
+      }
+    },
+    "cameraType": "THIRD_PERSON_FRONT",
+    "windowFpsLimit": 120,
+    "swapInterval": 0
+  },
+  {
+    "species": "aether_dragon_human",
+    "pose": "idle",
+    "mode": "TEXTURES",
+    "stats": {
+      "totals": {
+        "ARMOR_CHECK_NANOS": 1551700,
+        "ARMOR_GENERATE_NANOS": 656000,
+        "COPY": 1,
+        "CPU_VERTEX_SUBMIT_NANOS": 1402763500,
+        "FRAME_CPU_NANOS": 2697892100,
+        "GENERATED": 1,
+        "HIT": 498,
+        "RELEASE": 1,
+        "SKIN_CHECK_NANOS": 474200
+      },
+      "peaks": {
+        "TEXTURE_RESOURCE_BYTES": 2097152
+      },
+      "fallbacks": {
+        "benchmark cancelled": "validation command test"
+      },
+      "attribution": {},
+      "dirtyTraces": [],
+      "frameSamples": 249,
+      "quantileSamples": 249,
+      "frameTimeMs": {
+        "p95": 13.9041,
+        "p50": 11.5903,
+        "p999": 21.5634,
+        "p99": 14.7697
+      }
+    },
+    "cameraType": "THIRD_PERSON_FRONT",
+    "windowFpsLimit": 120,
+    "swapInterval": 0,
+    "breathWorldPosition": [
+      5.5,
+      -58.70088195800781,
+      -2.5388476848602295
+    ]
+  },
+  {
+    "species": "aether_dragon_human",
+    "pose": "idle",
+    "mode": "GPU",
+    "stats": {
+      "totals": {
+        "ARMOR_CHECK_NANOS": 1757100,
+        "ARMOR_GENERATE_NANOS": 504200,
+        "COPY": 1,
+        "FRAME_CPU_NANOS": 939672200,
+        "GENERATED": 1,
+        "GPU_BATCH_CPU_NANOS": 147444000,
+        "GPU_BONE_SUBMIT_NANOS": 30338300,
+        "GPU_DRAW_CPU_NANOS": 140744600,
+        "GPU_PASS": 2004,
+        "GPU_POSE_CAPTURE_NANOS": 121475500,
+        "GPU_VERTEX_COUNT": 59109984,
+        "HIT": 668,
+        "RELEASE": 1,
+        "SKIN_CHECK_NANOS": 520700
+      },
+      "peaks": {
+        "GPU_RESOURCE_BYTES": 8637648,
+        "TEXTURE_RESOURCE_BYTES": 2097152
+      },
+      "fallbacks": {
+        "benchmark cancelled": "validation command test"
+      },
+      "attribution": {
+        "shadow": {
+          "GPU_PASS": 668
+        },
+        "glow/shadow": {
+          "GPU_PASS": 334
+        },
+        "entity": {
+          "GPU_PASS": 668
+        },
+        "glow/entity": {
+          "GPU_PASS": 334
+        }
+      },
+      "dirtyTraces": [],
+      "frameSamples": 334,
+      "quantileSamples": 334,
+      "frameTimeMs": {
+        "p95": 10.0405,
+        "p50": 8.3544,
+        "p999": 29.2364,
+        "p99": 10.6229
+      }
+    },
+    "cameraType": "THIRD_PERSON_FRONT",
+    "windowFpsLimit": 120,
+    "swapInterval": 0,
+    "breathWorldPosition": [
+      5.5,
+      -58.701263427734375,
+      -2.5388660430908203
+    ]
+  },
+  {
+    "species": "aether_dragon_human",
+    "pose": "flight",
+    "mode": "TEXTURES",
+    "stats": {
+      "totals": {
+        "ARMOR_CHECK_NANOS": 1420400,
+        "ARMOR_GENERATE_NANOS": 440400,
+        "COPY": 1,
+        "CPU_VERTEX_SUBMIT_NANOS": 1380128900,
+        "FRAME_CPU_NANOS": 2621200800,
+        "GENERATED": 1,
+        "HIT": 494,
+        "RELEASE": 1,
+        "SKIN_CHECK_NANOS": 430400
+      },
+      "peaks": {
+        "TEXTURE_RESOURCE_BYTES": 2097152
+      },
+      "fallbacks": {
+        "benchmark cancelled": "validation command test"
+      },
+      "attribution": {},
+      "dirtyTraces": [],
+      "frameSamples": 247,
+      "quantileSamples": 247,
+      "frameTimeMs": {
+        "p95": 13.1902,
+        "p50": 11.2933,
+        "p999": 15.6294,
+        "p99": 14.2869
+      }
+    },
+    "cameraType": "THIRD_PERSON_FRONT",
+    "windowFpsLimit": 120,
+    "swapInterval": 0,
+    "breathWorldPosition": [
+      5.5,
+      81.28731536865234,
+      -2.5394506454467773
+    ]
+  },
+  {
+    "species": "aether_dragon_human",
+    "pose": "flight",
+    "mode": "GPU",
+    "stats": {
+      "totals": {
+        "ARMOR_CHECK_NANOS": 1938100,
+        "ARMOR_GENERATE_NANOS": 513000,
+        "COPY": 1,
+        "FRAME_CPU_NANOS": 978142100,
+        "GENERATED": 1,
+        "GPU_BATCH_CPU_NANOS": 175954100,
+        "GPU_BONE_SUBMIT_NANOS": 31740100,
+        "GPU_DRAW_CPU_NANOS": 168863200,
+        "GPU_PASS": 1998,
+        "GPU_POSE_CAPTURE_NANOS": 130865500,
+        "GPU_VERTEX_COUNT": 58933008,
+        "HIT": 666,
+        "RELEASE": 1,
+        "SKIN_CHECK_NANOS": 573500
+      },
+      "peaks": {
+        "GPU_RESOURCE_BYTES": 8637648,
+        "TEXTURE_RESOURCE_BYTES": 2097152
+      },
+      "fallbacks": {
+        "benchmark cancelled": "validation command test"
+      },
+      "attribution": {
+        "shadow": {
+          "GPU_PASS": 666
+        },
+        "glow/shadow": {
+          "GPU_PASS": 333
+        },
+        "entity": {
+          "GPU_PASS": 666
+        },
+        "glow/entity": {
+          "GPU_PASS": 333
+        }
+      },
+      "dirtyTraces": [],
+      "frameSamples": 333,
+      "quantileSamples": 333,
+      "frameTimeMs": {
+        "p95": 10.2556,
+        "p50": 8.3567,
+        "p999": 26.5216,
+        "p99": 11.1434
+      }
+    },
+    "cameraType": "THIRD_PERSON_FRONT",
+    "windowFpsLimit": 120,
+    "swapInterval": 0,
+    "breathWorldPosition": [
+      5.5,
+      81.28085327148438,
+      -2.5397989749908447
+    ]
+  },
+  {
+    "species": "aether_dragon_human",
+    "pose": "first-person",
+    "mode": "TEXTURES",
+    "stats": {
+      "totals": {
+        "ARMOR_CHECK_NANOS": 1613000,
+        "ARMOR_GENERATE_NANOS": 558200,
+        "COPY": 1,
+        "CPU_VERTEX_SUBMIT_NANOS": 1203238500,
+        "FRAME_CPU_NANOS": 2596893200,
+        "GENERATED": 1,
+        "HIT": 542,
+        "RELEASE": 1,
+        "SKIN_CHECK_NANOS": 592500
+      },
+      "peaks": {
+        "TEXTURE_RESOURCE_BYTES": 2097152
+      },
+      "fallbacks": {
+        "benchmark cancelled": "validation command test"
+      },
+      "attribution": {},
+      "dirtyTraces": [],
+      "frameSamples": 271,
+      "quantileSamples": 271,
+      "frameTimeMs": {
+        "p95": 12.1649,
+        "p50": 10.2343,
+        "p999": 17.0769,
+        "p99": 14.7976
+      }
+    },
+    "cameraType": "FIRST_PERSON",
+    "windowFpsLimit": 120,
+    "swapInterval": 0
+  },
+  {
+    "species": "aether_dragon_human",
+    "pose": "first-person",
+    "mode": "GPU",
+    "stats": {
+      "totals": {
+        "ARMOR_CHECK_NANOS": 1741300,
+        "ARMOR_GENERATE_NANOS": 443000,
+        "COPY": 1,
+        "FRAME_CPU_NANOS": 1013656800,
+        "GENERATED": 1,
+        "GPU_BATCH_CPU_NANOS": 139042800,
+        "GPU_BONE_SUBMIT_NANOS": 26017000,
+        "GPU_DRAW_CPU_NANOS": 132040000,
+        "GPU_PASS": 2022,
+        "GPU_POSE_CAPTURE_NANOS": 102458300,
+        "GPU_VERTEX_COUNT": 59640912,
+        "HIT": 674,
+        "RELEASE": 1,
+        "SKIN_CHECK_NANOS": 566800
+      },
+      "peaks": {
+        "GPU_RESOURCE_BYTES": 8637648,
+        "TEXTURE_RESOURCE_BYTES": 2097152
+      },
+      "fallbacks": {
+        "benchmark cancelled": "validation command test"
+      },
+      "attribution": {
+        "shadow": {
+          "GPU_PASS": 674
+        },
+        "glow/shadow": {
+          "GPU_PASS": 337
+        },
+        "entity": {
+          "GPU_PASS": 674
+        },
+        "glow/entity": {
+          "GPU_PASS": 337
+        }
+      },
+      "dirtyTraces": [],
+      "frameSamples": 337,
+      "quantileSamples": 337,
+      "frameTimeMs": {
+        "p95": 9.9076,
+        "p50": 8.3445,
+        "p999": 14.5859,
+        "p99": 10.494
+      }
+    },
+    "cameraType": "FIRST_PERSON",
+    "windowFpsLimit": 120,
+    "swapInterval": 0
+  },
+  {
+    "species": "aether_dragon_human",
+    "pose": "inventory",
+    "mode": "TEXTURES",
+    "stats": {
+      "totals": {
+        "ARMOR_CHECK_NANOS": 1025200,
+        "ARMOR_GENERATE_NANOS": 545800,
+        "COPY": 1,
+        "CPU_VERTEX_SUBMIT_NANOS": 1260740500,
+        "FRAME_CPU_NANOS": 2652483600,
+        "GENERATED": 1,
+        "HIT": 515,
+        "RELEASE": 1,
+        "SKIN_CHECK_NANOS": 347500
+      },
+      "peaks": {
+        "TEXTURE_RESOURCE_BYTES": 2097152
+      },
+      "fallbacks": {
+        "benchmark cancelled": "validation command test"
+      },
+      "attribution": {},
+      "dirtyTraces": [],
+      "frameSamples": 172,
+      "quantileSamples": 172,
+      "frameTimeMs": {
+        "p95": 18.4883,
+        "p50": 16.3123,
+        "p999": 29.0928,
+        "p99": 21.2921
+      }
+    },
+    "cameraType": "THIRD_PERSON_FRONT",
+    "screen": "by.dragonsurvivalteam.dragonsurvival.client.gui.screens.DragonInventoryScreen",
+    "windowFpsLimit": 120,
+    "swapInterval": 0
+  },
+  {
+    "species": "aether_dragon_human",
+    "pose": "inventory",
+    "mode": "GPU",
+    "stats": {
+      "totals": {
+        "ARMOR_CHECK_NANOS": 1747500,
+        "ARMOR_GENERATE_NANOS": 448000,
+        "COPY": 1,
+        "CPU_VERTEX_SUBMIT_NANOS": 571121300,
+        "FRAME_CPU_NANOS": 2402220000,
+        "GENERATED": 1,
+        "GPU_BATCH_CPU_NANOS": 152668400,
+        "GPU_BONE_SUBMIT_NANOS": 30160300,
+        "GPU_DRAW_CPU_NANOS": 146154400,
+        "GPU_PASS": 1980,
+        "GPU_POSE_CAPTURE_NANOS": 119045700,
+        "GPU_VERTEX_COUNT": 58402080,
+        "GUI_CPU_PASS": 987,
+        "HIT": 989,
+        "RELEASE": 1,
+        "SKIN_CHECK_NANOS": 591800
+      },
+      "peaks": {
+        "GPU_RESOURCE_BYTES": 8637648,
+        "TEXTURE_RESOURCE_BYTES": 2097152
+      },
+      "fallbacks": {
+        "benchmark cancelled": "validation command test"
+      },
+      "attribution": {
+        "shadow": {
+          "GPU_PASS": 660
+        },
+        "glow/shadow": {
+          "GPU_PASS": 330
+        },
+        "entity": {
+          "GPU_PASS": 660
+        },
+        "glow/entity": {
+          "GPU_PASS": 330
+        },
+        "gui": {
+          "GUI_CPU_PASS": 987
+        }
+      },
+      "dirtyTraces": [],
+      "frameSamples": 330,
+      "quantileSamples": 330,
+      "frameTimeMs": {
+        "p95": 10.0428,
+        "p50": 8.3498,
+        "p999": 37.1933,
+        "p99": 11.3338
+      }
+    },
+    "cameraType": "THIRD_PERSON_FRONT",
+    "screen": "by.dragonsurvivalteam.dragonsurvival.client.gui.screens.DragonInventoryScreen",
+    "windowFpsLimit": 120,
+    "swapInterval": 0
+  },
+  {
+    "species": "aether_dragon_human",
+    "pose": "hidden-head",
+    "mode": "TEXTURES",
+    "stats": {
+      "totals": {
+        "ARMOR_CHECK_NANOS": 1906200,
+        "ARMOR_GENERATE_NANOS": 460600,
+        "COPY": 1,
+        "CPU_VERTEX_SUBMIT_NANOS": 1053587400,
+        "FRAME_CPU_NANOS": 2192397600,
+        "GENERATED": 1,
+        "HIT": 670,
+        "RELEASE": 1,
+        "SKIN_CHECK_NANOS": 523000
+      },
+      "peaks": {
+        "TEXTURE_RESOURCE_BYTES": 2097152
+      },
+      "fallbacks": {
+        "benchmark cancelled": "validation command test"
+      },
+      "attribution": {},
+      "dirtyTraces": [],
+      "frameSamples": 335,
+      "quantileSamples": 335,
+      "frameTimeMs": {
+        "p95": 10.0321,
+        "p50": 8.3567,
+        "p999": 16.414,
+        "p99": 10.6794
+      }
+    },
+    "cameraType": "THIRD_PERSON_FRONT",
+    "windowFpsLimit": 120,
+    "swapInterval": 0
+  },
+  {
+    "species": "aether_dragon_human",
+    "pose": "hidden-head",
+    "mode": "GPU",
+    "stats": {
+      "totals": {
+        "ARMOR_CHECK_NANOS": 1882000,
+        "ARMOR_GENERATE_NANOS": 483100,
+        "COPY": 1,
+        "FRAME_CPU_NANOS": 927977500,
+        "GENERATED": 1,
+        "GPU_BATCH_CPU_NANOS": 173198500,
+        "GPU_BONE_SUBMIT_NANOS": 19999800,
+        "GPU_DRAW_CPU_NANOS": 166526200,
+        "GPU_PASS": 1998,
+        "GPU_POSE_CAPTURE_NANOS": 82631400,
+        "GPU_VERTEX_COUNT": 58933008,
+        "HIT": 666,
+        "RELEASE": 1,
+        "SKIN_CHECK_NANOS": 575600
+      },
+      "peaks": {
+        "GPU_RESOURCE_BYTES": 8637648,
+        "TEXTURE_RESOURCE_BYTES": 2097152
+      },
+      "fallbacks": {
+        "benchmark cancelled": "validation command test"
+      },
+      "attribution": {
+        "shadow": {
+          "GPU_PASS": 666
+        },
+        "glow/shadow": {
+          "GPU_PASS": 333
+        },
+        "entity": {
+          "GPU_PASS": 666
+        },
+        "glow/entity": {
+          "GPU_PASS": 333
+        }
+      },
+      "dirtyTraces": [],
+      "frameSamples": 333,
+      "quantileSamples": 333,
+      "frameTimeMs": {
+        "p95": 10.3951,
+        "p50": 8.3522,
+        "p999": 20.207,
+        "p99": 12.7442
+      }
+    },
+    "cameraType": "THIRD_PERSON_FRONT",
+    "windowFpsLimit": 120,
+    "swapInterval": 0
+  },
+  {
+    "species": "cave_dragon",
+    "pose": "idle",
+    "mode": "TEXTURES",
+    "stats": {
+      "totals": {
+        "ARMOR_CHECK_NANOS": 1880900,
+        "ARMOR_GENERATE_NANOS": 563000,
+        "COPY": 1,
+        "CPU_VERTEX_SUBMIT_NANOS": 626404000,
+        "FRAME_CPU_NANOS": 1694075100,
+        "GENERATED": 1,
+        "HIT": 690,
+        "RELEASE": 2,
+        "SKIN_CHECK_NANOS": 713000
+      },
+      "peaks": {
+        "TEXTURE_RESOURCE_BYTES": 2097152
+      },
+      "fallbacks": {
+        "benchmark cancelled": "validation command test"
+      },
+      "attribution": {},
+      "dirtyTraces": [],
+      "frameSamples": 345,
+      "quantileSamples": 345,
+      "frameTimeMs": {
+        "p95": 10.0095,
+        "p50": 8.3684,
+        "p999": 14.3155,
+        "p99": 11.3524
+      }
+    },
+    "cameraType": "THIRD_PERSON_FRONT",
+    "windowFpsLimit": 120,
+    "swapInterval": 0,
+    "breathWorldPosition": [
+      5.50013542175293,
+      -57.95354080200195,
+      -4.673773765563965
+    ]
+  },
+  {
+    "species": "cave_dragon",
+    "pose": "idle",
+    "mode": "GPU",
+    "stats": {
+      "totals": {
+        "ARMOR_CHECK_NANOS": 1782300,
+        "ARMOR_GENERATE_NANOS": 512700,
+        "COPY": 1,
+        "FRAME_CPU_NANOS": 898992000,
+        "GENERATED": 1,
+        "GPU_BATCH_CPU_NANOS": 144742700,
+        "GPU_BONE_SUBMIT_NANOS": 30093700,
+        "GPU_DRAW_CPU_NANOS": 138419900,
+        "GPU_PASS": 2016,
+        "GPU_POSE_CAPTURE_NANOS": 116161600,
+        "GPU_VERTEX_COUNT": 18289152,
+        "HIT": 672,
+        "RELEASE": 1,
+        "SKIN_CHECK_NANOS": 650300
+      },
+      "peaks": {
+        "GPU_RESOURCE_BYTES": 2920320,
+        "TEXTURE_RESOURCE_BYTES": 2097152
+      },
+      "fallbacks": {
+        "benchmark cancelled": "validation command test"
+      },
+      "attribution": {
+        "shadow": {
+          "GPU_PASS": 672
+        },
+        "glow/shadow": {
+          "GPU_PASS": 336
+        },
+        "entity": {
+          "GPU_PASS": 672
+        },
+        "glow/entity": {
+          "GPU_PASS": 336
+        }
+      },
+      "dirtyTraces": [],
+      "frameSamples": 336,
+      "quantileSamples": 336,
+      "frameTimeMs": {
+        "p95": 9.9877,
+        "p50": 8.3533,
+        "p999": 12.6179,
+        "p99": 10.6324
+      }
+    },
+    "cameraType": "THIRD_PERSON_FRONT",
+    "windowFpsLimit": 120,
+    "swapInterval": 0,
+    "breathWorldPosition": [
+      5.50085973739624,
+      -57.955718994140625,
+      -4.674449920654297
+    ]
+  },
+  {
+    "species": "cave_dragon",
+    "pose": "flight",
+    "mode": "TEXTURES",
+    "stats": {
+      "totals": {
+        "ARMOR_CHECK_NANOS": 1798600,
+        "ARMOR_GENERATE_NANOS": 494800,
+        "COPY": 1,
+        "CPU_VERTEX_SUBMIT_NANOS": 612882200,
+        "FRAME_CPU_NANOS": 1613311700,
+        "GENERATED": 1,
+        "HIT": 666,
+        "RELEASE": 1,
+        "SKIN_CHECK_NANOS": 727100
+      },
+      "peaks": {
+        "TEXTURE_RESOURCE_BYTES": 2097152
+      },
+      "fallbacks": {
+        "benchmark cancelled": "validation command test"
+      },
+      "attribution": {},
+      "dirtyTraces": [],
+      "frameSamples": 333,
+      "quantileSamples": 333,
+      "frameTimeMs": {
+        "p95": 10.0334,
+        "p50": 8.3667,
+        "p999": 21.9847,
+        "p99": 10.9807
+      }
+    },
+    "cameraType": "THIRD_PERSON_FRONT",
+    "windowFpsLimit": 120,
+    "swapInterval": 0,
+    "breathWorldPosition": [
+      5.5,
+      81.20791625976562,
+      -4.242378234863281
+    ]
+  },
+  {
+    "species": "cave_dragon",
+    "pose": "flight",
+    "mode": "GPU",
+    "stats": {
+      "totals": {
+        "ARMOR_CHECK_NANOS": 1872600,
+        "ARMOR_GENERATE_NANOS": 499900,
+        "COPY": 1,
+        "FRAME_CPU_NANOS": 901249300,
+        "GENERATED": 1,
+        "GPU_BATCH_CPU_NANOS": 157249900,
+        "GPU_BONE_SUBMIT_NANOS": 31004700,
+        "GPU_DRAW_CPU_NANOS": 150994100,
+        "GPU_PASS": 2022,
+        "GPU_POSE_CAPTURE_NANOS": 117998900,
+        "GPU_VERTEX_COUNT": 18343584,
+        "HIT": 674,
+        "RELEASE": 1,
+        "SKIN_CHECK_NANOS": 595900
+      },
+      "peaks": {
+        "GPU_RESOURCE_BYTES": 2920320,
+        "TEXTURE_RESOURCE_BYTES": 2097152
+      },
+      "fallbacks": {
+        "benchmark cancelled": "validation command test"
+      },
+      "attribution": {
+        "shadow": {
+          "GPU_PASS": 674
+        },
+        "glow/shadow": {
+          "GPU_PASS": 337
+        },
+        "entity": {
+          "GPU_PASS": 674
+        },
+        "glow/entity": {
+          "GPU_PASS": 337
+        }
+      },
+      "dirtyTraces": [],
+      "frameSamples": 337,
+      "quantileSamples": 337,
+      "frameTimeMs": {
+        "p95": 9.8823,
+        "p50": 8.3501,
+        "p999": 11.0826,
+        "p99": 10.3943
+      }
+    },
+    "cameraType": "THIRD_PERSON_FRONT",
+    "windowFpsLimit": 120,
+    "swapInterval": 0,
+    "breathWorldPosition": [
+      5.5,
+      81.2418441772461,
+      -4.234530448913574
+    ]
+  },
+  {
+    "species": "cave_dragon",
+    "pose": "first-person",
+    "mode": "TEXTURES",
+    "stats": {
+      "totals": {
+        "ARMOR_CHECK_NANOS": 1794600,
+        "ARMOR_GENERATE_NANOS": 613500,
+        "COPY": 1,
+        "CPU_VERTEX_SUBMIT_NANOS": 463072200,
+        "FRAME_CPU_NANOS": 1652210600,
+        "GENERATED": 1,
+        "HIT": 668,
+        "RELEASE": 1,
+        "SKIN_CHECK_NANOS": 663200
+      },
+      "peaks": {
+        "TEXTURE_RESOURCE_BYTES": 2097152
+      },
+      "fallbacks": {
+        "benchmark cancelled": "validation command test"
+      },
+      "attribution": {},
+      "dirtyTraces": [],
+      "frameSamples": 334,
+      "quantileSamples": 334,
+      "frameTimeMs": {
+        "p95": 10.122,
+        "p50": 8.3588,
+        "p999": 11.4906,
+        "p99": 10.6093
+      }
+    },
+    "cameraType": "FIRST_PERSON",
+    "windowFpsLimit": 120,
+    "swapInterval": 0
+  },
+  {
+    "species": "cave_dragon",
+    "pose": "first-person",
+    "mode": "GPU",
+    "stats": {
+      "totals": {
+        "ARMOR_CHECK_NANOS": 1703100,
+        "ARMOR_GENERATE_NANOS": 605700,
+        "COPY": 1,
+        "FRAME_CPU_NANOS": 1095322900,
+        "GENERATED": 1,
+        "GPU_BATCH_CPU_NANOS": 151872500,
+        "GPU_BONE_SUBMIT_NANOS": 25572000,
+        "GPU_DRAW_CPU_NANOS": 144693100,
+        "GPU_PASS": 2016,
+        "GPU_POSE_CAPTURE_NANOS": 98970500,
+        "GPU_VERTEX_COUNT": 18289152,
+        "HIT": 672,
+        "RELEASE": 1,
+        "SKIN_CHECK_NANOS": 641600
+      },
+      "peaks": {
+        "GPU_RESOURCE_BYTES": 2920320,
+        "TEXTURE_RESOURCE_BYTES": 2097152
+      },
+      "fallbacks": {
+        "benchmark cancelled": "validation command test"
+      },
+      "attribution": {
+        "shadow": {
+          "GPU_PASS": 672
+        },
+        "glow/shadow": {
+          "GPU_PASS": 336
+        },
+        "entity": {
+          "GPU_PASS": 672
+        },
+        "glow/entity": {
+          "GPU_PASS": 336
+        }
+      },
+      "dirtyTraces": [],
+      "frameSamples": 336,
+      "quantileSamples": 336,
+      "frameTimeMs": {
+        "p95": 9.9235,
+        "p50": 8.3514,
+        "p999": 12.9137,
+        "p99": 10.6927
+      }
+    },
+    "cameraType": "FIRST_PERSON",
+    "windowFpsLimit": 120,
+    "swapInterval": 0
+  },
+  {
+    "species": "cave_dragon",
+    "pose": "inventory",
+    "mode": "TEXTURES",
+    "stats": {
+      "totals": {
+        "ARMOR_CHECK_NANOS": 1760600,
+        "ARMOR_GENERATE_NANOS": 549800,
+        "COPY": 1,
+        "CPU_VERTEX_SUBMIT_NANOS": 757220000,
+        "FRAME_CPU_NANOS": 2430346800,
+        "GENERATED": 1,
+        "HIT": 959,
+        "RELEASE": 1,
+        "SKIN_CHECK_NANOS": 676400
+      },
+      "peaks": {
+        "TEXTURE_RESOURCE_BYTES": 2097152
+      },
+      "fallbacks": {
+        "benchmark cancelled": "validation command test"
+      },
+      "attribution": {},
+      "dirtyTraces": [],
+      "frameSamples": 320,
+      "quantileSamples": 320,
+      "frameTimeMs": {
+        "p95": 10.5493,
+        "p50": 8.3639,
+        "p999": 27.6949,
+        "p99": 15.4779
+      }
+    },
+    "cameraType": "THIRD_PERSON_FRONT",
+    "screen": "by.dragonsurvivalteam.dragonsurvival.client.gui.screens.DragonInventoryScreen",
+    "windowFpsLimit": 120,
+    "swapInterval": 0
+  },
+  {
+    "species": "cave_dragon",
+    "pose": "inventory",
+    "mode": "GPU",
+    "stats": {
+      "totals": {
+        "ARMOR_CHECK_NANOS": 1856200,
+        "ARMOR_GENERATE_NANOS": 514100,
+        "COPY": 1,
+        "CPU_VERTEX_SUBMIT_NANOS": 196034200,
+        "FRAME_CPU_NANOS": 1850939500,
+        "GENERATED": 1,
+        "GPU_BATCH_CPU_NANOS": 174747500,
+        "GPU_BONE_SUBMIT_NANOS": 31178900,
+        "GPU_DRAW_CPU_NANOS": 168189000,
+        "GPU_PASS": 2028,
+        "GPU_POSE_CAPTURE_NANOS": 118478100,
+        "GPU_VERTEX_COUNT": 18398016,
+        "GUI_CPU_PASS": 1011,
+        "HIT": 1013,
+        "RELEASE": 1,
+        "SKIN_CHECK_NANOS": 697800
+      },
+      "peaks": {
+        "GPU_RESOURCE_BYTES": 2920320,
+        "TEXTURE_RESOURCE_BYTES": 2097152
+      },
+      "fallbacks": {
+        "benchmark cancelled": "validation command test"
+      },
+      "attribution": {
+        "shadow": {
+          "GPU_PASS": 676
+        },
+        "glow/shadow": {
+          "GPU_PASS": 338
+        },
+        "entity": {
+          "GPU_PASS": 676
+        },
+        "glow/entity": {
+          "GPU_PASS": 338
+        },
+        "gui": {
+          "GUI_CPU_PASS": 1011
+        }
+      },
+      "dirtyTraces": [],
+      "frameSamples": 338,
+      "quantileSamples": 338,
+      "frameTimeMs": {
+        "p95": 10.2899,
+        "p50": 8.3492,
+        "p999": 11.4035,
+        "p99": 10.7255
+      }
+    },
+    "cameraType": "THIRD_PERSON_FRONT",
+    "screen": "by.dragonsurvivalteam.dragonsurvival.client.gui.screens.DragonInventoryScreen",
+    "windowFpsLimit": 120,
+    "swapInterval": 0
+  },
+  {
+    "species": "cave_dragon",
+    "pose": "hidden-head",
+    "mode": "TEXTURES",
+    "stats": {
+      "totals": {
+        "ARMOR_CHECK_NANOS": 2098700,
+        "ARMOR_GENERATE_NANOS": 643500,
+        "COPY": 1,
+        "CPU_VERTEX_SUBMIT_NANOS": 370771200,
+        "FRAME_CPU_NANOS": 1394281400,
+        "GENERATED": 1,
+        "HIT": 682,
+        "RELEASE": 1,
+        "SKIN_CHECK_NANOS": 646300
+      },
+      "peaks": {
+        "TEXTURE_RESOURCE_BYTES": 2097152
+      },
+      "fallbacks": {
+        "benchmark cancelled": "validation command test"
+      },
+      "attribution": {},
+      "dirtyTraces": [],
+      "frameSamples": 341,
+      "quantileSamples": 341,
+      "frameTimeMs": {
+        "p95": 10.2606,
+        "p50": 8.3573,
+        "p999": 13.2948,
+        "p99": 11.5891
+      }
+    },
+    "cameraType": "THIRD_PERSON_FRONT",
+    "windowFpsLimit": 120,
+    "swapInterval": 0
+  },
+  {
+    "species": "cave_dragon",
+    "pose": "hidden-head",
+    "mode": "GPU",
+    "stats": {
+      "totals": {
+        "ARMOR_CHECK_NANOS": 1845700,
+        "ARMOR_GENERATE_NANOS": 655600,
+        "COPY": 1,
+        "FRAME_CPU_NANOS": 909145600,
+        "GENERATED": 1,
+        "GPU_BATCH_CPU_NANOS": 178563200,
+        "GPU_BONE_SUBMIT_NANOS": 23681100,
+        "GPU_DRAW_CPU_NANOS": 172324600,
+        "GPU_PASS": 2016,
+        "GPU_POSE_CAPTURE_NANOS": 89710600,
+        "GPU_VERTEX_COUNT": 18289152,
+        "HIT": 672,
+        "RELEASE": 1,
+        "SKIN_CHECK_NANOS": 708400
+      },
+      "peaks": {
+        "GPU_RESOURCE_BYTES": 2920320,
+        "TEXTURE_RESOURCE_BYTES": 2097152
+      },
+      "fallbacks": {
+        "benchmark cancelled": "validation command test"
+      },
+      "attribution": {
+        "shadow": {
+          "GPU_PASS": 672
+        },
+        "glow/shadow": {
+          "GPU_PASS": 336
+        },
+        "entity": {
+          "GPU_PASS": 672
+        },
+        "glow/entity": {
+          "GPU_PASS": 336
+        }
+      },
+      "dirtyTraces": [],
+      "frameSamples": 336,
+      "quantileSamples": 336,
+      "frameTimeMs": {
+        "p95": 9.9063,
+        "p50": 8.3536,
+        "p999": 11.9909,
+        "p99": 10.3652
+      }
+    },
+    "cameraType": "THIRD_PERSON_FRONT",
+    "windowFpsLimit": 120,
+    "swapInterval": 0
+  }
+]

@@ -46,6 +46,8 @@ public final class RenderOptimizer {
     private static void onRenderThread(Runnable r) { if (RenderSystem.isOnRenderThread()) r.run(); else RenderSystem.recordRenderCall(r::run); }
     public static void clear() { if (OptimizerMixinPlugin.texturesCompatible) { GpuDispatcher.clear(); TextureCache.clear(); } }
     private void pre(RenderFrameEvent.Pre e) {
+        Diagnostics.INSTANCE.detailed(OptimizerConfig.DETAILED_DIAGNOSTICS.get());
+        if (OptimizerMixinPlugin.texturesCompatible) top.wu949.dsbr.optimizer.texture.AppearanceCache.nextFrame();
         if (previousMode != null && previousMode != OptimizerConfig.MODE.get()) clear(); previousMode = OptimizerConfig.MODE.get();
         long now = System.nanoTime();
         if (frameStart != 0 && Minecraft.getInstance().level != null) Diagnostics.INSTANCE.frame((now - frameStart) / 1e6);

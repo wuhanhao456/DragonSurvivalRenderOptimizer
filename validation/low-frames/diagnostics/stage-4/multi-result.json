@@ -1,0 +1,7 @@
+{
+  "pass": true,
+  "rows": 3,
+  "textureBytesAfterClear": 0,
+  "meshBytesAfterClear": 0,
+  "compatibility": "versions\u003d[dragonsurvival\u003d2.0.71, dsbr\u003d0.2.0-alpha.3, geckolib\u003d4.9.3, iris\u003d1.8.14-beta.1+mc1.21.1, sodium\u003d0.8.13+mc1.21.1]; texture\u003dtrue; GPU\u003dtrue; Iris\u003dtrue; legacy\u003dfalse"
+}

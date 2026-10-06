@@ -40,7 +40,7 @@ public final class TextureCache {
         try {
             var normal = DragonModel.dynamicTexture(p, h, false);
             var entry = skins.get(normal);
-            if (entry != null && entry.content.equals(AppearanceKey.skin(h)) && valid(entry.normal) && valid(entry.glow)) {
+            if (entry != null && entry.content.equals(OptimizationStage.VALUE >= 2 ? AppearanceCache.skin(h) : AppearanceKey.skin(h)) && valid(entry.normal) && valid(entry.glow)) {
                 mark(h); touch(entry.normal); touch(entry.glow);
                 Diagnostics.INSTANCE.count(HIT, attribution(p, h, normal)); return true;
             }
@@ -53,12 +53,12 @@ public final class TextureCache {
         if (!valid(normal) || !valid(glow)) { if (enabled()) fail("incomplete texture synthesis", new IllegalStateException(normal.toString())); return; }
         Diagnostics.INSTANCE.count(GENERATED, attribution(p, h, normal)); Diagnostics.INSTANCE.nanos("SKIN_GENERATE", nanos, attribution(p, h, normal));
         if (!enabled()) return;
-        var key = AppearanceKey.skin(h);
+        var key = AppearanceCache.skin(h);
         skins.put(normal, new SkinEntry(key, normal, glow)); mark(h);
         register(normal, (long)key.width() * key.height() * 4); register(glow, (long)key.width() * key.height() * 4);
     }
     private static void mark(DragonStateHandler h) { h.getSkinData().isCompiled.put(h.stageKey(), true); h.getSkinData().recompileSkin.put(h.stageKey(), false); }
-    public static String attribution(Player p, DragonStateHandler h, ResourceLocation texture) { return p.getUUID() + "/" + h.stageKey().location() + "/" + texture; }
+    public static String attribution(Player p, DragonStateHandler h, ResourceLocation texture) { return Diagnostics.INSTANCE.detailed() ? p.getUUID() + "/" + h.stageKey().location() + "/" + texture : "skin"; }
     public static boolean valid(ResourceLocation key) { return Minecraft.getInstance().getTextureManager().getTexture(key, null) != null; }
     public static void register(ResourceLocation key, long bytes) {
         if (textures.get(key, System.nanoTime()) == null) textures.put(key, key, bytes, System.nanoTime());
@@ -71,6 +71,7 @@ public final class TextureCache {
     public static void unpinAll() { for (var key : pinned) { var e = textures.get(key, System.nanoTime()); if (e != null) e.leases--; } pinned.clear(); }
     public static long bytes() { return textures.bytes() + FramebufferPool.bytes(); }
     public static void maintenance() {
+        AppearanceCache.maintenance();
         // Keep resources used by already queued draw commands alive until this frame finishes.
         if (deferredFailureCleanup) { clear(); return; }
         if (enabled()) textures.prune(System.nanoTime(), OptimizerConfig.RETENTION_SECONDS.get() * 1_000_000_000L, OptimizerConfig.TEXTURE_MIB.get() * 1048576L - FramebufferPool.bytes());
@@ -82,6 +83,6 @@ public final class TextureCache {
         skins.entrySet().removeIf(e -> e.getValue().normal.equals(key) || e.getValue().glow.equals(key));
         Diagnostics.INSTANCE.count(RELEASE, key.toString());
     }
-    public static void clear() { unpinAll(); textures.clear(); skins.clear(); FramebufferPool.clear(); deferredFailureCleanup = false; }
+    public static void clear() { unpinAll(); textures.clear(); skins.clear(); AppearanceCache.clear(); FramebufferPool.clear(); deferredFailureCleanup = false; }
     public static void fail(String feature, Throwable e) { failed = true; deferredFailureCleanup = true; Diagnostics.INSTANCE.reason(feature, e.toString()); RenderOptimizer.LOGGER.error("Texture optimization disabled: {}", feature, e); }
 }

@@ -1,0 +1,453 @@
+{
+  "sampleWindowSeconds": 30.0362957,
+  "renderAllocationSampleWeightedBytes": 29468672304,
+  "estimatedRenderAllocationMiBPerSecond": 935.6518591910451,
+  "topSampledClasses": [
+    [
+      "software/bernie/geckolib/animation/keyframe/AnimationPointQueue",
+      14190160072
+    ],
+    [
+      "software/bernie/geckolib/animation/keyframe/BoneAnimationQueue",
+      3235536128
+    ],
+    [
+      "software/bernie/geckolib/animation/keyframe/AnimationPoint",
+      2848407624
+    ],
+    [
+      "java/util/LinkedList$Node",
+      1965071808
+    ],
+    [
+      "it/unimi/dsi/fastutil/objects/ObjectArrayList$1",
+      1692157904
+    ],
+    [
+      "org/spongepowered/asm/mixin/injection/callback/CallbackInfoReturnable",
+      1601772152
+    ],
+    [
+      "software/bernie/geckolib/animation/keyframe/KeyframeLocation",
+      897557800
+    ],
+    [
+      "top.wu949.dsbr.optimizer.diagnostics.Diagnostics$$Lambda+0x000001dd56865868/621376805",
+      711212840
+    ],
+    [
+      "org/joml/Quaternionf",
+      579729432
+    ],
+    [
+      "net/minecraft/world/phys/Vec3",
+      401578816
+    ],
+    [
+      "org/joml/Matrix4f",
+      245780368
+    ],
+    [
+      "[B",
+      202036384
+    ],
+    [
+      "java/lang/String",
+      105757400
+    ],
+    [
+      "java/lang/Double",
+      94155248
+    ],
+    [
+      "[Ljava/lang/Object;",
+      91005608
+    ]
+  ],
+  "topSampledCallsites": [
+    [
+      "software/bernie/geckolib/animation/keyframe/BoneAnimationQueue.<init>",
+      14190160072
+    ],
+    [
+      "software/bernie/geckolib/animation/AnimationController.createInitialQueues",
+      3235536128
+    ],
+    [
+      "software/bernie/geckolib/animation/AnimationController.getAnimationPointAtTick",
+      2848407624
+    ],
+    [
+      "java/util/LinkedList.linkLast",
+      1965071808
+    ],
+    [
+      "it/unimi/dsi/fastutil/objects/ObjectArrayList.listIterator",
+      1692157904
+    ],
+    [
+      "net/minecraft/resources/ResourceLocation.validPathChar",
+      1589196264
+    ],
+    [
+      "software/bernie/geckolib/animation/AnimationController.getCurrentKeyFrameLocation",
+      897557800
+    ],
+    [
+      "java/lang/invoke/DirectMethodHandle.allocateInstance",
+      781406432
+    ],
+    [
+      "software/bernie/geckolib/util/RenderUtil.optionalRotateZYX",
+      563037080
+    ],
+    [
+      "jdk/internal/misc/Unsafe.allocateUninitializedArray",
+      172744264
+    ],
+    [
+      "net/minecraft/world/phys/Vec3.add",
+      163130936
+    ],
+    [
+      "software/bernie/geckolib/util/RenderUtil.invertAndMultiplyMatrices",
+      142289952
+    ],
+    [
+      "by/dragonsurvivalteam/dragonsurvival/client/render/entity/dragon/DragonRenderer.getModelOffset",
+      129706888
+    ],
+    [
+      "java/lang/StringConcatHelper.newString",
+      105757400
+    ],
+    [
+      "java/lang/Double.valueOf",
+      94155248
+    ]
+  ],
+  "gcPauses": [
+    {
+      "relativeStartSeconds": 0.06842494010925293,
+      "durationMs": 2.0741,
+      "overlapMs": 2.074003219604492
+    },
+    {
+      "relativeStartSeconds": 0.1279768943786621,
+      "durationMs": 0.13329999999999997,
+      "overlapMs": 0.13327598571777344
+    },
+    {
+      "relativeStartSeconds": 0.8243060111999512,
+      "durationMs": 1.7078,
+      "overlapMs": 1.7077922821044922
+    },
+    {
+      "relativeStartSeconds": 1.6105239391326904,
+      "durationMs": 2.4795,
+      "overlapMs": 2.47955322265625
+    },
+    {
+      "relativeStartSeconds": 2.3807308673858643,
+      "durationMs": 1.7244000000000002,
+      "overlapMs": 1.7244815826416016
+    },
+    {
+      "relativeStartSeconds": 2.451136827468872,
+      "durationMs": 1.8101,
+      "overlapMs": 1.8100738525390625
+    },
+    {
+      "relativeStartSeconds": 2.5095038414001465,
+      "durationMs": 0.1361,
+      "overlapMs": 0.1361370086669922
+    },
+    {
+      "relativeStartSeconds": 3.1384458541870117,
+      "durationMs": 1.5237,
+      "overlapMs": 1.523733139038086
+    },
+    {
+      "relativeStartSeconds": 3.8450260162353516,
+      "durationMs": 2.9634,
+      "overlapMs": 2.9633045196533203
+    },
+    {
+      "relativeStartSeconds": 4.595043897628784,
+      "durationMs": 1.7252999999999998,
+      "overlapMs": 1.7251968383789062
+    },
+    {
+      "relativeStartSeconds": 4.665771007537842,
+      "durationMs": 1.9976999999999998,
+      "overlapMs": 1.9977092742919922
+    },
+    {
+      "relativeStartSeconds": 4.723412990570068,
+      "durationMs": 0.1306,
+      "overlapMs": 0.13065338134765625
+    },
+    {
+      "relativeStartSeconds": 5.342857837677002,
+      "durationMs": 1.4524,
+      "overlapMs": 1.4524459838867188
+    },
+    {
+      "relativeStartSeconds": 6.080667018890381,
+      "durationMs": 2.9213,
+      "overlapMs": 2.9213428497314453
+    },
+    {
+      "relativeStartSeconds": 6.803268909454346,
+      "durationMs": 1.5456999999999999,
+      "overlapMs": 1.5456676483154297
+    },
+    {
+      "relativeStartSeconds": 6.873612880706787,
+      "durationMs": 2.1161000000000003,
+      "overlapMs": 2.1162033081054688
+    },
+    {
+      "relativeStartSeconds": 6.930186986923218,
+      "durationMs": 0.1023,
+      "overlapMs": 0.10228157043457031
+    },
+    {
+      "relativeStartSeconds": 7.542277812957764,
+      "durationMs": 1.6692,
+      "overlapMs": 1.669168472290039
+    },
+    {
+      "relativeStartSeconds": 8.261850833892822,
+      "durationMs": 2.5707999999999998,
+      "overlapMs": 2.5708675384521484
+    },
+    {
+      "relativeStartSeconds": 8.991025924682617,
+      "durationMs": 1.5838,
+      "overlapMs": 1.5838146209716797
+    },
+    {
+      "relativeStartSeconds": 9.059592008590698,
+      "durationMs": 1.9488999999999999,
+      "overlapMs": 1.9488334655761719
+    },
+    {
+      "relativeStartSeconds": 9.11637282371521,
+      "durationMs": 0.125,
+      "overlapMs": 0.12493133544921875
+    },
+    {
+      "relativeStartSeconds": 9.806557893753052,
+      "durationMs": 1.6344,
+      "overlapMs": 1.634359359741211
+    },
+    {
+      "relativeStartSeconds": 10.600821018218994,
+      "durationMs": 2.9318,
+      "overlapMs": 2.931833267211914
+    },
+    {
+      "relativeStartSeconds": 11.399760961532593,
+      "durationMs": 1.608,
+      "overlapMs": 1.6078948974609375
+    },
+    {
+      "relativeStartSeconds": 11.469858884811401,
+      "durationMs": 2.0486,
+      "overlapMs": 2.048492431640625
+    },
+    {
+      "relativeStartSeconds": 11.526525974273682,
+      "durationMs": 0.1308,
+      "overlapMs": 0.1308917999267578
+    },
+    {
+      "relativeStartSeconds": 12.177896976470947,
+      "durationMs": 1.8191,
+      "overlapMs": 1.8191337585449219
+    },
+    {
+      "relativeStartSeconds": 12.940572023391724,
+      "durationMs": 2.7612,
+      "overlapMs": 2.7611255645751953
+    },
+    {
+      "relativeStartSeconds": 13.71452283859253,
+      "durationMs": 1.6360999999999999,
+      "overlapMs": 1.6360282897949219
+    },
+    {
+      "relativeStartSeconds": 13.791738986968994,
+      "durationMs": 2.0858,
+      "overlapMs": 2.0856857299804688
+    },
+    {
+      "relativeStartSeconds": 13.847809791564941,
+      "durationMs": 0.2212,
+      "overlapMs": 0.22125244140625
+    },
+    {
+      "relativeStartSeconds": 14.519377946853638,
+      "durationMs": 1.9829,
+      "overlapMs": 1.9829273223876953
+    },
+    {
+      "relativeStartSeconds": 15.32915186882019,
+      "durationMs": 3.3427000000000002,
+      "overlapMs": 3.3426284790039062
+    },
+    {
+      "relativeStartSeconds": 16.11783194541931,
+      "durationMs": 1.5804,
+      "overlapMs": 1.5804767608642578
+    },
+    {
+      "relativeStartSeconds": 16.190048933029175,
+      "durationMs": 1.8802,
+      "overlapMs": 1.8801689147949219
+    },
+    {
+      "relativeStartSeconds": 16.244611024856567,
+      "durationMs": 0.1181,
+      "overlapMs": 0.11801719665527344
+    },
+    {
+      "relativeStartSeconds": 16.89169979095459,
+      "durationMs": 1.8215,
+      "overlapMs": 1.8215179443359375
+    },
+    {
+      "relativeStartSeconds": 17.65017080307007,
+      "durationMs": 2.1991,
+      "overlapMs": 2.1991729736328125
+    },
+    {
+      "relativeStartSeconds": 18.405746936798096,
+      "durationMs": 1.5389,
+      "overlapMs": 1.538991928100586
+    },
+    {
+      "relativeStartSeconds": 18.479045867919922,
+      "durationMs": 1.8184,
+      "overlapMs": 1.8184185028076172
+    },
+    {
+      "relativeStartSeconds": 18.533020973205566,
+      "durationMs": 0.1255,
+      "overlapMs": 0.12540817260742188
+    },
+    {
+      "relativeStartSeconds": 19.182273864746094,
+      "durationMs": 1.4767000000000001,
+      "overlapMs": 1.4767646789550781
+    },
+    {
+      "relativeStartSeconds": 19.9774808883667,
+      "durationMs": 2.0331,
+      "overlapMs": 2.0329952239990234
+    },
+    {
+      "relativeStartSeconds": 20.768353939056396,
+      "durationMs": 1.9275,
+      "overlapMs": 1.9276142120361328
+    },
+    {
+      "relativeStartSeconds": 20.840117931365967,
+      "durationMs": 1.8866,
+      "overlapMs": 1.886606216430664
+    },
+    {
+      "relativeStartSeconds": 20.893693923950195,
+      "durationMs": 0.12449999999999999,
+      "overlapMs": 0.12445449829101562
+    },
+    {
+      "relativeStartSeconds": 21.560163021087646,
+      "durationMs": 1.452,
+      "overlapMs": 1.4519691467285156
+    },
+    {
+      "relativeStartSeconds": 22.335537910461426,
+      "durationMs": 2.7933,
+      "overlapMs": 2.7933120727539062
+    },
+    {
+      "relativeStartSeconds": 23.11066198348999,
+      "durationMs": 1.5431,
+      "overlapMs": 1.5430450439453125
+    },
+    {
+      "relativeStartSeconds": 23.17923378944397,
+      "durationMs": 2.1597,
+      "overlapMs": 2.159595489501953
+    },
+    {
+      "relativeStartSeconds": 23.23123002052307,
+      "durationMs": 0.12310000000000001,
+      "overlapMs": 0.12302398681640625
+    },
+    {
+      "relativeStartSeconds": 23.91107988357544,
+      "durationMs": 1.6065999999999998,
+      "overlapMs": 1.6067028045654297
+    },
+    {
+      "relativeStartSeconds": 24.68759298324585,
+      "durationMs": 3.9817000000000005,
+      "overlapMs": 3.9815902709960938
+    },
+    {
+      "relativeStartSeconds": 25.47865891456604,
+      "durationMs": 1.5972,
+      "overlapMs": 1.5971660614013672
+    },
+    {
+      "relativeStartSeconds": 25.551769971847534,
+      "durationMs": 1.8653000000000002,
+      "overlapMs": 1.865386962890625
+    },
+    {
+      "relativeStartSeconds": 25.599236011505127,
+      "durationMs": 0.216,
+      "overlapMs": 0.21600723266601562
+    },
+    {
+      "relativeStartSeconds": 26.275375843048096,
+      "durationMs": 1.5848,
+      "overlapMs": 1.584768295288086
+    },
+    {
+      "relativeStartSeconds": 27.06236696243286,
+      "durationMs": 3.5618,
+      "overlapMs": 3.561735153198242
+    },
+    {
+      "relativeStartSeconds": 27.855068922042847,
+      "durationMs": 1.5357999999999998,
+      "overlapMs": 1.5358924865722656
+    },
+    {
+      "relativeStartSeconds": 27.92891502380371,
+      "durationMs": 1.9616,
+      "overlapMs": 1.9617080688476562
+    },
+    {
+      "relativeStartSeconds": 27.97136402130127,
+      "durationMs": 0.1328,
+      "overlapMs": 0.1327991485595703
+    },
+    {
+      "relativeStartSeconds": 28.652017831802368,
+      "durationMs": 1.7485,
+      "overlapMs": 1.7485618591308594
+    },
+    {
+      "relativeStartSeconds": 29.447157859802246,
+      "durationMs": 7.9366,
+      "overlapMs": 7.936716079711914
+    }
+  ],
+  "gcPauseOverlapMs": 110.97431182861328,
+  "method": "JFR ObjectAllocationSample weights are estimates; pauses overlap the sampled frame timeline, not proof of sole causation; exclude profiler runs from performance acceptance."
+}

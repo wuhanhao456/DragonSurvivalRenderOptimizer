@@ -1,0 +1,227 @@
+[
+  {
+    "mode": "GPU",
+    "dragonPlayers": 1,
+    "repetition": 1,
+    "warmupSeconds": 15.0,
+    "samplingSeconds": 30.0,
+    "rawFrames": "frames-p1-r1-GPU.csv",
+    "scenario": "fixed",
+    "width": 1280,
+    "height": 720,
+    "fpsLimit": 260,
+    "renderDistance": 6,
+    "camera": "(6.5, -58.28999996185303, -0.75)",
+    "textureBytes": 5242880,
+    "meshBytes": 1227168,
+    "stats": {
+      "totals": {
+        "ARMOR_CHECK_NANOS": 41104100,
+        "FRAME_CPU_NANOS": 16701095900,
+        "GPU_BATCH_CPU_NANOS": 3282688400,
+        "GPU_BONE_SUBMIT_NANOS": 833275400,
+        "GPU_DRAW_CPU_NANOS": 3118295400,
+        "GPU_PASS": 63648,
+        "GPU_POSE_CAPTURE_NANOS": 2813711100,
+        "GPU_VERTEX_COUNT": 577414656,
+        "HIT": 95472,
+        "SKIN_CHECK_NANOS": 9694300
+      },
+      "peaks": {
+        "GPU_RESOURCE_BYTES": 2206944,
+        "TEXTURE_RESOURCE_BYTES": 5242880
+      },
+      "fallbacks": {},
+      "attribution": {
+        "shadow": {
+          "GPU_PASS": 31824
+        },
+        "entity": {
+          "GPU_PASS": 31824
+        }
+      },
+      "dirtyTraces": [],
+      "frameSamples": 15912,
+      "quantileSamples": 15912,
+      "frameTimeMs": {
+        "p999": 4.9896,
+        "p99": 2.6702,
+        "p95": 2.3365,
+        "p50": 1.8204
+      }
+    },
+    "actorScales": [
+      0.95
+    ],
+    "actorGrowth": [
+      40.0
+    ],
+    "actorStages": [
+      "dragonsurvival:adult"
+    ]
+  },
+  {
+    "mode": "GPU",
+    "dragonPlayers": 4,
+    "repetition": 1,
+    "warmupSeconds": 15.0,
+    "samplingSeconds": 30.0,
+    "rawFrames": "frames-p4-r1-GPU.csv",
+    "scenario": "fixed",
+    "width": 1280,
+    "height": 720,
+    "fpsLimit": 260,
+    "renderDistance": 6,
+    "camera": "(6.5, -58.28999996185303, -0.75)",
+    "textureBytes": 11534336,
+    "meshBytes": 1462176,
+    "stats": {
+      "totals": {
+        "ARMOR_CHECK_NANOS": 52460600,
+        "FRAME_CPU_NANOS": 22937409700,
+        "GPU_BATCH_CPU_NANOS": 5768682600,
+        "GPU_BONE_SUBMIT_NANOS": 1804541400,
+        "GPU_DRAW_CPU_NANOS": 5568291000,
+        "GPU_PASS": 138080,
+        "GPU_POSE_CAPTURE_NANOS": 5801857300,
+        "GPU_VERTEX_COUNT": 1252661760,
+        "HIT": 207120,
+        "SKIN_CHECK_NANOS": 15085800
+      },
+      "peaks": {
+        "GPU_RESOURCE_BYTES": 5381280,
+        "TEXTURE_RESOURCE_BYTES": 11534336
+      },
+      "fallbacks": {},
+      "attribution": {
+        "shadow": {
+          "GPU_PASS": 69040
+        },
+        "entity": {
+          "GPU_PASS": 69040
+        }
+      },
+      "dirtyTraces": [],
+      "frameSamples": 8630,
+      "quantileSamples": 8630,
+      "frameTimeMs": {
+        "p999": 7.847,
+        "p99": 5.0853,
+        "p95": 4.0946,
+        "p50": 3.3623
+      }
+    },
+    "actorScales": [
+      0.95,
+      0.95,
+      0.95,
+      0.95
+    ],
+    "actorGrowth": [
+      40.0,
+      40.0,
+      40.0,
+      40.0
+    ],
+    "actorStages": [
+      "dragonsurvival:adult",
+      "dragonsurvival:adult",
+      "dragonsurvival:adult",
+      "dragonsurvival:adult"
+    ]
+  },
+  {
+    "mode": "GPU",
+    "dragonPlayers": 12,
+    "repetition": 1,
+    "warmupSeconds": 15.0,
+    "samplingSeconds": 30.0,
+    "rawFrames": "frames-p12-r1-GPU.csv",
+    "scenario": "fixed",
+    "width": 1280,
+    "height": 720,
+    "fpsLimit": 260,
+    "renderDistance": 6,
+    "camera": "(6.5, -58.28999996185303, -0.75)",
+    "textureBytes": 28311552,
+    "meshBytes": 2088864,
+    "stats": {
+      "totals": {
+        "ARMOR_CHECK_NANOS": 57337300,
+        "FRAME_CPU_NANOS": 26273466900,
+        "GPU_BATCH_CPU_NANOS": 7552148400,
+        "GPU_BONE_SUBMIT_NANOS": 2541660900,
+        "GPU_DRAW_CPU_NANOS": 7337877600,
+        "GPU_PASS": 195024,
+        "GPU_POSE_CAPTURE_NANOS": 7970250100,
+        "GPU_VERTEX_COUNT": 1769257728,
+        "HIT": 292536,
+        "SKIN_CHECK_NANOS": 19470900
+      },
+      "peaks": {
+        "GPU_RESOURCE_BYTES": 13846176,
+        "TEXTURE_RESOURCE_BYTES": 28311552
+      },
+      "fallbacks": {},
+      "attribution": {
+        "shadow": {
+          "GPU_PASS": 97512
+        },
+        "entity": {
+          "GPU_PASS": 97512
+        }
+      },
+      "dirtyTraces": [],
+      "frameSamples": 4063,
+      "quantileSamples": 4063,
+      "frameTimeMs": {
+        "p999": 12.4146,
+        "p99": 10.7409,
+        "p95": 8.727,
+        "p50": 7.2089
+      }
+    },
+    "actorScales": [
+      0.95,
+      0.95,
+      0.95,
+      0.95,
+      0.95,
+      0.95,
+      0.95,
+      0.95,
+      0.95,
+      0.95,
+      0.95,
+      0.95
+    ],
+    "actorGrowth": [
+      40.0,
+      40.0,
+      40.0,
+      40.0,
+      40.0,
+      40.0,
+      40.0,
+      40.0,
+      40.0,
+      40.0,
+      40.0,
+      40.0
+    ],
+    "actorStages": [
+      "dragonsurvival:adult",
+      "dragonsurvival:adult",
+      "dragonsurvival:adult",
+      "dragonsurvival:adult",
+      "dragonsurvival:adult",
+      "dragonsurvival:adult",
+      "dragonsurvival:adult",
+      "dragonsurvival:adult",
+      "dragonsurvival:adult",
+      "dragonsurvival:adult",
+      "dragonsurvival:adult",
+      "dragonsurvival:adult"
+    ]
+  }
+]

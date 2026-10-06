@@ -20,11 +20,15 @@ public abstract class ArmorLayerMixin {
     private static void beloong$demand(Player p, CallbackInfoReturnable<Optional<ResourceLocation>> ci) { if (TextureCache.enabled()) ArmorRegistryAccessor.beloong$prepare(p); }
     @Inject(method = "constructTrimmedDragonArmorTexture", at = @At("RETURN"))
     private static void beloong$touch(Player p, CallbackInfoReturnable<Optional<ResourceLocation>> ci) {
-        if (TextureCache.enabled()) ci.getReturnValue().ifPresent(key -> { TextureCache.touch(key); Diagnostics.INSTANCE.count(Diagnostics.Counter.HIT, p.getUUID() + "/armor/" + key); });
+        if (TextureCache.enabled()) ci.getReturnValue().ifPresent(key -> { TextureCache.touch(key); Diagnostics.INSTANCE.count(Diagnostics.Counter.HIT, Diagnostics.INSTANCE.detailed() ? p.getUUID() + "/armor/" + key : "armor"); });
     }
     @Inject(method = "buildUniqueArmorUUID", at = @At("RETURN"), cancellable = true)
     private static void beloong$content(Player p, CallbackInfoReturnable<String> ci) {
-        if (TextureCache.enabled()) ci.setReturnValue(ArmorAppearance.extend(ci.getReturnValue(), p));
+        if (TextureCache.enabled()) { var cached = ArmorAppearance.cached(p); if (!ci.getReturnValue().equals(cached)) ci.setReturnValue(ArmorAppearance.extend(ci.getReturnValue(), p)); }
+    }
+    @Inject(method = "buildUniqueArmorUUID", at = @At("HEAD"), cancellable = true)
+    private static void beloong$cachedContent(Player p, CallbackInfoReturnable<String> ci) {
+        if (TextureCache.enabled()) { var cached = ArmorAppearance.cached(p); if (cached != null) ci.setReturnValue(cached); }
     }
     @WrapMethod(method = "generateArmorTexture")
     private static void beloong$generate(Player p, ResourceLocation key, Operation<Void> original) {

@@ -41,7 +41,7 @@ class CachePolicyTest {
             snapshot.bone(0, stack.last(), 0xff112233, 0xf000f0, 0);
             stack.translate(100, 200, 300);
             assertEquals(1, snapshot.positions[0].m30()); assertEquals(2, snapshot.positions[0].m31());
-            assertEquals(3, snapshot.positions[0].m32()); assertNull(snapshot.positions[1]);
+            assertEquals(3, snapshot.positions[0].m32()); assertFalse(snapshot.visible[1]);
             assertEquals(0, snapshot.data.getInt(144 + 140));
         }
     }

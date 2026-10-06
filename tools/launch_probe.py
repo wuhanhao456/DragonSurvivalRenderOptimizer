@@ -44,28 +44,94 @@ parser.add_argument('--default-mode-only', action='store_true', help='Check fres
 parser.add_argument('--multi-dragon-benchmark', action='store_true', help='Render-only 1/4/12 player short comparison')
 parser.add_argument('--old-config', action='store_true', help='Seed a 0.1.x dsbr-client.toml with saved Bedrock settings')
 parser.add_argument('--force-legacy', action='store_true', help='Assert unsupported DS ignores even an explicit legacy opt-in')
+parser.add_argument('--optimizer-jar', type=Path)
+parser.add_argument('--counts', default='1,4,12')
+parser.add_argument('--warm', type=int, default=5)
+parser.add_argument('--sample', type=int, default=15)
+parser.add_argument('--repeats', type=int, default=2)
+parser.add_argument('--gpu-only', action='store_true')
+parser.add_argument('--fullpack', action='store_true')
+parser.add_argument('--scenario', choices=['fixed','appearance','flight-new','flight-preloaded'], default='fixed')
+parser.add_argument('--heap', default='4G')
+parser.add_argument('--jfr', action='store_true')
+parser.add_argument('--stage', type=int, default=4)
+parser.add_argument('--prepare-world', action='store_true')
+parser.add_argument('--world-template', type=Path)
+parser.add_argument('--fixture-mods', type=Path, help='Explicit test-only dependency overrides')
+parser.add_argument('--visual-scenes', action='store_true')
 args = parser.parse_args()
 if args.shaderpacks and not args.iris: parser.error('--shaderpacks requires --iris')
 if args.compat_only and args.iris: parser.error('--compat-only excludes Iris/DS/Gecko')
 if args.force_legacy and not args.old_config: parser.error('--force-legacy requires --old-config')
+provenance=args.pack/'fixture-provenance.json'
+if provenance.is_file():
+    original=json.loads(provenance.read_text(encoding='utf-8'))
+    actual={path.relative_to(args.pack).as_posix() for path in args.pack.rglob('*') if path.is_file()}
+    if actual != set(original['files']) | {'fixture-provenance.json'}: raise ValueError('Frozen fixture file set changed')
+    for name,digest in original['files'].items():
+        path=args.pack/name
+        if not path.is_file() or hashlib.sha256(path.read_bytes()).hexdigest()!=digest: raise ValueError('Frozen fixture changed: '+name)
 root = Path(os.environ['LOCALAPPDATA']) / 'Temp' / ('dsbr-validation-' + ('iris-' if args.iris else 'plain-') + time.strftime('%Y%m%d-%H%M%S'))
 root.mkdir(); (root / 'mods').mkdir(); (root / 'logs').mkdir(); (root / 'config').mkdir()
+if provenance.is_file(): shutil.copyfile(provenance,root/'fixture-provenance.json')
+if args.world_template:
+    if not args.world_template.parent.parent.name.startswith('dsbr-validation-'): raise ValueError('Only isolated probe world templates allowed')
+    shutil.copytree(args.world_template, root / 'saves/multi-render-validation')
 if args.old_config:
     (root / 'config/dsbr-client.toml').write_text('[general]\nnormal_render_mode="BEDROCK"\narmor_render_mode="BEDROCK"\nanimation_speed_multiplier=0.5\n' + ('legacy_backend_enabled=true\n' if args.force_legacy else ''), encoding='utf-8')
 (root / 'options.txt').write_text('onboardAccessibility:false\npauseOnLostFocus:false\nmaxFps:120\nenableVsync:false\n', encoding='utf-8')
 if args.shaderpacks:
     (root / 'shaderpacks').mkdir()
     for pack in (args.pack / 'shaderpacks').glob('*.zip'): shutil.copyfile(pack, root / 'shaderpacks' / pack.name)
-    if args.default_mode_only or args.multi_dragon_benchmark:
+    if args.default_mode_only or args.multi_dragon_benchmark or args.visual_scenes:
         startup_pack = 'ComplementaryReimagined_r5.9.zip'
         if not (root / 'shaderpacks' / startup_pack).is_file(): raise ValueError('Default-mode probe requires ' + startup_pack)
         (root / 'config/iris.properties').write_text('shadersEnabled=true\nshaderPack=' + startup_pack + '\n', encoding='utf-8')
+if args.fullpack:
+    from pack_fixture import copy_mods, copy_folder
+    for folder in ('config', 'kubejs', 'ldlib2', 'hotai'):
+        copy_folder(args.pack, root, folder)
+    for file, keys in [('lockdown.toml', ('pin_dimensions_enabled','login_spawn_teleport_enabled')), ('beloong-common.toml', ('enabled',))]:
+        path = root / 'config' / file
+        if path.exists():
+            text = path.read_text(encoding='utf-8')
+            for key in keys: text = re.sub(r'(?m)^(\s*' + re.escape(key) + r'\s*=\s*)true\b', r'\g<1>false', text)
+            path.write_text(text, encoding='utf-8')
+    modern_ui = root / 'config/ModernUI/client.toml'
+    if modern_ui.exists():
+        text = modern_ui.read_text(encoding='utf-8')
+        for key in ('framerateInactive','framerateMinimized'):
+            text = re.sub(r'(?m)^(\s*' + key + r'\s*=\s*)\d+\b', r'\g<1>0', text)
+        modern_ui.write_text(text, encoding='utf-8')
+    spark = root / 'config/spark/config.json'
+    if spark.exists():
+        config = json.loads(spark.read_text(encoding='utf-8')); config['backgroundProfiler'] = False
+        spark.write_text(json.dumps(config,ensure_ascii=False,indent=2),encoding='utf-8')
+    # Same canonical fixture policy as outputs/dragon-animation-compare/README.md.
+    # The untracked old patch cannot decode against DS 2.0.71; preserve the source file.
+    stale = root / 'hotai/by/dragonsurvivalteam/dragonsurvival/common/capability/DragonStateHandler.badiff'
+    if stale.exists(): stale.unlink()
+    selection = copy_mods(args.pack, root / 'mods')
+    if args.fixture_mods:
+        from pack_fixture import metadata
+        for override in args.fixture_mods.glob('*.jar'):
+            info = metadata(override)
+            if not info['compatible']: raise ValueError('Incompatible fixture override: ' + override.name)
+            for entry in list(selection['selected']):
+                if set(entry['ids']).intersection(info['ids']):
+                    (root / 'mods' / entry['name']).unlink(); selection['selected'].remove(entry)
+                    selection['excluded'].append({'name':entry['name'],'reason':'explicit fixture override'})
+            shutil.copyfile(override, root / 'mods' / override.name)
+            selection['selected'].append({'name':override.name,**info,'sha256':hashlib.sha256(override.read_bytes()).hexdigest(),'fixtureOverride':True})
+    (root / 'fixture-mods.json').write_text(json.dumps(selection, ensure_ascii=False, indent=2), encoding='utf-8')
 for pattern in ([] if args.compat_only else ['*v2.0.71*', '*4.9.3*'] + (['*iris-neoforge*', '*sodium-neoforge*'] if args.iris else [])):
     files = list((args.pack / 'mods').glob(pattern))
     if len(files) != 1: raise ValueError('Ambiguous mod: ' + pattern)
     shutil.copyfile(files[0], root / 'mods' / files[0].name)
+if args.shaderpacks and (args.default_mode_only or args.multi_dragon_benchmark or args.visual_scenes):
+    (root / 'config/iris.properties').write_text('shadersEnabled=true\nshaderPack=ComplementaryReimagined_r5.9.zip\n', encoding='utf-8')
 version = next(x.split('=', 1)[1] for x in (project / 'gradle.properties').read_text(encoding='utf-8').splitlines() if x.startswith('mod_version='))
-shutil.copyfile(args.build / 'libs' / ('dsbr-' + version + '.jar'), root / 'mods/optimizer.jar')
+shutil.copyfile(args.optimizer_jar or args.build / 'libs' / ('dsbr-' + version + '.jar'), root / 'mods/optimizer.jar')
 shutil.copyfile(args.build / 'validation' / ('dsbr-render-fallback-validation.jar' if args.compat_only else 'dsbr-render-validation.jar'), root / 'mods/validation.jar')
 shutil.copyfile(args.game_jar, root / args.game_jar.name)
 spec = json.loads(args.manifest.read_text(encoding='utf-8'))
@@ -98,7 +164,7 @@ def expand(items):
 jvm = expand(spec['arguments']['jvm'])
 for i, value in enumerate(jvm[:-1]):
     if value in ('-p', '--module-path', '-cp', '-classpath', '--class-path'): jvm[i+1] = os.pathsep.join(map(str, unique_paths(jvm[i+1].split(os.pathsep))))
-argv = ['-Xms1G', '-Xmx4G', '-Dbeloongrender.probe=' + str(not args.compat_only and not args.multi_dragon_benchmark).lower(), '-Dbeloongrender.multiBenchmark=' + str(args.multi_dragon_benchmark).lower(), '-Dbeloongrender.compatProbe=' + str(args.compat_only).lower(), '-Dbeloongrender.defaultModeOnly=' + str(args.default_mode_only).lower(), '-Dbeloongrender.shaders=' + str(args.shaderpacks).lower(), '-Dmixin.debug.verbose=true', *jvm, spec['mainClass'], *expand(spec['arguments']['game']), '--width', '1280', '--height', '720']
+argv = ['-Ddsbr.validationStage=' + str(args.stage), '-Xms1G', '-Xmx' + args.heap, *(['-XX:StartFlightRecording=filename=' + str(root / 'diagnostic.jfr') + ',settings=profile,dumponexit=true'] if args.jfr else []), *['-Dbeloongrender.' + k + '=' + str(v).lower() for k,v in {'visualScenes':args.visual_scenes, 'fullpack':args.fullpack, 'counts':args.counts, 'warm':args.warm, 'sample':args.sample, 'repeats':args.repeats, 'gpuOnly':args.gpu_only, 'scenario':args.scenario, 'prepareWorld':args.prepare_world, 'fixtureWorld':bool(args.world_template)}.items()], '-Dbeloongrender.probe=' + str(not args.compat_only and not args.multi_dragon_benchmark).lower(), '-Dbeloongrender.multiBenchmark=' + str(args.multi_dragon_benchmark).lower(), '-Dbeloongrender.compatProbe=' + str(args.compat_only).lower(), '-Dbeloongrender.defaultModeOnly=' + str(args.default_mode_only).lower(), '-Dbeloongrender.shaders=' + str(args.shaderpacks).lower(), '-Dmixin.debug.verbose=true', *jvm, spec['mainClass'], *expand(spec['arguments']['game']), '--width', '1280', '--height', '720']
 argfile = root / 'launch-args.txt'
 argfile.write_text('\n'.join('"' + arg.replace('\\', '\\\\').replace('"', '\\"') + '"' for arg in argv), encoding='utf-8')
 with (root / 'logs/console.log').open('wb') as stream:

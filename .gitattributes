@@ -1,0 +1,2 @@
+validation/low-frames/incidents/*.txt -text -whitespace
+validation/low-frames/**/frames.csv.gz -text

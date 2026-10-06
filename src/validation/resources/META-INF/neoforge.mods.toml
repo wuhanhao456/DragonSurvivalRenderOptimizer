@@ -5,3 +5,5 @@ license="MIT"
 modId="dsbr_validation"
 version="1.0"
 displayName="DSBR Render Validation (test only)"
+[[mixins]]
+config="dsbr-validation.mixins.json"

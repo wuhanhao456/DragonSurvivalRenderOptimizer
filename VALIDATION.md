@@ -1,6 +1,25 @@
 # 实现与验证记录
 
-当前交付为 0.2.0-alpha.2，默认 GPU。全新配置的无光影/Iris 启动与物品栏检查见 [validation/default-gpu-summary.json](validation/default-gpu-summary.json)，同场景多龙短时对照见 [PERFORMANCE.md](PERFORMANCE.md)。最终测试 jar 哈希记录在各汇总 JSON 中。
+当前交付为 **0.2.0-alpha.3 预发布测试版**，默认 GPU、物品栏 CPU。最终客户端 SHA-256：`fd6a3b321d19b30900d80cf0f9682ae30fb71dee24b36c19f5757b40bd9140ef`。完整记录索引见 [validation/low-frames/matrix.json](validation/low-frames/matrix.json)，原始全帧采样与对照见 [PERFORMANCE.md](PERFORMANCE.md)。
+
+| alpha.3 检查 | 实际结果 |
+| --- | --- |
+| 构建／工具 | 最终源码 build 成功；14 项 Java 单元检查、15 项 Python 工具检查通过，实际 OpenGL 顶点／纹理／批次异常状态恢复检查通过 |
+| 长测数据 | 9 组完整采样，每组 60 秒预热、300 秒记录；首轮 alpha.2／alpha.3 各 1／4／12 龙，候选版第二轮 1／4／12 龙 |
+| 固定场景正确性 | 相同成长、阶段、缩放、位置、镜头和光影；纹理生成 0、正常回读 0、预期 GPU 绘制存在、完成客户端清理归零 |
+| 纹理行为 | 等内容同步／耐久／数量／修复费用不重新生成；未调用 dirty hook 的实际眼睛层改色／发光更新一次，盔甲染色更新一次，恢复旧皮肤缓存命中 |
+| 无光影／依赖 | 最终 jar 无光影路径、真实龙物品栏三模式、缺少 DS／GeckoLib 的安全停用检查通过 |
+| 整包八光影 | 225 个模组、Core 0.10.1，八包 TEXTURES／GPU 配对、发光／装备、切换与重载功能检查通过；复杂材质／透明全场景没有穷尽 |
+| 模型／姿态 | tundra 与 aether 龙娘、cave／east 龙的静止、飞行、第一人称、物品栏、隐藏头骨 × 两模式，共 30 项；呼吸定位骨骼有限且接近玩家 |
+| JFR | 独立诊断运行，仅作为分配／GC 定位；诊断候选早于最终 jar，不纳入正式帧时间比较 |
+| 未完成 | 用户要求停止剩余测试：三次完整配对、整包外观／移动正式对照、反复断线重连、完整桶滚／技能粒子／手持物组合 |
+| 崩溃事件 | 候选第二轮的早先尝试在 DS 动画历史平均处发生类型转换崩溃，原因未确认；该运行作废，候选原参数复测完成后未复现。原始报告保留 |
+
+这次预发布依据用户停止测试的最新要求提供；**没有通过完整正式验收**。明细见 [运行清单](validation/low-frames/run-log.json)、[事件](validation/low-frames/incidents/incident.json) 和 [功能结果](validation/low-frames/functional)。保留 alpha.2 可供回退。
+
+## alpha.2 历史记录
+
+以下是 0.2.0-alpha.2 的既有检查，不能当作 alpha.3 的本次长测结果。全新配置启动见 [validation/default-gpu-summary.json](validation/default-gpu-summary.json)，历史短测见 [PERFORMANCE_ALPHA2.md](PERFORMANCE_ALPHA2.md)。
 
 日期：2026-10-06。基础验证版本：0.2.0-alpha.2。完整结果索引见 [validation/summary.json](validation/summary.json)。
 

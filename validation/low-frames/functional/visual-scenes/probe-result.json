@@ -1,0 +1,63 @@
+{
+  "pass": true,
+  "stats": {
+    "totals": {
+      "ARMOR_CHECK_NANOS": 1845700,
+      "ARMOR_GENERATE_NANOS": 655600,
+      "COPY": 1,
+      "FRAME_CPU_NANOS": 909145600,
+      "GENERATED": 1,
+      "GPU_BATCH_CPU_NANOS": 178563200,
+      "GPU_BONE_SUBMIT_NANOS": 23681100,
+      "GPU_DRAW_CPU_NANOS": 172324600,
+      "GPU_PASS": 2016,
+      "GPU_POSE_CAPTURE_NANOS": 89710600,
+      "GPU_VERTEX_COUNT": 18289152,
+      "HIT": 672,
+      "RELEASE": 1,
+      "SKIN_CHECK_NANOS": 708400
+    },
+    "peaks": {
+      "GPU_RESOURCE_BYTES": 2920320,
+      "TEXTURE_RESOURCE_BYTES": 2097152
+    },
+    "fallbacks": {
+      "benchmark cancelled": "validation command test"
+    },
+    "attribution": {
+      "shadow": {
+        "GPU_PASS": 672
+      },
+      "glow/shadow": {
+        "GPU_PASS": 336
+      },
+      "entity": {
+        "GPU_PASS": 672
+      },
+      "glow/entity": {
+        "GPU_PASS": 336
+      }
+    },
+    "dirtyTraces": [],
+    "frameSamples": 336,
+    "quantileSamples": 336,
+    "frameTimeMs": {
+      "p95": 9.9063,
+      "p50": 8.3536,
+      "p999": 11.9909,
+      "p99": 10.3652
+    }
+  },
+  "textureBytes": 2097152,
+  "meshBytes": 1450656,
+  "beforeReloadTextureBytes": 5242880,
+  "beforeReloadMeshBytes": 1450656,
+  "afterClearTextureBytes": 0,
+  "afterClearMeshBytes": 0,
+  "compatibility": "versions\u003d[dragonsurvival\u003d2.0.71, dsbr\u003d0.2.0-alpha.3, geckolib\u003d4.9.3, iris\u003d1.8.14-beta.1+mc1.21.1, sodium\u003d0.8.13+mc1.21.1]; texture\u003dtrue; GPU\u003dtrue; Iris\u003dtrue; legacy\u003dfalse",
+  "modId": "dsbr",
+  "legacyActive": false,
+  "startupMode": "GPU",
+  "legacyConfigFlag": false,
+  "savedOldRenderMode": "BEDROCK"
+}

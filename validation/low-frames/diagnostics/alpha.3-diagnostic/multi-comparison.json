@@ -1,0 +1,97 @@
+[
+  {
+    "mode": "GPU",
+    "dragonPlayers": 12,
+    "repetition": 1,
+    "warmupSeconds": 30.0,
+    "samplingSeconds": 30.0,
+    "rawFrames": "frames-p12-r1-GPU.csv",
+    "scenario": "fixed",
+    "frameTimelineOriginUtc": "2026-10-06T10:55:45.425630600Z",
+    "width": 1280,
+    "height": 720,
+    "fpsLimit": 260,
+    "renderDistance": 6,
+    "camera": "(-6.5, -58.28999996185303, 14.25)",
+    "textureBytes": 28311552,
+    "meshBytes": 2088864,
+    "stats": {
+      "totals": {
+        "ARMOR_CHECK_NANOS": 58364300,
+        "FRAME_CPU_NANOS": 26322508500,
+        "GPU_BATCH_CPU_NANOS": 8219511600,
+        "GPU_BONE_SUBMIT_NANOS": 2451006300,
+        "GPU_DRAW_CPU_NANOS": 8012020200,
+        "GPU_PASS": 196080,
+        "GPU_POSE_CAPTURE_NANOS": 7186681400,
+        "GPU_VERTEX_COUNT": 1778837760,
+        "HIT": 294120,
+        "SKIN_CHECK_NANOS": 16588800
+      },
+      "peaks": {
+        "GPU_RESOURCE_BYTES": 13846176,
+        "TEXTURE_RESOURCE_BYTES": 28311552
+      },
+      "fallbacks": {},
+      "attribution": {
+        "shadow": {
+          "GPU_PASS": 98040
+        },
+        "entity": {
+          "GPU_PASS": 98040
+        }
+      },
+      "dirtyTraces": [],
+      "frameSamples": 4085,
+      "quantileSamples": 4085,
+      "frameTimeMs": {
+        "p99": 10.3751,
+        "p999": 12.612,
+        "p50": 7.2406,
+        "p95": 8.3471
+      }
+    },
+    "actorScales": [
+      0.95,
+      0.95,
+      0.95,
+      0.95,
+      0.95,
+      0.95,
+      0.95,
+      0.95,
+      0.95,
+      0.95,
+      0.95,
+      0.95
+    ],
+    "actorGrowth": [
+      40.0,
+      40.0,
+      40.0,
+      40.0,
+      40.0,
+      40.0,
+      40.0,
+      40.0,
+      40.0,
+      40.0,
+      40.0,
+      40.0
+    ],
+    "actorStages": [
+      "dragonsurvival:adult",
+      "dragonsurvival:adult",
+      "dragonsurvival:adult",
+      "dragonsurvival:adult",
+      "dragonsurvival:adult",
+      "dragonsurvival:adult",
+      "dragonsurvival:adult",
+      "dragonsurvival:adult",
+      "dragonsurvival:adult",
+      "dragonsurvival:adult",
+      "dragonsurvival:adult",
+      "dragonsurvival:adult"
+    ]
+  }
+]

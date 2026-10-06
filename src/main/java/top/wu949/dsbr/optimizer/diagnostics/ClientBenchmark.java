@@ -35,7 +35,7 @@ public final class ClientBenchmark {
         var mc = Minecraft.getInstance();
         if (mc.level != level || mc.isPaused() || OptimizerConfig.MODE.get() != MODES[modeIndex]) { cancel("world, pause or mode changed"); return; }
         if (System.nanoTime() < deadline) return;
-        if (!sampling) { sampling = true; Diagnostics.INSTANCE.reset(); deadline = System.nanoTime() + 300_000_000_000L; return; }
+        if (!sampling) { sampling = true; Diagnostics.INSTANCE.reset(); Diagnostics.INSTANCE.beginCapture(); deadline = System.nanoTime() + 300_000_000_000L; return; }
         try {
             var row = new LinkedHashMap<String, Object>(); row.put("mode", MODES[modeIndex].name()); row.put("sceneDragonPlayers", players); row.put("repetition", repetition);
             row.put("warmupSeconds", 60); row.put("samplingSeconds", 300); row.put("width", mc.getWindow().getWidth()); row.put("height", mc.getWindow().getHeight());
@@ -47,10 +47,14 @@ public final class ClientBenchmark {
                 row.put("shaderPack", iris.getMethod("getCurrentPackName").invoke(null)); row.put("shaderEnabled", iris.getMethod("isPackInUseQuick").invoke(null));
             }
             row.put("textureBytes", top.wu949.dsbr.optimizer.texture.TextureCache.bytes()); row.put("meshBytes", top.wu949.dsbr.optimizer.gpu.GpuDispatcher.bytes());
-            row.put("compatibility", top.wu949.dsbr.optimizer.compat.OptimizerMixinPlugin.status); row.put("stats", Diagnostics.INSTANCE.snapshot());
+            var stats = Diagnostics.INSTANCE.snapshot(); var capture = (Map<?, ?>)stats.get("completeFrameCapture");
+            if (capture == null || !Boolean.TRUE.equals(capture.get("complete")) || ((Number)capture.get("capturedSeconds")).doubleValue() < 297)
+                throw new IllegalStateException("Incomplete frame capture; benchmark invalidated");
+            row.put("compatibility", top.wu949.dsbr.optimizer.compat.OptimizerMixinPlugin.status); row.put("stats", stats);
             Files.createDirectories(directory);
             Files.writeString(directory.resolve(MODES[modeIndex].name().toLowerCase(Locale.ROOT) + ".json"), new com.google.gson.GsonBuilder().setPrettyPrinting().create().toJson(row));
             results.add(row); modeIndex++;
+            Diagnostics.INSTANCE.endCapture();
             if (modeIndex < MODES.length) beginMode();
             else {
                 Files.writeString(directory.resolve("comparison.json"), new com.google.gson.GsonBuilder().setPrettyPrinting().create().toJson(results));
@@ -62,6 +66,7 @@ public final class ClientBenchmark {
     public static void cancel(String reason) {
         if (!active) return;
         active = false; OptimizerConfig.MODE.set(originalMode); Diagnostics.INSTANCE.reason("benchmark cancelled", reason);
+        Diagnostics.INSTANCE.endCapture();
         RenderOptimizer.LOGGER.warn("Benchmark cancelled: {}", reason);
     }
 }

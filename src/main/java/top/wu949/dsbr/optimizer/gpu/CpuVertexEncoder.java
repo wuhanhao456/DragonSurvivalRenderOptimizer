@@ -12,7 +12,7 @@ public final class CpuVertexEncoder {
         var out = MemoryUtil.memCalloc(mesh.quads.size() * 4 * stride);
         int quadIndex = 0;
         for (var q : mesh.quads) {
-            int bone = q.bone(); if (pose.positions[bone] == null) { quadIndex++; continue; }
+            int bone = q.bone(); if (!pose.visible[bone]) { quadIndex++; continue; }
             var p = new Vector3f[4]; for (int i = 0; i < 4; i++) p[i] = pose.positions[bone].transformPosition(new Vector3f(q.positions()[i]));
             var normal = pose.normals[bone].transform(new Vector3f(q.normal()));
             if ((q.flatMask() & 1) != 0) normal.x = Math.abs(normal.x);

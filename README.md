@@ -1,10 +1,12 @@
 # Dragon Survival Bedrock Renderer
 
-DSBR 的新版本，合入化龙客户端纹理优化与实验 GPU 后端，`dsbr`，Minecraft 1.21.1 / Java 21 / NeoForge 21.1.248。当前版本 **0.2.0-alpha.2**，默认开启 GPU 与纹理优化；不支持的能力或路径自动回退。
+DSBR 的新版本，合入化龙客户端纹理优化与实验 GPU 后端，`dsbr`，Minecraft 1.21.1 / Java 21 / NeoForge 21.1.248。当前版本 **0.2.0-alpha.3（预发布测试版）**，默认开启 GPU 与纹理优化；物品栏继续 CPU 预览，不支持的能力或路径自动回退。
+
+alpha.3 复用外观摘要与姿态矩阵，缓存 shader uniform／渲染器检查，并合并同批次 GL 状态保存。当前机器首轮 GPU 对照中，4／12 龙的 1% Low 分别约 +50%／+54%，候选版复测接近；按用户要求停止剩余长测，**没有完成三轮正式验收**。一次作废运行在 DS 动画历史平均计算处发生类型转换崩溃，原因未确认，原参数重跑未复现；详情与原始数据见 [性能结果](PERFORMANCE.md)。
 
 ## 安装和操作
 
-将 `dist/dsbr-0.2.0-alpha.2.jar` 放入客户端 `mods`。不需要装到服务器，不增加网络协议，不修改存档。首版纹理补丁要求 Dragon Survival 2.0.71 和 GeckoLib 4.9.3；GPU 与光影同时使用时要求 Iris 1.8.14-beta.1+mc1.21.1、Sodium 0.8.13+mc1.21.1。版本或目标方法不匹配时关闭补丁，并在日志和命令中说明。详见 [兼容清单](COMPATIBILITY.md)。
+将 `dist/dsbr-0.2.0-alpha.3.jar` 放入客户端 `mods`。不需要装到服务器，不增加网络协议，不修改存档。首版纹理补丁要求 Dragon Survival 2.0.71 和 GeckoLib 4.9.3；GPU 与光影同时使用时要求 Iris 1.8.14-beta.1+mc1.21.1、Sodium 0.8.13+mc1.21.1。版本或目标方法不匹配时关闭补丁，并在日志和命令中说明。详见 [兼容清单](COMPATIBILITY.md)。
 
 客户端命令：
 
@@ -20,11 +22,11 @@ DSBR 的新版本，合入化龙客户端纹理优化与实验 GPU 后端，`dsb
 | `/dsbr benchmark 1 1` | 固定场景，按三种模式各预热 60 秒、采样 300 秒 |
 | `/dsbr benchmark` / `benchmark stop` | 基准进度 / 停止并恢复原模式 |
 
-配置文件为 `config/dsbr-optimizer-client.toml`，也可从 NeoForge 模组配置界面编辑：`mode = "GPU"`、`textureBudgetMiB = 64`、`meshBudgetMiB = 128`、`unusedTextureSeconds = 30`、`traceDirtyFlags = false`。开启最后一项可保存最多 32 条皮肤同步/失效调用栈。运行中严重异常会停用相关优化；修复原因后重启客户端，避免反复尝试失败的 GPU 功能。
+配置文件为 `config/dsbr-optimizer-client.toml`，也可从 NeoForge 模组配置界面编辑：`mode = "GPU"`、`textureBudgetMiB = 64`、`meshBudgetMiB = 128`、`unusedTextureSeconds = 30`、`traceDirtyFlags = false`、`detailedDiagnostics = false`。详细玩家／纹理诊断默认关闭；开启 `traceDirtyFlags`可保存最多 32 条皮肤同步/失效调用栈。运行中严重异常会停用相关优化；修复原因后重启客户端，避免反复尝试失败的 GPU 功能。
 
 ## 从旧版更新
 
-下载 [0.2.0-alpha.2 发布包](https://github.com/wuhanhao456/DragonSurvivalBedrockRenderer/releases/tag/0.2.0-alpha.2)，用 `dsbr-0.2.0-alpha.2.jar` 替换客户端中旧的 `dsbr` jar，并移除独立原型 `beloong_render_optimizer` jar。同一实例只留一个 DSBR；保留旧 jar 在 `mods` 之外可回退。新版本仍使用 mod ID `dsbr`，不需要同时安装第二个优化 mod。
+下载 [0.2.0-alpha.3 发布包](https://github.com/wuhanhao456/DragonSurvivalBedrockRenderer/releases/tag/0.2.0-alpha.3)，用 `dsbr-0.2.0-alpha.3.jar` 替换客户端中旧的 `dsbr` jar，并移除独立原型 `beloong_render_optimizer` jar。同一实例只留一个 DSBR；保留旧 jar 在 `mods` 之外可回退。新版本仍使用 mod ID `dsbr`，不需要同时安装第二个优化 mod。
 
 旧 `config/dsbr-client.toml` 保留原有 Bedrock/YSM 设置；新增 `general.legacy_backend_enabled = false`，旧配置中的 `normal_render_mode = "BEDROCK"` 不会自动接管新优化模式。新优化配置单独位于 `config/dsbr-optimizer-client.toml`。NeoForge 配置界面可以编辑两个配置。已有 `dsbr-optimizer-client.toml` 中保存的模式继续有效；要将既有实例改为 GPU，设置 `mode = "GPU"` 或执行 `/dsbr gpu`。
 
@@ -58,7 +60,7 @@ $env:JAVA_HOME='C:/Program Files/Java/jdk-21'
 
 验证驱动是独立 `validationJar`，**不包含在客户端发布 jar 中**。`tools/launch_probe.py` 只创建新的临时实例和测试存档，使用离线测试身份；需要已有合法安装的 libraries/assets、展开后的 NeoForge 启动 JSON 和客户端 jar，路径可用 `--runtime`、`--manifest`、`--game-jar`、`--pack`、`--java`、`--build` 指定。`--iris --shaderpacks` 会读取指定整合包目录中的八个光影包。该工具不会读取账号文件或现有存档。
 
-已执行的检查、配对截图和验收缺口见 [验证记录](VALIDATION.md)；同场景 1/4/12 条龙的短时对照见 [性能结果](PERFORMANCE.md)，正式性能对比步骤见 [基准流程](BENCHMARK.md)。**目前是可安装测试版，尚未达到整合包正式发布验收：正式多人性能矩阵、龙娘/附属形态全部动作与特殊渲染场景仍需完成。** 短时对照结果只适用于记录的硬件与场景。
+已执行的检查、配对截图和验收缺口见 [验证记录](VALIDATION.md)；alpha.2／alpha.3 GPU 对照与候选版复测见 [性能结果](PERFORMANCE.md)，实现和复现步骤见 [LOW_FPS.md](LOW_FPS.md)，旧三模式命令见 [基准流程](BENCHMARK.md)。**目前是可安装预发布测试版，尚未达到整合包正式发布验收。** 原始全帧数据、硬件和运行记录在 [validation/low-frames](validation/low-frames)。GitHub Release 只附客户端 jar；源码、兼容清单与测试结果均在仓库。
 
 主命令为 `/dsbr`，保留 `/beloongrender` 别名。
 

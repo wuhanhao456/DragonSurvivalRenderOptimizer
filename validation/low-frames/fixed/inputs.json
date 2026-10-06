@@ -1,0 +1,18 @@
+{
+  "jars": {
+    "alpha.2": "884c368f0dc25daa7261a5ffbeff94514920e2a34ce67e8fe7a56c7f7e782671",
+    "alpha.3": "fd6a3b321d19b30900d80cf0f9682ae30fb71dee24b36c19f5757b40bd9140ef"
+  },
+  "driverSha256": "69c6f5c89633e5aee2f669fd2c9a62eef2dc882b1fe4526ea04e5828385366db",
+  "fixtureSha256": "1551143ffbbc454d94e167136b80fb919972fa38a31c43995e3402ff3d8c8df6",
+  "launcherSha256": "d6c06ef88dc9ef778990a28d96eb045bbaa48cdb637ac611b03416cd5612620e",
+  "worldTemplateSha256": null,
+  "counts": "1,4,12",
+  "scenario": "fixed",
+  "fullpack": false,
+  "warm": 60,
+  "sample": 300,
+  "repeats": 3,
+  "heap": "4G",
+  "groupCounts": true
+}

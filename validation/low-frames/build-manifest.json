@@ -1,0 +1,30 @@
+{
+  "version": "0.2.0-alpha.3",
+  "modId": "dsbr",
+  "defaultMode": "GPU",
+  "gpuDefaultEnabled": true,
+  "formalAcceptanceComplete": false,
+  "githubReleaseAssets": [
+    "dsbr-0.2.0-alpha.3.jar"
+  ],
+  "artifacts": [
+    {
+      "name": "dsbr-0.2.0-alpha.3-project.zip",
+      "bytes": 130165805,
+      "sha256": "a38e881b384bfde1a457d1e2facaf02f59d17d2eedc417c7d931864d7d004f84"
+    },
+    {
+      "name": "dsbr-0.2.0-alpha.3-sources.jar",
+      "bytes": 121519,
+      "sha256": "ba600461a6d15f4a6e5b576d83a9f60d4b7726b376269cba5dbe75e959e9ee57"
+    },
+    {
+      "name": "dsbr-0.2.0-alpha.3.jar",
+      "bytes": 303358,
+      "sha256": "fd6a3b321d19b30900d80cf0f9682ae30fb71dee24b36c19f5757b40bd9140ef"
+    }
+  ],
+  "prerelease": true,
+  "incompleteEvidenceRelease": true,
+  "knownIncident": "validation/low-frames/incidents/incident.json"
+}

@@ -79,6 +79,7 @@ public final class RuntimeProbe {
                 return;
             }
             if (mc.player == null || mc.level == null || mc.getSingleplayerServer() == null) return;
+            if (step == 20) { if (ExtraVisualScenes.tick(mc)) finish(mc, null); return; }
             if (mc.screen != null && (step < 14 || step > 16)) mc.setScreen(null);
             mc.options.setCameraType(CameraType.THIRD_PERSON_FRONT);
             if (setup == null) {
@@ -114,13 +115,16 @@ public final class RuntimeProbe {
                 h.getSkinData().deserializeNBT(mc.player.registryAccess(), h.getSkinData().serializeNBT(mc.player.registryAccess()), h.body());
                 h.recompileCurrentSkin();
                 mc.player.getItemBySlot(EquipmentSlot.CHEST).setDamageValue(ticks % 30);
+                mc.player.getItemBySlot(EquipmentSlot.CHEST).setCount(1 + ticks % 2);
+                mc.player.getItemBySlot(EquipmentSlot.CHEST).set(DataComponents.REPAIR_COST, ticks);
                 mc.player.setYRot(ticks * 2);
                 if (ticks == 100) {
                     if (generated() != 0) throw new IllegalStateException("Identical appearance kept rebuilding textures");
                     Diagnostics.INSTANCE.export(mc.gameDirectory.toPath().resolve("equivalent-state.json"));
                     var eyes = h.getCurrentStageCustomization().layerSettings.get(SkinLayer.EYES).get();
                     oldHue = eyes.hue; oldModified = eyes.isModified; oldGlow = eyes.isGlowing;
-                    eyes.hue += .125f; eyes.isModified = true; eyes.isGlowing = true; h.recompileCurrentSkin();
+                    // Direct editor-style mutation must be detected without a dirty hook.
+                    eyes.hue += .125f; eyes.isModified = true; eyes.isGlowing = true;
                     mc.player.setYRot(0); Diagnostics.INSTANCE.reset(); ticks = 0; step = 10;
                 }
             } else if (step == 10 && ticks >= 30) {
@@ -179,6 +183,7 @@ public final class RuntimeProbe {
                 if (!GpuDispatcher.enabled() || !totals.containsKey("GUI_CPU_PASS") || !totals.containsKey("GPU_PASS") || totals.containsKey("READBACK"))
                     throw new IllegalStateException("GUI CPU protection or simultaneous world GPU rendering failed: " + Diagnostics.INSTANCE.snapshot());
                 mc.setScreen(null);
+                if (Boolean.getBoolean("beloongrender.visualScenes")) { Diagnostics.INSTANCE.reset(); step = 20; return; }
                 if (Boolean.getBoolean("beloongrender.defaultModeOnly") || !Boolean.getBoolean("beloongrender.shaders")) { finish(mc, null); return; }
                 try (var files = Files.list(mc.gameDirectory.toPath().resolve("shaderpacks"))) { shaderPacks = files.filter(p -> p.toString().endsWith(".zip")).map(p -> p.getFileName().toString()).sorted().toList(); }
                 if (shaderPacks.size() != 8) throw new IllegalStateException("Shader regression requires all eight shipped packs");

@@ -1,0 +1,27 @@
+{
+  "totals": {
+    "ARMOR_CHECK_NANOS": 2941200,
+    "ARMOR_GENERATE_NANOS": 1552200,
+    "COPY": 1,
+    "CPU_VERTEX_SUBMIT_NANOS": 305659400,
+    "FRAME_CPU_NANOS": 984542100,
+    "GENERATED": 1,
+    "HIT": 1400,
+    "REQUEST": 2,
+    "SKIN_CHECK_NANOS": 668000
+  },
+  "peaks": {
+    "TEXTURE_RESOURCE_BYTES": 8388608
+  },
+  "fallbacks": {},
+  "attribution": {},
+  "dirtyTraces": [],
+  "frameSamples": 175,
+  "quantileSamples": 175,
+  "frameTimeMs": {
+    "p95": 10.891,
+    "p50": 8.3527,
+    "p999": 13.2323,
+    "p99": 11.8447
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "pass": true,
+  "candidateSha256": "fd6a3b321d19b30900d80cf0f9682ae30fb71dee24b36c19f5757b40bd9140ef",
+  "shaderPackCount": 8,
+  "modelPoseCases": 30,
+  "reviewed": [
+    "Eight shader TEXTURES/GPU screenshot pairs",
+    "Dragon girl idle/flight/first-person/inventory/hidden-head and dragon flight/inventory pairs"
+  ],
+  "scope": "No obvious new defects in inspected scenes; not exhaustive pixel-identical animation comparison",
+  "notCompleted": [
+    "Complex transparent/custom consumer visual cases",
+    "Barrel roll and full real skill particle/held-item combinations",
+    "Repeated disconnect/reconnect stress"
+  ]
+}

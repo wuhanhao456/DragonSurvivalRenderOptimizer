@@ -1,0 +1,18 @@
+{
+  "cpu": "13th Gen Intel(R) Core(TM) i7-13700K",
+  "cores": 16,
+  "logicalProcessors": 24,
+  "physicalMemoryBytes": 137167298560,
+  "gpu": "NVIDIA GeForce RTX 5070 Ti, 596.49, 16303 MiB",
+  "java": "Oracle JDK 21.0.8+12-LTS-250",
+  "minecraft": "1.21.1",
+  "neoforge": "21.1.248",
+  "width": 1280,
+  "height": 720,
+  "viewDistance": 6,
+  "vsync": false,
+  "heapFullpack": "8G",
+  "heapFixed": "4G",
+  "shader": "ComplementaryReimagined_r5.9.zip",
+  "capturedAt": "2026-10-06T12:02:37.2594569Z"
+}

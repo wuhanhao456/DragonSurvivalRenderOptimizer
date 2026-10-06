@@ -1,0 +1,50 @@
+{
+  "totals": {
+    "ARMOR_CHECK_NANOS": 1870093,
+    "ARMOR_GENERATE_NANOS": 296599,
+    "COPY": 3,
+    "FRAME_CPU_NANOS": 1076939514,
+    "GENERATED": 2,
+    "GPU_BATCH_CPU_NANOS": 136149932,
+    "GPU_BONE_SUBMIT_NANOS": 33889009,
+    "GPU_DRAW_CPU_NANOS": 128779907,
+    "GPU_PASS": 2106,
+    "GPU_POSE_CAPTURE_NANOS": 131862558,
+    "GPU_VERTEX_COUNT": 19105632,
+    "HIT": 2807,
+    "RELEASE": 3,
+    "REQUEST": 12,
+    "SKIN_CHECK_NANOS": 1000887,
+    "SKIN_GENERATE_NANOS": 714200
+  },
+  "peaks": {
+    "GPU_RESOURCE_BYTES": 2920320,
+    "TEXTURE_RESOURCE_BYTES": 5242880
+  },
+  "fallbacks": {
+    "benchmark cancelled": "validation command test"
+  },
+  "attribution": {
+    "shadow": {
+      "GPU_PASS": 702
+    },
+    "glow/shadow": {
+      "GPU_PASS": 351
+    },
+    "entity": {
+      "GPU_PASS": 702
+    },
+    "glow/entity": {
+      "GPU_PASS": 351
+    }
+  },
+  "dirtyTraces": [],
+  "frameSamples": 351,
+  "quantileSamples": 351,
+  "frameTimeMs": {
+    "p99": 19.2977,
+    "p999": 129.8866,
+    "p50": 16.6849,
+    "p95": 18.5581
+  }
+}

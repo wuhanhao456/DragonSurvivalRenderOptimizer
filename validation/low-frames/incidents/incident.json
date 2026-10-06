@@ -1,0 +1,16 @@
+{
+  "candidateSha256": "fd6a3b321d19b30900d80cf0f9682ae30fb71dee24b36c19f5757b40bd9140ef",
+  "driverSha256": "69c6f5c89633e5aee2f669fd2c9a62eef2dc882b1fe4526ea04e5828385366db",
+  "scenario": "fixed",
+  "repetition": 2,
+  "dragonPlayers": 4,
+  "location": "DragonModel.applyMolangQueries",
+  "exception": "LinkedList$Node cannot be cast to Double",
+  "causeConfirmed": false,
+  "resolved": false,
+  "runInvalidated": true,
+  "retryCompletedWithoutRecurrence": true,
+  "retryEvidence": "../fixed/runs.json: alpha.3 pairRepetition=2",
+  "publicationStatus": "Unresolved, explicitly disclosed in alpha.3 prerelease; no formal release acceptance claimed",
+  "reportSha256": "dad88a2ad22774ced787eab06ca212da627eed956ed91bf5bf5018e1bf127712"
+}

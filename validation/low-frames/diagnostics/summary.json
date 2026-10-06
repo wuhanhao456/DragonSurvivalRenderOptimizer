@@ -1,0 +1,1723 @@
+{
+  "purpose": "Separate JFR and short stage diagnostics, excluded from final timed comparisons",
+  "notFinalCandidateProof": true,
+  "runs": [
+    {
+      "label": "alpha.2",
+      "clientSha256": "884c368f0dc25daa7261a5ffbeff94514920e2a34ce67e8fe7a56c7f7e782671",
+      "driverSha256": "6292faae5ce71dc8839ec6df50dd9d25e6245c92f53284029d5bf65b650b6457",
+      "analysis": "diagnostics\\alpha.2\\jfr-analysis.json",
+      "estimatedRenderAllocationMiBPerSecond": 2967.5617059969545,
+      "gcPauseFields": {
+        "gcPauses": [
+          {
+            "relativeStartSeconds": 0.06726384162902832,
+            "durationMs": 2.6142000000000003,
+            "overlapMs": 2.614259719848633
+          },
+          {
+            "relativeStartSeconds": 0.1115119457244873,
+            "durationMs": 0.12290000000000001,
+            "overlapMs": 0.12278556823730469
+          },
+          {
+            "relativeStartSeconds": 0.24773693084716797,
+            "durationMs": 1.2439,
+            "overlapMs": 1.2438297271728516
+          },
+          {
+            "relativeStartSeconds": 0.46381092071533203,
+            "durationMs": 1.6141,
+            "overlapMs": 1.6140937805175781
+          },
+          {
+            "relativeStartSeconds": 0.5359058380126953,
+            "durationMs": 2.5807,
+            "overlapMs": 2.5806427001953125
+          },
+          {
+            "relativeStartSeconds": 0.5834259986877441,
+            "durationMs": 0.1929,
+            "overlapMs": 0.19288063049316406
+          },
+          {
+            "relativeStartSeconds": 0.7049829959869385,
+            "durationMs": 1.2284,
+            "overlapMs": 1.22833251953125
+          },
+          {
+            "relativeStartSeconds": 0.9342448711395264,
+            "durationMs": 1.6000999999999999,
+            "overlapMs": 1.600027084350586
+          },
+          {
+            "relativeStartSeconds": 1.0059819221496582,
+            "durationMs": 2.7782,
+            "overlapMs": 2.778291702270508
+          },
+          {
+            "relativeStartSeconds": 1.0512440204620361,
+            "durationMs": 0.09119999999999999,
+            "overlapMs": 0.09131431579589844
+          },
+          {
+            "relativeStartSeconds": 1.185405969619751,
+            "durationMs": 1.1911,
+            "overlapMs": 1.1911392211914062
+          },
+          {
+            "relativeStartSeconds": 1.4176878929138184,
+            "durationMs": 1.4426,
+            "overlapMs": 1.4426708221435547
+          },
+          {
+            "relativeStartSeconds": 1.4906480312347412,
+            "durationMs": 2.7678,
+            "overlapMs": 2.767801284790039
+          },
+          {
+            "relativeStartSeconds": 1.535409927368164,
+            "durationMs": 0.1939,
+            "overlapMs": 0.1938343048095703
+          },
+          {
+            "relativeStartSeconds": 1.6737828254699707,
+            "durationMs": 1.3179,
+            "overlapMs": 1.3179779052734375
+          },
+          {
+            "relativeStartSeconds": 1.902885913848877,
+            "durationMs": 1.375,
+            "overlapMs": 1.374959945678711
+          },
+          {
+            "relativeStartSeconds": 1.9720418453216553,
+            "durationMs": 2.2962,
+            "overlapMs": 2.2962093353271484
+          },
+          {
+            "relativeStartSeconds": 2.0166289806365967,
+            "durationMs": 0.0891,
+            "overlapMs": 0.08916854858398438
+          },
+          {
+            "relativeStartSeconds": 2.14631986618042,
+            "durationMs": 1.212,
+            "overlapMs": 1.2118816375732422
+          },
+          {
+            "relativeStartSeconds": 2.363067865371704,
+            "durationMs": 1.428,
+            "overlapMs": 1.4278888702392578
+          },
+          {
+            "relativeStartSeconds": 2.4310648441314697,
+            "durationMs": 2.3373,
+            "overlapMs": 2.337217330932617
+          },
+          {
+            "relativeStartSeconds": 2.475008964538574,
+            "durationMs": 0.11299999999999999,
+            "overlapMs": 0.11301040649414062
+          },
+          {
+            "relativeStartSeconds": 2.597644805908203,
+            "durationMs": 1.1739000000000002,
+            "overlapMs": 1.1739730834960938
+          },
+          {
+            "relativeStartSeconds": 2.8001558780670166,
+            "durationMs": 1.4472,
+            "overlapMs": 1.4472007751464844
+          },
+          {
+            "relativeStartSeconds": 2.873080015182495,
+            "durationMs": 2.7274000000000003,
+            "overlapMs": 2.727508544921875
+          },
+          {
+            "relativeStartSeconds": 2.917344808578491,
+            "durationMs": 0.1266,
+            "overlapMs": 0.1266002655029297
+          },
+          {
+            "relativeStartSeconds": 3.0184619426727295,
+            "durationMs": 1.4253,
+            "overlapMs": 1.4252662658691406
+          },
+          {
+            "relativeStartSeconds": 3.219733953475952,
+            "durationMs": 1.5791,
+            "overlapMs": 1.5790462493896484
+          },
+          {
+            "relativeStartSeconds": 3.2896440029144287,
+            "durationMs": 2.2560000000000002,
+            "overlapMs": 2.2559165954589844
+          },
+          {
+            "relativeStartSeconds": 3.332749843597412,
+            "durationMs": 0.1158,
+            "overlapMs": 0.11587142944335938
+          },
+          {
+            "relativeStartSeconds": 3.4376189708709717,
+            "durationMs": 1.339,
+            "overlapMs": 1.338958740234375
+          },
+          {
+            "relativeStartSeconds": 3.6489598751068115,
+            "durationMs": 1.453,
+            "overlapMs": 1.4529228210449219
+          },
+          {
+            "relativeStartSeconds": 3.718806028366089,
+            "durationMs": 2.3849,
+            "overlapMs": 2.3849010467529297
+          },
+          {
+            "relativeStartSeconds": 3.762908935546875,
+            "durationMs": 0.11900000000000001,
+            "overlapMs": 0.11897087097167969
+          },
+          {
+            "relativeStartSeconds": 3.867802858352661,
+            "durationMs": 1.2686,
+            "overlapMs": 1.268625259399414
+          },
+          {
+            "relativeStartSeconds": 4.076314926147461,
+            "durationMs": 1.4579,
+            "overlapMs": 1.4579296112060547
+          },
+          {
+            "relativeStartSeconds": 4.144668817520142,
+            "durationMs": 2.7432,
+            "overlapMs": 2.743244171142578
+          },
+          {
+            "relativeStartSeconds": 4.189579010009766,
+            "durationMs": 0.1198,
+            "overlapMs": 0.11968612670898438
+          },
+          {
+            "relativeStartSeconds": 4.292732000350952,
+            "durationMs": 1.2712999999999999,
+            "overlapMs": 1.2712478637695312
+          },
+          {
+            "relativeStartSeconds": 4.4913108348846436,
+            "durationMs": 1.4572,
+            "overlapMs": 1.45721435546875
+          },
+          {
+            "relativeStartSeconds": 4.561190843582153,
+            "durationMs": 2.4638,
+            "overlapMs": 2.463817596435547
+          },
+          {
+            "relativeStartSeconds": 4.605554819107056,
+            "durationMs": 0.20570000000000002,
+            "overlapMs": 0.20575523376464844
+          },
+          {
+            "relativeStartSeconds": 4.715545892715454,
+            "durationMs": 1.1599,
+            "overlapMs": 1.1599063873291016
+          },
+          {
+            "relativeStartSeconds": 4.914521932601929,
+            "durationMs": 1.5705,
+            "overlapMs": 1.5704631805419922
+          },
+          {
+            "relativeStartSeconds": 4.983498811721802,
+            "durationMs": 2.1288,
+            "overlapMs": 2.1288394927978516
+          },
+          {
+            "relativeStartSeconds": 5.027325868606567,
+            "durationMs": 0.0945,
+            "overlapMs": 0.09441375732421875
+          },
+          {
+            "relativeStartSeconds": 5.1297338008880615,
+            "durationMs": 1.4327,
+            "overlapMs": 1.432657241821289
+          },
+          {
+            "relativeStartSeconds": 5.331178903579712,
+            "durationMs": 1.4513,
+            "overlapMs": 1.451253890991211
+          },
+          {
+            "relativeStartSeconds": 5.404246807098389,
+            "durationMs": 2.2853,
+            "overlapMs": 2.2852420806884766
+          },
+          {
+            "relativeStartSeconds": 5.448162794113159,
+            "durationMs": 0.18560000000000001,
+            "overlapMs": 0.18548965454101562
+          },
+          {
+            "relativeStartSeconds": 5.544695854187012,
+            "durationMs": 1.3866,
+            "overlapMs": 1.3866424560546875
+          },
+          {
+            "relativeStartSeconds": 5.7465198040008545,
+            "durationMs": 1.3872000000000002,
+            "overlapMs": 1.3871192932128906
+          },
+          {
+            "relativeStartSeconds": 5.82245397567749,
+            "durationMs": 2.6108,
+            "overlapMs": 2.6106834411621094
+          },
+          {
+            "relativeStartSeconds": 5.866760015487671,
+            "durationMs": 0.12310000000000001,
+            "overlapMs": 0.12302398681640625
+          },
+          {
+            "relativeStartSeconds": 5.982245922088623,
+            "durationMs": 1.2345,
+            "overlapMs": 1.2345314025878906
+          },
+          {
+            "relativeStartSeconds": 6.206899881362915,
+            "durationMs": 1.6939,
+            "overlapMs": 1.6939640045166016
+          },
+          {
+            "relativeStartSeconds": 6.2752299308776855,
+            "durationMs": 2.4217,
+            "overlapMs": 2.4216175079345703
+          },
+          {
+            "relativeStartSeconds": 6.319825887680054,
+            "durationMs": 0.0961,
+            "overlapMs": 0.09608268737792969
+          },
+          {
+            "relativeStartSeconds": 6.443295001983643,
+            "durationMs": 1.3678,
+            "overlapMs": 1.367807388305664
+          },
+          {
+            "relativeStartSeconds": 6.65411901473999,
+            "durationMs": 1.4815,
+            "overlapMs": 1.4815330505371094
+          },
+          {
+            "relativeStartSeconds": 6.727751016616821,
+            "durationMs": 2.608,
+            "overlapMs": 2.608060836791992
+          },
+          {
+            "relativeStartSeconds": 6.772246837615967,
+            "durationMs": 0.1009,
+            "overlapMs": 0.10085105895996094
+          },
+          {
+            "relativeStartSeconds": 6.887761831283569,
+            "durationMs": 1.2112,
+            "overlapMs": 1.2111663818359375
+          },
+          {
+            "relativeStartSeconds": 7.09461784362793,
+            "durationMs": 1.4289999999999998,
+            "overlapMs": 1.4290809631347656
+          },
+          {
+            "relativeStartSeconds": 7.164410829544067,
+            "durationMs": 2.4134,
+            "overlapMs": 2.413511276245117
+          },
+          {
+            "relativeStartSeconds": 7.207779884338379,
+            "durationMs": 0.10880000000000001,
+            "overlapMs": 0.1087188720703125
+          },
+          {
+            "relativeStartSeconds": 7.318626880645752,
+            "durationMs": 1.2458,
+            "overlapMs": 1.245737075805664
+          },
+          {
+            "relativeStartSeconds": 7.523643970489502,
+            "durationMs": 1.4193,
+            "overlapMs": 1.4193058013916016
+          },
+          {
+            "relativeStartSeconds": 7.591939926147461,
+            "durationMs": 2.3865000000000003,
+            "overlapMs": 2.3865699768066406
+          },
+          {
+            "relativeStartSeconds": 7.6348350048065186,
+            "durationMs": 0.114,
+            "overlapMs": 0.11396408081054688
+          },
+          {
+            "relativeStartSeconds": 7.746510982513428,
+            "durationMs": 1.4323000000000001,
+            "overlapMs": 1.4324188232421875
+          },
+          {
+            "relativeStartSeconds": 7.946326017379761,
+            "durationMs": 1.4901,
+            "overlapMs": 1.4901161193847656
+          },
+          {
+            "relativeStartSeconds": 8.018164873123169,
+            "durationMs": 2.5771,
+            "overlapMs": 2.577066421508789
+          },
+          {
+            "relativeStartSeconds": 8.062389850616455,
+            "durationMs": 0.0842,
+            "overlapMs": 0.08416175842285156
+          },
+          {
+            "relativeStartSeconds": 8.16169285774231,
+            "durationMs": 1.4446999999999999,
+            "overlapMs": 1.4448165893554688
+          },
+          {
+            "relativeStartSeconds": 8.3625009059906,
+            "durationMs": 1.4993,
+            "overlapMs": 1.4994144439697266
+          },
+          {
+            "relativeStartSeconds": 8.437950849533081,
+            "durationMs": 2.3213,
+            "overlapMs": 2.3212432861328125
+          },
+          {
+            "relativeStartSeconds": 8.482002019882202,
+            "durationMs": 0.0923,
+            "overlapMs": 0.09226799011230469
+          },
+          {
+            "relativeStartSeconds": 8.586863994598389,
+            "durationMs": 1.302,
+            "overlapMs": 1.3020038604736328
+          },
+          {
+            "relativeStartSeconds": 8.791141986846924,
+            "durationMs": 1.497,
+            "overlapMs": 1.497030258178711
+          },
+          {
+            "relativeStartSeconds": 8.865296840667725,
+            "durationMs": 2.4103000000000003,
+            "overlapMs": 2.410411834716797
+          },
+          {
+            "relativeStartSeconds": 8.909191846847534,
+            "durationMs": 0.1086,
+            "overlapMs": 0.1087188720703125
+          },
+          {
+            "relativeStartSeconds": 9.010934829711914,
+            "durationMs": 1.3739,
+            "overlapMs": 1.3740062713623047
+          },
+          {
+            "relativeStartSeconds": 9.224707841873169,
+            "durationMs": 1.4576,
+            "overlapMs": 1.4576911926269531
+          },
+          {
+            "relativeStartSeconds": 9.29305100440979,
+            "durationMs": 2.3505000000000003,
+            "overlapMs": 2.3505687713623047
+          },
+          {
+            "relativeStartSeconds": 9.337028980255127,
+            "durationMs": 0.1179,
+            "overlapMs": 0.11801719665527344
+          },
+          {
+            "relativeStartSeconds": 9.445865869522095,
+            "durationMs": 1.2929,
+            "overlapMs": 1.2929439544677734
+          },
+          {
+            "relativeStartSeconds": 9.654278993606567,
+            "durationMs": 1.5768,
+            "overlapMs": 1.5769004821777344
+          },
+          {
+            "relativeStartSeconds": 9.723820924758911,
+            "durationMs": 2.5057,
+            "overlapMs": 2.505779266357422
+          },
+          {
+            "relativeStartSeconds": 9.768224000930786,
+            "durationMs": 0.1289,
+            "overlapMs": 0.1289844512939453
+          },
+          {
+            "relativeStartSeconds": 9.878368854522705,
+            "durationMs": 1.3578999999999999,
+            "overlapMs": 1.3577938079833984
+          },
+          {
+            "relativeStartSeconds": 10.091470003128052,
+            "durationMs": 1.5714,
+            "overlapMs": 1.5714168548583984
+          },
+          {
+            "relativeStartSeconds": 10.162477016448975,
+            "durationMs": 2.335,
+            "overlapMs": 2.335071563720703
+          },
+          {
+            "relativeStartSeconds": 10.206326007843018,
+            "durationMs": 0.09809999999999999,
+            "overlapMs": 0.09799003601074219
+          },
+          {
+            "relativeStartSeconds": 10.312664031982422,
+            "durationMs": 1.2912,
+            "overlapMs": 1.2912750244140625
+          },
+          {
+            "relativeStartSeconds": 10.518983840942383,
+            "durationMs": 1.3839,
+            "overlapMs": 1.3837814331054688
+          },
+          {
+            "relativeStartSeconds": 10.587571859359741,
+            "durationMs": 2.4586,
+            "overlapMs": 2.4585723876953125
+          },
+          {
+            "relativeStartSeconds": 10.630955934524536,
+            "durationMs": 0.1367,
+            "overlapMs": 0.1366138458251953
+          },
+          {
+            "relativeStartSeconds": 10.735404014587402,
+            "durationMs": 1.452,
+            "overlapMs": 1.4519691467285156
+          },
+          {
+            "relativeStartSeconds": 10.949828863143921,
+            "durationMs": 1.51,
+            "overlapMs": 1.5099048614501953
+          },
+          {
+            "relativeStartSeconds": 11.018319845199585,
+            "durationMs": 2.6795,
+            "overlapMs": 2.679586410522461
+          },
+          {
+            "relativeStartSeconds": 11.061941862106323,
+            "durationMs": 0.16019999999999998,
+            "overlapMs": 0.16021728515625
+          },
+          {
+            "relativeStartSeconds": 11.181267023086548,
+            "durationMs": 1.3597,
+            "overlapMs": 1.359701156616211
+          },
+          {
+            "relativeStartSeconds": 11.396183013916016,
+            "durationMs": 1.4862,
+            "overlapMs": 1.4863014221191406
+          },
+          {
+            "relativeStartSeconds": 11.46462082862854,
+            "durationMs": 2.6561000000000003,
+            "overlapMs": 2.6559829711914062
+          },
+          {
+            "relativeStartSeconds": 11.50861382484436,
+            "durationMs": 0.0937,
+            "overlapMs": 0.09369850158691406
+          },
+          {
+            "relativeStartSeconds": 11.633245944976807,
+            "durationMs": 1.3014000000000001,
+            "overlapMs": 1.3012886047363281
+          },
+          {
+            "relativeStartSeconds": 11.847738027572632,
+            "durationMs": 1.4704,
+            "overlapMs": 1.470327377319336
+          },
+          {
+            "relativeStartSeconds": 11.915702819824219,
+            "durationMs": 2.3623,
+            "overlapMs": 2.3622512817382812
+          },
+          {
+            "relativeStartSeconds": 11.960520029067993,
+            "durationMs": 0.08839999999999999,
+            "overlapMs": 0.08845329284667969
+          },
+          {
+            "relativeStartSeconds": 12.082319021224976,
+            "durationMs": 1.3328,
+            "overlapMs": 1.3327598571777344
+          },
+          {
+            "relativeStartSeconds": 12.306388854980469,
+            "durationMs": 1.4277,
+            "overlapMs": 1.4276504516601562
+          },
+          {
+            "relativeStartSeconds": 12.374931812286377,
+            "durationMs": 2.3911000000000002,
+            "overlapMs": 2.3910999298095703
+          },
+          {
+            "relativeStartSeconds": 12.41851282119751,
+            "durationMs": 0.0851,
+            "overlapMs": 0.08511543273925781
+          },
+          {
+            "relativeStartSeconds": 12.540995836257935,
+            "durationMs": 1.3016,
+            "overlapMs": 1.3015270233154297
+          },
+          {
+            "relativeStartSeconds": 12.768296957015991,
+            "durationMs": 1.7599,
+            "overlapMs": 1.7600059509277344
+          },
+          {
+            "relativeStartSeconds": 12.83873987197876,
+            "durationMs": 2.5424,
+            "overlapMs": 2.5424957275390625
+          },
+          {
+            "relativeStartSeconds": 12.883556842803955,
+            "durationMs": 0.12940000000000002,
+            "overlapMs": 0.12946128845214844
+          },
+          {
+            "relativeStartSeconds": 13.000629901885986,
+            "durationMs": 1.4654,
+            "overlapMs": 1.4653205871582031
+          },
+          {
+            "relativeStartSeconds": 13.220865964889526,
+            "durationMs": 1.5814,
+            "overlapMs": 1.581430435180664
+          },
+          {
+            "relativeStartSeconds": 13.290956020355225,
+            "durationMs": 2.7137,
+            "overlapMs": 2.7136802673339844
+          },
+          {
+            "relativeStartSeconds": 13.335346937179565,
+            "durationMs": 0.1821,
+            "overlapMs": 0.18215179443359375
+          },
+          {
+            "relativeStartSeconds": 13.450469017028809,
+            "durationMs": 1.4751,
+            "overlapMs": 1.4750957489013672
+          },
+          {
+            "relativeStartSeconds": 13.674323797225952,
+            "durationMs": 1.608,
+            "overlapMs": 1.6078948974609375
+          },
+          {
+            "relativeStartSeconds": 13.743979930877686,
+            "durationMs": 2.4773,
+            "overlapMs": 2.477407455444336
+          },
+          {
+            "relativeStartSeconds": 13.787868022918701,
+            "durationMs": 0.0919,
+            "overlapMs": 0.09179115295410156
+          },
+          {
+            "relativeStartSeconds": 13.918389797210693,
+            "durationMs": 1.228,
+            "overlapMs": 1.2280941009521484
+          },
+          {
+            "relativeStartSeconds": 14.135442018508911,
+            "durationMs": 1.5399,
+            "overlapMs": 1.5399456024169922
+          },
+          {
+            "relativeStartSeconds": 14.202762842178345,
+            "durationMs": 2.5144,
+            "overlapMs": 2.514362335205078
+          },
+          {
+            "relativeStartSeconds": 14.246940851211548,
+            "durationMs": 0.12029999999999999,
+            "overlapMs": 0.12040138244628906
+          },
+          {
+            "relativeStartSeconds": 14.366974830627441,
+            "durationMs": 1.1741,
+            "overlapMs": 1.1742115020751953
+          },
+          {
+            "relativeStartSeconds": 14.581480979919434,
+            "durationMs": 1.5908,
+            "overlapMs": 1.590728759765625
+          },
+          {
+            "relativeStartSeconds": 14.651336908340454,
+            "durationMs": 2.7009999999999996,
+            "overlapMs": 2.7010440826416016
+          },
+          {
+            "relativeStartSeconds": 14.695472955703735,
+            "durationMs": 0.0892,
+            "overlapMs": 0.08916854858398438
+          },
+          {
+            "relativeStartSeconds": 14.814781904220581,
+            "durationMs": 1.3103,
+            "overlapMs": 1.3103485107421875
+          },
+          {
+            "relativeStartSeconds": 15.031399011611938,
+            "durationMs": 1.5265,
+            "overlapMs": 1.5265941619873047
+          },
+          {
+            "relativeStartSeconds": 15.099599838256836,
+            "durationMs": 2.3162,
+            "overlapMs": 2.3162364959716797
+          },
+          {
+            "relativeStartSeconds": 15.143163919448853,
+            "durationMs": 0.09119999999999999,
+            "overlapMs": 0.09131431579589844
+          },
+          {
+            "relativeStartSeconds": 15.258620023727417,
+            "durationMs": 1.5254,
+            "overlapMs": 1.5254020690917969
+          },
+          {
+            "relativeStartSeconds": 15.473191022872925,
+            "durationMs": 1.3799000000000001,
+            "overlapMs": 1.3799667358398438
+          },
+          {
+            "relativeStartSeconds": 15.541705846786499,
+            "durationMs": 2.5286000000000004,
+            "overlapMs": 2.528667449951172
+          },
+          {
+            "relativeStartSeconds": 15.585990905761719,
+            "durationMs": 0.085,
+            "overlapMs": 0.08511543273925781
+          },
+          {
+            "relativeStartSeconds": 15.704200029373169,
+            "durationMs": 1.1804999999999999,
+            "overlapMs": 1.180410385131836
+          },
+          {
+            "relativeStartSeconds": 15.919611930847168,
+            "durationMs": 1.5392,
+            "overlapMs": 1.5392303466796875
+          },
+          {
+            "relativeStartSeconds": 15.989540815353394,
+            "durationMs": 2.4779,
+            "overlapMs": 2.477884292602539
+          },
+          {
+            "relativeStartSeconds": 16.033761024475098,
+            "durationMs": 0.1005,
+            "overlapMs": 0.10061264038085938
+          },
+          {
+            "relativeStartSeconds": 16.160079956054688,
+            "durationMs": 1.2548,
+            "overlapMs": 1.2547969818115234
+          },
+          {
+            "relativeStartSeconds": 16.379276990890503,
+            "durationMs": 1.5881999999999998,
+            "overlapMs": 1.5881061553955078
+          },
+          {
+            "relativeStartSeconds": 16.448450803756714,
+            "durationMs": 2.4273,
+            "overlapMs": 2.427339553833008
+          },
+          {
+            "relativeStartSeconds": 16.492509841918945,
+            "durationMs": 0.10969999999999999,
+            "overlapMs": 0.10967254638671875
+          },
+          {
+            "relativeStartSeconds": 16.621917963027954,
+            "durationMs": 1.0929,
+            "overlapMs": 1.0929107666015625
+          },
+          {
+            "relativeStartSeconds": 16.843479871749878,
+            "durationMs": 1.4311,
+            "overlapMs": 1.4309883117675781
+          },
+          {
+            "relativeStartSeconds": 16.912516832351685,
+            "durationMs": 2.2763,
+            "overlapMs": 2.276182174682617
+          },
+          {
+            "relativeStartSeconds": 16.956769943237305,
+            "durationMs": 0.13349999999999998,
+            "overlapMs": 0.133514404296875
+          },
+          {
+            "relativeStartSeconds": 17.0820369720459,
+            "durationMs": 1.1981,
+            "overlapMs": 1.1980533599853516
+          },
+          {
+            "relativeStartSeconds": 17.299546003341675,
+            "durationMs": 1.3982,
+            "overlapMs": 1.3980865478515625
+          },
+          {
+            "relativeStartSeconds": 17.3696129322052,
+            "durationMs": 2.2326,
+            "overlapMs": 2.2325515747070312
+          },
+          {
+            "relativeStartSeconds": 17.413206815719604,
+            "durationMs": 0.0974,
+            "overlapMs": 0.09751319885253906
+          },
+          {
+            "relativeStartSeconds": 17.534053802490234,
+            "durationMs": 1.2142,
+            "overlapMs": 1.2142658233642578
+          },
+          {
+            "relativeStartSeconds": 17.75170588493347,
+            "durationMs": 1.4259,
+            "overlapMs": 1.4259815216064453
+          },
+          {
+            "relativeStartSeconds": 17.819922924041748,
+            "durationMs": 2.4854,
+            "overlapMs": 2.485513687133789
+          },
+          {
+            "relativeStartSeconds": 17.863461017608643,
+            "durationMs": 0.1091,
+            "overlapMs": 0.10919570922851562
+          },
+          {
+            "relativeStartSeconds": 17.978588819503784,
+            "durationMs": 1.5102,
+            "overlapMs": 1.5101432800292969
+          },
+          {
+            "relativeStartSeconds": 18.196640014648438,
+            "durationMs": 1.3979000000000001,
+            "overlapMs": 1.397848129272461
+          },
+          {
+            "relativeStartSeconds": 18.26561689376831,
+            "durationMs": 6.7962,
+            "overlapMs": 6.796121597290039
+          },
+          {
+            "relativeStartSeconds": 18.313779830932617,
+            "durationMs": 0.11649999999999999,
+            "overlapMs": 0.11658668518066406
+          },
+          {
+            "relativeStartSeconds": 18.43231987953186,
+            "durationMs": 1.2846000000000002,
+            "overlapMs": 1.2845993041992188
+          },
+          {
+            "relativeStartSeconds": 18.646658897399902,
+            "durationMs": 1.3991,
+            "overlapMs": 1.3990402221679688
+          },
+          {
+            "relativeStartSeconds": 18.7168447971344,
+            "durationMs": 2.2961,
+            "overlapMs": 2.2962093353271484
+          },
+          {
+            "relativeStartSeconds": 18.75973391532898,
+            "durationMs": 0.09040000000000001,
+            "overlapMs": 0.09036064147949219
+          },
+          {
+            "relativeStartSeconds": 18.878800868988037,
+            "durationMs": 1.2827,
+            "overlapMs": 1.2826919555664062
+          },
+          {
+            "relativeStartSeconds": 19.098352909088135,
+            "durationMs": 1.4606000000000001,
+            "overlapMs": 1.4605522155761719
+          },
+          {
+            "relativeStartSeconds": 19.16665291786194,
+            "durationMs": 2.7294,
+            "overlapMs": 2.7294158935546875
+          },
+          {
+            "relativeStartSeconds": 19.21005892753601,
+            "durationMs": 0.0854,
+            "overlapMs": 0.08535385131835938
+          },
+          {
+            "relativeStartSeconds": 19.340574026107788,
+            "durationMs": 1.5636999999999999,
+            "overlapMs": 1.5637874603271484
+          },
+          {
+            "relativeStartSeconds": 19.55963683128357,
+            "durationMs": 1.3963,
+            "overlapMs": 1.3964176177978516
+          },
+          {
+            "relativeStartSeconds": 19.628358840942383,
+            "durationMs": 2.4246,
+            "overlapMs": 2.4247169494628906
+          },
+          {
+            "relativeStartSeconds": 19.671854972839355,
+            "durationMs": 0.1177,
+            "overlapMs": 0.11777877807617188
+          },
+          {
+            "relativeStartSeconds": 19.786321878433228,
+            "durationMs": 1.3162,
+            "overlapMs": 1.3163089752197266
+          },
+          {
+            "relativeStartSeconds": 19.996524810791016,
+            "durationMs": 1.5598,
+            "overlapMs": 1.5597343444824219
+          },
+          {
+            "relativeStartSeconds": 20.06778597831726,
+            "durationMs": 2.641,
+            "overlapMs": 2.640962600708008
+          },
+          {
+            "relativeStartSeconds": 20.113179922103882,
+            "durationMs": 0.1265,
+            "overlapMs": 0.1266002655029297
+          },
+          {
+            "relativeStartSeconds": 20.231469869613647,
+            "durationMs": 1.3470000000000002,
+            "overlapMs": 1.3470649719238281
+          },
+          {
+            "relativeStartSeconds": 20.445267915725708,
+            "durationMs": 1.4208,
+            "overlapMs": 1.420736312866211
+          },
+          {
+            "relativeStartSeconds": 20.51754093170166,
+            "durationMs": 2.4556,
+            "overlapMs": 2.4557113647460938
+          },
+          {
+            "relativeStartSeconds": 20.56197690963745,
+            "durationMs": 0.09280000000000001,
+            "overlapMs": 0.09274482727050781
+          },
+          {
+            "relativeStartSeconds": 20.68143892288208,
+            "durationMs": 1.1789,
+            "overlapMs": 1.1789798736572266
+          },
+          {
+            "relativeStartSeconds": 20.88789987564087,
+            "durationMs": 1.4696,
+            "overlapMs": 1.4696121215820312
+          },
+          {
+            "relativeStartSeconds": 20.955317974090576,
+            "durationMs": 2.2739000000000003,
+            "overlapMs": 2.2737979888916016
+          },
+          {
+            "relativeStartSeconds": 20.99816083908081,
+            "durationMs": 0.17220000000000002,
+            "overlapMs": 0.17213821411132812
+          },
+          {
+            "relativeStartSeconds": 21.117902994155884,
+            "durationMs": 1.2692,
+            "overlapMs": 1.2691020965576172
+          },
+          {
+            "relativeStartSeconds": 21.339653968811035,
+            "durationMs": 1.3774,
+            "overlapMs": 1.3773441314697266
+          },
+          {
+            "relativeStartSeconds": 21.40796184539795,
+            "durationMs": 2.421,
+            "overlapMs": 2.4209022521972656
+          },
+          {
+            "relativeStartSeconds": 21.452078819274902,
+            "durationMs": 0.12300000000000001,
+            "overlapMs": 0.12302398681640625
+          },
+          {
+            "relativeStartSeconds": 21.572197914123535,
+            "durationMs": 1.2458,
+            "overlapMs": 1.245737075805664
+          },
+          {
+            "relativeStartSeconds": 21.785225868225098,
+            "durationMs": 1.3734000000000002,
+            "overlapMs": 1.373291015625
+          },
+          {
+            "relativeStartSeconds": 21.85526394844055,
+            "durationMs": 2.3344,
+            "overlapMs": 2.3343563079833984
+          },
+          {
+            "relativeStartSeconds": 21.898499011993408,
+            "durationMs": 0.12079999999999999,
+            "overlapMs": 0.12087821960449219
+          },
+          {
+            "relativeStartSeconds": 22.021178007125854,
+            "durationMs": 1.2946,
+            "overlapMs": 1.2946128845214844
+          },
+          {
+            "relativeStartSeconds": 22.24131202697754,
+            "durationMs": 1.4613,
+            "overlapMs": 1.4612674713134766
+          },
+          {
+            "relativeStartSeconds": 22.318737983703613,
+            "durationMs": 2.2171,
+            "overlapMs": 2.2170543670654297
+          },
+          {
+            "relativeStartSeconds": 22.362550973892212,
+            "durationMs": 0.12689999999999999,
+            "overlapMs": 0.12683868408203125
+          },
+          {
+            "relativeStartSeconds": 22.463719844818115,
+            "durationMs": 1.3913,
+            "overlapMs": 1.3914108276367188
+          },
+          {
+            "relativeStartSeconds": 22.665905952453613,
+            "durationMs": 1.4575,
+            "overlapMs": 1.4574527740478516
+          },
+          {
+            "relativeStartSeconds": 22.734383821487427,
+            "durationMs": 2.3733,
+            "overlapMs": 2.373218536376953
+          },
+          {
+            "relativeStartSeconds": 22.778982877731323,
+            "durationMs": 0.1181,
+            "overlapMs": 0.11801719665527344
+          },
+          {
+            "relativeStartSeconds": 22.88276982307434,
+            "durationMs": 1.2722,
+            "overlapMs": 1.2722015380859375
+          },
+          {
+            "relativeStartSeconds": 23.07945680618286,
+            "durationMs": 1.4396,
+            "overlapMs": 1.4395713806152344
+          },
+          {
+            "relativeStartSeconds": 23.14743995666504,
+            "durationMs": 2.4966,
+            "overlapMs": 2.496480941772461
+          },
+          {
+            "relativeStartSeconds": 23.191290855407715,
+            "durationMs": 0.1291,
+            "overlapMs": 0.1289844512939453
+          },
+          {
+            "relativeStartSeconds": 23.29999279975891,
+            "durationMs": 1.3406,
+            "overlapMs": 1.340627670288086
+          },
+          {
+            "relativeStartSeconds": 23.50065588951111,
+            "durationMs": 1.4658,
+            "overlapMs": 1.4657974243164062
+          },
+          {
+            "relativeStartSeconds": 23.573362827301025,
+            "durationMs": 2.4169,
+            "overlapMs": 2.416849136352539
+          },
+          {
+            "relativeStartSeconds": 23.618661880493164,
+            "durationMs": 0.0997,
+            "overlapMs": 0.09965896606445312
+          },
+          {
+            "relativeStartSeconds": 23.720552921295166,
+            "durationMs": 1.5801999999999998,
+            "overlapMs": 1.5802383422851562
+          },
+          {
+            "relativeStartSeconds": 23.9205539226532,
+            "durationMs": 1.3545,
+            "overlapMs": 1.3544559478759766
+          },
+          {
+            "relativeStartSeconds": 23.989130973815918,
+            "durationMs": 2.3993,
+            "overlapMs": 2.3992061614990234
+          },
+          {
+            "relativeStartSeconds": 24.032951831817627,
+            "durationMs": 0.14400000000000002,
+            "overlapMs": 0.14400482177734375
+          },
+          {
+            "relativeStartSeconds": 24.140790939331055,
+            "durationMs": 1.5436,
+            "overlapMs": 1.5435218811035156
+          },
+          {
+            "relativeStartSeconds": 24.35156488418579,
+            "durationMs": 1.3411,
+            "overlapMs": 1.341104507446289
+          },
+          {
+            "relativeStartSeconds": 24.425750017166138,
+            "durationMs": 2.4492,
+            "overlapMs": 2.4492740631103516
+          },
+          {
+            "relativeStartSeconds": 24.46922993659973,
+            "durationMs": 0.10569999999999999,
+            "overlapMs": 0.10561943054199219
+          },
+          {
+            "relativeStartSeconds": 24.574533939361572,
+            "durationMs": 1.3123,
+            "overlapMs": 1.312255859375
+          },
+          {
+            "relativeStartSeconds": 24.781755924224854,
+            "durationMs": 1.5485,
+            "overlapMs": 1.5485286712646484
+          },
+          {
+            "relativeStartSeconds": 24.850140810012817,
+            "durationMs": 2.2601,
+            "overlapMs": 2.2602081298828125
+          },
+          {
+            "relativeStartSeconds": 24.893536806106567,
+            "durationMs": 0.1078,
+            "overlapMs": 0.10776519775390625
+          },
+          {
+            "relativeStartSeconds": 25.006651878356934,
+            "durationMs": 1.3799000000000001,
+            "overlapMs": 1.3799667358398438
+          },
+          {
+            "relativeStartSeconds": 25.204206943511963,
+            "durationMs": 1.4015,
+            "overlapMs": 1.4014244079589844
+          },
+          {
+            "relativeStartSeconds": 25.275919914245605,
+            "durationMs": 2.4112,
+            "overlapMs": 2.4111270904541016
+          },
+          {
+            "relativeStartSeconds": 25.32001495361328,
+            "durationMs": 0.1189,
+            "overlapMs": 0.11897087097167969
+          },
+          {
+            "relativeStartSeconds": 25.427661895751953,
+            "durationMs": 1.382,
+            "overlapMs": 1.3821125030517578
+          },
+          {
+            "relativeStartSeconds": 25.627768993377686,
+            "durationMs": 1.5447,
+            "overlapMs": 1.5447139739990234
+          },
+          {
+            "relativeStartSeconds": 25.697126865386963,
+            "durationMs": 2.3688,
+            "overlapMs": 2.3686885833740234
+          },
+          {
+            "relativeStartSeconds": 25.740478992462158,
+            "durationMs": 0.1141,
+            "overlapMs": 0.11420249938964844
+          },
+          {
+            "relativeStartSeconds": 25.87173581123352,
+            "durationMs": 1.2765,
+            "overlapMs": 1.2764930725097656
+          },
+          {
+            "relativeStartSeconds": 26.087031841278076,
+            "durationMs": 1.3780999999999999,
+            "overlapMs": 1.3780593872070312
+          },
+          {
+            "relativeStartSeconds": 26.154826879501343,
+            "durationMs": 2.3024999999999998,
+            "overlapMs": 2.302408218383789
+          },
+          {
+            "relativeStartSeconds": 26.19889497756958,
+            "durationMs": 0.1425,
+            "overlapMs": 0.14257431030273438
+          },
+          {
+            "relativeStartSeconds": 26.31971788406372,
+            "durationMs": 1.3203,
+            "overlapMs": 1.3203620910644531
+          },
+          {
+            "relativeStartSeconds": 26.539275884628296,
+            "durationMs": 1.4177,
+            "overlapMs": 1.4176368713378906
+          },
+          {
+            "relativeStartSeconds": 26.60913896560669,
+            "durationMs": 2.4753000000000003,
+            "overlapMs": 2.475261688232422
+          },
+          {
+            "relativeStartSeconds": 26.65291690826416,
+            "durationMs": 0.1166,
+            "overlapMs": 0.11658668518066406
+          },
+          {
+            "relativeStartSeconds": 26.77289080619812,
+            "durationMs": 1.3217999999999999,
+            "overlapMs": 1.3217926025390625
+          },
+          {
+            "relativeStartSeconds": 26.989730834960938,
+            "durationMs": 1.4020000000000001,
+            "overlapMs": 1.4019012451171875
+          },
+          {
+            "relativeStartSeconds": 27.059878826141357,
+            "durationMs": 2.2843999999999998,
+            "overlapMs": 2.2842884063720703
+          },
+          {
+            "relativeStartSeconds": 27.104617834091187,
+            "durationMs": 0.0847,
+            "overlapMs": 0.08463859558105469
+          },
+          {
+            "relativeStartSeconds": 27.228627920150757,
+            "durationMs": 1.3332000000000002,
+            "overlapMs": 1.3332366943359375
+          },
+          {
+            "relativeStartSeconds": 27.453354835510254,
+            "durationMs": 1.413,
+            "overlapMs": 1.413106918334961
+          },
+          {
+            "relativeStartSeconds": 27.522231817245483,
+            "durationMs": 2.2759,
+            "overlapMs": 2.2759437561035156
+          },
+          {
+            "relativeStartSeconds": 27.56609082221985,
+            "durationMs": 0.1212,
+            "overlapMs": 0.12111663818359375
+          },
+          {
+            "relativeStartSeconds": 27.6839759349823,
+            "durationMs": 1.425,
+            "overlapMs": 1.425027847290039
+          },
+          {
+            "relativeStartSeconds": 27.887101888656616,
+            "durationMs": 1.751,
+            "overlapMs": 1.750946044921875
+          },
+          {
+            "relativeStartSeconds": 27.95609188079834,
+            "durationMs": 2.6149,
+            "overlapMs": 2.6149749755859375
+          },
+          {
+            "relativeStartSeconds": 28.000640869140625,
+            "durationMs": 0.1436,
+            "overlapMs": 0.14352798461914062
+          },
+          {
+            "relativeStartSeconds": 28.110668897628784,
+            "durationMs": 1.3477000000000001,
+            "overlapMs": 1.3477802276611328
+          },
+          {
+            "relativeStartSeconds": 28.31682586669922,
+            "durationMs": 1.5038,
+            "overlapMs": 1.5037059783935547
+          },
+          {
+            "relativeStartSeconds": 28.385406017303467,
+            "durationMs": 2.2676,
+            "overlapMs": 2.267599105834961
+          },
+          {
+            "relativeStartSeconds": 28.428972959518433,
+            "durationMs": 0.1022,
+            "overlapMs": 0.10228157043457031
+          },
+          {
+            "relativeStartSeconds": 28.538043975830078,
+            "durationMs": 1.2906,
+            "overlapMs": 1.2905597686767578
+          },
+          {
+            "relativeStartSeconds": 28.754966974258423,
+            "durationMs": 1.4543,
+            "overlapMs": 1.4543533325195312
+          },
+          {
+            "relativeStartSeconds": 28.836169004440308,
+            "durationMs": 2.4247,
+            "overlapMs": 2.4247169494628906
+          },
+          {
+            "relativeStartSeconds": 28.879519939422607,
+            "durationMs": 0.1014,
+            "overlapMs": 0.10132789611816406
+          },
+          {
+            "relativeStartSeconds": 28.983176946640015,
+            "durationMs": 1.1649,
+            "overlapMs": 1.1649131774902344
+          },
+          {
+            "relativeStartSeconds": 29.188135862350464,
+            "durationMs": 1.4271,
+            "overlapMs": 1.4271736145019531
+          },
+          {
+            "relativeStartSeconds": 29.25866198539734,
+            "durationMs": 2.6187,
+            "overlapMs": 2.6187896728515625
+          },
+          {
+            "relativeStartSeconds": 29.30364680290222,
+            "durationMs": 0.14559999999999998,
+            "overlapMs": 0.1456737518310547
+          },
+          {
+            "relativeStartSeconds": 29.414873838424683,
+            "durationMs": 1.1791,
+            "overlapMs": 1.1792182922363281
+          },
+          {
+            "relativeStartSeconds": 29.624708890914917,
+            "durationMs": 1.7479,
+            "overlapMs": 1.7478466033935547
+          },
+          {
+            "relativeStartSeconds": 29.703380823135376,
+            "durationMs": 2.3248,
+            "overlapMs": 2.324819564819336
+          },
+          {
+            "relativeStartSeconds": 29.74728298187256,
+            "durationMs": 0.11950000000000001,
+            "overlapMs": 0.11944770812988281
+          },
+          {
+            "relativeStartSeconds": 29.857330799102783,
+            "durationMs": 1.1496,
+            "overlapMs": 1.1496543884277344
+          }
+        ],
+        "gcPauseOverlapMs": 367.69700050354004
+      }
+    },
+    {
+      "label": "alpha.3-diagnostic",
+      "clientSha256": "7883237fb6cb94aaa70b31a5d8fab37ebd8c925c1246cf3b851fea5aff73950b",
+      "driverSha256": "6292faae5ce71dc8839ec6df50dd9d25e6245c92f53284029d5bf65b650b6457",
+      "analysis": "diagnostics\\alpha.3-diagnostic\\jfr-analysis.json",
+      "estimatedRenderAllocationMiBPerSecond": 935.6518591910451,
+      "gcPauseFields": {
+        "gcPauses": [
+          {
+            "relativeStartSeconds": 0.06842494010925293,
+            "durationMs": 2.0741,
+            "overlapMs": 2.074003219604492
+          },
+          {
+            "relativeStartSeconds": 0.1279768943786621,
+            "durationMs": 0.13329999999999997,
+            "overlapMs": 0.13327598571777344
+          },
+          {
+            "relativeStartSeconds": 0.8243060111999512,
+            "durationMs": 1.7078,
+            "overlapMs": 1.7077922821044922
+          },
+          {
+            "relativeStartSeconds": 1.6105239391326904,
+            "durationMs": 2.4795,
+            "overlapMs": 2.47955322265625
+          },
+          {
+            "relativeStartSeconds": 2.3807308673858643,
+            "durationMs": 1.7244000000000002,
+            "overlapMs": 1.7244815826416016
+          },
+          {
+            "relativeStartSeconds": 2.451136827468872,
+            "durationMs": 1.8101,
+            "overlapMs": 1.8100738525390625
+          },
+          {
+            "relativeStartSeconds": 2.5095038414001465,
+            "durationMs": 0.1361,
+            "overlapMs": 0.1361370086669922
+          },
+          {
+            "relativeStartSeconds": 3.1384458541870117,
+            "durationMs": 1.5237,
+            "overlapMs": 1.523733139038086
+          },
+          {
+            "relativeStartSeconds": 3.8450260162353516,
+            "durationMs": 2.9634,
+            "overlapMs": 2.9633045196533203
+          },
+          {
+            "relativeStartSeconds": 4.595043897628784,
+            "durationMs": 1.7252999999999998,
+            "overlapMs": 1.7251968383789062
+          },
+          {
+            "relativeStartSeconds": 4.665771007537842,
+            "durationMs": 1.9976999999999998,
+            "overlapMs": 1.9977092742919922
+          },
+          {
+            "relativeStartSeconds": 4.723412990570068,
+            "durationMs": 0.1306,
+            "overlapMs": 0.13065338134765625
+          },
+          {
+            "relativeStartSeconds": 5.342857837677002,
+            "durationMs": 1.4524,
+            "overlapMs": 1.4524459838867188
+          },
+          {
+            "relativeStartSeconds": 6.080667018890381,
+            "durationMs": 2.9213,
+            "overlapMs": 2.9213428497314453
+          },
+          {
+            "relativeStartSeconds": 6.803268909454346,
+            "durationMs": 1.5456999999999999,
+            "overlapMs": 1.5456676483154297
+          },
+          {
+            "relativeStartSeconds": 6.873612880706787,
+            "durationMs": 2.1161000000000003,
+            "overlapMs": 2.1162033081054688
+          },
+          {
+            "relativeStartSeconds": 6.930186986923218,
+            "durationMs": 0.1023,
+            "overlapMs": 0.10228157043457031
+          },
+          {
+            "relativeStartSeconds": 7.542277812957764,
+            "durationMs": 1.6692,
+            "overlapMs": 1.669168472290039
+          },
+          {
+            "relativeStartSeconds": 8.261850833892822,
+            "durationMs": 2.5707999999999998,
+            "overlapMs": 2.5708675384521484
+          },
+          {
+            "relativeStartSeconds": 8.991025924682617,
+            "durationMs": 1.5838,
+            "overlapMs": 1.5838146209716797
+          },
+          {
+            "relativeStartSeconds": 9.059592008590698,
+            "durationMs": 1.9488999999999999,
+            "overlapMs": 1.9488334655761719
+          },
+          {
+            "relativeStartSeconds": 9.11637282371521,
+            "durationMs": 0.125,
+            "overlapMs": 0.12493133544921875
+          },
+          {
+            "relativeStartSeconds": 9.806557893753052,
+            "durationMs": 1.6344,
+            "overlapMs": 1.634359359741211
+          },
+          {
+            "relativeStartSeconds": 10.600821018218994,
+            "durationMs": 2.9318,
+            "overlapMs": 2.931833267211914
+          },
+          {
+            "relativeStartSeconds": 11.399760961532593,
+            "durationMs": 1.608,
+            "overlapMs": 1.6078948974609375
+          },
+          {
+            "relativeStartSeconds": 11.469858884811401,
+            "durationMs": 2.0486,
+            "overlapMs": 2.048492431640625
+          },
+          {
+            "relativeStartSeconds": 11.526525974273682,
+            "durationMs": 0.1308,
+            "overlapMs": 0.1308917999267578
+          },
+          {
+            "relativeStartSeconds": 12.177896976470947,
+            "durationMs": 1.8191,
+            "overlapMs": 1.8191337585449219
+          },
+          {
+            "relativeStartSeconds": 12.940572023391724,
+            "durationMs": 2.7612,
+            "overlapMs": 2.7611255645751953
+          },
+          {
+            "relativeStartSeconds": 13.71452283859253,
+            "durationMs": 1.6360999999999999,
+            "overlapMs": 1.6360282897949219
+          },
+          {
+            "relativeStartSeconds": 13.791738986968994,
+            "durationMs": 2.0858,
+            "overlapMs": 2.0856857299804688
+          },
+          {
+            "relativeStartSeconds": 13.847809791564941,
+            "durationMs": 0.2212,
+            "overlapMs": 0.22125244140625
+          },
+          {
+            "relativeStartSeconds": 14.519377946853638,
+            "durationMs": 1.9829,
+            "overlapMs": 1.9829273223876953
+          },
+          {
+            "relativeStartSeconds": 15.32915186882019,
+            "durationMs": 3.3427000000000002,
+            "overlapMs": 3.3426284790039062
+          },
+          {
+            "relativeStartSeconds": 16.11783194541931,
+            "durationMs": 1.5804,
+            "overlapMs": 1.5804767608642578
+          },
+          {
+            "relativeStartSeconds": 16.190048933029175,
+            "durationMs": 1.8802,
+            "overlapMs": 1.8801689147949219
+          },
+          {
+            "relativeStartSeconds": 16.244611024856567,
+            "durationMs": 0.1181,
+            "overlapMs": 0.11801719665527344
+          },
+          {
+            "relativeStartSeconds": 16.89169979095459,
+            "durationMs": 1.8215,
+            "overlapMs": 1.8215179443359375
+          },
+          {
+            "relativeStartSeconds": 17.65017080307007,
+            "durationMs": 2.1991,
+            "overlapMs": 2.1991729736328125
+          },
+          {
+            "relativeStartSeconds": 18.405746936798096,
+            "durationMs": 1.5389,
+            "overlapMs": 1.538991928100586
+          },
+          {
+            "relativeStartSeconds": 18.479045867919922,
+            "durationMs": 1.8184,
+            "overlapMs": 1.8184185028076172
+          },
+          {
+            "relativeStartSeconds": 18.533020973205566,
+            "durationMs": 0.1255,
+            "overlapMs": 0.12540817260742188
+          },
+          {
+            "relativeStartSeconds": 19.182273864746094,
+            "durationMs": 1.4767000000000001,
+            "overlapMs": 1.4767646789550781
+          },
+          {
+            "relativeStartSeconds": 19.9774808883667,
+            "durationMs": 2.0331,
+            "overlapMs": 2.0329952239990234
+          },
+          {
+            "relativeStartSeconds": 20.768353939056396,
+            "durationMs": 1.9275,
+            "overlapMs": 1.9276142120361328
+          },
+          {
+            "relativeStartSeconds": 20.840117931365967,
+            "durationMs": 1.8866,
+            "overlapMs": 1.886606216430664
+          },
+          {
+            "relativeStartSeconds": 20.893693923950195,
+            "durationMs": 0.12449999999999999,
+            "overlapMs": 0.12445449829101562
+          },
+          {
+            "relativeStartSeconds": 21.560163021087646,
+            "durationMs": 1.452,
+            "overlapMs": 1.4519691467285156
+          },
+          {
+            "relativeStartSeconds": 22.335537910461426,
+            "durationMs": 2.7933,
+            "overlapMs": 2.7933120727539062
+          },
+          {
+            "relativeStartSeconds": 23.11066198348999,
+            "durationMs": 1.5431,
+            "overlapMs": 1.5430450439453125
+          },
+          {
+            "relativeStartSeconds": 23.17923378944397,
+            "durationMs": 2.1597,
+            "overlapMs": 2.159595489501953
+          },
+          {
+            "relativeStartSeconds": 23.23123002052307,
+            "durationMs": 0.12310000000000001,
+            "overlapMs": 0.12302398681640625
+          },
+          {
+            "relativeStartSeconds": 23.91107988357544,
+            "durationMs": 1.6065999999999998,
+            "overlapMs": 1.6067028045654297
+          },
+          {
+            "relativeStartSeconds": 24.68759298324585,
+            "durationMs": 3.9817000000000005,
+            "overlapMs": 3.9815902709960938
+          },
+          {
+            "relativeStartSeconds": 25.47865891456604,
+            "durationMs": 1.5972,
+            "overlapMs": 1.5971660614013672
+          },
+          {
+            "relativeStartSeconds": 25.551769971847534,
+            "durationMs": 1.8653000000000002,
+            "overlapMs": 1.865386962890625
+          },
+          {
+            "relativeStartSeconds": 25.599236011505127,
+            "durationMs": 0.216,
+            "overlapMs": 0.21600723266601562
+          },
+          {
+            "relativeStartSeconds": 26.275375843048096,
+            "durationMs": 1.5848,
+            "overlapMs": 1.584768295288086
+          },
+          {
+            "relativeStartSeconds": 27.06236696243286,
+            "durationMs": 3.5618,
+            "overlapMs": 3.561735153198242
+          },
+          {
+            "relativeStartSeconds": 27.855068922042847,
+            "durationMs": 1.5357999999999998,
+            "overlapMs": 1.5358924865722656
+          },
+          {
+            "relativeStartSeconds": 27.92891502380371,
+            "durationMs": 1.9616,
+            "overlapMs": 1.9617080688476562
+          },
+          {
+            "relativeStartSeconds": 27.97136402130127,
+            "durationMs": 0.1328,
+            "overlapMs": 0.1327991485595703
+          },
+          {
+            "relativeStartSeconds": 28.652017831802368,
+            "durationMs": 1.7485,
+            "overlapMs": 1.7485618591308594
+          },
+          {
+            "relativeStartSeconds": 29.447157859802246,
+            "durationMs": 7.9366,
+            "overlapMs": 7.936716079711914
+          }
+        ],
+        "gcPauseOverlapMs": 110.97431182861328
+      }
+    },
+    {
+      "label": "stage-2",
+      "clientSha256": "ca2d041a971733ed07524b4f2f03dcc8452848fd2a8597ddef8f7e32e22e14bf",
+      "driverSha256": "d0eb35ce93386d487e6dd19ebda4cfa46ea60fc3ee609ffe4248d6388b1656ab",
+      "formal": false
+    },
+    {
+      "label": "stage-3",
+      "clientSha256": "ca2d041a971733ed07524b4f2f03dcc8452848fd2a8597ddef8f7e32e22e14bf",
+      "driverSha256": "d0eb35ce93386d487e6dd19ebda4cfa46ea60fc3ee609ffe4248d6388b1656ab",
+      "formal": false
+    },
+    {
+      "label": "stage-4",
+      "clientSha256": "ca2d041a971733ed07524b4f2f03dcc8452848fd2a8597ddef8f7e32e22e14bf",
+      "driverSha256": "d0eb35ce93386d487e6dd19ebda4cfa46ea60fc3ee609ffe4248d6388b1656ab",
+      "formal": false
+    }
+  ]
+}

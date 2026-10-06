@@ -1,0 +1,54 @@
+{
+  "identity": {
+    "baseline": "884c368f0dc25daa7261a5ffbeff94514920e2a34ce67e8fe7a56c7f7e782671",
+    "candidate": "fd6a3b321d19b30900d80cf0f9682ae30fb71dee24b36c19f5757b40bd9140ef",
+    "driver": "69c6f5c89633e5aee2f669fd2c9a62eef2dc882b1fe4526ea04e5828385366db",
+    "fixture": "1551143ffbbc454d94e167136b80fb919972fa38a31c43995e3402ff3d8c8df6",
+    "launcher": "d6c06ef88dc9ef778990a28d96eb045bbaa48cdb637ac611b03416cd5612620e"
+  },
+  "functional": {
+    "visual-scenes": "C:\\Users\\wu949\\AppData\\Local\\Temp\\dsbr-validation-iris-20261006-135711",
+    "no-shader": "C:\\Users\\wu949\\AppData\\Local\\Temp\\dsbr-validation-iris-20261006-140119",
+    "missing-dependencies": "C:\\Users\\wu949\\AppData\\Local\\Temp\\dsbr-validation-plain-20261006-140226"
+  },
+  "worlds": {
+    "flight-new": "C:\\Users\\wu949\\AppData\\Local\\Temp\\dsbr-validation-iris-20261006-140238\\saves\\multi-render-validation",
+    "flight-preloaded": "C:\\Users\\wu949\\AppData\\Local\\Temp\\dsbr-validation-iris-20261006-140408\\saves\\multi-render-validation"
+  },
+  "suites": {},
+  "complete": false,
+  "performancePass": null,
+  "releaseApproved": false,
+  "stoppedByUser": true,
+  "stoppedAtUtc": "2026-10-06T13:26:03.082459+00:00",
+  "stopReason": "User requested to stop remaining runtime tests; current collected data is sufficient for a prerelease report.",
+  "unexecutedSuites": [
+    "appearance",
+    "flight-new",
+    "flight-preloaded"
+  ],
+  "formalAcceptanceComplete": false,
+  "functionalEvidence": {
+    "visual-scenes": {
+      "clientSha256": "fd6a3b321d19b30900d80cf0f9682ae30fb71dee24b36c19f5757b40bd9140ef",
+      "driverSha256": "69c6f5c89633e5aee2f669fd2c9a62eef2dc882b1fe4526ea04e5828385366db",
+      "pass": true
+    },
+    "no-shader": {
+      "clientSha256": "fd6a3b321d19b30900d80cf0f9682ae30fb71dee24b36c19f5757b40bd9140ef",
+      "driverSha256": "69c6f5c89633e5aee2f669fd2c9a62eef2dc882b1fe4526ea04e5828385366db",
+      "pass": true
+    },
+    "missing-dependencies": {
+      "clientSha256": "fd6a3b321d19b30900d80cf0f9682ae30fb71dee24b36c19f5757b40bd9140ef",
+      "driverSha256": "c14fa4a34167b656706757dae9e1c0f38c1196a909bdff07dbea42882e8de180",
+      "pass": true
+    },
+    "eight-shaders": {
+      "clientSha256": "fd6a3b321d19b30900d80cf0f9682ae30fb71dee24b36c19f5757b40bd9140ef",
+      "driverSha256": "0a3ef0f31c553dc0a5c394a99331aa9cbbb38b066d37b2d84bee7285b345c6f0",
+      "pass": true
+    }
+  },
+  "archivedRows": 9
+}

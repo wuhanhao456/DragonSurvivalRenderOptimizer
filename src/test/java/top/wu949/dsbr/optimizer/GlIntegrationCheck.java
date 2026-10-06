@@ -30,6 +30,7 @@ public final class GlIntegrationCheck {
         try {
             textureCheck(); results.put("gpuTextureCopyAndLazyReadback", "pass");
             shaderCheck(); results.put("computeVanillaAndIris54ByteOutput", "pass");
+            bindingCheck(); results.put("batchBindingsRestoredAfterException", "pass");
             int error = GL11.glGetError(); if (error != GL11.GL_NO_ERROR) throw new AssertionError("GL error " + error);
             results.put("glError", error);
         } finally { GLFW.glfwDestroyWindow(window); GLFW.glfwTerminate(); }
@@ -58,6 +59,33 @@ public final class GlIntegrationCheck {
             }
             if (texture.getPixels().getPixelRGBA(0, 0) != 0xff00ff00) throw new AssertionError("explicit upload retained a disposed DS input image");
         } finally { texture.close(); texture.close(); target.destroyBuffers(); }
+    }
+    private static void bindingCheck() {
+        int vao = GL30.glGenVertexArrays(), changedVao = GL30.glGenVertexArrays();
+        int original = GL15.glGenBuffers(), changed = GL15.glGenBuffers();
+        int alignment = GL11.glGetInteger(GL43.GL_SHADER_STORAGE_BUFFER_OFFSET_ALIGNMENT);
+        try {
+            GL30.glBindVertexArray(vao); GL15.glBindBuffer(GL15.GL_ARRAY_BUFFER, original);
+            GL15.glBufferData(GL15.GL_ARRAY_BUFFER, alignment * 3L, GL15.GL_STATIC_DRAW);
+            for (int i = 0; i < 3; i++) GL30.glBindBufferRange(GL43.GL_SHADER_STORAGE_BUFFER, i, original, alignment, alignment);
+            GL15.glBindBuffer(GL43.GL_SHADER_STORAGE_BUFFER, original);
+            try (var restore = new GlBindings()) {
+                for (int command = 0; command < 3; command++) {
+                    GL30.glBindVertexArray(changedVao); GL15.glBindBuffer(GL15.GL_ARRAY_BUFFER, changed);
+                    GL30.glBindBufferBase(GL43.GL_SHADER_STORAGE_BUFFER, command, changed);
+                }
+                throw new IllegalArgumentException("simulated failed command");
+            } catch (IllegalArgumentException expected) { }
+            if (GL11.glGetInteger(GL30.GL_VERTEX_ARRAY_BINDING) != vao || GL11.glGetInteger(GL15.GL_ARRAY_BUFFER_BINDING) != original
+                || GL11.glGetInteger(GL43.GL_SHADER_STORAGE_BUFFER_BINDING) != original) throw new AssertionError("batch did not restore bindings");
+            for (int i = 0; i < 3; i++) if (GL30.glGetIntegeri(GL43.GL_SHADER_STORAGE_BUFFER_BINDING, i) != original
+                || GL32.glGetInteger64i(GL43.GL_SHADER_STORAGE_BUFFER_START, i) != alignment
+                || GL32.glGetInteger64i(GL43.GL_SHADER_STORAGE_BUFFER_SIZE, i) != alignment) throw new AssertionError("indexed range not restored");
+        } finally {
+            for (int i = 0; i < 3; i++) GL30.glBindBufferBase(GL43.GL_SHADER_STORAGE_BUFFER, i, 0);
+            GL30.glBindVertexArray(0); GL15.glBindBuffer(GL15.GL_ARRAY_BUFFER, 0); GL15.glBindBuffer(GL43.GL_SHADER_STORAGE_BUFFER, 0);
+            GL15.glDeleteBuffers(original); GL15.glDeleteBuffers(changed); GL30.glDeleteVertexArrays(vao); GL30.glDeleteVertexArrays(changedVao);
+        }
     }
     private static VertexFormat irisFormat() {
         return VertexFormat.builder().add("Position", VertexFormatElement.POSITION).add("Color", VertexFormatElement.COLOR).add("UV0", VertexFormatElement.UV0)

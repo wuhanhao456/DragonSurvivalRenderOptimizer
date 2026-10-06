@@ -1,0 +1,29 @@
+{
+  "completed": [
+    "Baseline repetition 1: 1/4/12 dragons",
+    "Candidate repetition 1: 1/4/12 dragons",
+    "Candidate repetition 2 retry: 1/4/12 dragons"
+  ],
+  "invalidated": [
+    {
+      "instance": "dsbr-validation-iris-20261006-144430",
+      "reason": "ClassCastException in DS animation history averaging; crash report archived; incomplete client excluded"
+    },
+    {
+      "instance": "dsbr-validation-iris-20261006-150014",
+      "reason": "Read-only diagnostic attached during sampling; excluded despite no observed crash"
+    },
+    {
+      "instance": "dsbr-validation-iris-20261006-152413",
+      "reason": "Stopped by user before valid samples"
+    }
+  ],
+  "stoppedByUser": true,
+  "remainingSuites": [
+    "Fixed baseline repetition 2 and full repetition 3",
+    "Fullpack appearance",
+    "Fullpack flight-preloaded",
+    "Fullpack flight-new",
+    "Repeated disconnect/reconnect stress"
+  ]
+}

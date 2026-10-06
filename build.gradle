@@ -48,6 +48,7 @@ tasks.withType(JavaCompile).configureEach { options.encoding = 'UTF-8' }
 tasks.named('processResources') {
     inputs.property('version', project.version)
     filesMatching('META-INF/neoforge.mods.toml') { expand(version: project.version) }
+    filesMatching('pack.mcmeta') { expand(pack_format_number: 34) }
 }
 tasks.named('jar') { from('LICENSE'); from('THIRD_PARTY_NOTICES.md') }
 tasks.named('sourcesJar') { from('LICENSE'); from('THIRD_PARTY_NOTICES.md') }

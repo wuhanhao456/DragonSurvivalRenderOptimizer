@@ -1,0 +1,339 @@
+---- Minecraft Crash Report ----
+// Shall we play a game?
+
+Time: 2026-10-06 14:56:07
+Description: Rendering entity in world
+
+java.lang.ClassCastException: class java.util.LinkedList$Node cannot be cast to class java.lang.Double (java.util.LinkedList$Node and java.lang.Double are in module java.base of loader 'bootstrap')
+	at java.base/java.util.stream.ReferencePipeline$6$1.accept(ReferencePipeline.java:248) ~[?:?] {}
+	at java.base/java.util.ArrayList$ArrayListSpliterator.forEachRemaining(ArrayList.java:1708) ~[?:?] {}
+	at java.base/java.util.stream.AbstractPipeline.copyInto(AbstractPipeline.java:509) ~[?:?] {}
+	at java.base/java.util.stream.AbstractPipeline.wrapAndCopyInto(AbstractPipeline.java:499) ~[?:?] {}
+	at java.base/java.util.stream.ReduceOps$ReduceOp.evaluateSequential(ReduceOps.java:921) ~[?:?] {}
+	at java.base/java.util.stream.AbstractPipeline.evaluate(AbstractPipeline.java:234) ~[?:?] {}
+	at java.base/java.util.stream.DoublePipeline.collect(DoublePipeline.java:541) ~[?:?] {}
+	at java.base/java.util.stream.DoublePipeline.average(DoublePipeline.java:493) ~[?:?] {}
+	at TRANSFORMER/dragonsurvival@2.0.71/by.dragonsurvivalteam.dragonsurvival.client.models.DragonModel.applyMolangQueries(DragonModel.java:143) ~[%5B龙之生存%5D%20DragonSurvival-1.21.1-v2.0.71-25.09.2026-all.jar%23187!/:?] {re:mixin,re:classloading,pl:mixin:APP:dsbr.optimizer.mixins.json:DragonModelMixin from mod dsbr,pl:mixin:A}
+	at TRANSFORMER/geckolib@4.9.3/software.bernie.geckolib.animation.AnimationProcessor.preAnimationSetup(AnimationProcessor.java:308) ~[【前置】geckolib-neoforge-1.21.1-4.9.3.jar%23190!/:4.9.3] {re:classloading}
+	at TRANSFORMER/geckolib@4.9.3/software.bernie.geckolib.model.GeoModel.handleAnimations(GeoModel.java:221) ~[【前置】geckolib-neoforge-1.21.1-4.9.3.jar%23190!/:4.9.3] {re:classloading,re:mixin}
+	at TRANSFORMER/geckolib@4.9.3/software.bernie.geckolib.renderer.GeoEntityRenderer.actuallyRender(GeoEntityRenderer.java:276) ~[【前置】geckolib-neoforge-1.21.1-4.9.3.jar%23190!/:4.9.3] {re:classloading}
+	at TRANSFORMER/dragonsurvival@2.0.71/by.dragonsurvivalteam.dragonsurvival.client.render.entity.dragon.DragonRenderer.actuallyRender(DragonRenderer.java:357) ~[%5B龙之生存%5D%20DragonSurvival-1.21.1-v2.0.71-25.09.2026-all.jar%23187!/:?] {re:mixin,re:classloading}
+	at TRANSFORMER/dragonsurvival@2.0.71/by.dragonsurvivalteam.dragonsurvival.client.render.entity.dragon.DragonRenderer.actuallyRender(DragonRenderer.java:54) ~[%5B龙之生存%5D%20DragonSurvival-1.21.1-v2.0.71-25.09.2026-all.jar%23187!/:?] {re:mixin,re:classloading}
+	at TRANSFORMER/geckolib@4.9.3/software.bernie.geckolib.renderer.GeoRenderer.defaultRender(GeoRenderer.java:144) ~[【前置】geckolib-neoforge-1.21.1-4.9.3.jar%23190!/:4.9.3] {re:mixin,re:classloading,pl:mixin:APP:dsbr.optimizer.mixins.json:GeoRendererMixin from mod dsbr,pl:mixin:A}
+	at TRANSFORMER/geckolib@4.9.3/software.bernie.geckolib.renderer.GeoEntityRenderer.render(GeoEntityRenderer.java:200) ~[【前置】geckolib-neoforge-1.21.1-4.9.3.jar%23190!/:4.9.3] {re:classloading}
+	at TRANSFORMER/dragonsurvival@2.0.71/by.dragonsurvivalteam.dragonsurvival.client.render.ClientDragonRenderer.renderDragon(ClientDragonRenderer.java:316) ~[%5B龙之生存%5D%20DragonSurvival-1.21.1-v2.0.71-25.09.2026-all.jar%23187!/:?] {re:mixin,re:classloading}
+	at MC-BOOTSTRAP/net.neoforged.bus/net.neoforged.bus.SubscribeEventListener.invoke(SubscribeEventListener.java:50) ~[bus-8.0.5.jar%23148!/:?] {}
+	at MC-BOOTSTRAP/net.neoforged.bus/net.neoforged.bus.EventBus.post(EventBus.java:360) ~[bus-8.0.5.jar%23148!/:?] {}
+	at MC-BOOTSTRAP/net.neoforged.bus/net.neoforged.bus.EventBus.post(EventBus.java:328) ~[bus-8.0.5.jar%23148!/:?] {}
+	at TRANSFORMER/minecraft@1.21.1/net.minecraft.client.renderer.entity.player.PlayerRenderer.render(PlayerRenderer.java:71) ~[client-1.21.1-20240808.144430-srg.jar%23179!/:?] {re:mixin,pl:runtimedistcleaner:A,re:classloading,pl:mixin:APP:dragonsurvival.mixins.json:client.PlayerRendererMixin from mod dragonsurvival,pl:mixin:A,pl:runtimedistcleaner:A}
+	at TRANSFORMER/minecraft@1.21.1/net.minecraft.client.renderer.entity.player.PlayerRenderer.render(PlayerRenderer.java:46) ~[client-1.21.1-20240808.144430-srg.jar%23179!/:?] {re:mixin,pl:runtimedistcleaner:A,re:classloading,pl:mixin:APP:dragonsurvival.mixins.json:client.PlayerRendererMixin from mod dragonsurvival,pl:mixin:A,pl:runtimedistcleaner:A}
+	at TRANSFORMER/minecraft@1.21.1/net.minecraft.client.renderer.entity.EntityRenderDispatcher.render(EntityRenderDispatcher.java:159) ~[client-1.21.1-20240808.144430-srg.jar%23179!/:?] {re:mixin,pl:accesstransformer:B,pl:runtimedistcleaner:A,re:classloading,pl:accesstransformer:B,pl:mixin:APP:mixins.iris.json:MixinEntityRenderDispatcher from mod iris,pl:mixin:APP:mixins.iris.json:entity_render_context.MixinEntityRenderDispatcher from mod iris,pl:mixin:APP:sodium-common.mixins.json:features.render.entity.shadows.EntityRenderDispatcherMixin from mod sodium,pl:mixin:APP:dragonsurvival.mixins.json:client.EntityRenderDispatcherMixin from mod dragonsurvival,pl:mixin:A,pl:runtimedistcleaner:A}
+	at TRANSFORMER/minecraft@1.21.1/net.minecraft.client.renderer.LevelRenderer.renderEntity(LevelRenderer.java:1256) ~[client-1.21.1-20240808.144430-srg.jar%23179!/:?] {re:mixin,pl:accesstransformer:B,pl:runtimedistcleaner:A,re:classloading,pl:accesstransformer:B,pl:mixin:A,pl:runtimedistcleaner:A}
+	at TRANSFORMER/minecraft@1.21.1/net.minecraft.client.renderer.LevelRenderer.invokeRenderEntity(LevelRenderer.java) ~[client-1.21.1-20240808.144430-srg.jar%23179!/:?] {re:mixin,pl:accesstransformer:B,pl:runtimedistcleaner:A,re:classloading,pl:accesstransformer:B,pl:mixin:A,pl:runtimedistcleaner:A}
+	at TRANSFORMER/iris@1.8.14-beta.1+mc1.21.1/net.irisshaders.iris.shadows.ShadowRenderer.renderEntities(ShadowRenderer.java:648) ~[%5B钠：光影%5D%20iris-neoforge-1.8.14-beta.1+mc1.21.1.jar%23186!/:?] {re:mixin,re:classloading,pl:mixin:APP:mixins.iris.forge.json:MixinShadowRenderer from mod iris,pl:mixin:A}
+	at TRANSFORMER/iris@1.8.14-beta.1+mc1.21.1/net.irisshaders.iris.shadows.ShadowRenderer.renderShadows(ShadowRenderer.java:513) ~[%5B钠：光影%5D%20iris-neoforge-1.8.14-beta.1+mc1.21.1.jar%23186!/:?] {re:mixin,re:classloading,pl:mixin:APP:mixins.iris.forge.json:MixinShadowRenderer from mod iris,pl:mixin:A}
+	at TRANSFORMER/iris@1.8.14-beta.1+mc1.21.1/net.irisshaders.iris.pipeline.IrisRenderingPipeline.renderShadows(IrisRenderingPipeline.java:1022) ~[%5B钠：光影%5D%20iris-neoforge-1.8.14-beta.1+mc1.21.1.jar%23186!/:?] {re:mixin,re:classloading}
+	at TRANSFORMER/minecraft@1.21.1/net.minecraft.client.renderer.LevelRenderer.handler$zbd000$iris$renderTerrainShadows(LevelRenderer.java:5840) ~[client-1.21.1-20240808.144430-srg.jar%23179!/:?] {re:mixin,pl:accesstransformer:B,pl:runtimedistcleaner:A,re:classloading,pl:accesstransformer:B,pl:mixin:A,pl:runtimedistcleaner:A}
+	at TRANSFORMER/minecraft@1.21.1/net.minecraft.client.renderer.LevelRenderer.renderLevel(LevelRenderer.java:956) ~[client-1.21.1-20240808.144430-srg.jar%23179!/:?] {re:mixin,pl:accesstransformer:B,pl:runtimedistcleaner:A,re:classloading,pl:accesstransformer:B,pl:mixin:A,pl:runtimedistcleaner:A}
+	at TRANSFORMER/minecraft@1.21.1/net.minecraft.client.renderer.GameRenderer.renderLevel$mixinextras$wrapped$232(GameRenderer.java:1271) ~[client-1.21.1-20240808.144430-srg.jar%23179!/:?] {re:mixin,pl:accesstransformer:B,pl:runtimedistcleaner:A,re:classloading,pl:accesstransformer:B,pl:mixin:A,pl:runtimedistcleaner:A}
+	at TRANSFORMER/minecraft@1.21.1/net.minecraft.client.renderer.GameRenderer.mixinextras$bridge$renderLevel$mixinextras$wrapped$232$233(GameRenderer.java) ~[client-1.21.1-20240808.144430-srg.jar%23179!/:?] {re:mixin,pl:accesstransformer:B,pl:runtimedistcleaner:A,re:classloading,pl:accesstransformer:B,pl:mixin:A,pl:runtimedistcleaner:A}
+	at TRANSFORMER/minecraft@1.21.1/net.minecraft.client.renderer.GameRenderer.wrapMethod$zpe000$dsbr$worldScope(GameRenderer.java:4794) ~[client-1.21.1-20240808.144430-srg.jar%23179!/:?] {re:mixin,pl:accesstransformer:B,pl:runtimedistcleaner:A,re:classloading,pl:accesstransformer:B,pl:mixin:A,pl:runtimedistcleaner:A}
+	at TRANSFORMER/minecraft@1.21.1/net.minecraft.client.renderer.GameRenderer.renderLevel(GameRenderer.java) ~[client-1.21.1-20240808.144430-srg.jar%23179!/:?] {re:mixin,pl:accesstransformer:B,pl:runtimedistcleaner:A,re:classloading,pl:accesstransformer:B,pl:mixin:A,pl:runtimedistcleaner:A}
+	at TRANSFORMER/minecraft@1.21.1/net.minecraft.client.renderer.GameRenderer.render(GameRenderer.java:1024) ~[client-1.21.1-20240808.144430-srg.jar%23179!/:?] {re:mixin,pl:accesstransformer:B,pl:runtimedistcleaner:A,re:classloading,pl:accesstransformer:B,pl:mixin:A,pl:runtimedistcleaner:A}
+	at TRANSFORMER/minecraft@1.21.1/net.minecraft.client.Minecraft.runTick(Minecraft.java:1195) ~[client-1.21.1-20240808.144430-srg.jar%23179!/:?] {re:mixin,pl:runtimedistcleaner:A,re:classloading,pl:mixin:A,pl:runtimedistcleaner:A}
+	at TRANSFORMER/minecraft@1.21.1/net.minecraft.client.Minecraft.run(Minecraft.java:807) ~[client-1.21.1-20240808.144430-srg.jar%23179!/:?] {re:mixin,pl:runtimedistcleaner:A,re:classloading,pl:mixin:A,pl:runtimedistcleaner:A}
+	at TRANSFORMER/minecraft@1.21.1/net.minecraft.client.main.Main.main(Main.java:230) ~[client-1.21.1-20240808.144430-srg.jar%23179!/:?] {re:classloading,pl:runtimedistcleaner:A}
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103) ~[?:?] {}
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580) ~[?:?] {}
+	at MC-BOOTSTRAP/fml_loader@4.0.43/net.neoforged.fml.loading.targets.CommonLaunchHandler.runTarget(CommonLaunchHandler.java:136) ~[loader-4.0.43.jar%23145!/:4.0] {}
+	at MC-BOOTSTRAP/fml_loader@4.0.43/net.neoforged.fml.loading.targets.CommonLaunchHandler.clientService(CommonLaunchHandler.java:124) ~[loader-4.0.43.jar%23145!/:4.0] {}
+	at MC-BOOTSTRAP/fml_loader@4.0.43/net.neoforged.fml.loading.targets.CommonClientLaunchHandler.runService(CommonClientLaunchHandler.java:32) ~[loader-4.0.43.jar%23145!/:4.0] {}
+	at MC-BOOTSTRAP/fml_loader@4.0.43/net.neoforged.fml.loading.targets.CommonLaunchHandler.lambda$launchService$4(CommonLaunchHandler.java:118) ~[loader-4.0.43.jar%23145!/:4.0] {}
+	at MC-BOOTSTRAP/cpw.mods.modlauncher@11.0.5/cpw.mods.modlauncher.LaunchServiceHandlerDecorator.launch(LaunchServiceHandlerDecorator.java:30) [modlauncher-11.0.5.jar%23150!/:?] {}
+	at MC-BOOTSTRAP/cpw.mods.modlauncher@11.0.5/cpw.mods.modlauncher.LaunchServiceHandler.launch(LaunchServiceHandler.java:53) [modlauncher-11.0.5.jar%23150!/:?] {}
+	at MC-BOOTSTRAP/cpw.mods.modlauncher@11.0.5/cpw.mods.modlauncher.LaunchServiceHandler.launch(LaunchServiceHandler.java:71) [modlauncher-11.0.5.jar%23150!/:?] {}
+	at MC-BOOTSTRAP/cpw.mods.modlauncher@11.0.5/cpw.mods.modlauncher.Launcher.run(Launcher.java:103) [modlauncher-11.0.5.jar%23150!/:?] {}
+	at MC-BOOTSTRAP/cpw.mods.modlauncher@11.0.5/cpw.mods.modlauncher.Launcher.main(Launcher.java:74) [modlauncher-11.0.5.jar%23150!/:?] {}
+	at MC-BOOTSTRAP/cpw.mods.modlauncher@11.0.5/cpw.mods.modlauncher.BootstrapLaunchConsumer.accept(BootstrapLaunchConsumer.java:26) [modlauncher-11.0.5.jar%23150!/:?] {}
+	at MC-BOOTSTRAP/cpw.mods.modlauncher@11.0.5/cpw.mods.modlauncher.BootstrapLaunchConsumer.accept(BootstrapLaunchConsumer.java:23) [modlauncher-11.0.5.jar%23150!/:?] {}
+	at cpw.mods.bootstraplauncher@2.0.2/cpw.mods.bootstraplauncher.BootstrapLauncher.run(BootstrapLauncher.java:210) [bootstraplauncher-2.0.2.jar:?] {}
+	at cpw.mods.bootstraplauncher@2.0.2/cpw.mods.bootstraplauncher.BootstrapLauncher.main(BootstrapLauncher.java:69) [bootstraplauncher-2.0.2.jar:?] {}
+
+
+A detailed walkthrough of the error, its code path and all known details is as follows:
+---------------------------------------------------------------------------------------
+
+-- Head --
+Thread: Render thread
+Stacktrace:
+	at java.base/java.util.stream.ReferencePipeline$6$1.accept(ReferencePipeline.java:248) ~[?:?] {}
+	at java.base/java.util.ArrayList$ArrayListSpliterator.forEachRemaining(ArrayList.java:1708) ~[?:?] {}
+	at java.base/java.util.stream.AbstractPipeline.copyInto(AbstractPipeline.java:509) ~[?:?] {}
+	at java.base/java.util.stream.AbstractPipeline.wrapAndCopyInto(AbstractPipeline.java:499) ~[?:?] {}
+	at java.base/java.util.stream.ReduceOps$ReduceOp.evaluateSequential(ReduceOps.java:921) ~[?:?] {}
+	at java.base/java.util.stream.AbstractPipeline.evaluate(AbstractPipeline.java:234) ~[?:?] {}
+	at java.base/java.util.stream.DoublePipeline.collect(DoublePipeline.java:541) ~[?:?] {}
+	at java.base/java.util.stream.DoublePipeline.average(DoublePipeline.java:493) ~[?:?] {}
+	at TRANSFORMER/dragonsurvival@2.0.71/by.dragonsurvivalteam.dragonsurvival.client.models.DragonModel.applyMolangQueries(DragonModel.java:143) ~[%5B龙之生存%5D%20DragonSurvival-1.21.1-v2.0.71-25.09.2026-all.jar%23187!/:?] {re:mixin,re:classloading,pl:mixin:APP:dsbr.optimizer.mixins.json:DragonModelMixin from mod dsbr,pl:mixin:A}
+	at TRANSFORMER/geckolib@4.9.3/software.bernie.geckolib.animation.AnimationProcessor.preAnimationSetup(AnimationProcessor.java:308) ~[【前置】geckolib-neoforge-1.21.1-4.9.3.jar%23190!/:4.9.3] {re:classloading}
+	at TRANSFORMER/geckolib@4.9.3/software.bernie.geckolib.model.GeoModel.handleAnimations(GeoModel.java:221) ~[【前置】geckolib-neoforge-1.21.1-4.9.3.jar%23190!/:4.9.3] {re:classloading,re:mixin}
+	at TRANSFORMER/geckolib@4.9.3/software.bernie.geckolib.renderer.GeoEntityRenderer.actuallyRender(GeoEntityRenderer.java:276) ~[【前置】geckolib-neoforge-1.21.1-4.9.3.jar%23190!/:4.9.3] {re:classloading}
+	at TRANSFORMER/dragonsurvival@2.0.71/by.dragonsurvivalteam.dragonsurvival.client.render.entity.dragon.DragonRenderer.actuallyRender(DragonRenderer.java:357) ~[%5B龙之生存%5D%20DragonSurvival-1.21.1-v2.0.71-25.09.2026-all.jar%23187!/:?] {re:mixin,re:classloading}
+	at TRANSFORMER/dragonsurvival@2.0.71/by.dragonsurvivalteam.dragonsurvival.client.render.entity.dragon.DragonRenderer.actuallyRender(DragonRenderer.java:54) ~[%5B龙之生存%5D%20DragonSurvival-1.21.1-v2.0.71-25.09.2026-all.jar%23187!/:?] {re:mixin,re:classloading}
+	at TRANSFORMER/geckolib@4.9.3/software.bernie.geckolib.renderer.GeoRenderer.defaultRender(GeoRenderer.java:144) ~[【前置】geckolib-neoforge-1.21.1-4.9.3.jar%23190!/:4.9.3] {re:mixin,re:classloading,pl:mixin:APP:dsbr.optimizer.mixins.json:GeoRendererMixin from mod dsbr,pl:mixin:A}
+	at TRANSFORMER/geckolib@4.9.3/software.bernie.geckolib.renderer.GeoEntityRenderer.render(GeoEntityRenderer.java:200) ~[【前置】geckolib-neoforge-1.21.1-4.9.3.jar%23190!/:4.9.3] {re:classloading}
+	at TRANSFORMER/dragonsurvival@2.0.71/by.dragonsurvivalteam.dragonsurvival.client.render.ClientDragonRenderer.renderDragon(ClientDragonRenderer.java:316) ~[%5B龙之生存%5D%20DragonSurvival-1.21.1-v2.0.71-25.09.2026-all.jar%23187!/:?] {re:mixin,re:classloading}
+	at MC-BOOTSTRAP/net.neoforged.bus/net.neoforged.bus.SubscribeEventListener.invoke(SubscribeEventListener.java:50) ~[bus-8.0.5.jar%23148!/:?] {}
+	at MC-BOOTSTRAP/net.neoforged.bus/net.neoforged.bus.EventBus.post(EventBus.java:360) ~[bus-8.0.5.jar%23148!/:?] {}
+	at MC-BOOTSTRAP/net.neoforged.bus/net.neoforged.bus.EventBus.post(EventBus.java:328) ~[bus-8.0.5.jar%23148!/:?] {}
+	at TRANSFORMER/minecraft@1.21.1/net.minecraft.client.renderer.entity.player.PlayerRenderer.render(PlayerRenderer.java:71) ~[client-1.21.1-20240808.144430-srg.jar%23179!/:?] {re:mixin,pl:runtimedistcleaner:A,re:classloading,pl:mixin:APP:dragonsurvival.mixins.json:client.PlayerRendererMixin from mod dragonsurvival,pl:mixin:A,pl:runtimedistcleaner:A}
+	at TRANSFORMER/minecraft@1.21.1/net.minecraft.client.renderer.entity.player.PlayerRenderer.render(PlayerRenderer.java:46) ~[client-1.21.1-20240808.144430-srg.jar%23179!/:?] {re:mixin,pl:runtimedistcleaner:A,re:classloading,pl:mixin:APP:dragonsurvival.mixins.json:client.PlayerRendererMixin from mod dragonsurvival,pl:mixin:A,pl:runtimedistcleaner:A}
+	at TRANSFORMER/minecraft@1.21.1/net.minecraft.client.renderer.entity.EntityRenderDispatcher.render(EntityRenderDispatcher.java:159) ~[client-1.21.1-20240808.144430-srg.jar%23179!/:?] {re:mixin,pl:accesstransformer:B,pl:runtimedistcleaner:A,re:classloading,pl:accesstransformer:B,pl:mixin:APP:mixins.iris.json:MixinEntityRenderDispatcher from mod iris,pl:mixin:APP:mixins.iris.json:entity_render_context.MixinEntityRenderDispatcher from mod iris,pl:mixin:APP:sodium-common.mixins.json:features.render.entity.shadows.EntityRenderDispatcherMixin from mod sodium,pl:mixin:APP:dragonsurvival.mixins.json:client.EntityRenderDispatcherMixin from mod dragonsurvival,pl:mixin:A,pl:runtimedistcleaner:A}
+	at TRANSFORMER/minecraft@1.21.1/net.minecraft.client.renderer.LevelRenderer.renderEntity(LevelRenderer.java:1256) ~[client-1.21.1-20240808.144430-srg.jar%23179!/:?] {re:mixin,pl:accesstransformer:B,pl:runtimedistcleaner:A,re:classloading,pl:accesstransformer:B,pl:mixin:A,pl:runtimedistcleaner:A}
+	at TRANSFORMER/minecraft@1.21.1/net.minecraft.client.renderer.LevelRenderer.invokeRenderEntity(LevelRenderer.java) ~[client-1.21.1-20240808.144430-srg.jar%23179!/:?] {re:mixin,pl:accesstransformer:B,pl:runtimedistcleaner:A,re:classloading,pl:accesstransformer:B,pl:mixin:A,pl:runtimedistcleaner:A}
+	at TRANSFORMER/iris@1.8.14-beta.1+mc1.21.1/net.irisshaders.iris.shadows.ShadowRenderer.renderEntities(ShadowRenderer.java:648) ~[%5B钠：光影%5D%20iris-neoforge-1.8.14-beta.1+mc1.21.1.jar%23186!/:?] {re:mixin,re:classloading,pl:mixin:APP:mixins.iris.forge.json:MixinShadowRenderer from mod iris,pl:mixin:A}
+	at TRANSFORMER/iris@1.8.14-beta.1+mc1.21.1/net.irisshaders.iris.shadows.ShadowRenderer.renderShadows(ShadowRenderer.java:513) ~[%5B钠：光影%5D%20iris-neoforge-1.8.14-beta.1+mc1.21.1.jar%23186!/:?] {re:mixin,re:classloading,pl:mixin:APP:mixins.iris.forge.json:MixinShadowRenderer from mod iris,pl:mixin:A}
+	at TRANSFORMER/iris@1.8.14-beta.1+mc1.21.1/net.irisshaders.iris.pipeline.IrisRenderingPipeline.renderShadows(IrisRenderingPipeline.java:1022) ~[%5B钠：光影%5D%20iris-neoforge-1.8.14-beta.1+mc1.21.1.jar%23186!/:?] {re:mixin,re:classloading}
+	at TRANSFORMER/minecraft@1.21.1/net.minecraft.client.renderer.LevelRenderer.handler$zbd000$iris$renderTerrainShadows(LevelRenderer.java:5840) ~[client-1.21.1-20240808.144430-srg.jar%23179!/:?] {re:mixin,pl:accesstransformer:B,pl:runtimedistcleaner:A,re:classloading,pl:accesstransformer:B,pl:mixin:A,pl:runtimedistcleaner:A}
+	at TRANSFORMER/minecraft@1.21.1/net.minecraft.client.renderer.LevelRenderer.renderLevel(LevelRenderer.java:956) ~[client-1.21.1-20240808.144430-srg.jar%23179!/:?] {re:mixin,pl:accesstransformer:B,pl:runtimedistcleaner:A,re:classloading,pl:accesstransformer:B,pl:mixin:A,pl:runtimedistcleaner:A}
+	at TRANSFORMER/minecraft@1.21.1/net.minecraft.client.renderer.GameRenderer.renderLevel$mixinextras$wrapped$232(GameRenderer.java:1271) ~[client-1.21.1-20240808.144430-srg.jar%23179!/:?] {re:mixin,pl:accesstransformer:B,pl:runtimedistcleaner:A,re:classloading,pl:accesstransformer:B,pl:mixin:A,pl:runtimedistcleaner:A}
+	at TRANSFORMER/minecraft@1.21.1/net.minecraft.client.renderer.GameRenderer.mixinextras$bridge$renderLevel$mixinextras$wrapped$232$233(GameRenderer.java) ~[client-1.21.1-20240808.144430-srg.jar%23179!/:?] {re:mixin,pl:accesstransformer:B,pl:runtimedistcleaner:A,re:classloading,pl:accesstransformer:B,pl:mixin:A,pl:runtimedistcleaner:A}
+	at TRANSFORMER/minecraft@1.21.1/net.minecraft.client.renderer.GameRenderer.wrapMethod$zpe000$dsbr$worldScope(GameRenderer.java:4794) ~[client-1.21.1-20240808.144430-srg.jar%23179!/:?] {re:mixin,pl:accesstransformer:B,pl:runtimedistcleaner:A,re:classloading,pl:accesstransformer:B,pl:mixin:A,pl:runtimedistcleaner:A}
+	at TRANSFORMER/minecraft@1.21.1/net.minecraft.client.renderer.GameRenderer.renderLevel(GameRenderer.java) ~[client-1.21.1-20240808.144430-srg.jar%23179!/:?] {re:mixin,pl:accesstransformer:B,pl:runtimedistcleaner:A,re:classloading,pl:accesstransformer:B,pl:mixin:A,pl:runtimedistcleaner:A}
+-- Entity being rendered --
+Details:
+	Entity Type: minecraft:player (net.minecraft.client.player.RemotePlayer)
+	Entity ID: 7
+	Entity Name: RenderDragon3
+	Entity's Exact location: 1.40, -60.00, -1.50
+	Entity's Block location: World: (1,-60,-2), Section: (at 1,4,14 in 0,-4,-1; chunk contains blocks 0,-64,-16 to 15,319,-1), Region: (0,-1; contains chunks 0,-32 to 31,-1, blocks 0,-64,-512 to 511,319,-1)
+	Entity's Momentum: 0.00, 0.00, 0.00
+	Entity's Passengers: []
+	Entity's Vehicle: null
+Stacktrace:
+	at TRANSFORMER/minecraft@1.21.1/net.minecraft.client.renderer.entity.EntityRenderDispatcher.render(EntityRenderDispatcher.java:159) ~[client-1.21.1-20240808.144430-srg.jar%23179!/:?] {re:mixin,pl:accesstransformer:B,pl:runtimedistcleaner:A,re:classloading,pl:accesstransformer:B,pl:mixin:APP:mixins.iris.json:MixinEntityRenderDispatcher from mod iris,pl:mixin:APP:mixins.iris.json:entity_render_context.MixinEntityRenderDispatcher from mod iris,pl:mixin:APP:sodium-common.mixins.json:features.render.entity.shadows.EntityRenderDispatcherMixin from mod sodium,pl:mixin:APP:dragonsurvival.mixins.json:client.EntityRenderDispatcherMixin from mod dragonsurvival,pl:mixin:A,pl:runtimedistcleaner:A}
+	at TRANSFORMER/minecraft@1.21.1/net.minecraft.client.renderer.LevelRenderer.renderEntity(LevelRenderer.java:1256) ~[client-1.21.1-20240808.144430-srg.jar%23179!/:?] {re:mixin,pl:accesstransformer:B,pl:runtimedistcleaner:A,re:classloading,pl:accesstransformer:B,pl:mixin:A,pl:runtimedistcleaner:A}
+	at TRANSFORMER/minecraft@1.21.1/net.minecraft.client.renderer.LevelRenderer.invokeRenderEntity(LevelRenderer.java) ~[client-1.21.1-20240808.144430-srg.jar%23179!/:?] {re:mixin,pl:accesstransformer:B,pl:runtimedistcleaner:A,re:classloading,pl:accesstransformer:B,pl:mixin:A,pl:runtimedistcleaner:A}
+	at TRANSFORMER/iris@1.8.14-beta.1+mc1.21.1/net.irisshaders.iris.shadows.ShadowRenderer.renderEntities(ShadowRenderer.java:648) ~[%5B钠：光影%5D%20iris-neoforge-1.8.14-beta.1+mc1.21.1.jar%23186!/:?] {re:mixin,re:classloading,pl:mixin:APP:mixins.iris.forge.json:MixinShadowRenderer from mod iris,pl:mixin:A}
+	at TRANSFORMER/iris@1.8.14-beta.1+mc1.21.1/net.irisshaders.iris.shadows.ShadowRenderer.renderShadows(ShadowRenderer.java:513) ~[%5B钠：光影%5D%20iris-neoforge-1.8.14-beta.1+mc1.21.1.jar%23186!/:?] {re:mixin,re:classloading,pl:mixin:APP:mixins.iris.forge.json:MixinShadowRenderer from mod iris,pl:mixin:A}
+	at TRANSFORMER/iris@1.8.14-beta.1+mc1.21.1/net.irisshaders.iris.pipeline.IrisRenderingPipeline.renderShadows(IrisRenderingPipeline.java:1022) ~[%5B钠：光影%5D%20iris-neoforge-1.8.14-beta.1+mc1.21.1.jar%23186!/:?] {re:mixin,re:classloading}
+	at TRANSFORMER/minecraft@1.21.1/net.minecraft.client.renderer.LevelRenderer.handler$zbd000$iris$renderTerrainShadows(LevelRenderer.java:5840) ~[client-1.21.1-20240808.144430-srg.jar%23179!/:?] {re:mixin,pl:accesstransformer:B,pl:runtimedistcleaner:A,re:classloading,pl:accesstransformer:B,pl:mixin:A,pl:runtimedistcleaner:A}
+	at TRANSFORMER/minecraft@1.21.1/net.minecraft.client.renderer.LevelRenderer.renderLevel(LevelRenderer.java:956) ~[client-1.21.1-20240808.144430-srg.jar%23179!/:?] {re:mixin,pl:accesstransformer:B,pl:runtimedistcleaner:A,re:classloading,pl:accesstransformer:B,pl:mixin:A,pl:runtimedistcleaner:A}
+	at TRANSFORMER/minecraft@1.21.1/net.minecraft.client.renderer.GameRenderer.renderLevel$mixinextras$wrapped$232(GameRenderer.java:1271) ~[client-1.21.1-20240808.144430-srg.jar%23179!/:?] {re:mixin,pl:accesstransformer:B,pl:runtimedistcleaner:A,re:classloading,pl:accesstransformer:B,pl:mixin:A,pl:runtimedistcleaner:A}
+	at TRANSFORMER/minecraft@1.21.1/net.minecraft.client.renderer.GameRenderer.mixinextras$bridge$renderLevel$mixinextras$wrapped$232$233(GameRenderer.java) ~[client-1.21.1-20240808.144430-srg.jar%23179!/:?] {re:mixin,pl:accesstransformer:B,pl:runtimedistcleaner:A,re:classloading,pl:accesstransformer:B,pl:mixin:A,pl:runtimedistcleaner:A}
+	at TRANSFORMER/minecraft@1.21.1/net.minecraft.client.renderer.GameRenderer.wrapMethod$zpe000$dsbr$worldScope(GameRenderer.java:4794) ~[client-1.21.1-20240808.144430-srg.jar%23179!/:?] {re:mixin,pl:accesstransformer:B,pl:runtimedistcleaner:A,re:classloading,pl:accesstransformer:B,pl:mixin:A,pl:runtimedistcleaner:A}
+	at TRANSFORMER/minecraft@1.21.1/net.minecraft.client.renderer.GameRenderer.renderLevel(GameRenderer.java) ~[client-1.21.1-20240808.144430-srg.jar%23179!/:?] {re:mixin,pl:accesstransformer:B,pl:runtimedistcleaner:A,re:classloading,pl:accesstransformer:B,pl:mixin:A,pl:runtimedistcleaner:A}
+	at TRANSFORMER/minecraft@1.21.1/net.minecraft.client.renderer.GameRenderer.render(GameRenderer.java:1024) ~[client-1.21.1-20240808.144430-srg.jar%23179!/:?] {re:mixin,pl:accesstransformer:B,pl:runtimedistcleaner:A,re:classloading,pl:accesstransformer:B,pl:mixin:A,pl:runtimedistcleaner:A}
+	at TRANSFORMER/minecraft@1.21.1/net.minecraft.client.Minecraft.runTick(Minecraft.java:1195) ~[client-1.21.1-20240808.144430-srg.jar%23179!/:?] {re:mixin,pl:runtimedistcleaner:A,re:classloading,pl:mixin:A,pl:runtimedistcleaner:A}
+	at TRANSFORMER/minecraft@1.21.1/net.minecraft.client.Minecraft.run(Minecraft.java:807) ~[client-1.21.1-20240808.144430-srg.jar%23179!/:?] {re:mixin,pl:runtimedistcleaner:A,re:classloading,pl:mixin:A,pl:runtimedistcleaner:A}
+	at TRANSFORMER/minecraft@1.21.1/net.minecraft.client.main.Main.main(Main.java:230) ~[client-1.21.1-20240808.144430-srg.jar%23179!/:?] {re:classloading,pl:runtimedistcleaner:A}
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103) ~[?:?] {}
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580) ~[?:?] {}
+	at MC-BOOTSTRAP/fml_loader@4.0.43/net.neoforged.fml.loading.targets.CommonLaunchHandler.runTarget(CommonLaunchHandler.java:136) ~[loader-4.0.43.jar%23145!/:4.0] {}
+	at MC-BOOTSTRAP/fml_loader@4.0.43/net.neoforged.fml.loading.targets.CommonLaunchHandler.clientService(CommonLaunchHandler.java:124) ~[loader-4.0.43.jar%23145!/:4.0] {}
+	at MC-BOOTSTRAP/fml_loader@4.0.43/net.neoforged.fml.loading.targets.CommonClientLaunchHandler.runService(CommonClientLaunchHandler.java:32) ~[loader-4.0.43.jar%23145!/:4.0] {}
+	at MC-BOOTSTRAP/fml_loader@4.0.43/net.neoforged.fml.loading.targets.CommonLaunchHandler.lambda$launchService$4(CommonLaunchHandler.java:118) ~[loader-4.0.43.jar%23145!/:4.0] {}
+	at MC-BOOTSTRAP/cpw.mods.modlauncher@11.0.5/cpw.mods.modlauncher.LaunchServiceHandlerDecorator.launch(LaunchServiceHandlerDecorator.java:30) [modlauncher-11.0.5.jar%23150!/:?] {}
+	at MC-BOOTSTRAP/cpw.mods.modlauncher@11.0.5/cpw.mods.modlauncher.LaunchServiceHandler.launch(LaunchServiceHandler.java:53) [modlauncher-11.0.5.jar%23150!/:?] {}
+	at MC-BOOTSTRAP/cpw.mods.modlauncher@11.0.5/cpw.mods.modlauncher.LaunchServiceHandler.launch(LaunchServiceHandler.java:71) [modlauncher-11.0.5.jar%23150!/:?] {}
+	at MC-BOOTSTRAP/cpw.mods.modlauncher@11.0.5/cpw.mods.modlauncher.Launcher.run(Launcher.java:103) [modlauncher-11.0.5.jar%23150!/:?] {}
+	at MC-BOOTSTRAP/cpw.mods.modlauncher@11.0.5/cpw.mods.modlauncher.Launcher.main(Launcher.java:74) [modlauncher-11.0.5.jar%23150!/:?] {}
+	at MC-BOOTSTRAP/cpw.mods.modlauncher@11.0.5/cpw.mods.modlauncher.BootstrapLaunchConsumer.accept(BootstrapLaunchConsumer.java:26) [modlauncher-11.0.5.jar%23150!/:?] {}
+	at MC-BOOTSTRAP/cpw.mods.modlauncher@11.0.5/cpw.mods.modlauncher.BootstrapLaunchConsumer.accept(BootstrapLaunchConsumer.java:23) [modlauncher-11.0.5.jar%23150!/:?] {}
+	at cpw.mods.bootstraplauncher@2.0.2/cpw.mods.bootstraplauncher.BootstrapLauncher.run(BootstrapLauncher.java:210) [bootstraplauncher-2.0.2.jar:?] {}
+	at cpw.mods.bootstraplauncher@2.0.2/cpw.mods.bootstraplauncher.BootstrapLauncher.main(BootstrapLauncher.java:69) [bootstraplauncher-2.0.2.jar:?] {}
+
+
+-- Renderer details --
+Details:
+	Assigned renderer: net.minecraft.client.renderer.entity.player.PlayerRenderer@79144f66
+	Location: 0.90,-1.71,-6.75 - World: (0,-2,-7), Section: (at 0,14,9 in 0,-1,-1; chunk contains blocks 0,-64,-16 to 15,319,-1), Region: (0,-1; contains chunks 0,-32 to 31,-1, blocks 0,-64,-512 to 511,319,-1)
+	Rotation: 0.0
+	Delta: 0.60063654
+Stacktrace:
+	at TRANSFORMER/minecraft@1.21.1/net.minecraft.client.renderer.entity.EntityRenderDispatcher.render(EntityRenderDispatcher.java:159) ~[client-1.21.1-20240808.144430-srg.jar%23179!/:?] {re:mixin,pl:accesstransformer:B,pl:runtimedistcleaner:A,re:classloading,pl:accesstransformer:B,pl:mixin:APP:mixins.iris.json:MixinEntityRenderDispatcher from mod iris,pl:mixin:APP:mixins.iris.json:entity_render_context.MixinEntityRenderDispatcher from mod iris,pl:mixin:APP:sodium-common.mixins.json:features.render.entity.shadows.EntityRenderDispatcherMixin from mod sodium,pl:mixin:APP:dragonsurvival.mixins.json:client.EntityRenderDispatcherMixin from mod dragonsurvival,pl:mixin:A,pl:runtimedistcleaner:A}
+	at TRANSFORMER/minecraft@1.21.1/net.minecraft.client.renderer.LevelRenderer.renderEntity(LevelRenderer.java:1256) ~[client-1.21.1-20240808.144430-srg.jar%23179!/:?] {re:mixin,pl:accesstransformer:B,pl:runtimedistcleaner:A,re:classloading,pl:accesstransformer:B,pl:mixin:A,pl:runtimedistcleaner:A}
+	at TRANSFORMER/minecraft@1.21.1/net.minecraft.client.renderer.LevelRenderer.invokeRenderEntity(LevelRenderer.java) ~[client-1.21.1-20240808.144430-srg.jar%23179!/:?] {re:mixin,pl:accesstransformer:B,pl:runtimedistcleaner:A,re:classloading,pl:accesstransformer:B,pl:mixin:A,pl:runtimedistcleaner:A}
+	at TRANSFORMER/iris@1.8.14-beta.1+mc1.21.1/net.irisshaders.iris.shadows.ShadowRenderer.renderEntities(ShadowRenderer.java:648) ~[%5B钠：光影%5D%20iris-neoforge-1.8.14-beta.1+mc1.21.1.jar%23186!/:?] {re:mixin,re:classloading,pl:mixin:APP:mixins.iris.forge.json:MixinShadowRenderer from mod iris,pl:mixin:A}
+	at TRANSFORMER/iris@1.8.14-beta.1+mc1.21.1/net.irisshaders.iris.shadows.ShadowRenderer.renderShadows(ShadowRenderer.java:513) ~[%5B钠：光影%5D%20iris-neoforge-1.8.14-beta.1+mc1.21.1.jar%23186!/:?] {re:mixin,re:classloading,pl:mixin:APP:mixins.iris.forge.json:MixinShadowRenderer from mod iris,pl:mixin:A}
+	at TRANSFORMER/iris@1.8.14-beta.1+mc1.21.1/net.irisshaders.iris.pipeline.IrisRenderingPipeline.renderShadows(IrisRenderingPipeline.java:1022) ~[%5B钠：光影%5D%20iris-neoforge-1.8.14-beta.1+mc1.21.1.jar%23186!/:?] {re:mixin,re:classloading}
+	at TRANSFORMER/minecraft@1.21.1/net.minecraft.client.renderer.LevelRenderer.handler$zbd000$iris$renderTerrainShadows(LevelRenderer.java:5840) ~[client-1.21.1-20240808.144430-srg.jar%23179!/:?] {re:mixin,pl:accesstransformer:B,pl:runtimedistcleaner:A,re:classloading,pl:accesstransformer:B,pl:mixin:A,pl:runtimedistcleaner:A}
+	at TRANSFORMER/minecraft@1.21.1/net.minecraft.client.renderer.LevelRenderer.renderLevel(LevelRenderer.java:956) ~[client-1.21.1-20240808.144430-srg.jar%23179!/:?] {re:mixin,pl:accesstransformer:B,pl:runtimedistcleaner:A,re:classloading,pl:accesstransformer:B,pl:mixin:A,pl:runtimedistcleaner:A}
+	at TRANSFORMER/minecraft@1.21.1/net.minecraft.client.renderer.GameRenderer.renderLevel$mixinextras$wrapped$232(GameRenderer.java:1271) ~[client-1.21.1-20240808.144430-srg.jar%23179!/:?] {re:mixin,pl:accesstransformer:B,pl:runtimedistcleaner:A,re:classloading,pl:accesstransformer:B,pl:mixin:A,pl:runtimedistcleaner:A}
+	at TRANSFORMER/minecraft@1.21.1/net.minecraft.client.renderer.GameRenderer.mixinextras$bridge$renderLevel$mixinextras$wrapped$232$233(GameRenderer.java) ~[client-1.21.1-20240808.144430-srg.jar%23179!/:?] {re:mixin,pl:accesstransformer:B,pl:runtimedistcleaner:A,re:classloading,pl:accesstransformer:B,pl:mixin:A,pl:runtimedistcleaner:A}
+	at TRANSFORMER/minecraft@1.21.1/net.minecraft.client.renderer.GameRenderer.wrapMethod$zpe000$dsbr$worldScope(GameRenderer.java:4794) ~[client-1.21.1-20240808.144430-srg.jar%23179!/:?] {re:mixin,pl:accesstransformer:B,pl:runtimedistcleaner:A,re:classloading,pl:accesstransformer:B,pl:mixin:A,pl:runtimedistcleaner:A}
+	at TRANSFORMER/minecraft@1.21.1/net.minecraft.client.renderer.GameRenderer.renderLevel(GameRenderer.java) ~[client-1.21.1-20240808.144430-srg.jar%23179!/:?] {re:mixin,pl:accesstransformer:B,pl:runtimedistcleaner:A,re:classloading,pl:accesstransformer:B,pl:mixin:A,pl:runtimedistcleaner:A}
+	at TRANSFORMER/minecraft@1.21.1/net.minecraft.client.renderer.GameRenderer.render(GameRenderer.java:1024) ~[client-1.21.1-20240808.144430-srg.jar%23179!/:?] {re:mixin,pl:accesstransformer:B,pl:runtimedistcleaner:A,re:classloading,pl:accesstransformer:B,pl:mixin:A,pl:runtimedistcleaner:A}
+	at TRANSFORMER/minecraft@1.21.1/net.minecraft.client.Minecraft.runTick(Minecraft.java:1195) ~[client-1.21.1-20240808.144430-srg.jar%23179!/:?] {re:mixin,pl:runtimedistcleaner:A,re:classloading,pl:mixin:A,pl:runtimedistcleaner:A}
+	at TRANSFORMER/minecraft@1.21.1/net.minecraft.client.Minecraft.run(Minecraft.java:807) ~[client-1.21.1-20240808.144430-srg.jar%23179!/:?] {re:mixin,pl:runtimedistcleaner:A,re:classloading,pl:mixin:A,pl:runtimedistcleaner:A}
+	at TRANSFORMER/minecraft@1.21.1/net.minecraft.client.main.Main.main(Main.java:230) ~[client-1.21.1-20240808.144430-srg.jar%23179!/:?] {re:classloading,pl:runtimedistcleaner:A}
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103) ~[?:?] {}
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580) ~[?:?] {}
+	at MC-BOOTSTRAP/fml_loader@4.0.43/net.neoforged.fml.loading.targets.CommonLaunchHandler.runTarget(CommonLaunchHandler.java:136) ~[loader-4.0.43.jar%23145!/:4.0] {}
+	at MC-BOOTSTRAP/fml_loader@4.0.43/net.neoforged.fml.loading.targets.CommonLaunchHandler.clientService(CommonLaunchHandler.java:124) ~[loader-4.0.43.jar%23145!/:4.0] {}
+	at MC-BOOTSTRAP/fml_loader@4.0.43/net.neoforged.fml.loading.targets.CommonClientLaunchHandler.runService(CommonClientLaunchHandler.java:32) ~[loader-4.0.43.jar%23145!/:4.0] {}
+	at MC-BOOTSTRAP/fml_loader@4.0.43/net.neoforged.fml.loading.targets.CommonLaunchHandler.lambda$launchService$4(CommonLaunchHandler.java:118) ~[loader-4.0.43.jar%23145!/:4.0] {}
+	at MC-BOOTSTRAP/cpw.mods.modlauncher@11.0.5/cpw.mods.modlauncher.LaunchServiceHandlerDecorator.launch(LaunchServiceHandlerDecorator.java:30) [modlauncher-11.0.5.jar%23150!/:?] {}
+	at MC-BOOTSTRAP/cpw.mods.modlauncher@11.0.5/cpw.mods.modlauncher.LaunchServiceHandler.launch(LaunchServiceHandler.java:53) [modlauncher-11.0.5.jar%23150!/:?] {}
+	at MC-BOOTSTRAP/cpw.mods.modlauncher@11.0.5/cpw.mods.modlauncher.LaunchServiceHandler.launch(LaunchServiceHandler.java:71) [modlauncher-11.0.5.jar%23150!/:?] {}
+	at MC-BOOTSTRAP/cpw.mods.modlauncher@11.0.5/cpw.mods.modlauncher.Launcher.run(Launcher.java:103) [modlauncher-11.0.5.jar%23150!/:?] {}
+	at MC-BOOTSTRAP/cpw.mods.modlauncher@11.0.5/cpw.mods.modlauncher.Launcher.main(Launcher.java:74) [modlauncher-11.0.5.jar%23150!/:?] {}
+	at MC-BOOTSTRAP/cpw.mods.modlauncher@11.0.5/cpw.mods.modlauncher.BootstrapLaunchConsumer.accept(BootstrapLaunchConsumer.java:26) [modlauncher-11.0.5.jar%23150!/:?] {}
+	at MC-BOOTSTRAP/cpw.mods.modlauncher@11.0.5/cpw.mods.modlauncher.BootstrapLaunchConsumer.accept(BootstrapLaunchConsumer.java:23) [modlauncher-11.0.5.jar%23150!/:?] {}
+	at cpw.mods.bootstraplauncher@2.0.2/cpw.mods.bootstraplauncher.BootstrapLauncher.run(BootstrapLauncher.java:210) [bootstraplauncher-2.0.2.jar:?] {}
+	at cpw.mods.bootstraplauncher@2.0.2/cpw.mods.bootstraplauncher.BootstrapLauncher.main(BootstrapLauncher.java:69) [bootstraplauncher-2.0.2.jar:?] {}
+
+
+-- Uptime --
+Details:
+	JVM uptime: 696.340s
+	Wall uptime: 688.650s
+	High-res time: 694.775s
+	Client ticks: 13663 ticks / 683.150s
+Stacktrace:
+	at TRANSFORMER/minecraft@1.21.1/net.minecraft.client.Minecraft.fillReport(Minecraft.java:2395) ~[client-1.21.1-20240808.144430-srg.jar%23179!/:?] {re:mixin,pl:runtimedistcleaner:A,re:classloading,pl:mixin:A,pl:runtimedistcleaner:A}
+	at TRANSFORMER/minecraft@1.21.1/net.minecraft.client.Minecraft.emergencySaveAndCrash(Minecraft.java:868) ~[client-1.21.1-20240808.144430-srg.jar%23179!/:?] {re:mixin,pl:runtimedistcleaner:A,re:classloading,pl:mixin:A,pl:runtimedistcleaner:A}
+	at TRANSFORMER/minecraft@1.21.1/net.minecraft.client.Minecraft.run(Minecraft.java:825) ~[client-1.21.1-20240808.144430-srg.jar%23179!/:?] {re:mixin,pl:runtimedistcleaner:A,re:classloading,pl:mixin:A,pl:runtimedistcleaner:A}
+	at TRANSFORMER/minecraft@1.21.1/net.minecraft.client.main.Main.main(Main.java:230) ~[client-1.21.1-20240808.144430-srg.jar%23179!/:?] {re:classloading,pl:runtimedistcleaner:A}
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103) ~[?:?] {}
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580) ~[?:?] {}
+	at MC-BOOTSTRAP/fml_loader@4.0.43/net.neoforged.fml.loading.targets.CommonLaunchHandler.runTarget(CommonLaunchHandler.java:136) ~[loader-4.0.43.jar%23145!/:4.0] {}
+	at MC-BOOTSTRAP/fml_loader@4.0.43/net.neoforged.fml.loading.targets.CommonLaunchHandler.clientService(CommonLaunchHandler.java:124) ~[loader-4.0.43.jar%23145!/:4.0] {}
+	at MC-BOOTSTRAP/fml_loader@4.0.43/net.neoforged.fml.loading.targets.CommonClientLaunchHandler.runService(CommonClientLaunchHandler.java:32) ~[loader-4.0.43.jar%23145!/:4.0] {}
+	at MC-BOOTSTRAP/fml_loader@4.0.43/net.neoforged.fml.loading.targets.CommonLaunchHandler.lambda$launchService$4(CommonLaunchHandler.java:118) ~[loader-4.0.43.jar%23145!/:4.0] {}
+	at MC-BOOTSTRAP/cpw.mods.modlauncher@11.0.5/cpw.mods.modlauncher.LaunchServiceHandlerDecorator.launch(LaunchServiceHandlerDecorator.java:30) [modlauncher-11.0.5.jar%23150!/:?] {}
+	at MC-BOOTSTRAP/cpw.mods.modlauncher@11.0.5/cpw.mods.modlauncher.LaunchServiceHandler.launch(LaunchServiceHandler.java:53) [modlauncher-11.0.5.jar%23150!/:?] {}
+	at MC-BOOTSTRAP/cpw.mods.modlauncher@11.0.5/cpw.mods.modlauncher.LaunchServiceHandler.launch(LaunchServiceHandler.java:71) [modlauncher-11.0.5.jar%23150!/:?] {}
+	at MC-BOOTSTRAP/cpw.mods.modlauncher@11.0.5/cpw.mods.modlauncher.Launcher.run(Launcher.java:103) [modlauncher-11.0.5.jar%23150!/:?] {}
+	at MC-BOOTSTRAP/cpw.mods.modlauncher@11.0.5/cpw.mods.modlauncher.Launcher.main(Launcher.java:74) [modlauncher-11.0.5.jar%23150!/:?] {}
+	at MC-BOOTSTRAP/cpw.mods.modlauncher@11.0.5/cpw.mods.modlauncher.BootstrapLaunchConsumer.accept(BootstrapLaunchConsumer.java:26) [modlauncher-11.0.5.jar%23150!/:?] {}
+	at MC-BOOTSTRAP/cpw.mods.modlauncher@11.0.5/cpw.mods.modlauncher.BootstrapLaunchConsumer.accept(BootstrapLaunchConsumer.java:23) [modlauncher-11.0.5.jar%23150!/:?] {}
+	at cpw.mods.bootstraplauncher@2.0.2/cpw.mods.bootstraplauncher.BootstrapLauncher.run(BootstrapLauncher.java:210) [bootstraplauncher-2.0.2.jar:?] {}
+	at cpw.mods.bootstraplauncher@2.0.2/cpw.mods.bootstraplauncher.BootstrapLauncher.main(BootstrapLauncher.java:69) [bootstraplauncher-2.0.2.jar:?] {}
+
+
+-- Affected level --
+Details:
+	All players: 4 total; [LocalPlayer['RenderProbe'/1, l='ClientLevel', x=0.50, y=-60.00, z=0.50], RemotePlayer['RenderDragon1'/5, l='ClientLevel', x=-2.10, y=-60.00, z=-1.50], RemotePlayer['RenderDragon2'/6, l='ClientLevel', x=-0.35, y=-60.00, z=-1.50], RemotePlayer['RenderDragon3'/7, l='ClientLevel', x=1.40, y=-60.00, z=-1.50]]
+	Chunk stats: 361, 201
+	Level dimension: minecraft:overworld
+	Level spawn location: World: (0,-60,0), Section: (at 0,4,0 in 0,-4,0; chunk contains blocks 0,-64,0 to 15,319,15), Region: (0,0; contains chunks 0,0 to 31,31, blocks 0,-64,0 to 511,319,511)
+	Level time: 13613 game time, 6000 day time
+	Server brand: neoforge
+	Server type: Integrated singleplayer server
+	Tracked entity count: 4
+
+-- Last reload --
+Details:
+	Reload number: 1
+	Reload reason: initial
+	Finished: Yes
+	Packs: vanilla, mod_resources, mod/sodium, mod/iris, mod/fabric_api_base, mod/fabric_renderer_api_v1, mod/geckolib, mod/fabric_rendering_data_attachment_v1, mod/dsbr_validation, mod/dragonsurvival, mod/dsbr, mod/neoforge, mod/fabric_block_view_api_v2
+
+-- System Details --
+Details:
+	Minecraft Version: 1.21.1
+	Minecraft Version ID: 1.21.1
+	Operating System: Windows 11 (amd64) version 10.0
+	Java Version: 21.0.8, Oracle Corporation
+	Java VM Version: Java HotSpot(TM) 64-Bit Server VM (mixed mode, sharing), Oracle Corporation
+	Memory: 243094224 bytes (231 MiB) / 1287651328 bytes (1228 MiB) up to 4294967296 bytes (4096 MiB)
+	CPUs: 24
+	Processor Vendor: GenuineIntel
+	Processor Name: 13th Gen Intel(R) Core(TM) i7-13700K
+	Identifier: Intel64 Family 6 Model 183 Stepping 1
+	Microarchitecture: Raptor Lake
+	Frequency (GHz): 3.42
+	Number of physical packages: 1
+	Number of physical CPUs: 16
+	Number of logical CPUs: 24
+	Graphics card #0 name: Intel(R) UHD Graphics 770
+	Graphics card #0 vendor: Intel Corporation
+	Graphics card #0 VRAM (MiB): 2048.00
+	Graphics card #0 deviceId: VideoController1
+	Graphics card #0 versionInfo: 32.0.101.7088
+	Graphics card #1 name: NVIDIA GeForce RTX 5070 Ti
+	Graphics card #1 vendor: NVIDIA
+	Graphics card #1 VRAM (MiB): 16303.00
+	Graphics card #1 deviceId: VideoController2
+	Graphics card #1 versionInfo: 32.0.15.9649
+	Memory slot #0 capacity (MiB): 32768.00
+	Memory slot #0 clockSpeed (GHz): 3.60
+	Memory slot #0 type: DDR4
+	Memory slot #1 capacity (MiB): 32768.00
+	Memory slot #1 clockSpeed (GHz): 3.60
+	Memory slot #1 type: DDR4
+	Memory slot #2 capacity (MiB): 32768.00
+	Memory slot #2 clockSpeed (GHz): 3.60
+	Memory slot #2 type: DDR4
+	Memory slot #3 capacity (MiB): 32768.00
+	Memory slot #3 clockSpeed (GHz): 3.60
+	Memory slot #3 type: DDR4
+	Virtual memory max (MiB): 140028.94
+	Virtual memory used (MiB): 34823.93
+	Swap memory total (MiB): 9216.00
+	Swap memory used (MiB): 206.51
+	Space in storage for jna.tmpdir (MiB): available: 108851.21, total: 1952539.00
+	Space in storage for org.lwjgl.system.SharedLibraryExtractPath (MiB): available: 108851.21, total: 1952539.00
+	Space in storage for io.netty.native.workdir (MiB): available: 108851.21, total: 1952539.00
+	Space in storage for java.io.tmpdir (MiB): available: 108851.21, total: 1952539.00
+	Space in storage for workdir (MiB): available: 108851.21, total: 1952539.00
+	JVM Flags: 3 total; -Xms1G -Xmx4G -XX:HeapDumpPath=MojangTricksIntelDriversForPerformance_javaw.exe_minecraft.exe.heapdump
+	Loaded Shaderpack: ComplementaryReimagined_r5.9.zip
+		Profile: HIGH (+0 options changed by user)
+	Launched Version: BeLoong
+	Launcher name: BeLoongRenderValidation
+	Backend library: LWJGL version 3.3.3+5
+	Backend API: NVIDIA GeForce RTX 5070 Ti/PCIe/SSE2 GL version 4.6.0 NVIDIA 596.49, NVIDIA Corporation
+	Window size: 1280x720
+	GFLW Platform: win32
+	GL Caps: Using framebuffer using OpenGL 3.2
+	GL debug messages: 
+	Is Modded: Definitely; Client brand changed to 'neoforge'; Server brand changed to 'neoforge'
+	Universe: 400921fb54442d18
+	Type: Integrated Server (map_client.txt)
+	Graphics mode: fancy
+	Render Distance: 6/6 chunks
+	Resource Packs: vanilla, mod_resources, mod/sodium, mod/iris, mod/fabric_api_base, mod/fabric_renderer_api_v1, mod/geckolib, mod/fabric_rendering_data_attachment_v1, mod/dsbr_validation, mod/dragonsurvival (incompatible), mod/dsbr, mod/neoforge, mod/fabric_block_view_api_v2
+	Current Language: en_us
+	Locale: zh_CN
+	System encoding: GBK
+	File encoding: UTF-8
+	CPU: 24x 13th Gen Intel(R) Core(TM) i7-13700K
+	Server Running: true
+	Player Count: 1 / 8; [ServerPlayer['RenderProbe'/1, l='ServerLevel[multi-render-validation]', x=0.50, y=-60.00, z=0.50]]
+	Active Data Packs: vanilla, mod_data, mod/sodium, mod/iris, mod/fabric_api_base, mod/fabric_renderer_api_v1, mod/geckolib, mod/fabric_rendering_data_attachment_v1, mod/dsbr_validation, mod/dragonsurvival, mod/dsbr (incompatible), mod/neoforge, mod/fabric_block_view_api_v2, mod/dragonsurvival:data/dragonsurvival/datapacks/ancient_stage, mod/dragonsurvival:data/dragonsurvival/datapacks/unlock_wings
+	Available Data Packs: bundle, trade_rebalance, vanilla, mod/dragonsurvival, mod/dsbr (incompatible), mod/dsbr_validation, mod/fabric_api_base, mod/fabric_block_view_api_v2, mod/fabric_renderer_api_v1, mod/fabric_rendering_data_attachment_v1, mod/geckolib, mod/iris, mod/neoforge, mod/sodium, mod_data, mod/dragonsurvival:data/dragonsurvival/datapacks/ancient_stage, mod/dragonsurvival:data/dragonsurvival/datapacks/unlock_wings, mod/dragonsurvival:data/dragonsurvival/datapacks/ancient_stage_no_crushing, mod/dragonsurvival:data/dragonsurvival/datapacks/no_penalties
+	Enabled Feature Flags: minecraft:vanilla
+	World Generation: Stable
+	World Seed: 2067
+	ModLauncher: 11.0.5+main.901c6ea8
+	ModLauncher launch target: forgeclient
+	ModLauncher services: 
+		sponge-mixin-0.15.2+mixin.0.8.7.jar mixin PLUGINSERVICE 
+		loader-4.0.43.jar slf4jfixer PLUGINSERVICE 
+		loader-4.0.43.jar runtime_enum_extender PLUGINSERVICE 
+		at-modlauncher-10.0.1.jar accesstransformer PLUGINSERVICE 
+		loader-4.0.43.jar runtimedistcleaner PLUGINSERVICE 
+		modlauncher-11.0.5.jar mixin TRANSFORMATIONSERVICE 
+		modlauncher-11.0.5.jar fml TRANSFORMATIONSERVICE 
+	FML Language Providers: 
+		javafml@4.0
+		lowcodefml@4.0
+		minecraft@4.0
+	Mod List: 
+		[龙之生存] DragonSurvival-1.21.1-v2.0.71-25.09.2026-al|Dragon Survival               |dragonsurvival                |2.0.71              |Manifest: NOSIGNATURE
+		optimizer.jar                                     |Dragon Survival Bedrock Render|dsbr                          |0.2.0-alpha.3       |Manifest: NOSIGNATURE
+		validation.jar                                    |DSBR Render Validation (test o|dsbr_validation               |1.0                 |Manifest: NOSIGNATURE
+		fabric-api-base-0.4.42+d1308ded19.jar             |Forgified Fabric API Base     |fabric_api_base               |0.4.42+d1308ded19   |Manifest: NOSIGNATURE
+		fabric-block-view-api-v2-1.0.10+9afaaf8c19.jar    |Forgified Fabric BlockView API|fabric_block_view_api_v2      |1.0.10+9afaaf8c19   |Manifest: NOSIGNATURE
+		fabric-renderer-api-v1-3.4.1+9125b6dc19.jar       |Forgified Fabric Renderer API |fabric_renderer_api_v1        |3.4.1+9125b6dc19    |Manifest: NOSIGNATURE
+		fabric-rendering-data-attachment-v1-0.3.48+73761d2|Forgified Fabric Rendering Dat|fabric_rendering_data_attachme|0.3.48+73761d2e19   |Manifest: NOSIGNATURE
+		【前置】geckolib-neoforge-1.21.1-4.9.3.jar            |GeckoLib 4                    |geckolib                      |4.9.3               |Manifest: NOSIGNATURE
+		[钠：光影] iris-neoforge-1.8.14-beta.1+mc1.21.1.jar   |Iris                          |iris                          |1.8.14-beta.1+mc1.21|Manifest: NOSIGNATURE
+		client-1.21.1-20240808.144430-srg.jar             |Minecraft                     |minecraft                     |1.21.1              |Manifest: a1:d4:5e:04:4f:d3:d6:e0:7b:37:97:cf:77:b0:de:ad:4a:47:ce:8c:96:49:5f:0a:cf:8c:ae:b2:6d:4b:8a:3f
+		neoforge-21.1.248-universal.jar                   |NeoForge                      |neoforge                      |21.1.248            |Manifest: NOSIGNATURE
+		net.caffeinemc.sodium-neoforge-0.8.13+mc1.21.1-mod|Sodium                        |sodium                        |0.8.13+mc1.21.1     |Manifest: NOSIGNATURE
+	Crash Report UUID: 78877305-f7eb-4d47-87b4-102c6afe4c11
+	FML: 4.0.43
+	NeoForge: 21.1.248

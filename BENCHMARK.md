@@ -1,6 +1,8 @@
 # 正式性能验收流程
 
-基准命令已经实现，正式 27 组测试尚未执行。功能测试 JSON 不能代替这里的性能结果。
+alpha.3／alpha.2 的 Low 帧比较方法见 [LOW_FPS.md](LOW_FPS.md)。当前已保存 9 组 60 秒预热／300 秒完整采样；用户要求停止剩余长测，完整三轮矩阵未完成，结果见 [PERFORMANCE.md](PERFORMANCE.md)。功能测试 JSON 不能代替性能结果。
+
+以下保留游戏内三模式基准和 alpha.2 的历史复现流程；它与 alpha.3 的版本间配对比较不同。
 
 已完成的 1/4/12 条龙短时对照见 [PERFORMANCE.md](PERFORMANCE.md)。复现隔离渲染测试需先构建 `validationJar`，然后运行 `python tools/launch_probe.py --iris --shaderpacks --multi-dragon-benchmark`。它使用离线测试身份和本地合成 `RemotePlayer`，预热 5 秒、采样 15 秒、两轮且第二轮逆序；不是正式多人网络测试。结束后用 `python tools/collect_multi_benchmark.py --instance <临时实例路径>` 保存原始结果和汇总。
 
@@ -29,7 +31,7 @@ python tools/compare_benchmarks.py '<游戏目录>/logs/dsbr-render-benchmark' -
 
 帧时间来自连续两次渲染帧开始的间隔，包含等待帧率上限的时间；`FRAME_CPU_NANOS` 来自单帧事件区间。`CPU_VERTEX_SUBMIT_NANOS` 计原 `renderCubesOfBone` 提交，`GPU_BONE_SUBMIT_NANOS` 计替代后的姿态记录，`GPU_DRAW_CPU_NANOS` 单独列出分发和绘制的 CPU 成本。CPU 指标是 Java 计时，不是 GPU 时间查询。VRAM 字节是资源尺寸估算，网格预算包含预留和工作缓冲，不是驱动总显存使用量。
 
-每次最多保留 100,000 个帧间隔用于分位数；更高帧数采用均匀蓄水池抽样，`frameSamples` 始终记录全部帧数，`quantileSamples` 为实际分位数样本数。纹理归因最多 512 个键，溢出淘汰旧键，但总计数保留。
+普通诊断继续保留旧的 100,000 个间隔蓄水池分位数字段；alpha.3 基准模式增加完整采样（最多 2,000,000 帧），以全样本计算 Low 和分位数，溢出／时长不足会作废。测试驱动的 CSV 保存真实 Minecraft 显示循环纳秒间隔。详细玩家／纹理诊断默认关闭，启用时归因最多 512 个键；轻量阶段计数和故障原因始终保留。
 
 自动汇总要求九个 `(人数, 重复)` 组合完整、GPU 实际提交过、没有记录功能故障、正常优化模式没有回读、纹理模式预热后不继续生成、顶点提交时间至少下降 50%，GPU P95 相对纹理模式不恶化超过 5%。输出只是这部分数值门槛；仍需核查回退计数和画面，确认没有通过减少内容获得性能。
 
