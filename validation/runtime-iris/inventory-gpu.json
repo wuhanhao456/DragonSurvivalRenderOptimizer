@@ -1,0 +1,73 @@
+{
+  "totals": {
+    "ARMOR_GENERATE_NANOS": 396000,
+    "COPY": 3,
+    "CPU_VERTEX_SUBMIT_NANOS": 141935800,
+    "FRAME_CPU_NANOS": 1101386200,
+    "GENERATED": 2,
+    "GPU_BONE_SUBMIT_NANOS": 13647000,
+    "GPU_DRAW_CPU_NANOS": 67988400,
+    "GPU_PASS": 687,
+    "GPU_POSE_CAPTURE_NANOS": 86977700,
+    "GPU_VERTEX_COUNT": 6232464,
+    "GUI_CPU_PASS": 687,
+    "HIT": 1831,
+    "RELEASE": 3,
+    "REQUEST": 4,
+    "SKIN_GENERATE_NANOS": 925900
+  },
+  "peaks": {
+    "GPU_RESOURCE_BYTES": 2082816,
+    "TEXTURE_RESOURCE_BYTES": 5242880
+  },
+  "fallbacks": {
+    "benchmark cancelled": "validation command test"
+  },
+  "attribution": {
+    "dragonsurvival:dynamic_normal_d58937b6-e8cc-32a1-beeb-eac48149c137_cave_dragon_newborn_bro_405b6d1f8ef6faf7ce720e7c3e67b0a701bd1acf6994171280206048c141d04c": {
+      "RELEASE": 1
+    },
+    "dragonsurvival:dynamic_glow_d58937b6-e8cc-32a1-beeb-eac48149c137_cave_dragon_newborn_bro_405b6d1f8ef6faf7ce720e7c3e67b0a701bd1acf6994171280206048c141d04c": {
+      "RELEASE": 1
+    },
+    "dragonsurvival:armor_a2e74581ae42d116124c5df2412278505fd1131913ed08f03f56db1ec618a069": {
+      "RELEASE": 1
+    },
+    "d58937b6-e8cc-32a1-beeb-eac48149c137/dragonsurvival:newborn/dragonsurvival:dynamic_normal_d58937b6-e8cc-32a1-beeb-eac48149c137_cave_dragon_newborn_bro_405b6d1f8ef6faf7ce720e7c3e67b0a701bd1acf6994171280206048c141d04c": {
+      "COPY": 1,
+      "GENERATED": 1,
+      "HIT": 1373,
+      "REQUEST": 2,
+      "SKIN_GENERATE_NANOS": 925900
+    },
+    "d58937b6-e8cc-32a1-beeb-eac48149c137/dragonsurvival:newborn/dragonsurvival:dynamic_glow_d58937b6-e8cc-32a1-beeb-eac48149c137_cave_dragon_newborn_bro_405b6d1f8ef6faf7ce720e7c3e67b0a701bd1acf6994171280206048c141d04c": {
+      "COPY": 1
+    },
+    "d58937b6-e8cc-32a1-beeb-eac48149c137/armor/dragonsurvival:armor_a2e74581ae42d116124c5df2412278505fd1131913ed08f03f56db1ec618a069": {
+      "ARMOR_GENERATE_NANOS": 396000,
+      "COPY": 1,
+      "GENERATED": 1,
+      "HIT": 458
+    },
+    "entity": {
+      "GPU_PASS": 458
+    },
+    "glow/entity": {
+      "GPU_PASS": 229
+    },
+    "gui": {
+      "GUI_CPU_PASS": 687
+    },
+    "dirty/dragonsurvival:newborn": {
+      "REQUEST": 2
+    }
+  },
+  "dirtyTraces": [],
+  "frameSamples": 229,
+  "quantileSamples": 229,
+  "frameTimeMs": {
+    "p50": 8.3663,
+    "p99": 14.8998,
+    "p95": 9.6157
+  }
+}

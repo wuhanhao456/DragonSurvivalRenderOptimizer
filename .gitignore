@@ -26,3 +26,5 @@ dist/
 tools/__pycache__/
 validation/last-launch.json
 validation/runtime-iris/*.png
+validation/default-gpu/*.png
+validation/multi-dragon-*/*.png

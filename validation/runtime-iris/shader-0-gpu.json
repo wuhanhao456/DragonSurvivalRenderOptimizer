@@ -1,18 +1,13 @@
 {
   "totals": {
-    "ARMOR_GENERATE_NANOS": 247400,
-    "COPY": 3,
-    "FRAME_CPU_NANOS": 1828304284,
-    "GENERATED": 2,
-    "GPU_BONE_SUBMIT_NANOS": 58585115,
-    "GPU_DRAW_CPU_NANOS": 246146592,
-    "GPU_PASS": 4152,
-    "GPU_POSE_CAPTURE_NANOS": 371218526,
-    "GPU_VERTEX_COUNT": 37666944,
-    "HIT": 5535,
-    "RELEASE": 3,
-    "REQUEST": 12,
-    "SKIN_GENERATE_NANOS": 909100
+    "FRAME_CPU_NANOS": 2624632400,
+    "GPU_BONE_SUBMIT_NANOS": 69712000,
+    "GPU_DRAW_CPU_NANOS": 389985800,
+    "GPU_PASS": 4098,
+    "GPU_POSE_CAPTURE_NANOS": 440668300,
+    "GPU_VERTEX_COUNT": 37177056,
+    "HIT": 5464,
+    "REQUEST": 12
   },
   "peaks": {
     "GPU_RESOURCE_BYTES": 2736000,
@@ -22,53 +17,35 @@
     "benchmark cancelled": "validation command test"
   },
   "attribution": {
-    "dragonsurvival:dynamic_normal_d58937b6-e8cc-32a1-beeb-eac48149c137_cave_dragon_newborn_bro_405b6d1f8ef6faf7ce720e7c3e67b0a701bd1acf6994171280206048c141d04c": {
-      "RELEASE": 1
-    },
-    "dragonsurvival:armor_f16aeb9b21fbe5a84f4a27259488d7e36027d57d6513cd96b1f2184b60e6273e": {
-      "RELEASE": 1
-    },
-    "dragonsurvival:dynamic_glow_d58937b6-e8cc-32a1-beeb-eac48149c137_cave_dragon_newborn_bro_405b6d1f8ef6faf7ce720e7c3e67b0a701bd1acf6994171280206048c141d04c": {
-      "RELEASE": 1
-    },
     "d58937b6-e8cc-32a1-beeb-eac48149c137/dragonsurvival:newborn/dragonsurvival:dynamic_normal_d58937b6-e8cc-32a1-beeb-eac48149c137_cave_dragon_newborn_bro_405b6d1f8ef6faf7ce720e7c3e67b0a701bd1acf6994171280206048c141d04c": {
-      "COPY": 1,
-      "GENERATED": 1,
-      "HIT": 4151,
-      "REQUEST": 6,
-      "SKIN_GENERATE_NANOS": 909100
+      "HIT": 4098,
+      "REQUEST": 6
     },
-    "d58937b6-e8cc-32a1-beeb-eac48149c137/dragonsurvival:newborn/dragonsurvival:dynamic_glow_d58937b6-e8cc-32a1-beeb-eac48149c137_cave_dragon_newborn_bro_405b6d1f8ef6faf7ce720e7c3e67b0a701bd1acf6994171280206048c141d04c": {
-      "COPY": 1
-    },
-    "d58937b6-e8cc-32a1-beeb-eac48149c137/armor/dragonsurvival:armor_f16aeb9b21fbe5a84f4a27259488d7e36027d57d6513cd96b1f2184b60e6273e": {
-      "ARMOR_GENERATE_NANOS": 247400,
-      "COPY": 1,
-      "GENERATED": 1,
-      "HIT": 1384
+    "d58937b6-e8cc-32a1-beeb-eac48149c137/armor/dragonsurvival:armor_a2e74581ae42d116124c5df2412278505fd1131913ed08f03f56db1ec618a069": {
+      "HIT": 1366
     },
     "shadow": {
-      "GPU_PASS": 1384
+      "GPU_PASS": 1366
     },
     "glow/shadow": {
-      "GPU_PASS": 692
+      "GPU_PASS": 683
     },
     "entity": {
-      "GPU_PASS": 1384
+      "GPU_PASS": 1366
     },
     "glow/entity": {
-      "GPU_PASS": 692
+      "GPU_PASS": 683
     },
     "dirty/dragonsurvival:newborn": {
       "REQUEST": 6
     }
   },
   "dirtyTraces": [],
-  "frameSamples": 692,
-  "quantileSamples": 692,
+  "frameSamples": 683,
+  "quantileSamples": 683,
   "frameTimeMs": {
-    "p50": 8.3478,
-    "p99": 9.9618,
-    "p95": 9.288201
+    "p50": 8.3572,
+    "p99": 12.4447,
+    "p95": 9.5286
   }
 }

@@ -1,0 +1,54 @@
+{
+  "totals": {
+    "ARMOR_GENERATE_NANOS": 3050300,
+    "CPU_VERTEX_SUBMIT_NANOS": 197469300,
+    "FRAME_CPU_NANOS": 753329200,
+    "GENERATED": 3,
+    "READBACK": 5,
+    "RELEASE": 3,
+    "REQUEST": 4,
+    "SKIN_GENERATE_NANOS": 5573000
+  },
+  "peaks": {
+    "TEXTURE_RESOURCE_BYTES": 0
+  },
+  "fallbacks": {
+    "benchmark cancelled": "validation command test"
+  },
+  "attribution": {
+    "dragonsurvival:dynamic_normal_d58937b6-e8cc-32a1-beeb-eac48149c137_cave_dragon_newborn_bro_405b6d1f8ef6faf7ce720e7c3e67b0a701bd1acf6994171280206048c141d04c": {
+      "RELEASE": 1
+    },
+    "dragonsurvival:armor_f16aeb9b21fbe5a84f4a27259488d7e36027d57d6513cd96b1f2184b60e6273e": {
+      "RELEASE": 1
+    },
+    "dragonsurvival:dynamic_glow_d58937b6-e8cc-32a1-beeb-eac48149c137_cave_dragon_newborn_bro_405b6d1f8ef6faf7ce720e7c3e67b0a701bd1acf6994171280206048c141d04c": {
+      "RELEASE": 1
+    },
+    "d58937b6-e8cc-32a1-beeb-eac48149c137/armor/dragonsurvival:armor_b13502e0-ac47-3ce8-8d84-abd5954d0845": {
+      "ARMOR_GENERATE_NANOS": 3050300,
+      "GENERATED": 1,
+      "READBACK": 1
+    },
+    "dirty/dragonsurvival:newborn": {
+      "REQUEST": 2
+    },
+    "d58937b6-e8cc-32a1-beeb-eac48149c137/dragonsurvival:newborn/dragonsurvival:dynamic_normal_d58937b6-e8cc-32a1-beeb-eac48149c137_cave_dragon_newborn": {
+      "GENERATED": 2,
+      "READBACK": 2,
+      "REQUEST": 2,
+      "SKIN_GENERATE_NANOS": 5573000
+    },
+    "d58937b6-e8cc-32a1-beeb-eac48149c137/dragonsurvival:newborn/dragonsurvival:dynamic_glow_d58937b6-e8cc-32a1-beeb-eac48149c137_cave_dragon_newborn": {
+      "READBACK": 2
+    }
+  },
+  "dirtyTraces": [],
+  "frameSamples": 232,
+  "quantileSamples": 232,
+  "frameTimeMs": {
+    "p50": 8.3462,
+    "p99": 23.3801,
+    "p95": 9.3147
+  }
+}

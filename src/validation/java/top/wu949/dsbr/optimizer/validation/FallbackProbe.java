@@ -1,6 +1,7 @@
 package top.wu949.dsbr.optimizer.validation;
 
 import top.wu949.dsbr.optimizer.RenderOptimizer;
+import top.wu949.dsbr.optimizer.OptimizerConfig;
 import top.wu949.dsbr.optimizer.compat.OptimizerMixinPlugin;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screens.TitleScreen;
@@ -23,7 +24,8 @@ public final class FallbackProbe {
         try {
             RenderOptimizer.clear();
             Files.writeString(mc.gameDirectory.toPath().resolve("probe-result.json"), new com.google.gson.GsonBuilder().setPrettyPrinting().create().toJson(
-                    Map.of("pass", !OptimizerMixinPlugin.texturesCompatible && !OptimizerMixinPlugin.gpuCompatible,
+                    Map.of("pass", OptimizerConfig.MODE.get() == OptimizerConfig.Mode.GPU && !OptimizerMixinPlugin.texturesCompatible && !OptimizerMixinPlugin.gpuCompatible,
+                            "configuredMode", OptimizerConfig.MODE.get().name(),
                             "compatibility", OptimizerMixinPlugin.status, "scenario", "DS and Gecko absent; startup and cleanup remain usable")));
         } catch (Throwable e) { RenderOptimizer.LOGGER.error("Fallback probe failed", e); }
         mc.stop();

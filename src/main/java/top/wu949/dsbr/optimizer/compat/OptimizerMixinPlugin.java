@@ -30,7 +30,8 @@ public final class OptimizerMixinPlugin implements IMixinConfigPlugin {
         gpuCompatible = texturesCompatible && contract("software.bernie.geckolib.renderer.GeoRenderer", "renderCubesOfBone", "(Lcom/mojang/blaze3d/vertex/PoseStack;Lsoftware/bernie/geckolib/cache/object/GeoBone;Lcom/mojang/blaze3d/vertex/VertexConsumer;III)V");
         gpuCompatible &= contract("software.bernie.geckolib.renderer.GeoRenderer", "actuallyRender", "(Lcom/mojang/blaze3d/vertex/PoseStack;Lsoftware/bernie/geckolib/animatable/GeoAnimatable;Lsoftware/bernie/geckolib/cache/object/BakedGeoModel;Lnet/minecraft/client/renderer/RenderType;Lnet/minecraft/client/renderer/MultiBufferSource;Lcom/mojang/blaze3d/vertex/VertexConsumer;ZFIII)V")
                 && contract("net.minecraft.client.renderer.MultiBufferSource$BufferSource", "getBuffer", "(Lnet/minecraft/client/renderer/RenderType;)Lcom/mojang/blaze3d/vertex/VertexConsumer;")
-                && contract("net.minecraft.client.renderer.MultiBufferSource$BufferSource", "endBatch", "(Lnet/minecraft/client/renderer/RenderType;Lcom/mojang/blaze3d/vertex/BufferBuilder;)V");
+                && contract("net.minecraft.client.renderer.MultiBufferSource$BufferSource", "endBatch", "(Lnet/minecraft/client/renderer/RenderType;Lcom/mojang/blaze3d/vertex/BufferBuilder;)V")
+                && contract("net.minecraft.client.renderer.GameRenderer", "renderLevel", "(Lnet/minecraft/client/DeltaTracker;)V");
         // This jar is DSBR itself. Its legacy path cannot take over in GPU mode.
         if (versions.keySet().stream().anyMatch(id -> !id.equals("dsbr") && id.contains("bedrockrenderer"))) gpuCompatible = false;
         if (versions.containsKey("iris")) {
@@ -70,7 +71,7 @@ public final class OptimizerMixinPlugin implements IMixinConfigPlugin {
     public boolean shouldApplyMixin(String target, String mixin) {
         if (mixin.startsWith("top.wu949.dsbr.mixin.client.")) return legacyCompatible;
         if (mixin.endsWith("IrisBufferSourceMixin")) return gpuCompatible && irisCompatible;
-        if (mixin.endsWith("GeoRendererMixin") || mixin.endsWith("BufferSourceMixin") || mixin.endsWith("DragonGlowMixin")) return gpuCompatible;
+        if (mixin.endsWith("GeoRendererMixin") || mixin.endsWith("BufferSourceMixin") || mixin.endsWith("DragonGlowMixin") || mixin.endsWith("GameRendererScopeMixin")) return gpuCompatible;
         return texturesCompatible;
     }
     public String getRefMapperConfig() { return null; }

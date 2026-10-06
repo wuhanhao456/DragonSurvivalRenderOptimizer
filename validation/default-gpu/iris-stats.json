@@ -1,0 +1,79 @@
+{
+  "totals": {
+    "ARMOR_GENERATE_NANOS": 3388400,
+    "COPY": 5,
+    "FRAME_CPU_NANOS": 4942016300,
+    "GENERATED": 3,
+    "GPU_BONE_SUBMIT_NANOS": 82842600,
+    "GPU_DRAW_CPU_NANOS": 468294800,
+    "GPU_PASS": 4404,
+    "GPU_POSE_CAPTURE_NANOS": 542123600,
+    "GPU_VERTEX_COUNT": 39953088,
+    "HIT": 6604,
+    "REQUEST": 164,
+    "SKIN_GENERATE_NANOS": 24486000,
+    "STATE_SYNC": 2
+  },
+  "peaks": {
+    "GPU_RESOURCE_BYTES": 2206944,
+    "TEXTURE_RESOURCE_BYTES": 7340032
+  },
+  "fallbacks": {},
+  "attribution": {
+    "SkinData@1720687913/deserializeNBT": {
+      "STATE_SYNC": 1
+    },
+    "dirty/dragonsurvival:adult": {
+      "REQUEST": 2
+    },
+    "SkinData@1387111877/deserializeNBT": {
+      "STATE_SYNC": 1
+    },
+    "d58937b6-e8cc-32a1-beeb-eac48149c137/dragonsurvival:young/dragonsurvival:dynamic_normal_d58937b6-e8cc-32a1-beeb-eac48149c137_cave_dragon_young_bro_5e28e5d3629cdef87e4331a9bc9aa2fc41d3ed1f9e4a907225a1f13cfeadb9f6": {
+      "COPY": 1,
+      "GENERATED": 1,
+      "HIT": 3,
+      "REQUEST": 1,
+      "SKIN_GENERATE_NANOS": 14446500
+    },
+    "d58937b6-e8cc-32a1-beeb-eac48149c137/dragonsurvival:young/dragonsurvival:dynamic_glow_d58937b6-e8cc-32a1-beeb-eac48149c137_cave_dragon_young_bro_5e28e5d3629cdef87e4331a9bc9aa2fc41d3ed1f9e4a907225a1f13cfeadb9f6": {
+      "COPY": 1
+    },
+    "d58937b6-e8cc-32a1-beeb-eac48149c137/armor/dragonsurvival:armor_a2e74581ae42d116124c5df2412278505fd1131913ed08f03f56db1ec618a069": {
+      "ARMOR_GENERATE_NANOS": 3388400,
+      "COPY": 1,
+      "GENERATED": 1,
+      "HIT": 2202
+    },
+    "shadow": {
+      "GPU_PASS": 2202
+    },
+    "entity": {
+      "GPU_PASS": 2202
+    },
+    "dirty/dragonsurvival:young": {
+      "REQUEST": 2
+    },
+    "d58937b6-e8cc-32a1-beeb-eac48149c137/dragonsurvival:newborn/dragonsurvival:dynamic_normal_d58937b6-e8cc-32a1-beeb-eac48149c137_cave_dragon_newborn_bro_c31fa273017200ff0dce79b3b6df9dd622359a0677a1927976f1ff4dbcc462d0": {
+      "COPY": 1,
+      "GENERATED": 1,
+      "HIT": 4399,
+      "REQUEST": 78,
+      "SKIN_GENERATE_NANOS": 10039500
+    },
+    "d58937b6-e8cc-32a1-beeb-eac48149c137/dragonsurvival:newborn/dragonsurvival:dynamic_glow_d58937b6-e8cc-32a1-beeb-eac48149c137_cave_dragon_newborn_bro_c31fa273017200ff0dce79b3b6df9dd622359a0677a1927976f1ff4dbcc462d0": {
+      "COPY": 1
+    },
+    "dirty/dragonsurvival:newborn": {
+      "REQUEST": 81
+    }
+  },
+  "dirtyTraces": [],
+  "frameSamples": 1103,
+  "quantileSamples": 1103,
+  "frameTimeMs": {
+    "p50": 8.3456,
+    "p99": 15.8849,
+    "p95": 10.3754
+  }
+}

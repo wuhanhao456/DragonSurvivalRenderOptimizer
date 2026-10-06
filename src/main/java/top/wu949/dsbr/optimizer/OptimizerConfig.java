@@ -10,7 +10,7 @@ public final class OptimizerConfig {
     public static final ModConfigSpec.BooleanValue DIRTY_TRACES;
     static {
         var b = new ModConfigSpec.Builder();
-        MODE = b.comment("GPU is experimental; unsupported paths use the original renderer.").defineEnum("mode", Mode.TEXTURES);
+        MODE = b.comment("GPU is enabled by default; unsupported capabilities and paths use the original renderer.").defineEnum("mode", Mode.GPU);
         TEXTURE_MIB = b.defineInRange("textureBudgetMiB", 64, 8, 1024);
         MESH_MIB = b.defineInRange("meshBudgetMiB", 128, 8, 2048);
         RETENTION_SECONDS = b.defineInRange("unusedTextureSeconds", 30, 1, 600);

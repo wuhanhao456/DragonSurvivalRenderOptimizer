@@ -1,0 +1,47 @@
+{
+  "totals": {
+    "ARMOR_GENERATE_NANOS": 231900,
+    "COPY": 3,
+    "CPU_VERTEX_SUBMIT_NANOS": 209198500,
+    "FRAME_CPU_NANOS": 913387500,
+    "GENERATED": 2,
+    "HIT": 1847,
+    "REQUEST": 4,
+    "SKIN_GENERATE_NANOS": 825700
+  },
+  "peaks": {
+    "TEXTURE_RESOURCE_BYTES": 5242880
+  },
+  "fallbacks": {
+    "benchmark cancelled": "validation command test"
+  },
+  "attribution": {
+    "d58937b6-e8cc-32a1-beeb-eac48149c137/dragonsurvival:newborn/dragonsurvival:dynamic_normal_d58937b6-e8cc-32a1-beeb-eac48149c137_cave_dragon_newborn_bro_405b6d1f8ef6faf7ce720e7c3e67b0a701bd1acf6994171280206048c141d04c": {
+      "COPY": 1,
+      "GENERATED": 1,
+      "HIT": 1385,
+      "REQUEST": 2,
+      "SKIN_GENERATE_NANOS": 825700
+    },
+    "d58937b6-e8cc-32a1-beeb-eac48149c137/dragonsurvival:newborn/dragonsurvival:dynamic_glow_d58937b6-e8cc-32a1-beeb-eac48149c137_cave_dragon_newborn_bro_405b6d1f8ef6faf7ce720e7c3e67b0a701bd1acf6994171280206048c141d04c": {
+      "COPY": 1
+    },
+    "d58937b6-e8cc-32a1-beeb-eac48149c137/armor/dragonsurvival:armor_a2e74581ae42d116124c5df2412278505fd1131913ed08f03f56db1ec618a069": {
+      "ARMOR_GENERATE_NANOS": 231900,
+      "COPY": 1,
+      "GENERATED": 1,
+      "HIT": 462
+    },
+    "dirty/dragonsurvival:newborn": {
+      "REQUEST": 2
+    }
+  },
+  "dirtyTraces": [],
+  "frameSamples": 231,
+  "quantileSamples": 231,
+  "frameTimeMs": {
+    "p50": 8.3495,
+    "p99": 9.8261,
+    "p95": 9.205
+  }
+}

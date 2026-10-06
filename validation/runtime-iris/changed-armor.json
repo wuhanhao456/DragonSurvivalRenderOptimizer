@@ -1,11 +1,11 @@
 {
   "totals": {
-    "ARMOR_GENERATE_NANOS": 1185100,
+    "ARMOR_GENERATE_NANOS": 1213500,
     "COPY": 1,
-    "CPU_VERTEX_SUBMIT_NANOS": 77249500,
-    "FRAME_CPU_NANOS": 363854800,
+    "CPU_VERTEX_SUBMIT_NANOS": 86438900,
+    "FRAME_CPU_NANOS": 439486200,
     "GENERATED": 1,
-    "HIT": 712,
+    "HIT": 708,
     "REQUEST": 4
   },
   "peaks": {
@@ -14,25 +14,25 @@
   "fallbacks": {},
   "attribution": {
     "d58937b6-e8cc-32a1-beeb-eac48149c137/dragonsurvival:newborn/dragonsurvival:dynamic_normal_d58937b6-e8cc-32a1-beeb-eac48149c137_cave_dragon_newborn_bro_bc4cef6e25f9aa2d47a4da1f55ebc21584f159a04e3dca6ef8e3546f3abf85e1": {
-      "HIT": 534,
+      "HIT": 531,
       "REQUEST": 2
     },
     "d58937b6-e8cc-32a1-beeb-eac48149c137/armor/dragonsurvival:armor_f16aeb9b21fbe5a84f4a27259488d7e36027d57d6513cd96b1f2184b60e6273e": {
-      "ARMOR_GENERATE_NANOS": 1185100,
+      "ARMOR_GENERATE_NANOS": 1213500,
       "COPY": 1,
       "GENERATED": 1,
-      "HIT": 178
+      "HIT": 177
     },
     "dirty/dragonsurvival:newborn": {
       "REQUEST": 2
     }
   },
   "dirtyTraces": [],
-  "frameSamples": 178,
-  "quantileSamples": 178,
+  "frameSamples": 177,
+  "quantileSamples": 177,
   "frameTimeMs": {
-    "p50": 8.3471,
-    "p99": 9.8171,
-    "p95": 9.2705
+    "p50": 8.3458,
+    "p99": 11.4268,
+    "p95": 9.5268
   }
 }

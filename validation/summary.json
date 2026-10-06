@@ -1,7 +1,7 @@
 {
   "date": "2026-10-06",
-  "version": "0.2.0-alpha.1",
-  "testedJarSha256": "3477641f5476dcdf3d6804865df972f4f2ab6b34497085663969308c8fdd89bd",
+  "version": "0.2.0-alpha.2",
+  "testedJarSha256": "884c368f0dc25daa7261a5ffbeff94514920e2a34ce67e8fe7a56c7f7e782671",
   "hardware": {
     "cpu": "Intel Core i7-13700K",
     "gpu": "NVIDIA RTX 5070 Ti",
@@ -11,19 +11,19 @@
     {
       "class": "top.wu949.dsbr.optimizer.CachePolicyTest",
       "name": "PoseSnapshotsDoNotChangeWhenNextPlayerMutatesSharedStack()",
-      "seconds": 0.523,
+      "seconds": 0.472,
       "pass": true
     },
     {
       "class": "top.wu949.dsbr.optimizer.CachePolicyTest",
       "name": "ContentKeysSurviveEquivalentSyncAndChangeForAppearance()",
-      "seconds": 0.023,
+      "seconds": 0.018,
       "pass": true
     },
     {
       "class": "top.wu949.dsbr.optimizer.CachePolicyTest",
       "name": "lruRespectsPendingBatchLeasesAndReleasesExactlyOnce()",
-      "seconds": 0.002,
+      "seconds": 0.001,
       "pass": true
     },
     {
@@ -35,7 +35,7 @@
     {
       "class": "top.wu949.dsbr.optimizer.ContractTest",
       "name": "pinnedDsJarHasAllTextureInjectionContractsIncludingFramebufferOwner()",
-      "seconds": 0.021,
+      "seconds": 0.02,
       "pass": true
     },
     {
@@ -45,9 +45,21 @@
       "pass": true
     },
     {
+      "class": "top.wu949.dsbr.optimizer.DeferredBatchesTest",
+      "name": "equivalentIrisWrappersFlushEveryPoseInSubmissionOrder()",
+      "seconds": 0.004,
+      "pass": true
+    },
+    {
+      "class": "top.wu949.dsbr.optimizer.DeferredBatchesTest",
+      "name": "equalBufferOwnersKeepSeparateShaderStages()",
+      "seconds": 0.0,
+      "pass": true
+    },
+    {
       "class": "top.wu949.dsbr.optimizer.DiagnosticsTest",
       "name": "boundedQuantilesKeepTotalFrameDenominator()",
-      "seconds": 0.01,
+      "seconds": 0.008,
       "pass": true
     },
     {
@@ -70,11 +82,12 @@
     "computeVanillaAndIris54ByteOutput": "pass",
     "glError": 0
   },
-  "compatibility": "versions=[dragonsurvival=2.0.71, dsbr=0.2.0-alpha.1, geckolib=4.9.3, iris=1.8.14-beta.1+mc1.21.1, sodium=0.8.13+mc1.21.1]; texture=true; GPU=true; Iris=true; legacy=false",
+  "compatibility": "versions=[dragonsurvival=2.0.71, dsbr=0.2.0-alpha.2, geckolib=4.9.3, iris=1.8.14-beta.1+mc1.21.1, sodium=0.8.13+mc1.21.1]; texture=true; GPU=true; Iris=true; legacy=false",
   "optionalDependencyFallback": {
+    "scenario": "DS and Gecko absent; startup and cleanup remain usable",
+    "configuredMode": "GPU",
     "pass": true,
-    "compatibility": "versions=[dsbr=0.2.0-alpha.1]; texture=false; GPU=false; Iris=false; legacy=false",
-    "scenario": "DS and Gecko absent; startup and cleanup remain usable"
+    "compatibility": "versions=[dsbr=0.2.0-alpha.2]; texture=false; GPU=false; Iris=false; legacy=false"
   },
   "upgradeMigration": {
     "modId": "dsbr",
@@ -93,9 +106,46 @@
     "textureBytes": 0,
     "meshBytes": 0
   },
+  "inventoryRegression": {
+    "vanilla": {
+      "pass": true,
+      "screen": "by.dragonsurvivalteam.dragonsurvival.client.gui.screens.DragonInventoryScreen",
+      "guiCpuPasses": 0,
+      "worldGpuPasses": 0
+    },
+    "textures": {
+      "pass": true,
+      "screen": "by.dragonsurvivalteam.dragonsurvival.client.gui.screens.DragonInventoryScreen",
+      "guiCpuPasses": 0,
+      "worldGpuPasses": 0
+    },
+    "gpu": {
+      "pass": true,
+      "screen": "by.dragonsurvivalteam.dragonsurvival.client.gui.screens.DragonInventoryScreen",
+      "guiCpuPasses": 687,
+      "worldGpuPasses": 687
+    }
+  },
   "shaderSmokeTests": [
     {
       "name": "BSL_v10.1.1.zip",
+      "pass": true,
+      "gpuPasses": 4098,
+      "phasePasses": {
+        "shadow": 1366,
+        "glow/shadow": 683,
+        "entity": 1366,
+        "glow/entity": 683
+      },
+      "normalTextureReadbacks": 0,
+      "cpuFallbacks": 0,
+      "resourcePeaks": {
+        "GPU_RESOURCE_BYTES": 2736000,
+        "TEXTURE_RESOURCE_BYTES": 5242880
+      }
+    },
+    {
+      "name": "Bliss_v2.1.2_(Chocapic13_Shaders_edit).zip",
       "pass": true,
       "gpuPasses": 4152,
       "phasePasses": {
@@ -112,31 +162,14 @@
       }
     },
     {
-      "name": "Bliss_v2.1.2_(Chocapic13_Shaders_edit).zip",
-      "pass": true,
-      "gpuPasses": 4158,
-      "phasePasses": {
-        "shadow": 1386,
-        "glow/shadow": 693,
-        "entity": 1386,
-        "glow/entity": 693
-      },
-      "normalTextureReadbacks": 0,
-      "cpuFallbacks": 0,
-      "resourcePeaks": {
-        "GPU_RESOURCE_BYTES": 2736000,
-        "TEXTURE_RESOURCE_BYTES": 5242880
-      }
-    },
-    {
       "name": "ComplementaryReimagined_r5.9.zip",
       "pass": true,
-      "gpuPasses": 4158,
+      "gpuPasses": 4146,
       "phasePasses": {
-        "shadow": 1386,
-        "glow/shadow": 693,
-        "entity": 1386,
-        "glow/entity": 693
+        "shadow": 1382,
+        "glow/shadow": 691,
+        "entity": 1382,
+        "glow/entity": 691
       },
       "normalTextureReadbacks": 0,
       "cpuFallbacks": 0,
@@ -148,12 +181,12 @@
     {
       "name": "ComplementaryUnbound_r5.9.zip",
       "pass": true,
-      "gpuPasses": 4158,
+      "gpuPasses": 4152,
       "phasePasses": {
-        "shadow": 1386,
-        "glow/shadow": 693,
-        "entity": 1386,
-        "glow/entity": 693
+        "shadow": 1384,
+        "glow/shadow": 692,
+        "entity": 1384,
+        "glow/entity": 692
       },
       "normalTextureReadbacks": 0,
       "cpuFallbacks": 0,
@@ -164,23 +197,6 @@
     },
     {
       "name": "MakeUp-UltraFast-9.5e.zip",
-      "pass": true,
-      "gpuPasses": 3834,
-      "phasePasses": {
-        "shadow": 1278,
-        "glow/shadow": 639,
-        "entity": 1278,
-        "glow/entity": 639
-      },
-      "normalTextureReadbacks": 0,
-      "cpuFallbacks": 0,
-      "resourcePeaks": {
-        "GPU_RESOURCE_BYTES": 2736000,
-        "TEXTURE_RESOURCE_BYTES": 5242880
-      }
-    },
-    {
-      "name": "Sildur's Vibrant Shaders v2.01 Extreme.zip",
       "pass": true,
       "gpuPasses": 4194,
       "phasePasses": {
@@ -197,14 +213,31 @@
       }
     },
     {
+      "name": "Sildur's Vibrant Shaders v2.01 Extreme.zip",
+      "pass": true,
+      "gpuPasses": 4182,
+      "phasePasses": {
+        "shadow": 1394,
+        "glow/shadow": 697,
+        "entity": 1394,
+        "glow/entity": 697
+      },
+      "normalTextureReadbacks": 0,
+      "cpuFallbacks": 0,
+      "resourcePeaks": {
+        "GPU_RESOURCE_BYTES": 2736000,
+        "TEXTURE_RESOURCE_BYTES": 5242880
+      }
+    },
+    {
       "name": "Solas Shader V3.7b.zip",
       "pass": true,
-      "gpuPasses": 4176,
+      "gpuPasses": 4164,
       "phasePasses": {
-        "shadow": 1392,
-        "glow/shadow": 696,
-        "entity": 1392,
-        "glow/entity": 696
+        "shadow": 1388,
+        "glow/shadow": 694,
+        "entity": 1388,
+        "glow/entity": 694
       },
       "normalTextureReadbacks": 0,
       "cpuFallbacks": 0,
@@ -216,12 +249,12 @@
     {
       "name": "photon_v1.3b.zip",
       "pass": true,
-      "gpuPasses": 4152,
+      "gpuPasses": 4146,
       "phasePasses": {
-        "shadow": 1384,
-        "glow/shadow": 692,
-        "entity": 1384,
-        "glow/entity": 692
+        "shadow": 1382,
+        "glow/shadow": 691,
+        "entity": 1382,
+        "glow/entity": 691
       },
       "normalTextureReadbacks": 0,
       "cpuFallbacks": 0,

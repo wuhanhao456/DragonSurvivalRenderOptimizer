@@ -1,0 +1,58 @@
+{
+  "totals": {
+    "ARMOR_GENERATE_NANOS": 2747500,
+    "CPU_VERTEX_SUBMIT_NANOS": 151755500,
+    "FRAME_CPU_NANOS": 685032800,
+    "GENERATED": 4,
+    "READBACK": 7,
+    "RELEASE": 5,
+    "REQUEST": 4,
+    "SKIN_GENERATE_NANOS": 7327400
+  },
+  "peaks": {
+    "TEXTURE_RESOURCE_BYTES": 0
+  },
+  "fallbacks": {},
+  "attribution": {
+    "d58937b6-e8cc-32a1-beeb-eac48149c137/armor/dragonsurvival:armor_b13502e0-ac47-3ce8-8d84-abd5954d0845": {
+      "ARMOR_GENERATE_NANOS": 2747500,
+      "GENERATED": 1,
+      "READBACK": 1
+    },
+    "dragonsurvival:dynamic_normal_d58937b6-e8cc-32a1-beeb-eac48149c137_cave_dragon_young_bro_5e28e5d3629cdef87e4331a9bc9aa2fc41d3ed1f9e4a907225a1f13cfeadb9f6": {
+      "RELEASE": 1
+    },
+    "dragonsurvival:dynamic_glow_d58937b6-e8cc-32a1-beeb-eac48149c137_cave_dragon_young_bro_5e28e5d3629cdef87e4331a9bc9aa2fc41d3ed1f9e4a907225a1f13cfeadb9f6": {
+      "RELEASE": 1
+    },
+    "dragonsurvival:dynamic_normal_d58937b6-e8cc-32a1-beeb-eac48149c137_cave_dragon_newborn_bro_c31fa273017200ff0dce79b3b6df9dd622359a0677a1927976f1ff4dbcc462d0": {
+      "RELEASE": 1
+    },
+    "dragonsurvival:dynamic_glow_d58937b6-e8cc-32a1-beeb-eac48149c137_cave_dragon_newborn_bro_c31fa273017200ff0dce79b3b6df9dd622359a0677a1927976f1ff4dbcc462d0": {
+      "RELEASE": 1
+    },
+    "dragonsurvival:armor_a2e74581ae42d116124c5df2412278505fd1131913ed08f03f56db1ec618a069": {
+      "RELEASE": 1
+    },
+    "d58937b6-e8cc-32a1-beeb-eac48149c137/dragonsurvival:newborn/dragonsurvival:dynamic_normal_d58937b6-e8cc-32a1-beeb-eac48149c137_cave_dragon_newborn": {
+      "GENERATED": 3,
+      "READBACK": 3,
+      "REQUEST": 2,
+      "SKIN_GENERATE_NANOS": 7327400
+    },
+    "d58937b6-e8cc-32a1-beeb-eac48149c137/dragonsurvival:newborn/dragonsurvival:dynamic_glow_d58937b6-e8cc-32a1-beeb-eac48149c137_cave_dragon_newborn": {
+      "READBACK": 3
+    },
+    "dirty/dragonsurvival:newborn": {
+      "REQUEST": 2
+    }
+  },
+  "dirtyTraces": [],
+  "frameSamples": 234,
+  "quantileSamples": 234,
+  "frameTimeMs": {
+    "p95": 12.6368,
+    "p50": 8.3578,
+    "p99": 15.2971
+  }
+}

@@ -40,6 +40,8 @@ parser.add_argument('--java', type=Path, default=Path('C:/Program Files/Java/jdk
 parser.add_argument('--iris', action='store_true')
 parser.add_argument('--shaderpacks', action='store_true')
 parser.add_argument('--compat-only', action='store_true')
+parser.add_argument('--default-mode-only', action='store_true', help='Check fresh-config GPU rendering without issuing mode commands')
+parser.add_argument('--multi-dragon-benchmark', action='store_true', help='Render-only 1/4/12 player short comparison')
 parser.add_argument('--old-config', action='store_true', help='Seed a 0.1.x dsbr-client.toml with saved Bedrock settings')
 parser.add_argument('--force-legacy', action='store_true', help='Assert unsupported DS ignores even an explicit legacy opt-in')
 args = parser.parse_args()
@@ -54,11 +56,16 @@ if args.old_config:
 if args.shaderpacks:
     (root / 'shaderpacks').mkdir()
     for pack in (args.pack / 'shaderpacks').glob('*.zip'): shutil.copyfile(pack, root / 'shaderpacks' / pack.name)
+    if args.default_mode_only or args.multi_dragon_benchmark:
+        startup_pack = 'ComplementaryReimagined_r5.9.zip'
+        if not (root / 'shaderpacks' / startup_pack).is_file(): raise ValueError('Default-mode probe requires ' + startup_pack)
+        (root / 'config/iris.properties').write_text('shadersEnabled=true\nshaderPack=' + startup_pack + '\n', encoding='utf-8')
 for pattern in ([] if args.compat_only else ['*v2.0.71*', '*4.9.3*'] + (['*iris-neoforge*', '*sodium-neoforge*'] if args.iris else [])):
     files = list((args.pack / 'mods').glob(pattern))
     if len(files) != 1: raise ValueError('Ambiguous mod: ' + pattern)
     shutil.copyfile(files[0], root / 'mods' / files[0].name)
-shutil.copyfile(next((args.build / 'libs').glob('*alpha.1.jar')), root / 'mods/optimizer.jar')
+version = next(x.split('=', 1)[1] for x in (project / 'gradle.properties').read_text(encoding='utf-8').splitlines() if x.startswith('mod_version='))
+shutil.copyfile(args.build / 'libs' / ('dsbr-' + version + '.jar'), root / 'mods/optimizer.jar')
 shutil.copyfile(args.build / 'validation' / ('dsbr-render-fallback-validation.jar' if args.compat_only else 'dsbr-render-validation.jar'), root / 'mods/validation.jar')
 shutil.copyfile(args.game_jar, root / args.game_jar.name)
 spec = json.loads(args.manifest.read_text(encoding='utf-8'))
@@ -91,7 +98,7 @@ def expand(items):
 jvm = expand(spec['arguments']['jvm'])
 for i, value in enumerate(jvm[:-1]):
     if value in ('-p', '--module-path', '-cp', '-classpath', '--class-path'): jvm[i+1] = os.pathsep.join(map(str, unique_paths(jvm[i+1].split(os.pathsep))))
-argv = ['-Xms1G', '-Xmx4G', '-Dbeloongrender.probe=' + str(not args.compat_only).lower(), '-Dbeloongrender.compatProbe=' + str(args.compat_only).lower(), '-Dbeloongrender.shaders=' + str(args.shaderpacks).lower(), '-Dmixin.debug.verbose=true', *jvm, spec['mainClass'], *expand(spec['arguments']['game']), '--width', '1280', '--height', '720']
+argv = ['-Xms1G', '-Xmx4G', '-Dbeloongrender.probe=' + str(not args.compat_only and not args.multi_dragon_benchmark).lower(), '-Dbeloongrender.multiBenchmark=' + str(args.multi_dragon_benchmark).lower(), '-Dbeloongrender.compatProbe=' + str(args.compat_only).lower(), '-Dbeloongrender.defaultModeOnly=' + str(args.default_mode_only).lower(), '-Dbeloongrender.shaders=' + str(args.shaderpacks).lower(), '-Dmixin.debug.verbose=true', *jvm, spec['mainClass'], *expand(spec['arguments']['game']), '--width', '1280', '--height', '720']
 argfile = root / 'launch-args.txt'
 argfile.write_text('\n'.join('"' + arg.replace('\\', '\\\\').replace('"', '\\"') + '"' for arg in argv), encoding='utf-8')
 with (root / 'logs/console.log').open('wb') as stream:

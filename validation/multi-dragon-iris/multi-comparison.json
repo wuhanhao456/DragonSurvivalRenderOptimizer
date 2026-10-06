@@ -1,0 +1,1508 @@
+[
+  {
+    "mode": "VANILLA",
+    "dragonPlayers": 1,
+    "repetition": 1,
+    "warmupSeconds": 5,
+    "samplingSeconds": 15.0022847,
+    "width": 1280,
+    "height": 720,
+    "fpsLimit": 260,
+    "renderDistance": 6,
+    "camera": "(0.5, -58.28999996185303, 7.25)",
+    "textureBytes": 0,
+    "meshBytes": 0,
+    "stats": {
+      "totals": {
+        "CPU_VERTEX_SUBMIT_NANOS": 5120248900,
+        "FRAME_CPU_NANOS": 10470174400
+      },
+      "peaks": {
+        "TEXTURE_RESOURCE_BYTES": 0
+      },
+      "fallbacks": {},
+      "attribution": {},
+      "dirtyTraces": [],
+      "frameSamples": 4432,
+      "quantileSamples": 4432,
+      "frameTimeMs": {
+        "p99": 4.79,
+        "p50": 3.2809,
+        "p95": 4.0478
+      }
+    },
+    "actorScales": [
+      0.95
+    ],
+    "actorGrowth": [
+      40.0
+    ],
+    "actorStages": [
+      "dragonsurvival:adult"
+    ]
+  },
+  {
+    "mode": "TEXTURES",
+    "dragonPlayers": 1,
+    "repetition": 1,
+    "warmupSeconds": 5,
+    "samplingSeconds": 15.0050414,
+    "width": 1280,
+    "height": 720,
+    "fpsLimit": 260,
+    "renderDistance": 6,
+    "camera": "(0.5, -58.28999996185303, 7.25)",
+    "textureBytes": 5242880,
+    "meshBytes": 0,
+    "stats": {
+      "totals": {
+        "CPU_VERTEX_SUBMIT_NANOS": 4637323000,
+        "FRAME_CPU_NANOS": 10887267300,
+        "HIT": 24102
+      },
+      "peaks": {
+        "TEXTURE_RESOURCE_BYTES": 5242880
+      },
+      "fallbacks": {},
+      "attribution": {
+        "d58937b6-e8cc-32a1-beeb-eac48149c137/dragonsurvival:adult/dragonsurvival:dynamic_normal_d58937b6-e8cc-32a1-beeb-eac48149c137_cave_dragon_adult_bro_adda4cd3876d634ed7e3e4b89ace0b235a7340ba5640282627d790275601dbcc": {
+          "HIT": 16068
+        },
+        "d58937b6-e8cc-32a1-beeb-eac48149c137/armor/dragonsurvival:armor_a2e74581ae42d116124c5df2412278505fd1131913ed08f03f56db1ec618a069": {
+          "HIT": 8034
+        }
+      },
+      "dirtyTraces": [],
+      "frameSamples": 4017,
+      "quantileSamples": 4017,
+      "frameTimeMs": {
+        "p99": 5.867,
+        "p50": 3.6204,
+        "p95": 4.434
+      }
+    },
+    "actorScales": [
+      0.95
+    ],
+    "actorGrowth": [
+      40.0
+    ],
+    "actorStages": [
+      "dragonsurvival:adult"
+    ]
+  },
+  {
+    "mode": "GPU",
+    "dragonPlayers": 1,
+    "repetition": 1,
+    "warmupSeconds": 5,
+    "samplingSeconds": 15.0060885,
+    "width": 1280,
+    "height": 720,
+    "fpsLimit": 260,
+    "renderDistance": 6,
+    "camera": "(0.5, -58.28999996185303, 7.25)",
+    "textureBytes": 5242880,
+    "meshBytes": 1148832,
+    "stats": {
+      "totals": {
+        "FRAME_CPU_NANOS": 9114988400,
+        "GPU_BONE_SUBMIT_NANOS": 327276400,
+        "GPU_DRAW_CPU_NANOS": 1551115800,
+        "GPU_PASS": 24304,
+        "GPU_POSE_CAPTURE_NANOS": 1908975200,
+        "GPU_VERTEX_COUNT": 220485888,
+        "HIT": 36456
+      },
+      "peaks": {
+        "GPU_RESOURCE_BYTES": 2206944,
+        "TEXTURE_RESOURCE_BYTES": 5242880
+      },
+      "fallbacks": {},
+      "attribution": {
+        "d58937b6-e8cc-32a1-beeb-eac48149c137/dragonsurvival:adult/dragonsurvival:dynamic_normal_d58937b6-e8cc-32a1-beeb-eac48149c137_cave_dragon_adult_bro_adda4cd3876d634ed7e3e4b89ace0b235a7340ba5640282627d790275601dbcc": {
+          "HIT": 24304
+        },
+        "d58937b6-e8cc-32a1-beeb-eac48149c137/armor/dragonsurvival:armor_a2e74581ae42d116124c5df2412278505fd1131913ed08f03f56db1ec618a069": {
+          "HIT": 12152
+        },
+        "shadow": {
+          "GPU_PASS": 12152
+        },
+        "entity": {
+          "GPU_PASS": 12152
+        }
+      },
+      "dirtyTraces": [],
+      "frameSamples": 6076,
+      "quantileSamples": 6076,
+      "frameTimeMs": {
+        "p99": 3.953,
+        "p50": 2.3479,
+        "p95": 3.0549
+      }
+    },
+    "actorScales": [
+      0.95
+    ],
+    "actorGrowth": [
+      40.0
+    ],
+    "actorStages": [
+      "dragonsurvival:adult"
+    ]
+  },
+  {
+    "mode": "GPU",
+    "dragonPlayers": 1,
+    "repetition": 2,
+    "warmupSeconds": 5,
+    "samplingSeconds": 15.0029591,
+    "width": 1280,
+    "height": 720,
+    "fpsLimit": 260,
+    "renderDistance": 6,
+    "camera": "(0.5, -58.28999996185303, 7.25)",
+    "textureBytes": 5242880,
+    "meshBytes": 1148832,
+    "stats": {
+      "totals": {
+        "FRAME_CPU_NANOS": 9103214300,
+        "GPU_BONE_SUBMIT_NANOS": 327948900,
+        "GPU_DRAW_CPU_NANOS": 1533898300,
+        "GPU_PASS": 24332,
+        "GPU_POSE_CAPTURE_NANOS": 1909375400,
+        "GPU_VERTEX_COUNT": 220739904,
+        "HIT": 36498
+      },
+      "peaks": {
+        "GPU_RESOURCE_BYTES": 2206944,
+        "TEXTURE_RESOURCE_BYTES": 5242880
+      },
+      "fallbacks": {},
+      "attribution": {
+        "d58937b6-e8cc-32a1-beeb-eac48149c137/dragonsurvival:adult/dragonsurvival:dynamic_normal_d58937b6-e8cc-32a1-beeb-eac48149c137_cave_dragon_adult_bro_adda4cd3876d634ed7e3e4b89ace0b235a7340ba5640282627d790275601dbcc": {
+          "HIT": 24332
+        },
+        "d58937b6-e8cc-32a1-beeb-eac48149c137/armor/dragonsurvival:armor_a2e74581ae42d116124c5df2412278505fd1131913ed08f03f56db1ec618a069": {
+          "HIT": 12166
+        },
+        "shadow": {
+          "GPU_PASS": 12166
+        },
+        "entity": {
+          "GPU_PASS": 12166
+        }
+      },
+      "dirtyTraces": [],
+      "frameSamples": 6083,
+      "quantileSamples": 6083,
+      "frameTimeMs": {
+        "p99": 4.2762,
+        "p50": 2.347,
+        "p95": 3.0014
+      }
+    },
+    "actorScales": [
+      0.95
+    ],
+    "actorGrowth": [
+      40.0
+    ],
+    "actorStages": [
+      "dragonsurvival:adult"
+    ]
+  },
+  {
+    "mode": "TEXTURES",
+    "dragonPlayers": 1,
+    "repetition": 2,
+    "warmupSeconds": 5,
+    "samplingSeconds": 15.003137,
+    "width": 1280,
+    "height": 720,
+    "fpsLimit": 260,
+    "renderDistance": 6,
+    "camera": "(0.5, -58.28999996185303, 7.25)",
+    "textureBytes": 5242880,
+    "meshBytes": 0,
+    "stats": {
+      "totals": {
+        "CPU_VERTEX_SUBMIT_NANOS": 4658397100,
+        "FRAME_CPU_NANOS": 10890399000,
+        "HIT": 24288
+      },
+      "peaks": {
+        "TEXTURE_RESOURCE_BYTES": 5242880
+      },
+      "fallbacks": {},
+      "attribution": {
+        "d58937b6-e8cc-32a1-beeb-eac48149c137/dragonsurvival:adult/dragonsurvival:dynamic_normal_d58937b6-e8cc-32a1-beeb-eac48149c137_cave_dragon_adult_bro_adda4cd3876d634ed7e3e4b89ace0b235a7340ba5640282627d790275601dbcc": {
+          "HIT": 16192
+        },
+        "d58937b6-e8cc-32a1-beeb-eac48149c137/armor/dragonsurvival:armor_a2e74581ae42d116124c5df2412278505fd1131913ed08f03f56db1ec618a069": {
+          "HIT": 8096
+        }
+      },
+      "dirtyTraces": [],
+      "frameSamples": 4048,
+      "quantileSamples": 4048,
+      "frameTimeMs": {
+        "p99": 5.5275,
+        "p50": 3.598,
+        "p95": 4.4021
+      }
+    },
+    "actorScales": [
+      0.95
+    ],
+    "actorGrowth": [
+      40.0
+    ],
+    "actorStages": [
+      "dragonsurvival:adult"
+    ]
+  },
+  {
+    "mode": "VANILLA",
+    "dragonPlayers": 1,
+    "repetition": 2,
+    "warmupSeconds": 5,
+    "samplingSeconds": 15.0030425,
+    "width": 1280,
+    "height": 720,
+    "fpsLimit": 260,
+    "renderDistance": 6,
+    "camera": "(0.5, -58.28999996185303, 7.25)",
+    "textureBytes": 0,
+    "meshBytes": 0,
+    "stats": {
+      "totals": {
+        "CPU_VERTEX_SUBMIT_NANOS": 5267979100,
+        "FRAME_CPU_NANOS": 10448689800
+      },
+      "peaks": {
+        "TEXTURE_RESOURCE_BYTES": 0
+      },
+      "fallbacks": {},
+      "attribution": {},
+      "dirtyTraces": [],
+      "frameSamples": 4593,
+      "quantileSamples": 4593,
+      "frameTimeMs": {
+        "p99": 4.7034,
+        "p50": 3.1839,
+        "p95": 3.839
+      }
+    },
+    "actorScales": [
+      0.95
+    ],
+    "actorGrowth": [
+      40.0
+    ],
+    "actorStages": [
+      "dragonsurvival:adult"
+    ]
+  },
+  {
+    "mode": "VANILLA",
+    "dragonPlayers": 4,
+    "repetition": 1,
+    "warmupSeconds": 5,
+    "samplingSeconds": 15.0498394,
+    "width": 1280,
+    "height": 720,
+    "fpsLimit": 260,
+    "renderDistance": 6,
+    "camera": "(0.5, -58.28999996185303, 7.25)",
+    "textureBytes": 0,
+    "meshBytes": 0,
+    "stats": {
+      "totals": {
+        "CPU_VERTEX_SUBMIT_NANOS": 7316102800,
+        "FRAME_CPU_NANOS": 13222586900
+      },
+      "peaks": {
+        "TEXTURE_RESOURCE_BYTES": 0
+      },
+      "fallbacks": {},
+      "attribution": {},
+      "dirtyTraces": [],
+      "frameSamples": 1613,
+      "quantileSamples": 1613,
+      "frameTimeMs": {
+        "p99": 13.8737,
+        "p50": 9.0924,
+        "p95": 10.7799
+      }
+    },
+    "actorScales": [
+      0.95,
+      0.95,
+      0.95,
+      0.95
+    ],
+    "actorGrowth": [
+      40.0,
+      40.0,
+      40.0,
+      40.0
+    ],
+    "actorStages": [
+      "dragonsurvival:adult",
+      "dragonsurvival:adult",
+      "dragonsurvival:adult",
+      "dragonsurvival:adult"
+    ]
+  },
+  {
+    "mode": "TEXTURES",
+    "dragonPlayers": 4,
+    "repetition": 1,
+    "warmupSeconds": 5,
+    "samplingSeconds": 15.0011453,
+    "width": 1280,
+    "height": 720,
+    "fpsLimit": 260,
+    "renderDistance": 6,
+    "camera": "(0.5, -58.28999996185303, 7.25)",
+    "textureBytes": 11534336,
+    "meshBytes": 0,
+    "stats": {
+      "totals": {
+        "CPU_VERTEX_SUBMIT_NANOS": 6114665200,
+        "FRAME_CPU_NANOS": 13404833400,
+        "HIT": 32112
+      },
+      "peaks": {
+        "TEXTURE_RESOURCE_BYTES": 11534336
+      },
+      "fallbacks": {},
+      "attribution": {
+        "d58937b6-e8cc-32a1-beeb-eac48149c137/dragonsurvival:adult/dragonsurvival:dynamic_normal_d58937b6-e8cc-32a1-beeb-eac48149c137_cave_dragon_adult_bro_adda4cd3876d634ed7e3e4b89ace0b235a7340ba5640282627d790275601dbcc": {
+          "HIT": 5352
+        },
+        "d58937b6-e8cc-32a1-beeb-eac48149c137/armor/dragonsurvival:armor_a2e74581ae42d116124c5df2412278505fd1131913ed08f03f56db1ec618a069": {
+          "HIT": 2676
+        },
+        "db53822a-a93f-3c73-aceb-5f165916046f/dragonsurvival:adult/dragonsurvival:dynamic_normal_db53822a-a93f-3c73-aceb-5f165916046f_cave_dragon_adult_bro_adda4cd3876d634ed7e3e4b89ace0b235a7340ba5640282627d790275601dbcc": {
+          "HIT": 5352
+        },
+        "db53822a-a93f-3c73-aceb-5f165916046f/armor/dragonsurvival:armor_a2e74581ae42d116124c5df2412278505fd1131913ed08f03f56db1ec618a069": {
+          "HIT": 2676
+        },
+        "7978bc7b-310c-39f3-91bb-759cf8b9ce88/dragonsurvival:adult/dragonsurvival:dynamic_normal_7978bc7b-310c-39f3-91bb-759cf8b9ce88_cave_dragon_adult_bro_adda4cd3876d634ed7e3e4b89ace0b235a7340ba5640282627d790275601dbcc": {
+          "HIT": 5352
+        },
+        "7978bc7b-310c-39f3-91bb-759cf8b9ce88/armor/dragonsurvival:armor_a2e74581ae42d116124c5df2412278505fd1131913ed08f03f56db1ec618a069": {
+          "HIT": 2676
+        },
+        "49441342-74b9-3086-9d5c-c02ad12d43f0/dragonsurvival:adult/dragonsurvival:dynamic_normal_49441342-74b9-3086-9d5c-c02ad12d43f0_cave_dragon_adult_bro_adda4cd3876d634ed7e3e4b89ace0b235a7340ba5640282627d790275601dbcc": {
+          "HIT": 5352
+        },
+        "49441342-74b9-3086-9d5c-c02ad12d43f0/armor/dragonsurvival:armor_a2e74581ae42d116124c5df2412278505fd1131913ed08f03f56db1ec618a069": {
+          "HIT": 2676
+        }
+      },
+      "dirtyTraces": [],
+      "frameSamples": 1338,
+      "quantileSamples": 1338,
+      "frameTimeMs": {
+        "p99": 16.1795,
+        "p50": 10.844,
+        "p95": 13.4733
+      }
+    },
+    "actorScales": [
+      0.95,
+      0.95,
+      0.95,
+      0.95
+    ],
+    "actorGrowth": [
+      40.0,
+      40.0,
+      40.0,
+      40.0
+    ],
+    "actorStages": [
+      "dragonsurvival:adult",
+      "dragonsurvival:adult",
+      "dragonsurvival:adult",
+      "dragonsurvival:adult"
+    ]
+  },
+  {
+    "mode": "GPU",
+    "dragonPlayers": 4,
+    "repetition": 1,
+    "warmupSeconds": 5,
+    "samplingSeconds": 15.0022762,
+    "width": 1280,
+    "height": 720,
+    "fpsLimit": 260,
+    "renderDistance": 6,
+    "camera": "(0.5, -58.28999996185303, 7.25)",
+    "textureBytes": 11534336,
+    "meshBytes": 1148832,
+    "stats": {
+      "totals": {
+        "FRAME_CPU_NANOS": 12433230500,
+        "GPU_BONE_SUBMIT_NANOS": 630831700,
+        "GPU_DRAW_CPU_NANOS": 2479913300,
+        "GPU_PASS": 47088,
+        "GPU_POSE_CAPTURE_NANOS": 3551266200,
+        "GPU_VERTEX_COUNT": 427182336,
+        "HIT": 70632
+      },
+      "peaks": {
+        "GPU_RESOURCE_BYTES": 5381280,
+        "TEXTURE_RESOURCE_BYTES": 11534336
+      },
+      "fallbacks": {},
+      "attribution": {
+        "d58937b6-e8cc-32a1-beeb-eac48149c137/dragonsurvival:adult/dragonsurvival:dynamic_normal_d58937b6-e8cc-32a1-beeb-eac48149c137_cave_dragon_adult_bro_adda4cd3876d634ed7e3e4b89ace0b235a7340ba5640282627d790275601dbcc": {
+          "HIT": 11772
+        },
+        "d58937b6-e8cc-32a1-beeb-eac48149c137/armor/dragonsurvival:armor_a2e74581ae42d116124c5df2412278505fd1131913ed08f03f56db1ec618a069": {
+          "HIT": 5886
+        },
+        "db53822a-a93f-3c73-aceb-5f165916046f/dragonsurvival:adult/dragonsurvival:dynamic_normal_db53822a-a93f-3c73-aceb-5f165916046f_cave_dragon_adult_bro_adda4cd3876d634ed7e3e4b89ace0b235a7340ba5640282627d790275601dbcc": {
+          "HIT": 11772
+        },
+        "db53822a-a93f-3c73-aceb-5f165916046f/armor/dragonsurvival:armor_a2e74581ae42d116124c5df2412278505fd1131913ed08f03f56db1ec618a069": {
+          "HIT": 5886
+        },
+        "7978bc7b-310c-39f3-91bb-759cf8b9ce88/dragonsurvival:adult/dragonsurvival:dynamic_normal_7978bc7b-310c-39f3-91bb-759cf8b9ce88_cave_dragon_adult_bro_adda4cd3876d634ed7e3e4b89ace0b235a7340ba5640282627d790275601dbcc": {
+          "HIT": 11772
+        },
+        "7978bc7b-310c-39f3-91bb-759cf8b9ce88/armor/dragonsurvival:armor_a2e74581ae42d116124c5df2412278505fd1131913ed08f03f56db1ec618a069": {
+          "HIT": 5886
+        },
+        "49441342-74b9-3086-9d5c-c02ad12d43f0/dragonsurvival:adult/dragonsurvival:dynamic_normal_49441342-74b9-3086-9d5c-c02ad12d43f0_cave_dragon_adult_bro_adda4cd3876d634ed7e3e4b89ace0b235a7340ba5640282627d790275601dbcc": {
+          "HIT": 11772
+        },
+        "49441342-74b9-3086-9d5c-c02ad12d43f0/armor/dragonsurvival:armor_a2e74581ae42d116124c5df2412278505fd1131913ed08f03f56db1ec618a069": {
+          "HIT": 5886
+        },
+        "shadow": {
+          "GPU_PASS": 23544
+        },
+        "entity": {
+          "GPU_PASS": 23544
+        }
+      },
+      "dirtyTraces": [],
+      "frameSamples": 2943,
+      "quantileSamples": 2943,
+      "frameTimeMs": {
+        "p99": 8.4904,
+        "p50": 4.8396,
+        "p95": 6.43
+      }
+    },
+    "actorScales": [
+      0.95,
+      0.95,
+      0.95,
+      0.95
+    ],
+    "actorGrowth": [
+      40.0,
+      40.0,
+      40.0,
+      40.0
+    ],
+    "actorStages": [
+      "dragonsurvival:adult",
+      "dragonsurvival:adult",
+      "dragonsurvival:adult",
+      "dragonsurvival:adult"
+    ]
+  },
+  {
+    "mode": "GPU",
+    "dragonPlayers": 4,
+    "repetition": 2,
+    "warmupSeconds": 5,
+    "samplingSeconds": 15.007748,
+    "width": 1280,
+    "height": 720,
+    "fpsLimit": 260,
+    "renderDistance": 6,
+    "camera": "(0.5, -58.28999996185303, 7.25)",
+    "textureBytes": 11534336,
+    "meshBytes": 1148832,
+    "stats": {
+      "totals": {
+        "FRAME_CPU_NANOS": 12432501100,
+        "GPU_BONE_SUBMIT_NANOS": 627251000,
+        "GPU_DRAW_CPU_NANOS": 2557237200,
+        "GPU_PASS": 46384,
+        "GPU_POSE_CAPTURE_NANOS": 3522913600,
+        "GPU_VERTEX_COUNT": 420795648,
+        "HIT": 69576
+      },
+      "peaks": {
+        "GPU_RESOURCE_BYTES": 5381280,
+        "TEXTURE_RESOURCE_BYTES": 11534336
+      },
+      "fallbacks": {},
+      "attribution": {
+        "d58937b6-e8cc-32a1-beeb-eac48149c137/dragonsurvival:adult/dragonsurvival:dynamic_normal_d58937b6-e8cc-32a1-beeb-eac48149c137_cave_dragon_adult_bro_adda4cd3876d634ed7e3e4b89ace0b235a7340ba5640282627d790275601dbcc": {
+          "HIT": 11596
+        },
+        "d58937b6-e8cc-32a1-beeb-eac48149c137/armor/dragonsurvival:armor_a2e74581ae42d116124c5df2412278505fd1131913ed08f03f56db1ec618a069": {
+          "HIT": 5798
+        },
+        "db53822a-a93f-3c73-aceb-5f165916046f/dragonsurvival:adult/dragonsurvival:dynamic_normal_db53822a-a93f-3c73-aceb-5f165916046f_cave_dragon_adult_bro_adda4cd3876d634ed7e3e4b89ace0b235a7340ba5640282627d790275601dbcc": {
+          "HIT": 11596
+        },
+        "db53822a-a93f-3c73-aceb-5f165916046f/armor/dragonsurvival:armor_a2e74581ae42d116124c5df2412278505fd1131913ed08f03f56db1ec618a069": {
+          "HIT": 5798
+        },
+        "7978bc7b-310c-39f3-91bb-759cf8b9ce88/dragonsurvival:adult/dragonsurvival:dynamic_normal_7978bc7b-310c-39f3-91bb-759cf8b9ce88_cave_dragon_adult_bro_adda4cd3876d634ed7e3e4b89ace0b235a7340ba5640282627d790275601dbcc": {
+          "HIT": 11596
+        },
+        "7978bc7b-310c-39f3-91bb-759cf8b9ce88/armor/dragonsurvival:armor_a2e74581ae42d116124c5df2412278505fd1131913ed08f03f56db1ec618a069": {
+          "HIT": 5798
+        },
+        "49441342-74b9-3086-9d5c-c02ad12d43f0/dragonsurvival:adult/dragonsurvival:dynamic_normal_49441342-74b9-3086-9d5c-c02ad12d43f0_cave_dragon_adult_bro_adda4cd3876d634ed7e3e4b89ace0b235a7340ba5640282627d790275601dbcc": {
+          "HIT": 11596
+        },
+        "49441342-74b9-3086-9d5c-c02ad12d43f0/armor/dragonsurvival:armor_a2e74581ae42d116124c5df2412278505fd1131913ed08f03f56db1ec618a069": {
+          "HIT": 5798
+        },
+        "shadow": {
+          "GPU_PASS": 23192
+        },
+        "entity": {
+          "GPU_PASS": 23192
+        }
+      },
+      "dirtyTraces": [],
+      "frameSamples": 2899,
+      "quantileSamples": 2899,
+      "frameTimeMs": {
+        "p99": 8.3915,
+        "p50": 5.0042,
+        "p95": 6.4585
+      }
+    },
+    "actorScales": [
+      0.95,
+      0.95,
+      0.95,
+      0.95
+    ],
+    "actorGrowth": [
+      40.0,
+      40.0,
+      40.0,
+      40.0
+    ],
+    "actorStages": [
+      "dragonsurvival:adult",
+      "dragonsurvival:adult",
+      "dragonsurvival:adult",
+      "dragonsurvival:adult"
+    ]
+  },
+  {
+    "mode": "TEXTURES",
+    "dragonPlayers": 4,
+    "repetition": 2,
+    "warmupSeconds": 5,
+    "samplingSeconds": 15.002766,
+    "width": 1280,
+    "height": 720,
+    "fpsLimit": 260,
+    "renderDistance": 6,
+    "camera": "(0.5, -58.28999996185303, 7.25)",
+    "textureBytes": 11534336,
+    "meshBytes": 0,
+    "stats": {
+      "totals": {
+        "CPU_VERTEX_SUBMIT_NANOS": 6236610700,
+        "FRAME_CPU_NANOS": 13430489700,
+        "HIT": 32616
+      },
+      "peaks": {
+        "TEXTURE_RESOURCE_BYTES": 11534336
+      },
+      "fallbacks": {},
+      "attribution": {
+        "d58937b6-e8cc-32a1-beeb-eac48149c137/dragonsurvival:adult/dragonsurvival:dynamic_normal_d58937b6-e8cc-32a1-beeb-eac48149c137_cave_dragon_adult_bro_adda4cd3876d634ed7e3e4b89ace0b235a7340ba5640282627d790275601dbcc": {
+          "HIT": 5436
+        },
+        "d58937b6-e8cc-32a1-beeb-eac48149c137/armor/dragonsurvival:armor_a2e74581ae42d116124c5df2412278505fd1131913ed08f03f56db1ec618a069": {
+          "HIT": 2718
+        },
+        "db53822a-a93f-3c73-aceb-5f165916046f/dragonsurvival:adult/dragonsurvival:dynamic_normal_db53822a-a93f-3c73-aceb-5f165916046f_cave_dragon_adult_bro_adda4cd3876d634ed7e3e4b89ace0b235a7340ba5640282627d790275601dbcc": {
+          "HIT": 5436
+        },
+        "db53822a-a93f-3c73-aceb-5f165916046f/armor/dragonsurvival:armor_a2e74581ae42d116124c5df2412278505fd1131913ed08f03f56db1ec618a069": {
+          "HIT": 2718
+        },
+        "7978bc7b-310c-39f3-91bb-759cf8b9ce88/dragonsurvival:adult/dragonsurvival:dynamic_normal_7978bc7b-310c-39f3-91bb-759cf8b9ce88_cave_dragon_adult_bro_adda4cd3876d634ed7e3e4b89ace0b235a7340ba5640282627d790275601dbcc": {
+          "HIT": 5436
+        },
+        "7978bc7b-310c-39f3-91bb-759cf8b9ce88/armor/dragonsurvival:armor_a2e74581ae42d116124c5df2412278505fd1131913ed08f03f56db1ec618a069": {
+          "HIT": 2718
+        },
+        "49441342-74b9-3086-9d5c-c02ad12d43f0/dragonsurvival:adult/dragonsurvival:dynamic_normal_49441342-74b9-3086-9d5c-c02ad12d43f0_cave_dragon_adult_bro_adda4cd3876d634ed7e3e4b89ace0b235a7340ba5640282627d790275601dbcc": {
+          "HIT": 5436
+        },
+        "49441342-74b9-3086-9d5c-c02ad12d43f0/armor/dragonsurvival:armor_a2e74581ae42d116124c5df2412278505fd1131913ed08f03f56db1ec618a069": {
+          "HIT": 2718
+        }
+      },
+      "dirtyTraces": [],
+      "frameSamples": 1359,
+      "quantileSamples": 1359,
+      "frameTimeMs": {
+        "p99": 17.1729,
+        "p50": 10.6629,
+        "p95": 13.2825
+      }
+    },
+    "actorScales": [
+      0.95,
+      0.95,
+      0.95,
+      0.95
+    ],
+    "actorGrowth": [
+      40.0,
+      40.0,
+      40.0,
+      40.0
+    ],
+    "actorStages": [
+      "dragonsurvival:adult",
+      "dragonsurvival:adult",
+      "dragonsurvival:adult",
+      "dragonsurvival:adult"
+    ]
+  },
+  {
+    "mode": "VANILLA",
+    "dragonPlayers": 4,
+    "repetition": 2,
+    "warmupSeconds": 5,
+    "samplingSeconds": 15.0022341,
+    "width": 1280,
+    "height": 720,
+    "fpsLimit": 260,
+    "renderDistance": 6,
+    "camera": "(0.5, -58.28999996185303, 7.25)",
+    "textureBytes": 0,
+    "meshBytes": 0,
+    "stats": {
+      "totals": {
+        "CPU_VERTEX_SUBMIT_NANOS": 7233551400,
+        "FRAME_CPU_NANOS": 13237171200
+      },
+      "peaks": {
+        "TEXTURE_RESOURCE_BYTES": 0
+      },
+      "fallbacks": {},
+      "attribution": {},
+      "dirtyTraces": [],
+      "frameSamples": 1595,
+      "quantileSamples": 1595,
+      "frameTimeMs": {
+        "p99": 13.0306,
+        "p50": 9.2338,
+        "p95": 10.6644
+      }
+    },
+    "actorScales": [
+      0.95,
+      0.95,
+      0.95,
+      0.95
+    ],
+    "actorGrowth": [
+      40.0,
+      40.0,
+      40.0,
+      40.0
+    ],
+    "actorStages": [
+      "dragonsurvival:adult",
+      "dragonsurvival:adult",
+      "dragonsurvival:adult",
+      "dragonsurvival:adult"
+    ]
+  },
+  {
+    "mode": "VANILLA",
+    "dragonPlayers": 12,
+    "repetition": 1,
+    "warmupSeconds": 5,
+    "samplingSeconds": 15.0489406,
+    "width": 1280,
+    "height": 720,
+    "fpsLimit": 260,
+    "renderDistance": 6,
+    "camera": "(0.5, -58.28999996185303, 7.25)",
+    "textureBytes": 0,
+    "meshBytes": 0,
+    "stats": {
+      "totals": {
+        "CPU_VERTEX_SUBMIT_NANOS": 8327965000,
+        "FRAME_CPU_NANOS": 14073633200
+      },
+      "peaks": {
+        "TEXTURE_RESOURCE_BYTES": 0
+      },
+      "fallbacks": {},
+      "attribution": {},
+      "dirtyTraces": [],
+      "frameSamples": 605,
+      "quantileSamples": 605,
+      "frameTimeMs": {
+        "p99": 36.5324,
+        "p50": 24.2163,
+        "p95": 28.5503
+      }
+    },
+    "actorScales": [
+      0.95,
+      0.95,
+      0.95,
+      0.95,
+      0.95,
+      0.95,
+      0.95,
+      0.95,
+      0.95,
+      0.95,
+      0.95,
+      0.95
+    ],
+    "actorGrowth": [
+      40.0,
+      40.0,
+      40.0,
+      40.0,
+      40.0,
+      40.0,
+      40.0,
+      40.0,
+      40.0,
+      40.0,
+      40.0,
+      40.0
+    ],
+    "actorStages": [
+      "dragonsurvival:adult",
+      "dragonsurvival:adult",
+      "dragonsurvival:adult",
+      "dragonsurvival:adult",
+      "dragonsurvival:adult",
+      "dragonsurvival:adult",
+      "dragonsurvival:adult",
+      "dragonsurvival:adult",
+      "dragonsurvival:adult",
+      "dragonsurvival:adult",
+      "dragonsurvival:adult",
+      "dragonsurvival:adult"
+    ]
+  },
+  {
+    "mode": "TEXTURES",
+    "dragonPlayers": 12,
+    "repetition": 1,
+    "warmupSeconds": 5,
+    "samplingSeconds": 15.0336411,
+    "width": 1280,
+    "height": 720,
+    "fpsLimit": 260,
+    "renderDistance": 6,
+    "camera": "(0.5, -58.28999996185303, 7.25)",
+    "textureBytes": 28311552,
+    "meshBytes": 0,
+    "stats": {
+      "totals": {
+        "CPU_VERTEX_SUBMIT_NANOS": 7050099800,
+        "FRAME_CPU_NANOS": 14086002300,
+        "HIT": 37008
+      },
+      "peaks": {
+        "TEXTURE_RESOURCE_BYTES": 28311552
+      },
+      "fallbacks": {},
+      "attribution": {
+        "d58937b6-e8cc-32a1-beeb-eac48149c137/dragonsurvival:adult/dragonsurvival:dynamic_normal_d58937b6-e8cc-32a1-beeb-eac48149c137_cave_dragon_adult_bro_adda4cd3876d634ed7e3e4b89ace0b235a7340ba5640282627d790275601dbcc": {
+          "HIT": 2056
+        },
+        "d58937b6-e8cc-32a1-beeb-eac48149c137/armor/dragonsurvival:armor_a2e74581ae42d116124c5df2412278505fd1131913ed08f03f56db1ec618a069": {
+          "HIT": 1028
+        },
+        "db53822a-a93f-3c73-aceb-5f165916046f/dragonsurvival:adult/dragonsurvival:dynamic_normal_db53822a-a93f-3c73-aceb-5f165916046f_cave_dragon_adult_bro_adda4cd3876d634ed7e3e4b89ace0b235a7340ba5640282627d790275601dbcc": {
+          "HIT": 2056
+        },
+        "db53822a-a93f-3c73-aceb-5f165916046f/armor/dragonsurvival:armor_a2e74581ae42d116124c5df2412278505fd1131913ed08f03f56db1ec618a069": {
+          "HIT": 1028
+        },
+        "7978bc7b-310c-39f3-91bb-759cf8b9ce88/dragonsurvival:adult/dragonsurvival:dynamic_normal_7978bc7b-310c-39f3-91bb-759cf8b9ce88_cave_dragon_adult_bro_adda4cd3876d634ed7e3e4b89ace0b235a7340ba5640282627d790275601dbcc": {
+          "HIT": 2056
+        },
+        "7978bc7b-310c-39f3-91bb-759cf8b9ce88/armor/dragonsurvival:armor_a2e74581ae42d116124c5df2412278505fd1131913ed08f03f56db1ec618a069": {
+          "HIT": 1028
+        },
+        "49441342-74b9-3086-9d5c-c02ad12d43f0/dragonsurvival:adult/dragonsurvival:dynamic_normal_49441342-74b9-3086-9d5c-c02ad12d43f0_cave_dragon_adult_bro_adda4cd3876d634ed7e3e4b89ace0b235a7340ba5640282627d790275601dbcc": {
+          "HIT": 2056
+        },
+        "49441342-74b9-3086-9d5c-c02ad12d43f0/armor/dragonsurvival:armor_a2e74581ae42d116124c5df2412278505fd1131913ed08f03f56db1ec618a069": {
+          "HIT": 1028
+        },
+        "58a99bd7-4279-3620-a631-a0a0678dbab6/dragonsurvival:adult/dragonsurvival:dynamic_normal_58a99bd7-4279-3620-a631-a0a0678dbab6_cave_dragon_adult_bro_adda4cd3876d634ed7e3e4b89ace0b235a7340ba5640282627d790275601dbcc": {
+          "HIT": 2056
+        },
+        "58a99bd7-4279-3620-a631-a0a0678dbab6/armor/dragonsurvival:armor_a2e74581ae42d116124c5df2412278505fd1131913ed08f03f56db1ec618a069": {
+          "HIT": 1028
+        },
+        "6ef3864b-709a-3676-8254-71207484e44b/dragonsurvival:adult/dragonsurvival:dynamic_normal_6ef3864b-709a-3676-8254-71207484e44b_cave_dragon_adult_bro_adda4cd3876d634ed7e3e4b89ace0b235a7340ba5640282627d790275601dbcc": {
+          "HIT": 2056
+        },
+        "6ef3864b-709a-3676-8254-71207484e44b/armor/dragonsurvival:armor_a2e74581ae42d116124c5df2412278505fd1131913ed08f03f56db1ec618a069": {
+          "HIT": 1028
+        },
+        "8f208ee8-8072-3c2c-ab4c-58a39940238f/dragonsurvival:adult/dragonsurvival:dynamic_normal_8f208ee8-8072-3c2c-ab4c-58a39940238f_cave_dragon_adult_bro_adda4cd3876d634ed7e3e4b89ace0b235a7340ba5640282627d790275601dbcc": {
+          "HIT": 2056
+        },
+        "8f208ee8-8072-3c2c-ab4c-58a39940238f/armor/dragonsurvival:armor_a2e74581ae42d116124c5df2412278505fd1131913ed08f03f56db1ec618a069": {
+          "HIT": 1028
+        },
+        "5aff569d-d413-36be-812d-7b9c9eb40460/dragonsurvival:adult/dragonsurvival:dynamic_normal_5aff569d-d413-36be-812d-7b9c9eb40460_cave_dragon_adult_bro_adda4cd3876d634ed7e3e4b89ace0b235a7340ba5640282627d790275601dbcc": {
+          "HIT": 2056
+        },
+        "5aff569d-d413-36be-812d-7b9c9eb40460/armor/dragonsurvival:armor_a2e74581ae42d116124c5df2412278505fd1131913ed08f03f56db1ec618a069": {
+          "HIT": 1028
+        },
+        "90328d92-3458-331a-b057-6a328a98446e/dragonsurvival:adult/dragonsurvival:dynamic_normal_90328d92-3458-331a-b057-6a328a98446e_cave_dragon_adult_bro_adda4cd3876d634ed7e3e4b89ace0b235a7340ba5640282627d790275601dbcc": {
+          "HIT": 2056
+        },
+        "90328d92-3458-331a-b057-6a328a98446e/armor/dragonsurvival:armor_a2e74581ae42d116124c5df2412278505fd1131913ed08f03f56db1ec618a069": {
+          "HIT": 1028
+        },
+        "979aad27-e50f-3fc7-8186-896afc103514/dragonsurvival:adult/dragonsurvival:dynamic_normal_979aad27-e50f-3fc7-8186-896afc103514_cave_dragon_adult_bro_adda4cd3876d634ed7e3e4b89ace0b235a7340ba5640282627d790275601dbcc": {
+          "HIT": 2056
+        },
+        "979aad27-e50f-3fc7-8186-896afc103514/armor/dragonsurvival:armor_a2e74581ae42d116124c5df2412278505fd1131913ed08f03f56db1ec618a069": {
+          "HIT": 1028
+        },
+        "3895f20a-4a6b-34e3-8302-000c41cc85cb/dragonsurvival:adult/dragonsurvival:dynamic_normal_3895f20a-4a6b-34e3-8302-000c41cc85cb_cave_dragon_adult_bro_adda4cd3876d634ed7e3e4b89ace0b235a7340ba5640282627d790275601dbcc": {
+          "HIT": 2056
+        },
+        "3895f20a-4a6b-34e3-8302-000c41cc85cb/armor/dragonsurvival:armor_a2e74581ae42d116124c5df2412278505fd1131913ed08f03f56db1ec618a069": {
+          "HIT": 1028
+        },
+        "89c01117-0a17-3cfa-80a9-44d0bfb702af/dragonsurvival:adult/dragonsurvival:dynamic_normal_89c01117-0a17-3cfa-80a9-44d0bfb702af_cave_dragon_adult_bro_adda4cd3876d634ed7e3e4b89ace0b235a7340ba5640282627d790275601dbcc": {
+          "HIT": 2056
+        },
+        "89c01117-0a17-3cfa-80a9-44d0bfb702af/armor/dragonsurvival:armor_a2e74581ae42d116124c5df2412278505fd1131913ed08f03f56db1ec618a069": {
+          "HIT": 1028
+        }
+      },
+      "dirtyTraces": [],
+      "frameSamples": 514,
+      "quantileSamples": 514,
+      "frameTimeMs": {
+        "p99": 36.387,
+        "p50": 28.6032,
+        "p95": 33.7873
+      }
+    },
+    "actorScales": [
+      0.95,
+      0.95,
+      0.95,
+      0.95,
+      0.95,
+      0.95,
+      0.95,
+      0.95,
+      0.95,
+      0.95,
+      0.95,
+      0.95
+    ],
+    "actorGrowth": [
+      40.0,
+      40.0,
+      40.0,
+      40.0,
+      40.0,
+      40.0,
+      40.0,
+      40.0,
+      40.0,
+      40.0,
+      40.0,
+      40.0
+    ],
+    "actorStages": [
+      "dragonsurvival:adult",
+      "dragonsurvival:adult",
+      "dragonsurvival:adult",
+      "dragonsurvival:adult",
+      "dragonsurvival:adult",
+      "dragonsurvival:adult",
+      "dragonsurvival:adult",
+      "dragonsurvival:adult",
+      "dragonsurvival:adult",
+      "dragonsurvival:adult",
+      "dragonsurvival:adult",
+      "dragonsurvival:adult"
+    ]
+  },
+  {
+    "mode": "GPU",
+    "dragonPlayers": 12,
+    "repetition": 1,
+    "warmupSeconds": 5,
+    "samplingSeconds": 15.0013459,
+    "width": 1280,
+    "height": 720,
+    "fpsLimit": 260,
+    "renderDistance": 6,
+    "camera": "(0.5, -58.28999996185303, 7.25)",
+    "textureBytes": 28311552,
+    "meshBytes": 1148832,
+    "stats": {
+      "totals": {
+        "FRAME_CPU_NANOS": 13655493700,
+        "GPU_BONE_SUBMIT_NANOS": 789797900,
+        "GPU_DRAW_CPU_NANOS": 2627240000,
+        "GPU_PASS": 60768,
+        "GPU_POSE_CAPTURE_NANOS": 4506029100,
+        "GPU_VERTEX_COUNT": 551287296,
+        "HIT": 91152
+      },
+      "peaks": {
+        "GPU_RESOURCE_BYTES": 13846176,
+        "TEXTURE_RESOURCE_BYTES": 28311552
+      },
+      "fallbacks": {},
+      "attribution": {
+        "d58937b6-e8cc-32a1-beeb-eac48149c137/dragonsurvival:adult/dragonsurvival:dynamic_normal_d58937b6-e8cc-32a1-beeb-eac48149c137_cave_dragon_adult_bro_adda4cd3876d634ed7e3e4b89ace0b235a7340ba5640282627d790275601dbcc": {
+          "HIT": 5064
+        },
+        "d58937b6-e8cc-32a1-beeb-eac48149c137/armor/dragonsurvival:armor_a2e74581ae42d116124c5df2412278505fd1131913ed08f03f56db1ec618a069": {
+          "HIT": 2532
+        },
+        "db53822a-a93f-3c73-aceb-5f165916046f/dragonsurvival:adult/dragonsurvival:dynamic_normal_db53822a-a93f-3c73-aceb-5f165916046f_cave_dragon_adult_bro_adda4cd3876d634ed7e3e4b89ace0b235a7340ba5640282627d790275601dbcc": {
+          "HIT": 5064
+        },
+        "db53822a-a93f-3c73-aceb-5f165916046f/armor/dragonsurvival:armor_a2e74581ae42d116124c5df2412278505fd1131913ed08f03f56db1ec618a069": {
+          "HIT": 2532
+        },
+        "7978bc7b-310c-39f3-91bb-759cf8b9ce88/dragonsurvival:adult/dragonsurvival:dynamic_normal_7978bc7b-310c-39f3-91bb-759cf8b9ce88_cave_dragon_adult_bro_adda4cd3876d634ed7e3e4b89ace0b235a7340ba5640282627d790275601dbcc": {
+          "HIT": 5064
+        },
+        "7978bc7b-310c-39f3-91bb-759cf8b9ce88/armor/dragonsurvival:armor_a2e74581ae42d116124c5df2412278505fd1131913ed08f03f56db1ec618a069": {
+          "HIT": 2532
+        },
+        "49441342-74b9-3086-9d5c-c02ad12d43f0/dragonsurvival:adult/dragonsurvival:dynamic_normal_49441342-74b9-3086-9d5c-c02ad12d43f0_cave_dragon_adult_bro_adda4cd3876d634ed7e3e4b89ace0b235a7340ba5640282627d790275601dbcc": {
+          "HIT": 5064
+        },
+        "49441342-74b9-3086-9d5c-c02ad12d43f0/armor/dragonsurvival:armor_a2e74581ae42d116124c5df2412278505fd1131913ed08f03f56db1ec618a069": {
+          "HIT": 2532
+        },
+        "58a99bd7-4279-3620-a631-a0a0678dbab6/dragonsurvival:adult/dragonsurvival:dynamic_normal_58a99bd7-4279-3620-a631-a0a0678dbab6_cave_dragon_adult_bro_adda4cd3876d634ed7e3e4b89ace0b235a7340ba5640282627d790275601dbcc": {
+          "HIT": 5064
+        },
+        "58a99bd7-4279-3620-a631-a0a0678dbab6/armor/dragonsurvival:armor_a2e74581ae42d116124c5df2412278505fd1131913ed08f03f56db1ec618a069": {
+          "HIT": 2532
+        },
+        "6ef3864b-709a-3676-8254-71207484e44b/dragonsurvival:adult/dragonsurvival:dynamic_normal_6ef3864b-709a-3676-8254-71207484e44b_cave_dragon_adult_bro_adda4cd3876d634ed7e3e4b89ace0b235a7340ba5640282627d790275601dbcc": {
+          "HIT": 5064
+        },
+        "6ef3864b-709a-3676-8254-71207484e44b/armor/dragonsurvival:armor_a2e74581ae42d116124c5df2412278505fd1131913ed08f03f56db1ec618a069": {
+          "HIT": 2532
+        },
+        "8f208ee8-8072-3c2c-ab4c-58a39940238f/dragonsurvival:adult/dragonsurvival:dynamic_normal_8f208ee8-8072-3c2c-ab4c-58a39940238f_cave_dragon_adult_bro_adda4cd3876d634ed7e3e4b89ace0b235a7340ba5640282627d790275601dbcc": {
+          "HIT": 5064
+        },
+        "8f208ee8-8072-3c2c-ab4c-58a39940238f/armor/dragonsurvival:armor_a2e74581ae42d116124c5df2412278505fd1131913ed08f03f56db1ec618a069": {
+          "HIT": 2532
+        },
+        "5aff569d-d413-36be-812d-7b9c9eb40460/dragonsurvival:adult/dragonsurvival:dynamic_normal_5aff569d-d413-36be-812d-7b9c9eb40460_cave_dragon_adult_bro_adda4cd3876d634ed7e3e4b89ace0b235a7340ba5640282627d790275601dbcc": {
+          "HIT": 5064
+        },
+        "5aff569d-d413-36be-812d-7b9c9eb40460/armor/dragonsurvival:armor_a2e74581ae42d116124c5df2412278505fd1131913ed08f03f56db1ec618a069": {
+          "HIT": 2532
+        },
+        "90328d92-3458-331a-b057-6a328a98446e/dragonsurvival:adult/dragonsurvival:dynamic_normal_90328d92-3458-331a-b057-6a328a98446e_cave_dragon_adult_bro_adda4cd3876d634ed7e3e4b89ace0b235a7340ba5640282627d790275601dbcc": {
+          "HIT": 5064
+        },
+        "90328d92-3458-331a-b057-6a328a98446e/armor/dragonsurvival:armor_a2e74581ae42d116124c5df2412278505fd1131913ed08f03f56db1ec618a069": {
+          "HIT": 2532
+        },
+        "979aad27-e50f-3fc7-8186-896afc103514/dragonsurvival:adult/dragonsurvival:dynamic_normal_979aad27-e50f-3fc7-8186-896afc103514_cave_dragon_adult_bro_adda4cd3876d634ed7e3e4b89ace0b235a7340ba5640282627d790275601dbcc": {
+          "HIT": 5064
+        },
+        "979aad27-e50f-3fc7-8186-896afc103514/armor/dragonsurvival:armor_a2e74581ae42d116124c5df2412278505fd1131913ed08f03f56db1ec618a069": {
+          "HIT": 2532
+        },
+        "3895f20a-4a6b-34e3-8302-000c41cc85cb/dragonsurvival:adult/dragonsurvival:dynamic_normal_3895f20a-4a6b-34e3-8302-000c41cc85cb_cave_dragon_adult_bro_adda4cd3876d634ed7e3e4b89ace0b235a7340ba5640282627d790275601dbcc": {
+          "HIT": 5064
+        },
+        "3895f20a-4a6b-34e3-8302-000c41cc85cb/armor/dragonsurvival:armor_a2e74581ae42d116124c5df2412278505fd1131913ed08f03f56db1ec618a069": {
+          "HIT": 2532
+        },
+        "89c01117-0a17-3cfa-80a9-44d0bfb702af/dragonsurvival:adult/dragonsurvival:dynamic_normal_89c01117-0a17-3cfa-80a9-44d0bfb702af_cave_dragon_adult_bro_adda4cd3876d634ed7e3e4b89ace0b235a7340ba5640282627d790275601dbcc": {
+          "HIT": 5064
+        },
+        "89c01117-0a17-3cfa-80a9-44d0bfb702af/armor/dragonsurvival:armor_a2e74581ae42d116124c5df2412278505fd1131913ed08f03f56db1ec618a069": {
+          "HIT": 2532
+        },
+        "shadow": {
+          "GPU_PASS": 30384
+        },
+        "entity": {
+          "GPU_PASS": 30384
+        }
+      },
+      "dirtyTraces": [],
+      "frameSamples": 1266,
+      "quantileSamples": 1266,
+      "frameTimeMs": {
+        "p99": 16.6876,
+        "p50": 11.4408,
+        "p95": 14.9317
+      }
+    },
+    "actorScales": [
+      0.95,
+      0.95,
+      0.95,
+      0.95,
+      0.95,
+      0.95,
+      0.95,
+      0.95,
+      0.95,
+      0.95,
+      0.95,
+      0.95
+    ],
+    "actorGrowth": [
+      40.0,
+      40.0,
+      40.0,
+      40.0,
+      40.0,
+      40.0,
+      40.0,
+      40.0,
+      40.0,
+      40.0,
+      40.0,
+      40.0
+    ],
+    "actorStages": [
+      "dragonsurvival:adult",
+      "dragonsurvival:adult",
+      "dragonsurvival:adult",
+      "dragonsurvival:adult",
+      "dragonsurvival:adult",
+      "dragonsurvival:adult",
+      "dragonsurvival:adult",
+      "dragonsurvival:adult",
+      "dragonsurvival:adult",
+      "dragonsurvival:adult",
+      "dragonsurvival:adult",
+      "dragonsurvival:adult"
+    ]
+  },
+  {
+    "mode": "GPU",
+    "dragonPlayers": 12,
+    "repetition": 2,
+    "warmupSeconds": 5,
+    "samplingSeconds": 15.0031546,
+    "width": 1280,
+    "height": 720,
+    "fpsLimit": 260,
+    "renderDistance": 6,
+    "camera": "(0.5, -58.28999996185303, 7.25)",
+    "textureBytes": 28311552,
+    "meshBytes": 1148832,
+    "stats": {
+      "totals": {
+        "FRAME_CPU_NANOS": 13686386600,
+        "GPU_BONE_SUBMIT_NANOS": 797564800,
+        "GPU_DRAW_CPU_NANOS": 2768593900,
+        "GPU_PASS": 61152,
+        "GPU_POSE_CAPTURE_NANOS": 4534307700,
+        "GPU_VERTEX_COUNT": 554770944,
+        "HIT": 91728
+      },
+      "peaks": {
+        "GPU_RESOURCE_BYTES": 13846176,
+        "TEXTURE_RESOURCE_BYTES": 28311552
+      },
+      "fallbacks": {},
+      "attribution": {
+        "d58937b6-e8cc-32a1-beeb-eac48149c137/dragonsurvival:adult/dragonsurvival:dynamic_normal_d58937b6-e8cc-32a1-beeb-eac48149c137_cave_dragon_adult_bro_adda4cd3876d634ed7e3e4b89ace0b235a7340ba5640282627d790275601dbcc": {
+          "HIT": 5096
+        },
+        "d58937b6-e8cc-32a1-beeb-eac48149c137/armor/dragonsurvival:armor_a2e74581ae42d116124c5df2412278505fd1131913ed08f03f56db1ec618a069": {
+          "HIT": 2548
+        },
+        "db53822a-a93f-3c73-aceb-5f165916046f/dragonsurvival:adult/dragonsurvival:dynamic_normal_db53822a-a93f-3c73-aceb-5f165916046f_cave_dragon_adult_bro_adda4cd3876d634ed7e3e4b89ace0b235a7340ba5640282627d790275601dbcc": {
+          "HIT": 5096
+        },
+        "db53822a-a93f-3c73-aceb-5f165916046f/armor/dragonsurvival:armor_a2e74581ae42d116124c5df2412278505fd1131913ed08f03f56db1ec618a069": {
+          "HIT": 2548
+        },
+        "7978bc7b-310c-39f3-91bb-759cf8b9ce88/dragonsurvival:adult/dragonsurvival:dynamic_normal_7978bc7b-310c-39f3-91bb-759cf8b9ce88_cave_dragon_adult_bro_adda4cd3876d634ed7e3e4b89ace0b235a7340ba5640282627d790275601dbcc": {
+          "HIT": 5096
+        },
+        "7978bc7b-310c-39f3-91bb-759cf8b9ce88/armor/dragonsurvival:armor_a2e74581ae42d116124c5df2412278505fd1131913ed08f03f56db1ec618a069": {
+          "HIT": 2548
+        },
+        "49441342-74b9-3086-9d5c-c02ad12d43f0/dragonsurvival:adult/dragonsurvival:dynamic_normal_49441342-74b9-3086-9d5c-c02ad12d43f0_cave_dragon_adult_bro_adda4cd3876d634ed7e3e4b89ace0b235a7340ba5640282627d790275601dbcc": {
+          "HIT": 5096
+        },
+        "49441342-74b9-3086-9d5c-c02ad12d43f0/armor/dragonsurvival:armor_a2e74581ae42d116124c5df2412278505fd1131913ed08f03f56db1ec618a069": {
+          "HIT": 2548
+        },
+        "58a99bd7-4279-3620-a631-a0a0678dbab6/dragonsurvival:adult/dragonsurvival:dynamic_normal_58a99bd7-4279-3620-a631-a0a0678dbab6_cave_dragon_adult_bro_adda4cd3876d634ed7e3e4b89ace0b235a7340ba5640282627d790275601dbcc": {
+          "HIT": 5096
+        },
+        "58a99bd7-4279-3620-a631-a0a0678dbab6/armor/dragonsurvival:armor_a2e74581ae42d116124c5df2412278505fd1131913ed08f03f56db1ec618a069": {
+          "HIT": 2548
+        },
+        "6ef3864b-709a-3676-8254-71207484e44b/dragonsurvival:adult/dragonsurvival:dynamic_normal_6ef3864b-709a-3676-8254-71207484e44b_cave_dragon_adult_bro_adda4cd3876d634ed7e3e4b89ace0b235a7340ba5640282627d790275601dbcc": {
+          "HIT": 5096
+        },
+        "6ef3864b-709a-3676-8254-71207484e44b/armor/dragonsurvival:armor_a2e74581ae42d116124c5df2412278505fd1131913ed08f03f56db1ec618a069": {
+          "HIT": 2548
+        },
+        "8f208ee8-8072-3c2c-ab4c-58a39940238f/dragonsurvival:adult/dragonsurvival:dynamic_normal_8f208ee8-8072-3c2c-ab4c-58a39940238f_cave_dragon_adult_bro_adda4cd3876d634ed7e3e4b89ace0b235a7340ba5640282627d790275601dbcc": {
+          "HIT": 5096
+        },
+        "8f208ee8-8072-3c2c-ab4c-58a39940238f/armor/dragonsurvival:armor_a2e74581ae42d116124c5df2412278505fd1131913ed08f03f56db1ec618a069": {
+          "HIT": 2548
+        },
+        "5aff569d-d413-36be-812d-7b9c9eb40460/dragonsurvival:adult/dragonsurvival:dynamic_normal_5aff569d-d413-36be-812d-7b9c9eb40460_cave_dragon_adult_bro_adda4cd3876d634ed7e3e4b89ace0b235a7340ba5640282627d790275601dbcc": {
+          "HIT": 5096
+        },
+        "5aff569d-d413-36be-812d-7b9c9eb40460/armor/dragonsurvival:armor_a2e74581ae42d116124c5df2412278505fd1131913ed08f03f56db1ec618a069": {
+          "HIT": 2548
+        },
+        "90328d92-3458-331a-b057-6a328a98446e/dragonsurvival:adult/dragonsurvival:dynamic_normal_90328d92-3458-331a-b057-6a328a98446e_cave_dragon_adult_bro_adda4cd3876d634ed7e3e4b89ace0b235a7340ba5640282627d790275601dbcc": {
+          "HIT": 5096
+        },
+        "90328d92-3458-331a-b057-6a328a98446e/armor/dragonsurvival:armor_a2e74581ae42d116124c5df2412278505fd1131913ed08f03f56db1ec618a069": {
+          "HIT": 2548
+        },
+        "979aad27-e50f-3fc7-8186-896afc103514/dragonsurvival:adult/dragonsurvival:dynamic_normal_979aad27-e50f-3fc7-8186-896afc103514_cave_dragon_adult_bro_adda4cd3876d634ed7e3e4b89ace0b235a7340ba5640282627d790275601dbcc": {
+          "HIT": 5096
+        },
+        "979aad27-e50f-3fc7-8186-896afc103514/armor/dragonsurvival:armor_a2e74581ae42d116124c5df2412278505fd1131913ed08f03f56db1ec618a069": {
+          "HIT": 2548
+        },
+        "3895f20a-4a6b-34e3-8302-000c41cc85cb/dragonsurvival:adult/dragonsurvival:dynamic_normal_3895f20a-4a6b-34e3-8302-000c41cc85cb_cave_dragon_adult_bro_adda4cd3876d634ed7e3e4b89ace0b235a7340ba5640282627d790275601dbcc": {
+          "HIT": 5096
+        },
+        "3895f20a-4a6b-34e3-8302-000c41cc85cb/armor/dragonsurvival:armor_a2e74581ae42d116124c5df2412278505fd1131913ed08f03f56db1ec618a069": {
+          "HIT": 2548
+        },
+        "89c01117-0a17-3cfa-80a9-44d0bfb702af/dragonsurvival:adult/dragonsurvival:dynamic_normal_89c01117-0a17-3cfa-80a9-44d0bfb702af_cave_dragon_adult_bro_adda4cd3876d634ed7e3e4b89ace0b235a7340ba5640282627d790275601dbcc": {
+          "HIT": 5096
+        },
+        "89c01117-0a17-3cfa-80a9-44d0bfb702af/armor/dragonsurvival:armor_a2e74581ae42d116124c5df2412278505fd1131913ed08f03f56db1ec618a069": {
+          "HIT": 2548
+        },
+        "shadow": {
+          "GPU_PASS": 30576
+        },
+        "entity": {
+          "GPU_PASS": 30576
+        }
+      },
+      "dirtyTraces": [],
+      "frameSamples": 1274,
+      "quantileSamples": 1274,
+      "frameTimeMs": {
+        "p99": 16.2097,
+        "p50": 11.3138,
+        "p95": 14.7274
+      }
+    },
+    "actorScales": [
+      0.95,
+      0.95,
+      0.95,
+      0.95,
+      0.95,
+      0.95,
+      0.95,
+      0.95,
+      0.95,
+      0.95,
+      0.95,
+      0.95
+    ],
+    "actorGrowth": [
+      40.0,
+      40.0,
+      40.0,
+      40.0,
+      40.0,
+      40.0,
+      40.0,
+      40.0,
+      40.0,
+      40.0,
+      40.0,
+      40.0
+    ],
+    "actorStages": [
+      "dragonsurvival:adult",
+      "dragonsurvival:adult",
+      "dragonsurvival:adult",
+      "dragonsurvival:adult",
+      "dragonsurvival:adult",
+      "dragonsurvival:adult",
+      "dragonsurvival:adult",
+      "dragonsurvival:adult",
+      "dragonsurvival:adult",
+      "dragonsurvival:adult",
+      "dragonsurvival:adult",
+      "dragonsurvival:adult"
+    ]
+  },
+  {
+    "mode": "TEXTURES",
+    "dragonPlayers": 12,
+    "repetition": 2,
+    "warmupSeconds": 5,
+    "samplingSeconds": 15.0029882,
+    "width": 1280,
+    "height": 720,
+    "fpsLimit": 260,
+    "renderDistance": 6,
+    "camera": "(0.5, -58.28999996185303, 7.25)",
+    "textureBytes": 28311552,
+    "meshBytes": 0,
+    "stats": {
+      "totals": {
+        "CPU_VERTEX_SUBMIT_NANOS": 7013522300,
+        "FRAME_CPU_NANOS": 14096628600,
+        "HIT": 36864
+      },
+      "peaks": {
+        "TEXTURE_RESOURCE_BYTES": 28311552
+      },
+      "fallbacks": {},
+      "attribution": {
+        "d58937b6-e8cc-32a1-beeb-eac48149c137/dragonsurvival:adult/dragonsurvival:dynamic_normal_d58937b6-e8cc-32a1-beeb-eac48149c137_cave_dragon_adult_bro_adda4cd3876d634ed7e3e4b89ace0b235a7340ba5640282627d790275601dbcc": {
+          "HIT": 2048
+        },
+        "d58937b6-e8cc-32a1-beeb-eac48149c137/armor/dragonsurvival:armor_a2e74581ae42d116124c5df2412278505fd1131913ed08f03f56db1ec618a069": {
+          "HIT": 1024
+        },
+        "db53822a-a93f-3c73-aceb-5f165916046f/dragonsurvival:adult/dragonsurvival:dynamic_normal_db53822a-a93f-3c73-aceb-5f165916046f_cave_dragon_adult_bro_adda4cd3876d634ed7e3e4b89ace0b235a7340ba5640282627d790275601dbcc": {
+          "HIT": 2048
+        },
+        "db53822a-a93f-3c73-aceb-5f165916046f/armor/dragonsurvival:armor_a2e74581ae42d116124c5df2412278505fd1131913ed08f03f56db1ec618a069": {
+          "HIT": 1024
+        },
+        "7978bc7b-310c-39f3-91bb-759cf8b9ce88/dragonsurvival:adult/dragonsurvival:dynamic_normal_7978bc7b-310c-39f3-91bb-759cf8b9ce88_cave_dragon_adult_bro_adda4cd3876d634ed7e3e4b89ace0b235a7340ba5640282627d790275601dbcc": {
+          "HIT": 2048
+        },
+        "7978bc7b-310c-39f3-91bb-759cf8b9ce88/armor/dragonsurvival:armor_a2e74581ae42d116124c5df2412278505fd1131913ed08f03f56db1ec618a069": {
+          "HIT": 1024
+        },
+        "49441342-74b9-3086-9d5c-c02ad12d43f0/dragonsurvival:adult/dragonsurvival:dynamic_normal_49441342-74b9-3086-9d5c-c02ad12d43f0_cave_dragon_adult_bro_adda4cd3876d634ed7e3e4b89ace0b235a7340ba5640282627d790275601dbcc": {
+          "HIT": 2048
+        },
+        "49441342-74b9-3086-9d5c-c02ad12d43f0/armor/dragonsurvival:armor_a2e74581ae42d116124c5df2412278505fd1131913ed08f03f56db1ec618a069": {
+          "HIT": 1024
+        },
+        "58a99bd7-4279-3620-a631-a0a0678dbab6/dragonsurvival:adult/dragonsurvival:dynamic_normal_58a99bd7-4279-3620-a631-a0a0678dbab6_cave_dragon_adult_bro_adda4cd3876d634ed7e3e4b89ace0b235a7340ba5640282627d790275601dbcc": {
+          "HIT": 2048
+        },
+        "58a99bd7-4279-3620-a631-a0a0678dbab6/armor/dragonsurvival:armor_a2e74581ae42d116124c5df2412278505fd1131913ed08f03f56db1ec618a069": {
+          "HIT": 1024
+        },
+        "6ef3864b-709a-3676-8254-71207484e44b/dragonsurvival:adult/dragonsurvival:dynamic_normal_6ef3864b-709a-3676-8254-71207484e44b_cave_dragon_adult_bro_adda4cd3876d634ed7e3e4b89ace0b235a7340ba5640282627d790275601dbcc": {
+          "HIT": 2048
+        },
+        "6ef3864b-709a-3676-8254-71207484e44b/armor/dragonsurvival:armor_a2e74581ae42d116124c5df2412278505fd1131913ed08f03f56db1ec618a069": {
+          "HIT": 1024
+        },
+        "8f208ee8-8072-3c2c-ab4c-58a39940238f/dragonsurvival:adult/dragonsurvival:dynamic_normal_8f208ee8-8072-3c2c-ab4c-58a39940238f_cave_dragon_adult_bro_adda4cd3876d634ed7e3e4b89ace0b235a7340ba5640282627d790275601dbcc": {
+          "HIT": 2048
+        },
+        "8f208ee8-8072-3c2c-ab4c-58a39940238f/armor/dragonsurvival:armor_a2e74581ae42d116124c5df2412278505fd1131913ed08f03f56db1ec618a069": {
+          "HIT": 1024
+        },
+        "5aff569d-d413-36be-812d-7b9c9eb40460/dragonsurvival:adult/dragonsurvival:dynamic_normal_5aff569d-d413-36be-812d-7b9c9eb40460_cave_dragon_adult_bro_adda4cd3876d634ed7e3e4b89ace0b235a7340ba5640282627d790275601dbcc": {
+          "HIT": 2048
+        },
+        "5aff569d-d413-36be-812d-7b9c9eb40460/armor/dragonsurvival:armor_a2e74581ae42d116124c5df2412278505fd1131913ed08f03f56db1ec618a069": {
+          "HIT": 1024
+        },
+        "90328d92-3458-331a-b057-6a328a98446e/dragonsurvival:adult/dragonsurvival:dynamic_normal_90328d92-3458-331a-b057-6a328a98446e_cave_dragon_adult_bro_adda4cd3876d634ed7e3e4b89ace0b235a7340ba5640282627d790275601dbcc": {
+          "HIT": 2048
+        },
+        "90328d92-3458-331a-b057-6a328a98446e/armor/dragonsurvival:armor_a2e74581ae42d116124c5df2412278505fd1131913ed08f03f56db1ec618a069": {
+          "HIT": 1024
+        },
+        "979aad27-e50f-3fc7-8186-896afc103514/dragonsurvival:adult/dragonsurvival:dynamic_normal_979aad27-e50f-3fc7-8186-896afc103514_cave_dragon_adult_bro_adda4cd3876d634ed7e3e4b89ace0b235a7340ba5640282627d790275601dbcc": {
+          "HIT": 2048
+        },
+        "979aad27-e50f-3fc7-8186-896afc103514/armor/dragonsurvival:armor_a2e74581ae42d116124c5df2412278505fd1131913ed08f03f56db1ec618a069": {
+          "HIT": 1024
+        },
+        "3895f20a-4a6b-34e3-8302-000c41cc85cb/dragonsurvival:adult/dragonsurvival:dynamic_normal_3895f20a-4a6b-34e3-8302-000c41cc85cb_cave_dragon_adult_bro_adda4cd3876d634ed7e3e4b89ace0b235a7340ba5640282627d790275601dbcc": {
+          "HIT": 2048
+        },
+        "3895f20a-4a6b-34e3-8302-000c41cc85cb/armor/dragonsurvival:armor_a2e74581ae42d116124c5df2412278505fd1131913ed08f03f56db1ec618a069": {
+          "HIT": 1024
+        },
+        "89c01117-0a17-3cfa-80a9-44d0bfb702af/dragonsurvival:adult/dragonsurvival:dynamic_normal_89c01117-0a17-3cfa-80a9-44d0bfb702af_cave_dragon_adult_bro_adda4cd3876d634ed7e3e4b89ace0b235a7340ba5640282627d790275601dbcc": {
+          "HIT": 2048
+        },
+        "89c01117-0a17-3cfa-80a9-44d0bfb702af/armor/dragonsurvival:armor_a2e74581ae42d116124c5df2412278505fd1131913ed08f03f56db1ec618a069": {
+          "HIT": 1024
+        }
+      },
+      "dirtyTraces": [],
+      "frameSamples": 512,
+      "quantileSamples": 512,
+      "frameTimeMs": {
+        "p99": 37.2854,
+        "p50": 28.6449,
+        "p95": 34.043
+      }
+    },
+    "actorScales": [
+      0.95,
+      0.95,
+      0.95,
+      0.95,
+      0.95,
+      0.95,
+      0.95,
+      0.95,
+      0.95,
+      0.95,
+      0.95,
+      0.95
+    ],
+    "actorGrowth": [
+      40.0,
+      40.0,
+      40.0,
+      40.0,
+      40.0,
+      40.0,
+      40.0,
+      40.0,
+      40.0,
+      40.0,
+      40.0,
+      40.0
+    ],
+    "actorStages": [
+      "dragonsurvival:adult",
+      "dragonsurvival:adult",
+      "dragonsurvival:adult",
+      "dragonsurvival:adult",
+      "dragonsurvival:adult",
+      "dragonsurvival:adult",
+      "dragonsurvival:adult",
+      "dragonsurvival:adult",
+      "dragonsurvival:adult",
+      "dragonsurvival:adult",
+      "dragonsurvival:adult",
+      "dragonsurvival:adult"
+    ]
+  },
+  {
+    "mode": "VANILLA",
+    "dragonPlayers": 12,
+    "repetition": 2,
+    "warmupSeconds": 5,
+    "samplingSeconds": 15.0317512,
+    "width": 1280,
+    "height": 720,
+    "fpsLimit": 260,
+    "renderDistance": 6,
+    "camera": "(0.5, -58.28999996185303, 7.25)",
+    "textureBytes": 0,
+    "meshBytes": 0,
+    "stats": {
+      "totals": {
+        "CPU_VERTEX_SUBMIT_NANOS": 8228537700,
+        "FRAME_CPU_NANOS": 14052979400
+      },
+      "peaks": {
+        "TEXTURE_RESOURCE_BYTES": 0
+      },
+      "fallbacks": {},
+      "attribution": {},
+      "dirtyTraces": [],
+      "frameSamples": 607,
+      "quantileSamples": 607,
+      "frameTimeMs": {
+        "p99": 30.4301,
+        "p50": 24.359,
+        "p95": 27.4367
+      }
+    },
+    "actorScales": [
+      0.95,
+      0.95,
+      0.95,
+      0.95,
+      0.95,
+      0.95,
+      0.95,
+      0.95,
+      0.95,
+      0.95,
+      0.95,
+      0.95
+    ],
+    "actorGrowth": [
+      40.0,
+      40.0,
+      40.0,
+      40.0,
+      40.0,
+      40.0,
+      40.0,
+      40.0,
+      40.0,
+      40.0,
+      40.0,
+      40.0
+    ],
+    "actorStages": [
+      "dragonsurvival:adult",
+      "dragonsurvival:adult",
+      "dragonsurvival:adult",
+      "dragonsurvival:adult",
+      "dragonsurvival:adult",
+      "dragonsurvival:adult",
+      "dragonsurvival:adult",
+      "dragonsurvival:adult",
+      "dragonsurvival:adult",
+      "dragonsurvival:adult",
+      "dragonsurvival:adult",
+      "dragonsurvival:adult"
+    ]
+  }
+]

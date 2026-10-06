@@ -1,8 +1,8 @@
 {
   "totals": {
-    "CPU_VERTEX_SUBMIT_NANOS": 190423900,
-    "FRAME_CPU_NANOS": 1090688000,
-    "HIT": 1773,
+    "CPU_VERTEX_SUBMIT_NANOS": 207270700,
+    "FRAME_CPU_NANOS": 1249610600,
+    "HIT": 1770,
     "REQUEST": 209,
     "STATE_SYNC": 100
   },
@@ -12,13 +12,13 @@
   "fallbacks": {},
   "attribution": {
     "d58937b6-e8cc-32a1-beeb-eac48149c137/dragonsurvival:newborn/dragonsurvival:dynamic_normal_d58937b6-e8cc-32a1-beeb-eac48149c137_cave_dragon_newborn_bro_c31fa273017200ff0dce79b3b6df9dd622359a0677a1927976f1ff4dbcc462d0": {
-      "HIT": 1182,
+      "HIT": 1180,
       "REQUEST": 104
     },
     "d58937b6-e8cc-32a1-beeb-eac48149c137/armor/dragonsurvival:armor_a2e74581ae42d116124c5df2412278505fd1131913ed08f03f56db1ec618a069": {
-      "HIT": 591
+      "HIT": 590
     },
-    "SkinData@786877322/deserializeNBT": {
+    "SkinData@1140850370/deserializeNBT": {
       "STATE_SYNC": 100
     },
     "dirty/dragonsurvival:newborn": {
@@ -26,11 +26,11 @@
     }
   },
   "dirtyTraces": [],
-  "frameSamples": 591,
-  "quantileSamples": 591,
+  "frameSamples": 590,
+  "quantileSamples": 590,
   "frameTimeMs": {
-    "p50": 8.3472,
-    "p99": 10.6966,
-    "p95": 9.6563
+    "p50": 8.3424,
+    "p99": 10.5505,
+    "p95": 9.7132
   }
 }

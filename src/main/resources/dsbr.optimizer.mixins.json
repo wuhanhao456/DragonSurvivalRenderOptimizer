@@ -13,6 +13,7 @@
     "RenderingUtilsMixin",
     "SkinDirtyMixin",
     "GeoRendererMixin",
+    "GameRendererScopeMixin",
     "DragonGlowMixin",
     "BufferSourceMixin",
     "BufferFormatAccessor",

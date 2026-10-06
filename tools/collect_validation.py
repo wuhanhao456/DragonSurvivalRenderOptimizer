@@ -7,13 +7,24 @@ read = lambda path: json.loads(path.read_text(encoding='utf-8'))
 digest = lambda path: hashlib.sha256(path.read_bytes()).hexdigest()
 runtime = read(a.runtime / 'probe-result.json'); fallback = read(a.fallback / 'probe-result.json')
 assert runtime['pass'] and fallback['pass'], 'Cannot archive failed probes as passes'
-jar = next((a.build / 'libs').glob('*alpha.1.jar')); tested_hash = digest(a.runtime / 'mods/optimizer.jar')
+version = next(x.split('=', 1)[1] for x in (project / 'gradle.properties').read_text(encoding='utf-8').splitlines() if x.startswith('mod_version='))
+jar = a.build / 'libs' / ('dsbr-' + version + '.jar'); tested_hash = digest(a.runtime / 'mods/optimizer.jar')
 assert digest(jar) == tested_hash == digest(a.fallback / 'mods/optimizer.jar'), 'Probe jar differs from delivery jar'
 assert runtime['afterClearTextureBytes'] == runtime['afterClearMeshBytes'] == 0, 'Resource cleanup failed'
 assert runtime['modId'] == 'dsbr' and not runtime['legacyActive'], 'Wrong identity or legacy takeover on DS 2.0.71'
 assert runtime['legacyConfigFlag'] and runtime['savedOldRenderMode'] == 'BEDROCK', 'Old config migration was not exercised'
 out = project / 'validation'; target = out / 'runtime-iris'; target.mkdir(parents=True, exist_ok=True)
 files = ['probe-result.json', 'baseline-textures.json', 'equivalent-state.json', 'changed-skin.json', 'changed-armor.json', 'restored-skin.json', 'gpu-mode.json', 'after-reload.json', 'plain-textures.png']
+inventory = {}
+for mode in ('vanilla', 'textures', 'gpu'):
+    name = 'inventory-' + mode
+    files.extend((name + '.json', name + '.png', name + '-screen.txt'))
+    stats = read(a.runtime / (name + '.json'))
+    assert stats['totals'].get('CPU_VERTEX_SUBMIT_NANOS', 0) > 0, 'Inventory preview did not render'
+    if mode == 'gpu':
+        assert stats['totals'].get('GUI_CPU_PASS', 0) > 0 and stats['totals'].get('GPU_PASS', 0) > 0
+        assert stats['totals'].get('READBACK', 0) == 0 and not {k: v for k, v in stats['fallbacks'].items() if k != 'benchmark cancelled'}
+    inventory[mode] = {'pass': True, 'screen': (a.runtime / (name + '-screen.txt')).read_text(), 'guiCpuPasses': stats['totals'].get('GUI_CPU_PASS', 0), 'worldGpuPasses': stats['totals'].get('GPU_PASS', 0)}
 shaders = []
 for i in range(8):
     prefix = f'shader-{i}'; files.extend(prefix + suffix for suffix in ('-name.txt', '-gpu.json', '-textures.png', '-gpu.png'))
@@ -36,14 +47,14 @@ assert tool_tests.returncode == 0, tool_tests.stderr
 sync = read(target / 'equivalent-state.json'); skin = read(target / 'changed-skin.json'); armor = read(target / 'changed-armor.json'); restored = read(target / 'restored-skin.json')
 assert sync['totals']['STATE_SYNC'] >= 100 and sync['totals'].get('GENERATED', 0) == 0
 assert skin['totals']['GENERATED'] == armor['totals']['GENERATED'] == 1 and restored['totals'].get('GENERATED', 0) == 0
-summary = {'date': '2026-10-06', 'version': '0.2.0-alpha.1', 'testedJarSha256': tested_hash,
+summary = {'date': '2026-10-06', 'version': version, 'testedJarSha256': tested_hash,
            'hardware': {'cpu': 'Intel Core i7-13700K', 'gpu': 'NVIDIA RTX 5070 Ti', 'driver': '596.49'},
            'javaTests': cases, 'benchmarkToolSyntheticTests': {'count': 4, 'pass': True, 'performanceMeasurements': False},
            'openGLTests': read(out / 'gl-results.json'), 'compatibility': runtime['compatibility'], 'optionalDependencyFallback': fallback,
            'upgradeMigration': {'modId': runtime['modId'], 'oldRenderModePreserved': runtime['savedOldRenderMode'], 'legacyConfigFlag': runtime['legacyConfigFlag'], 'legacyActiveOnDS2071': runtime['legacyActive']},
            'cache': {'equivalentSyncs': sync['totals']['STATE_SYNC'], 'equivalentGenerated': 0, 'changedSkinGenerated': 1, 'changedArmorGenerated': 1, 'restoredGenerated': 0},
            'cleanup': {'textureBytes': runtime['afterClearTextureBytes'], 'meshBytes': runtime['afterClearMeshBytes']},
-           'shaderSmokeTests': shaders, 'formalPerformanceMatrixCompleted': False, 'fullModpackVisualRegressionCompleted': False, 'releaseAcceptanceComplete': False,
+           'inventoryRegression': inventory, 'shaderSmokeTests': shaders, 'formalPerformanceMatrixCompleted': False, 'fullModpackVisualRegressionCompleted': False, 'releaseAcceptanceComplete': False,
            'method': 'Fresh isolated flat world; DS/Gecko/optimizer/test driver/Iris/Sodium only; 1280x720, view distance 6, FPS cap 120; short functional checks, not 60/300-second benchmarks'}
 (out / 'summary.json').write_text(json.dumps(summary, ensure_ascii=False, indent=2), encoding='utf-8')
 print(json.dumps({'jarSha256': tested_hash, 'javaTests': len(cases), 'shaderPacks': len(shaders), 'cachePass': True, 'cleanupBytes': summary['cleanup'], 'formalAcceptanceComplete': False}))

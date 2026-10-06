@@ -1,0 +1,78 @@
+{
+  "version": "0.2.0-alpha.2",
+  "date": "2026-10-06",
+  "testedJarSha256": "884c368f0dc25daa7261a5ffbeff94514920e2a34ce67e8fe7a56c7f7e782671",
+  "defaultMode": "GPU",
+  "modeCommandsIssued": false,
+  "javaTestsPassed": 10,
+  "freshConfigCases": [
+    {
+      "scenario": "plain",
+      "pass": true,
+      "startupMode": "GPU",
+      "shader": null,
+      "gpuPasses": 2206,
+      "normalTextureReadbacks": 0,
+      "phaseCounts": {
+        "entity": 2206
+      },
+      "inventoryPreviews": {
+        "vanilla": {
+          "pass": true,
+          "screen": "by.dragonsurvivalteam.dragonsurvival.client.gui.screens.DragonInventoryScreen",
+          "guiCpuPasses": 0
+        },
+        "textures": {
+          "pass": true,
+          "screen": "by.dragonsurvivalteam.dragonsurvival.client.gui.screens.DragonInventoryScreen",
+          "guiCpuPasses": 0
+        },
+        "gpu": {
+          "pass": true,
+          "screen": "by.dragonsurvivalteam.dragonsurvival.client.gui.screens.DragonInventoryScreen",
+          "guiCpuPasses": 462
+        }
+      },
+      "cleanupBytes": 0
+    },
+    {
+      "scenario": "iris",
+      "pass": true,
+      "startupMode": "GPU",
+      "shader": "ComplementaryReimagined_r5.9.zip",
+      "gpuPasses": 4404,
+      "normalTextureReadbacks": 0,
+      "phaseCounts": {
+        "shadow": 2202,
+        "entity": 2202
+      },
+      "inventoryPreviews": {
+        "vanilla": {
+          "pass": true,
+          "screen": "by.dragonsurvivalteam.dragonsurvival.client.gui.screens.DragonInventoryScreen",
+          "guiCpuPasses": 0
+        },
+        "textures": {
+          "pass": true,
+          "screen": "by.dragonsurvivalteam.dragonsurvival.client.gui.screens.DragonInventoryScreen",
+          "guiCpuPasses": 0
+        },
+        "gpu": {
+          "pass": true,
+          "screen": "by.dragonsurvivalteam.dragonsurvival.client.gui.screens.DragonInventoryScreen",
+          "guiCpuPasses": 454
+        }
+      },
+      "cleanupBytes": 0
+    }
+  ],
+  "missingDependencyFallback": {
+    "scenario": "DS and Gecko absent; startup and cleanup remain usable",
+    "configuredMode": "GPU",
+    "pass": true,
+    "compatibility": "versions=[dsbr=0.2.0-alpha.2]; texture=false; GPU=false; Iris=false; legacy=false"
+  },
+  "baseRenderingRegression": "validation/summary.json",
+  "eightShaderRegressionRepeated": true,
+  "formalAcceptanceComplete": false
+}

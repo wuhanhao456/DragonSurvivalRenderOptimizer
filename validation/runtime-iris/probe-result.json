@@ -2,19 +2,19 @@
   "pass": true,
   "stats": {
     "totals": {
-      "ARMOR_GENERATE_NANOS": 258801,
+      "ARMOR_GENERATE_NANOS": 292500,
       "COPY": 3,
-      "FRAME_CPU_NANOS": 1971021712,
+      "FRAME_CPU_NANOS": 2026447400,
       "GENERATED": 2,
-      "GPU_BONE_SUBMIT_NANOS": 66628084,
-      "GPU_DRAW_CPU_NANOS": 280308739,
-      "GPU_PASS": 4152,
-      "GPU_POSE_CAPTURE_NANOS": 392775635,
-      "GPU_VERTEX_COUNT": 37666944,
-      "HIT": 5535,
+      "GPU_BONE_SUBMIT_NANOS": 67336900,
+      "GPU_DRAW_CPU_NANOS": 288745500,
+      "GPU_PASS": 4146,
+      "GPU_POSE_CAPTURE_NANOS": 421994300,
+      "GPU_VERTEX_COUNT": 37612512,
+      "HIT": 5527,
       "RELEASE": 3,
       "REQUEST": 12,
-      "SKIN_GENERATE_NANOS": 872899
+      "SKIN_GENERATE_NANOS": 765000
     },
     "peaks": {
       "GPU_RESOURCE_BYTES": 2736000,
@@ -27,51 +27,51 @@
       "dragonsurvival:dynamic_normal_d58937b6-e8cc-32a1-beeb-eac48149c137_cave_dragon_newborn_bro_405b6d1f8ef6faf7ce720e7c3e67b0a701bd1acf6994171280206048c141d04c": {
         "RELEASE": 1
       },
-      "dragonsurvival:armor_f16aeb9b21fbe5a84f4a27259488d7e36027d57d6513cd96b1f2184b60e6273e": {
+      "dragonsurvival:dynamic_glow_d58937b6-e8cc-32a1-beeb-eac48149c137_cave_dragon_newborn_bro_405b6d1f8ef6faf7ce720e7c3e67b0a701bd1acf6994171280206048c141d04c": {
         "RELEASE": 1
       },
-      "dragonsurvival:dynamic_glow_d58937b6-e8cc-32a1-beeb-eac48149c137_cave_dragon_newborn_bro_405b6d1f8ef6faf7ce720e7c3e67b0a701bd1acf6994171280206048c141d04c": {
+      "dragonsurvival:armor_a2e74581ae42d116124c5df2412278505fd1131913ed08f03f56db1ec618a069": {
         "RELEASE": 1
       },
       "d58937b6-e8cc-32a1-beeb-eac48149c137/dragonsurvival:newborn/dragonsurvival:dynamic_normal_d58937b6-e8cc-32a1-beeb-eac48149c137_cave_dragon_newborn_bro_405b6d1f8ef6faf7ce720e7c3e67b0a701bd1acf6994171280206048c141d04c": {
         "COPY": 1,
         "GENERATED": 1,
-        "HIT": 4151,
+        "HIT": 4145,
         "REQUEST": 6,
-        "SKIN_GENERATE_NANOS": 872899
+        "SKIN_GENERATE_NANOS": 765000
       },
       "d58937b6-e8cc-32a1-beeb-eac48149c137/dragonsurvival:newborn/dragonsurvival:dynamic_glow_d58937b6-e8cc-32a1-beeb-eac48149c137_cave_dragon_newborn_bro_405b6d1f8ef6faf7ce720e7c3e67b0a701bd1acf6994171280206048c141d04c": {
         "COPY": 1
       },
-      "d58937b6-e8cc-32a1-beeb-eac48149c137/armor/dragonsurvival:armor_f16aeb9b21fbe5a84f4a27259488d7e36027d57d6513cd96b1f2184b60e6273e": {
-        "ARMOR_GENERATE_NANOS": 258801,
+      "d58937b6-e8cc-32a1-beeb-eac48149c137/armor/dragonsurvival:armor_a2e74581ae42d116124c5df2412278505fd1131913ed08f03f56db1ec618a069": {
+        "ARMOR_GENERATE_NANOS": 292500,
         "COPY": 1,
         "GENERATED": 1,
-        "HIT": 1384
+        "HIT": 1382
       },
       "shadow": {
-        "GPU_PASS": 1384
+        "GPU_PASS": 1382
       },
       "glow/shadow": {
-        "GPU_PASS": 692
+        "GPU_PASS": 691
       },
       "entity": {
-        "GPU_PASS": 1384
+        "GPU_PASS": 1382
       },
       "glow/entity": {
-        "GPU_PASS": 692
+        "GPU_PASS": 691
       },
       "dirty/dragonsurvival:newborn": {
         "REQUEST": 6
       }
     },
     "dirtyTraces": [],
-    "frameSamples": 692,
-    "quantileSamples": 692,
+    "frameSamples": 691,
+    "quantileSamples": 691,
     "frameTimeMs": {
-      "p50": 8.347301,
-      "p99": 10.138699,
-      "p95": 9.2002
+      "p50": 8.35,
+      "p99": 10.2623,
+      "p95": 9.3466
     }
   },
   "textureBytes": 5242880,
@@ -80,9 +80,10 @@
   "beforeReloadMeshBytes": 985536,
   "afterClearTextureBytes": 0,
   "afterClearMeshBytes": 0,
-  "compatibility": "versions\u003d[dragonsurvival\u003d2.0.71, dsbr\u003d0.2.0-alpha.1, geckolib\u003d4.9.3, iris\u003d1.8.14-beta.1+mc1.21.1, sodium\u003d0.8.13+mc1.21.1]; texture\u003dtrue; GPU\u003dtrue; Iris\u003dtrue; legacy\u003dfalse",
+  "compatibility": "versions\u003d[dragonsurvival\u003d2.0.71, dsbr\u003d0.2.0-alpha.2, geckolib\u003d4.9.3, iris\u003d1.8.14-beta.1+mc1.21.1, sodium\u003d0.8.13+mc1.21.1]; texture\u003dtrue; GPU\u003dtrue; Iris\u003dtrue; legacy\u003dfalse",
   "modId": "dsbr",
   "legacyActive": false,
+  "startupMode": "GPU",
   "legacyConfigFlag": true,
   "savedOldRenderMode": "BEDROCK"
 }

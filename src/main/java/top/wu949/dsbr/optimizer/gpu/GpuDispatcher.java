@@ -36,10 +36,13 @@ public final class GpuDispatcher {
     private static final ComputeProgram compute = new ComputeProgram();
     private static final BudgetCache<ModelKey, StaticMesh> meshes = new BudgetCache<>(StaticMesh::close);
     private static final Map<VertexConsumer, Binding> bindings = new WeakHashMap<>();
-    private static final Map<Object, Map<RenderType, List<Command>>> queues = new IdentityHashMap<>();
+    private static final DeferredBatches<Object, RenderType, Command> queues = new DeferredBatches<>();
     private static final Deque<Context> contexts = new ArrayDeque<>();
     private static boolean failed;
     private static int glowDepth;
+    private static int worldDepth;
+    public static void enterWorld() { worldDepth++; }
+    public static void exitWorld() { worldDepth--; }
     public static void enterGlow() { glowDepth++; }
     public static void exitGlow() { glowDepth--; }
     private static long pendingBytes;
@@ -53,6 +56,9 @@ public final class GpuDispatcher {
     public static Context begin(Object renderer, BakedGeoModel model, RenderType type, VertexConsumer buffer) {
         var c = new Context(); contexts.push(c);
         if (!enabled() || !(renderer instanceof DragonRenderer) || type == null || !(buffer instanceof BufferBuilder)) return c;
+        // GUI previews temporarily replace projection, lighting and model-view state. A deferred
+        // world batch cannot retain that state. Keep their original immediate CPU submission.
+        if (worldDepth == 0) { Diagnostics.INSTANCE.count(Diagnostics.Counter.GUI_CPU_PASS, "gui"); return c; }
         if ((type.sortOnUpload() && glowDepth == 0) || type.mode() != VertexFormat.Mode.QUADS || !type.format().equals(DefaultVertexFormat.NEW_ENTITY)) { fallback("sorted material or custom vertex format"); return c; }
         var binding = bindings.get(buffer); if (binding == null) { fallback("unrecognized buffer source/consumer"); return c; }
         try {
@@ -85,7 +91,7 @@ public final class GpuDispatcher {
         var c = contexts.peek(); if (c == null || c.mesh == null) return false;
         var binding = bindings.get(buffer);
         // A per-bone layer can replace a consumer. Leave such geometry on its original path.
-        if (binding == null || binding.source != c.binding.source || binding.type != c.binding.type) { fallback("bone consumer changed"); return false; }
+        if (binding == null || binding.source != c.binding.source || !Objects.equals(binding.type, c.binding.type)) { fallback("bone consumer changed"); return false; }
         var index = c.mesh.bones.get(bone); if (index == null) return false;
         if (!bone.isHidden() && c.pose.positions[index] != null) { fallback("bone submitted twice in a single pass"); return false; }
         if (!bone.isHidden()) c.pose.bone(index, pose.last(), colour, light, overlay);
@@ -96,22 +102,18 @@ public final class GpuDispatcher {
         if (context.mesh == null) return;
         Diagnostics.INSTANCE.nanos("GPU_POSE_CAPTURE", System.nanoTime() - context.start);
         if (completed && context.pose.anyVisible()) {
-            queues.computeIfAbsent(context.binding.source, x -> new IdentityHashMap<>()).computeIfAbsent(context.binding.type, x -> new ArrayList<>())
-                    .add(new Command(context.mesh, context.entry, context.pose, context.attributes, context.glow));
+            queues.add(context.binding.source, context.binding.type, new Command(context.mesh, context.entry, context.pose, context.attributes, context.glow));
         } else release(new Command(context.mesh, context.entry, context.pose, context.attributes, context.glow));
     }
-    public static boolean has(Object source, RenderType type) { var map = queues.get(source); return map != null && map.containsKey(type); }
+    public static boolean has(Object source, RenderType type) { return queues.has(source, type); }
     /** Caller owns RenderType state and the original Iris phase. */
     public static void draw(Object source, RenderType type) {
-        var map = queues.get(source); if (map == null) return;
-        var commands = map.remove(type); if (commands == null) return;
-        try {
-            for (var command : commands) {
-                try { drawCommand(command); }
-                catch (RuntimeException | LinkageError e) { disable("GPU dispatch/draw", e); }
-                finally { release(command); }
-            }
-        } finally { if (map.isEmpty()) queues.remove(source); }
+        var commands = queues.take(source, type); if (commands == null) return;
+        for (var command : commands) {
+            try { drawCommand(command); }
+            catch (RuntimeException | LinkageError e) { disable("GPU dispatch/draw", e); }
+            finally { release(command); }
+        }
     }
     public static void drawWithState(Object source, RenderType type) {
         if (!has(source, type)) return;
@@ -163,12 +165,12 @@ public final class GpuDispatcher {
     public static void finishFrame() {
         if (!queues.isEmpty()) {
             disable("buffer source left commands unflushed at end of frame", null);
-            queues.values().forEach(m -> m.values().forEach(l -> l.forEach(GpuDispatcher::release))); queues.clear();
+            queues.forEach(GpuDispatcher::release); queues.clear();
         }
     }
     public static void maintenance() { meshes.prune(System.nanoTime(), 30_000_000_000L, OptimizerConfig.MESH_MIB.get() * 1048576L - workingBytes - pendingBytes); }
     public static void clear() {
-        queues.values().forEach(m -> m.values().forEach(l -> l.forEach(GpuDispatcher::release))); queues.clear(); bindings.clear();
+        queues.forEach(GpuDispatcher::release); queues.clear(); bindings.clear();
         meshes.clear(); compute.close();
         if (poseBuffer != 0) { GL15.glDeleteBuffers(poseBuffer); GL15.glDeleteBuffers(outputBuffer); GL30.glDeleteVertexArrays(arrayObject); }
         poseBuffer = outputBuffer = arrayObject = 0; pendingBytes = workingBytes = 0;

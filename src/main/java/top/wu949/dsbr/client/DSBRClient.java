@@ -24,6 +24,6 @@ public final class DSBRClient {
         modContainer.registerConfig(ModConfig.Type.CLIENT, DSBRRenderConfig.SPEC);
         new RenderOptimizer(modBus, modContainer);
         if (OptimizerMixinPlugin.legacyCompatible) NeoForge.EVENT_BUS.register(new DragonPlayerRenderHook());
-        DragonSurvivalBedrockRenderer.LOGGER.info("DSBR 客户端已初始化：默认纹理优化，GPU 可选；旧 Bedrock/YSM 仅作默认关闭的兼容路径");
+        DragonSurvivalBedrockRenderer.LOGGER.info("DSBR 客户端已初始化：默认 GPU 与纹理优化；旧 Bedrock/YSM 仅作默认关闭的兼容路径");
     }
 }

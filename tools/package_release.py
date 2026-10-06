@@ -22,7 +22,7 @@ with tempfile.TemporaryDirectory() as temporary:
             if file.is_symlink(): raise ValueError('Refusing source symlink: ' + str(file))
             target.write(file, 'DragonSurvivalBedrockRenderer/' + file.relative_to(project).as_posix())
     shutil.copyfile(archive, dist / archive.name)
-manifest = {'version': version, 'modId': 'dsbr', 'defaultMode': 'TEXTURES', 'gpuDefaultEnabled': False, 'formalAcceptanceComplete': False, 'artifacts': []}
+manifest = {'version': version, 'modId': 'dsbr', 'defaultMode': 'GPU', 'gpuDefaultEnabled': True, 'formalAcceptanceComplete': False, 'githubReleaseAssets': [name + '.jar'], 'artifacts': []}
 for file in sorted(dist.glob(name + '*')):
     manifest['artifacts'].append({'name': file.name, 'bytes': file.stat().st_size, 'sha256': hashlib.sha256(file.read_bytes()).hexdigest()})
 (dist / 'build-manifest.json').write_text(json.dumps(manifest, ensure_ascii=False, indent=2), encoding='utf-8')

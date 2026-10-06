@@ -12,7 +12,7 @@
 | Iris | 1.8.14-beta.1+mc1.21.1 | 核验版本、刷新批次接口、实际 BufferBuilder 顶点字段/偏移 |
 | Sodium | 0.8.13+mc1.21.1 | Iris 路径同时核验；与 Iris 一同实际启动 |
 | OpenGL | 4.3（GPU 模式） | 驱动能力与计算 shader 编译检查；不满足时使用原 CPU 渲染 |
-| DSBR | 0.2.0-alpha.1，mod ID `dsbr` | 本 jar 内统一协调后端，不因自身身份关闭 GPU；DS 2.0.71 停用旧 Bedrock/YSM 接管 |
+| DSBR | 0.2.0-alpha.2，mod ID `dsbr` | 本 jar 内统一协调后端，不因自身身份关闭 GPU；DS 2.0.71 停用旧 Bedrock/YSM 接管 |
 | 独立优化原型 | `beloong_render_optimizer` | 检测到时停用集成补丁；升级时移除独立原型，保留一个 DSBR jar |
 
 纹理补丁与 GPU 补丁独立开关。Iris 版本不匹配只关闭 GPU；DS/GeckoLib 版本或纹理接口不匹配关闭全部补丁。旧 Bedrock/YSM 仅对 DS 2.0.67 且 `initArmorMasks` / `getOrCreateDragon` 仍存在时开放，默认关闭，其完整运行回归未执行。metadata 中 DS 为可选依赖，以便在不匹配环境中载入并解释停用原因。实际启动的版本与日志保存在验证记录中。
@@ -23,6 +23,7 @@
 | --- | --- |
 | DS `DragonRenderer` 龙玩家、本体、盔甲 | 可缓存纹理、提交 GPU 几何 |
 | DS 发光层 | 保留 DS `EYES + LIGHTNING_TRANSPARENCY` 加法混合；允许 GPU，保持原批次/阶段 |
+| 物品栏及其他界面模型预览 | 保留原 CPU 几何提交，继续使用纹理优化；GPU 仅在 `GameRenderer.renderLevel` 世界阶段启用 |
 | 龙娘、使用同一 DS 渲染器的附属形态 | 代码路径覆盖；完整整合包动作/画面回归待完成 |
 | 末、地黄龙 | Core 的 `NpcRenderer` 路径，未被 GPU 接管 |
 | 其他 GeckoLib / 其他模组实体 | 未被 GPU 接管 |

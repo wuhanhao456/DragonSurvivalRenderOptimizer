@@ -5,6 +5,7 @@ import by.dragonsurvivalteam.dragonsurvival.network.syncing.SyncComplete;
 import by.dragonsurvivalteam.dragonsurvival.registry.dragon.DragonSpecies;
 import by.dragonsurvivalteam.dragonsurvival.registry.dragon.body.DragonBody;
 import by.dragonsurvivalteam.dragonsurvival.client.skin_editor_system.SkinLayer;
+import by.dragonsurvivalteam.dragonsurvival.client.gui.screens.DragonInventoryScreen;
 import top.wu949.dsbr.optimizer.*;
 import top.wu949.dsbr.optimizer.diagnostics.Diagnostics;
 import top.wu949.dsbr.optimizer.diagnostics.ClientBenchmark;
@@ -12,6 +13,7 @@ import top.wu949.dsbr.optimizer.texture.TextureCache;
 import top.wu949.dsbr.optimizer.gpu.GpuDispatcher;
 import net.minecraft.client.*;
 import net.minecraft.client.gui.screens.TitleScreen;
+import net.minecraft.client.gui.screens.inventory.InventoryScreen;
 import net.minecraft.client.CameraType;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.*;
@@ -45,6 +47,8 @@ public final class RuntimeProbe {
     private static long textureSteadyBytes, meshSteadyBytes;
     private static List<String> shaderPacks;
     private static int shaderIndex;
+    private static String startupMode;
+    private static String startupShader;
     private static final long started = System.nanoTime();
     private static final String WORLD = "render-validation";
     @SubscribeEvent
@@ -56,6 +60,15 @@ public final class RuntimeProbe {
             if (System.nanoTime() - started > 600_000_000_000L) throw new IllegalStateException("10 minute probe deadline");
             if (!creating) {
                 if (!(mc.screen instanceof TitleScreen)) return;
+                startupMode = OptimizerConfig.MODE.get().name();
+                if (Boolean.getBoolean("beloongrender.defaultModeOnly")) {
+                    if (OptimizerConfig.MODE.get() != OptimizerConfig.Mode.GPU) throw new IllegalStateException("Fresh config did not default to GPU");
+                    if (Boolean.getBoolean("beloongrender.shaders")) {
+                        var iris = Class.forName("net.irisshaders.iris.Iris");
+                        startupShader = (String)iris.getMethod("getCurrentPackName").invoke(null);
+                        if (!(boolean)iris.getMethod("isPackInUseQuick").invoke(null) || !"ComplementaryReimagined_r5.9.zip".equals(startupShader)) throw new IllegalStateException("Startup shader was not enabled");
+                    }
+                } else OptimizerConfig.MODE.set(OptimizerConfig.Mode.TEXTURES);
                 if (top.wu949.dsbr.client.DSBRRenderConfig.legacyActive()) throw new IllegalStateException("Old saved settings unexpectedly activated legacy takeover on DS 2.0.71");
                 GLFW.glfwHideWindow(mc.getWindow().getWindow());
                 mc.options.pauseOnLostFocus = false; mc.options.framerateLimit().set(120); mc.options.renderDistance().set(6);
@@ -66,7 +79,7 @@ public final class RuntimeProbe {
                 return;
             }
             if (mc.player == null || mc.level == null || mc.getSingleplayerServer() == null) return;
-            if (mc.screen != null) mc.setScreen(null);
+            if (mc.screen != null && (step < 14 || step > 16)) mc.setScreen(null);
             mc.options.setCameraType(CameraType.THIRD_PERSON_FRONT);
             if (setup == null) {
                 setup = CompletableFuture.runAsync(() -> {
@@ -85,6 +98,13 @@ public final class RuntimeProbe {
             if (!setup.isDone()) return; setup.join();
             ticks++;
             if (step == 0 && ticks >= 200) {
+                if (Boolean.getBoolean("beloongrender.defaultModeOnly")) {
+                    var totals = (Map<?, ?>)Diagnostics.INSTANCE.snapshot().get("totals");
+                    if (!GpuDispatcher.enabled() || !totals.containsKey("GPU_PASS") || totals.containsKey("READBACK")) throw new IllegalStateException("Default GPU startup failed: " + Diagnostics.INSTANCE.snapshot());
+                    Diagnostics.INSTANCE.export(mc.gameDirectory.toPath().resolve("default-gpu.json"));
+                    mc.getSingleplayerServer().execute(() -> mc.getSingleplayerServer().getPlayerList().getPlayer(mc.player.getUUID()).gameMode.changeGameModeForPlayer(GameType.SURVIVAL));
+                    ticks = 0; step = 13; return;
+                }
                 Diagnostics.INSTANCE.export(mc.gameDirectory.toPath().resolve("baseline-textures.json"));
                 if (!TextureCache.enabled()) throw new IllegalStateException("Texture patches did not enable");
                 Diagnostics.INSTANCE.reset(); ticks = 0; step++;
@@ -139,7 +159,27 @@ public final class RuntimeProbe {
                 if (OptimizerConfig.MODE.get() != OptimizerConfig.Mode.VANILLA) throw new IllegalStateException("Benchmark did not select baseline mode");
                 ClientBenchmark.cancel("validation command test");
                 if (OptimizerConfig.MODE.get() != OptimizerConfig.Mode.TEXTURES) throw new IllegalStateException("Benchmark did not restore previous mode");
-                if (!Boolean.getBoolean("beloongrender.shaders")) { finish(mc, null); return; }
+                mc.getSingleplayerServer().execute(() -> mc.getSingleplayerServer().getPlayerList().getPlayer(mc.player.getUUID()).gameMode.changeGameModeForPlayer(GameType.SURVIVAL));
+                ticks = 0; step = 13;
+            } else if (step == 13 && ticks >= 20) {
+                OptimizerConfig.MODE.set(OptimizerConfig.Mode.VANILLA); Diagnostics.INSTANCE.reset();
+                mc.gameMode.setLocalMode(GameType.SURVIVAL);
+                mc.setScreen(new InventoryScreen(mc.player)); ticks = 0; step = 14;
+            } else if (step >= 14 && step <= 16 && ticks >= 40) {
+                if (!(mc.screen instanceof InventoryScreen) && !(mc.screen instanceof DragonInventoryScreen)) throw new IllegalStateException("Actual inventory screen was not open: " + mc.screen + "; mode=" + mc.gameMode.getPlayerMode());
+                var name = "inventory-" + OptimizerConfig.MODE.get().name().toLowerCase(Locale.ROOT);
+                screenshot(mc, name); Diagnostics.INSTANCE.export(mc.gameDirectory.toPath().resolve(name + ".json"));
+                Files.writeString(mc.gameDirectory.toPath().resolve(name + "-screen.txt"), mc.screen.getClass().getName());
+                var totals = (Map<?, ?>)Diagnostics.INSTANCE.snapshot().get("totals");
+                if (!totals.containsKey("CPU_VERTEX_SUBMIT_NANOS")) throw new IllegalStateException("Inventory preview did not submit CPU geometry");
+                if (step < 16) {
+                    OptimizerConfig.MODE.set(step == 14 ? OptimizerConfig.Mode.TEXTURES : OptimizerConfig.Mode.GPU);
+                    Diagnostics.INSTANCE.reset(); ticks = 0; step++; return;
+                }
+                if (!GpuDispatcher.enabled() || !totals.containsKey("GUI_CPU_PASS") || !totals.containsKey("GPU_PASS") || totals.containsKey("READBACK"))
+                    throw new IllegalStateException("GUI CPU protection or simultaneous world GPU rendering failed: " + Diagnostics.INSTANCE.snapshot());
+                mc.setScreen(null);
+                if (Boolean.getBoolean("beloongrender.defaultModeOnly") || !Boolean.getBoolean("beloongrender.shaders")) { finish(mc, null); return; }
                 try (var files = Files.list(mc.gameDirectory.toPath().resolve("shaderpacks"))) { shaderPacks = files.filter(p -> p.toString().endsWith(".zip")).map(p -> p.getFileName().toString()).sorted().toList(); }
                 if (shaderPacks.size() != 8) throw new IllegalStateException("Shader regression requires all eight shipped packs");
                 loadShader(mc); ticks = 0; step = 6;
@@ -181,6 +221,8 @@ public final class RuntimeProbe {
             if (TextureCache.bytes() != 0 || GpuDispatcher.bytes() != 0) { result.put("pass", false); result.put("error", "Resources remained after clear"); }
             result.put("compatibility", top.wu949.dsbr.optimizer.compat.OptimizerMixinPlugin.status);
             result.put("modId", "dsbr"); result.put("legacyActive", top.wu949.dsbr.client.DSBRRenderConfig.legacyActive());
+            result.put("startupMode", startupMode);
+            result.put("startupShader", startupShader);
             result.put("legacyConfigFlag", top.wu949.dsbr.client.DSBRRenderConfig.LEGACY_BACKEND_ENABLED.get());
             result.put("savedOldRenderMode", top.wu949.dsbr.client.DSBRRenderConfig.NORMAL_RENDER_MODE.get().name());
             Files.writeString(mc.gameDirectory.toPath().resolve("probe-result.json"), new com.google.gson.GsonBuilder().setPrettyPrinting().create().toJson(result));
