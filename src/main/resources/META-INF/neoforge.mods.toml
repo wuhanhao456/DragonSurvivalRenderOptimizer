@@ -4,12 +4,10 @@ license="MIT"
 [[mods]]
 modId="dsbr"
 version="${version}"
-displayName="Dragon Survival Bedrock Renderer"
+displayName="Dragon Survival Render Optimizer"
 authors="wuhanhao456, BeLoong contributors"
 displayTest="IGNORE_SERVER_VERSION"
-description="Client texture optimization and experimental GPU/Iris rendering for Dragon Survival. Legacy Bedrock/YSM is opt-in for compatible old DS versions."
-[[mixins]]
-config="dsbr.mixins.json"
+description="Client texture optimization and GPU/Iris rendering for Dragon Survival, including animated dragon soul batching."
 [[mixins]]
 config="dsbr.optimizer.mixins.json"
 [[dependencies.dsbr]]

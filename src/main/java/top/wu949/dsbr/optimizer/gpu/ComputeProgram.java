@@ -6,6 +6,7 @@ import java.nio.charset.StandardCharsets;
 public final class ComputeProgram implements AutoCloseable {
     private int program;
     private int quadCountLocation, strideLocation, entityIdsLocation, normalLocation;
+    private int instanceCountLocation, boneCountLocation;
     public int id() { return program; }
     public void compile() throws java.io.IOException {
         if (program != 0) return;
@@ -22,19 +23,24 @@ public final class ComputeProgram implements AutoCloseable {
             if (GL20.glGetProgrami(candidate, GL20.GL_LINK_STATUS) == 0) throw new IllegalStateException(GL20.glGetProgramInfoLog(candidate));
             quadCountLocation = GL20.glGetUniformLocation(candidate, "quadCount"); strideLocation = GL20.glGetUniformLocation(candidate, "stride");
             entityIdsLocation = GL20.glGetUniformLocation(candidate, "entityIds"); normalLocation = GL20.glGetUniformLocation(candidate, "recalculateNormal");
-            if (quadCountLocation < 0 || strideLocation < 0 || entityIdsLocation < 0 || normalLocation < 0) throw new IllegalStateException("missing compute uniform");
+            instanceCountLocation = GL20.glGetUniformLocation(candidate, "instanceCount"); boneCountLocation = GL20.glGetUniformLocation(candidate, "boneCount");
+            if (quadCountLocation < 0 || strideLocation < 0 || entityIdsLocation < 0 || normalLocation < 0 || instanceCountLocation < 0 || boneCountLocation < 0) throw new IllegalStateException("missing compute uniform");
             program = candidate; candidate = 0;
         } finally { GL20.glDeleteShader(shader); if (candidate != 0) GL20.glDeleteProgram(candidate); }
     }
     public void dispatch(int mesh, int pose, int output, int quads, IrisIds ids, int stride) {
+        dispatch(mesh, pose, output, quads, 1, 0, ids, stride);
+    }
+    public void dispatch(int mesh, int pose, int output, int quads, int instances, int bones, IrisIds ids, int stride) {
         GL20.glUseProgram(program);
         boolean cached = top.wu949.dsbr.optimizer.OptimizationStage.VALUE >= 4;
         GL30.glUniform1ui(cached ? quadCountLocation : GL20.glGetUniformLocation(program, "quadCount"), quads);
         GL30.glUniform1ui(cached ? strideLocation : GL20.glGetUniformLocation(program, "stride"), stride);
         GL30.glUniform3ui(cached ? entityIdsLocation : GL20.glGetUniformLocation(program, "entityIds"), ids.entity, ids.block, ids.item);
         GL20.glUniform1i(cached ? normalLocation : GL20.glGetUniformLocation(program, "recalculateNormal"), ids.recalculateNormal ? 1 : 0);
+        GL30.glUniform1ui(instanceCountLocation, instances); GL30.glUniform1ui(boneCountLocation, bones);
         GL30.glBindBufferBase(GL43.GL_SHADER_STORAGE_BUFFER, 0, mesh); GL30.glBindBufferBase(GL43.GL_SHADER_STORAGE_BUFFER, 1, pose); GL30.glBindBufferBase(GL43.GL_SHADER_STORAGE_BUFFER, 2, output);
-        GL43.glDispatchCompute((quads + 63) / 64, 1, 1);
+        GL43.glDispatchCompute((int)(((long)quads * instances + 63) / 64), 1, 1);
         GL42.glMemoryBarrier(GL43.GL_VERTEX_ATTRIB_ARRAY_BARRIER_BIT | GL43.GL_SHADER_STORAGE_BARRIER_BIT);
     }
     public record IrisIds(int entity, int block, int item, boolean recalculateNormal) {}

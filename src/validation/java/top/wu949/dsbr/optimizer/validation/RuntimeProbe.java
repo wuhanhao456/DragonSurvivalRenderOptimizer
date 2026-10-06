@@ -69,7 +69,6 @@ public final class RuntimeProbe {
                         if (!(boolean)iris.getMethod("isPackInUseQuick").invoke(null) || !"ComplementaryReimagined_r5.9.zip".equals(startupShader)) throw new IllegalStateException("Startup shader was not enabled");
                     }
                 } else OptimizerConfig.MODE.set(OptimizerConfig.Mode.TEXTURES);
-                if (top.wu949.dsbr.client.DSBRRenderConfig.legacyActive()) throw new IllegalStateException("Old saved settings unexpectedly activated legacy takeover on DS 2.0.71");
                 GLFW.glfwHideWindow(mc.getWindow().getWindow());
                 mc.options.pauseOnLostFocus = false; mc.options.framerateLimit().set(120); mc.options.renderDistance().set(6);
                 if (Files.exists(mc.gameDirectory.toPath().resolve("saves/" + WORLD))) throw new IllegalStateException("Refusing to reuse an existing save");
@@ -225,11 +224,8 @@ public final class RuntimeProbe {
             RenderOptimizer.clear(); result.put("afterClearTextureBytes", TextureCache.bytes()); result.put("afterClearMeshBytes", GpuDispatcher.bytes());
             if (TextureCache.bytes() != 0 || GpuDispatcher.bytes() != 0) { result.put("pass", false); result.put("error", "Resources remained after clear"); }
             result.put("compatibility", top.wu949.dsbr.optimizer.compat.OptimizerMixinPlugin.status);
-            result.put("modId", "dsbr"); result.put("legacyActive", top.wu949.dsbr.client.DSBRRenderConfig.legacyActive());
-            result.put("startupMode", startupMode);
+            result.put("modId", "dsbr"); result.put("startupMode", startupMode);
             result.put("startupShader", startupShader);
-            result.put("legacyConfigFlag", top.wu949.dsbr.client.DSBRRenderConfig.LEGACY_BACKEND_ENABLED.get());
-            result.put("savedOldRenderMode", top.wu949.dsbr.client.DSBRRenderConfig.NORMAL_RENDER_MODE.get().name());
             Files.writeString(mc.gameDirectory.toPath().resolve("probe-result.json"), new com.google.gson.GsonBuilder().setPrettyPrinting().create().toJson(result));
             if (error != null) RenderOptimizer.LOGGER.error("Runtime probe failed", error);
         } catch (Exception e) { e.printStackTrace(); }

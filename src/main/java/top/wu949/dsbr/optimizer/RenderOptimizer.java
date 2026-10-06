@@ -44,7 +44,7 @@ public final class RenderOptimizer {
     private void reload(RegisterClientReloadListenersEvent e) { e.registerReloadListener((ResourceManagerReloadListener) manager -> onRenderThread(() -> { ClientBenchmark.cancel("resources reloaded"); clear(); })); }
     private void logout(ClientPlayerNetworkEvent.LoggingOut e) { onRenderThread(() -> { ClientBenchmark.cancel("disconnected"); clear(); }); }
     private static void onRenderThread(Runnable r) { if (RenderSystem.isOnRenderThread()) r.run(); else RenderSystem.recordRenderCall(r::run); }
-    public static void clear() { if (OptimizerMixinPlugin.texturesCompatible) { GpuDispatcher.clear(); TextureCache.clear(); } }
+    public static void clear() { if (OptimizerMixinPlugin.texturesCompatible) { GpuDispatcher.clear(); TextureCache.clear(); top.wu949.dsbr.optimizer.soul.SoulRenderContext.clear(); } }
     private void pre(RenderFrameEvent.Pre e) {
         Diagnostics.INSTANCE.detailed(OptimizerConfig.DETAILED_DIAGNOSTICS.get());
         if (OptimizerMixinPlugin.texturesCompatible) top.wu949.dsbr.optimizer.texture.AppearanceCache.nextFrame();
@@ -63,16 +63,10 @@ public final class RenderOptimizer {
     private static void message(CommandSourceStack source, String text) { source.sendSuccess(() -> Component.literal(text), false); }
     private void commands(RegisterClientCommandsEvent event) {
         var root = LiteralArgumentBuilder.<CommandSourceStack>literal("dsbr").executes(c -> {
-            message(c.getSource(), "mode=" + OptimizerConfig.MODE.get() + "; textures=" + (OptimizerMixinPlugin.texturesCompatible && TextureCache.enabled()) + "; GPU=" + (OptimizerMixinPlugin.gpuCompatible && GpuDispatcher.enabled()) + "; legacy=" + top.wu949.dsbr.client.DSBRRenderConfig.legacyActive() + "; " + OptimizerMixinPlugin.status); return 1;
+            message(c.getSource(), "mode=" + OptimizerConfig.MODE.get() + "; textures=" + (OptimizerMixinPlugin.texturesCompatible && TextureCache.enabled()) + "; GPU=" + (OptimizerMixinPlugin.gpuCompatible && GpuDispatcher.enabled()) + "; " + OptimizerMixinPlugin.status); return 1;
         });
         for (var mode : OptimizerConfig.Mode.values()) root.then(LiteralArgumentBuilder.<CommandSourceStack>literal(mode.name().toLowerCase(java.util.Locale.ROOT)).executes(c -> {
-            ClientBenchmark.cancel("manual mode switch"); clear(); top.wu949.dsbr.client.DSBRRenderConfig.LEGACY_BACKEND_ENABLED.set(false); top.wu949.dsbr.client.DSBRRenderConfig.SPEC.save(); OptimizerConfig.MODE.set(mode); OptimizerConfig.SPEC.save(); message(c.getSource(), "DSBR render mode=" + mode); return 1;
-        }));
-        root.then(LiteralArgumentBuilder.<CommandSourceStack>literal("legacy").executes(c -> {
-            if (!OptimizerMixinPlugin.legacyCompatible) { message(c.getSource(), "Legacy Bedrock/YSM requires DS 2.0.67 and its old bridge; " + OptimizerMixinPlugin.status); return 0; }
-            ClientBenchmark.cancel("legacy backend selected"); clear(); OptimizerConfig.MODE.set(OptimizerConfig.Mode.TEXTURES);
-            top.wu949.dsbr.client.DSBRRenderConfig.LEGACY_BACKEND_ENABLED.set(true); top.wu949.dsbr.client.DSBRRenderConfig.SPEC.save(); OptimizerConfig.SPEC.save();
-            message(c.getSource(), "DSBR legacy backend enabled; old normal_render_mode setting applies"); return 1;
+            ClientBenchmark.cancel("manual mode switch"); clear(); OptimizerConfig.MODE.set(mode); OptimizerConfig.SPEC.save(); message(c.getSource(), "DSRO render mode=" + mode); return 1;
         }));
         root.then(LiteralArgumentBuilder.<CommandSourceStack>literal("benchmark").executes(c -> { message(c.getSource(), ClientBenchmark.status()); return 1; })
                 .then(LiteralArgumentBuilder.<CommandSourceStack>literal("stop").executes(c -> { ClientBenchmark.cancel("manual stop"); return 1; }))

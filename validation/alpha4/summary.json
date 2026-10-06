@@ -1,0 +1,937 @@
+{
+  "version": "0.2.0-alpha.4",
+  "candidateOnly": true,
+  "repetitions": 1,
+  "jarSha256": "754f15bb0ded0b8e393f7a37ca6382ff4f49353d6f796211e50b19acfc037923",
+  "name": "Dragon Survival Render Optimizer",
+  "artifact": "dsro-0.2.0-alpha.4.jar",
+  "testedJarSha256": "56b8905941e31981b1813496e6f231259f0904b4674a8e36935b1089811d0981",
+  "brandingVerification": "branding-verification.json",
+  "driverSha256": "90f3c00d12f5300350bd4f36cd166a7600afa47d3241d3690b37c123327c236d",
+  "actualModsManifest": "actual-mods.json",
+  "correctedDriverSha256": "65f90fffb08d56de81059854b4005c5b3338cc69d8290176184cebe3a80698c7",
+  "driverSourceCorrectedAfterRun": true,
+  "unitTests": {
+    "tests": 16,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "openGL": {
+    "vendor": "NVIDIA Corporation",
+    "renderer": "NVIDIA GeForce RTX 5060 Ti/PCIe/SSE2",
+    "version": "4.3.0 NVIDIA 610.88",
+    "gpuTextureCopyAndLazyReadback": "pass",
+    "computeVanillaAndIris54ByteOutput": "pass",
+    "threeIndependentAnimatedInstances": "pass",
+    "batchBindingsRestoredAfterException": "pass",
+    "glError": 0
+  },
+  "runtime": {
+    "pass": false,
+    "failures": [
+      "animation-0-idle: frozen time for soul-14",
+      "animation-0-idle: frozen time for soul-16",
+      "animation-0-idle: frozen time for soul-15",
+      "animation-0-idle: frozen time for soul-18",
+      "animation-0-idle: frozen time for soul-17",
+      "animation-0-idle: frozen time for soul-19",
+      "animation-0-idle: player outside render scene",
+      "animation-0-walk: frozen time for soul-21",
+      "animation-0-walk: frozen pose for soul-21",
+      "animation-0-walk: incorrect soul animation for soul-21",
+      "animation-0-walk: frozen time for soul-20",
+      "animation-0-walk: frozen pose for soul-20",
+      "animation-0-walk: incorrect soul animation for soul-20",
+      "animation-0-walk: player outside render scene",
+      "animation-0-fly: frozen time for soul-23",
+      "animation-0-fly: frozen pose for soul-23",
+      "animation-0-fly: incorrect soul animation for soul-23",
+      "animation-0-fly: frozen time for soul-22",
+      "animation-0-fly: frozen pose for soul-22",
+      "animation-0-fly: incorrect soul animation for soul-22",
+      "animation-0-fly: player outside render scene",
+      "animation-1-idle: frozen time for soul-25",
+      "animation-1-idle: incorrect soul animation for soul-25",
+      "animation-1-idle: frozen time for soul-24",
+      "animation-1-idle: incorrect soul animation for soul-24",
+      "animation-1-idle: player outside render scene",
+      "animation-1-walk: frozen time for soul-27",
+      "animation-1-walk: frozen pose for soul-27",
+      "animation-1-walk: incorrect soul animation for soul-27",
+      "animation-1-walk: frozen time for soul-26",
+      "animation-1-walk: frozen pose for soul-26",
+      "animation-1-walk: incorrect soul animation for soul-26",
+      "animation-1-walk: player outside render scene",
+      "animation-1-fly: frozen time for soul-29",
+      "animation-1-fly: frozen pose for soul-29",
+      "animation-1-fly: incorrect soul animation for soul-29",
+      "animation-1-fly: frozen time for soul-28",
+      "animation-1-fly: frozen pose for soul-28",
+      "animation-1-fly: incorrect soul animation for soul-28",
+      "animation-1-fly: player outside render scene",
+      "animation-2-idle: frozen time for soul-31",
+      "animation-2-idle: incorrect soul animation for soul-31",
+      "animation-2-idle: frozen time for soul-30",
+      "animation-2-idle: incorrect soul animation for soul-30",
+      "animation-2-idle: player outside render scene",
+      "animation-2-walk: frozen time for soul-32",
+      "animation-2-walk: frozen pose for soul-32",
+      "animation-2-walk: incorrect soul animation for soul-32",
+      "animation-2-walk: frozen time for soul-33",
+      "animation-2-walk: frozen pose for soul-33",
+      "animation-2-walk: incorrect soul animation for soul-33",
+      "animation-2-walk: player outside render scene",
+      "animation-2-fly: frozen time for soul-34",
+      "animation-2-fly: frozen pose for soul-34",
+      "animation-2-fly: incorrect soul animation for soul-34",
+      "animation-2-fly: frozen time for soul-35",
+      "animation-2-fly: frozen pose for soul-35",
+      "animation-2-fly: incorrect soul animation for soul-35",
+      "animation-2-fly: player outside render scene",
+      "Inventory did not use protected CPU preview"
+    ],
+    "repetitions": 1,
+    "candidateOnly": true,
+    "textureBytesAfterClear": 0,
+    "meshBytesAfterClear": 0,
+    "stats": {
+      "totals": {
+        "ARMOR_CHECK_NANOS": 32508400,
+        "ARMOR_GENERATE_NANOS": 7898600,
+        "COPY": 12,
+        "CPU_VERTEX_SUBMIT_NANOS": 455737100,
+        "FRAME_CPU_NANOS": 21025416900,
+        "GENERATED": 12,
+        "GPU_BATCH_CPU_NANOS": 1623480700,
+        "GPU_BONE_SUBMIT_NANOS": 1087131500,
+        "GPU_DRAW_CALLS": 12330,
+        "GPU_DRAW_CPU_NANOS": 1514024600,
+        "GPU_PASS": 24660,
+        "GPU_POSE_CAPTURE_NANOS": 4451578800,
+        "GPU_VERTEX_COUNT": 559486080,
+        "HIT": 16533,
+        "READBACK": 4,
+        "RELEASE": 15,
+        "SKIN_CHECK_NANOS": 19143600,
+        "SKIN_GENERATE_NANOS": 11448800,
+        "SOUL_GPU_DRAW_CALLS": 4110,
+        "SOUL_GPU_PASS": 16440,
+        "SOUL_RENDER": 5512,
+        "SOUL_RENDER_CPU_NANOS": 5099806900
+      },
+      "peaks": {
+        "GPU_RESOURCE_BYTES": 37624704,
+        "TEXTURE_RESOURCE_BYTES": 9437184
+      },
+      "fallbacks": {},
+      "attribution": {
+        "shadow": {
+          "GPU_PASS": 2740
+        },
+        "glow/shadow": {
+          "GPU_PASS": 1370
+        },
+        "entity": {
+          "GPU_PASS": 13700
+        },
+        "glow/entity": {
+          "GPU_PASS": 6850
+        }
+      },
+      "dirtyTraces": [],
+      "frameSamples": 1382,
+      "quantileSamples": 1382,
+      "frameTimeMs": {
+        "p95": 23.6583,
+        "p50": 13.3958,
+        "p999": 3175.2022,
+        "p99": 120.4759
+      }
+    },
+    "compatibility": "versions=[dragonsurvival=2.0.71, dsbr=0.2.0-alpha.4, geckolib=4.9.3, iris=1.8.14-beta.1+mc1.21.1, sodium=0.8.13+mc1.21.1]; texture=true; GPU=true; Iris=true; souls=true",
+    "scenes": 17
+  },
+  "performance": [
+    {
+      "stats": {
+        "totals": {
+          "ARMOR_CHECK_NANOS": 31037200,
+          "FRAME_CPU_NANOS": 9716309700,
+          "GPU_BATCH_CPU_NANOS": 553878000,
+          "GPU_BONE_SUBMIT_NANOS": 326804500,
+          "GPU_DRAW_CALLS": 8073,
+          "GPU_DRAW_CPU_NANOS": 493391100,
+          "GPU_PASS": 8073,
+          "GPU_POSE_CAPTURE_NANOS": 1362432700,
+          "GPU_VERTEX_COUNT": 73238256,
+          "HIT": 10764,
+          "SKIN_CHECK_NANOS": 11584800,
+          "SOUL_GPU_DRAW_CALLS": 8073,
+          "SOUL_GPU_PASS": 8073,
+          "SOUL_RENDER": 2691,
+          "SOUL_RENDER_CPU_NANOS": 3057571500,
+          "SOUL_TEXTURE_HIT": 8073
+        },
+        "peaks": {
+          "GPU_RESOURCE_BYTES": 2267136,
+          "TEXTURE_RESOURCE_BYTES": 7340032
+        },
+        "fallbacks": {},
+        "attribution": {
+          "entity": {
+            "GPU_PASS": 5382
+          },
+          "glow/entity": {
+            "GPU_PASS": 2691
+          }
+        },
+        "dirtyTraces": [],
+        "frameSamples": 3430,
+        "quantileSamples": 3430,
+        "frameTimeMs": {
+          "p95": 8.0654,
+          "p50": 4.0373,
+          "p999": 13.8247,
+          "p99": 10.3939
+        }
+      },
+      "sampleSeconds": 15,
+      "souls": 1,
+      "warmupSeconds": 5,
+      "repetitions": 1,
+      "scenario": "souls-1-plain",
+      "metrics": {
+        "samples": 3429,
+        "capturedSeconds": 14.9957437,
+        "averageFps": 228.66488442317134,
+        "low1Fps": 93.96010990648284,
+        "low01Fps": 74.15976980807451,
+        "frameTimeMs": {
+          "p50": 4.1606,
+          "p95": 7.2375,
+          "p99": 9.103,
+          "p999": 13.031
+        },
+        "longFramesAboveMs": {
+          "16.7": 0,
+          "33.3": 0,
+          "50": 0
+        },
+        "maximumFrameMs": 14.2177,
+        "definition": "1000 / mean slowest ceil(samples * fraction) frame times in ms"
+      },
+      "rawSha256": "57988b02cfae3012335f5a543de9541c73cb5293148b42e71da00ad16b3d31bf"
+    },
+    {
+      "stats": {
+        "totals": {
+          "ARMOR_CHECK_NANOS": 25988300,
+          "FRAME_CPU_NANOS": 10120052100,
+          "GPU_BATCH_CPU_NANOS": 628402100,
+          "GPU_BONE_SUBMIT_NANOS": 649965700,
+          "GPU_DRAW_CALLS": 8130,
+          "GPU_DRAW_CPU_NANOS": 570627400,
+          "GPU_PASS": 16260,
+          "GPU_POSE_CAPTURE_NANOS": 2556900800,
+          "GPU_VERTEX_COUNT": 147510720,
+          "HIT": 21680,
+          "RELEASE": 2,
+          "SKIN_CHECK_NANOS": 10040000,
+          "SOUL_GPU_DRAW_CALLS": 8130,
+          "SOUL_GPU_PASS": 16260,
+          "SOUL_RENDER": 5420,
+          "SOUL_RENDER_CPU_NANOS": 4354355100,
+          "SOUL_TEXTURE_HIT": 16260
+        },
+        "peaks": {
+          "GPU_RESOURCE_BYTES": 3914496,
+          "TEXTURE_RESOURCE_BYTES": 7340032
+        },
+        "fallbacks": {},
+        "attribution": {
+          "entity": {
+            "GPU_PASS": 10840
+          },
+          "glow/entity": {
+            "GPU_PASS": 5420
+          }
+        },
+        "dirtyTraces": [],
+        "frameSamples": 3670,
+        "quantileSamples": 3670,
+        "frameTimeMs": {
+          "p95": 7.3404,
+          "p50": 3.7679,
+          "p999": 12.8073,
+          "p99": 9.9439
+        }
+      },
+      "sampleSeconds": 15,
+      "souls": 4,
+      "warmupSeconds": 5,
+      "repetitions": 1,
+      "scenario": "souls-4-plain",
+      "metrics": {
+        "samples": 3669,
+        "capturedSeconds": 15.0442558,
+        "averageFps": 243.88045834743122,
+        "low1Fps": 91.45060431547986,
+        "low01Fps": 31.606136963614226,
+        "frameTimeMs": {
+          "p50": 3.9328,
+          "p95": 6.5138,
+          "p99": 7.7581,
+          "p999": 10.9482
+        },
+        "longFramesAboveMs": {
+          "16.7": 3,
+          "33.3": 2,
+          "50": 1
+        },
+        "maximumFrameMs": 59.3934,
+        "definition": "1000 / mean slowest ceil(samples * fraction) frame times in ms"
+      },
+      "rawSha256": "8b9b9b4a1e925be6aa13d3db00ce09cc7c235bccdb1b9ab2f7a292159ac634fc"
+    },
+    {
+      "stats": {
+        "totals": {
+          "ARMOR_CHECK_NANOS": 41108300,
+          "FRAME_CPU_NANOS": 11228645100,
+          "GPU_BATCH_CPU_NANOS": 569864200,
+          "GPU_BONE_SUBMIT_NANOS": 1252866100,
+          "GPU_DRAW_CALLS": 5253,
+          "GPU_DRAW_CPU_NANOS": 527207900,
+          "GPU_PASS": 31518,
+          "GPU_POSE_CAPTURE_NANOS": 4819179700,
+          "GPU_VERTEX_COUNT": 285931296,
+          "HIT": 42024,
+          "SKIN_CHECK_NANOS": 15679800,
+          "SOUL_GPU_DRAW_CALLS": 5253,
+          "SOUL_GPU_PASS": 31518,
+          "SOUL_RENDER": 10506,
+          "SOUL_RENDER_CPU_NANOS": 7400708500,
+          "SOUL_TEXTURE_HIT": 31518
+        },
+        "peaks": {
+          "GPU_RESOURCE_BYTES": 10503936,
+          "TEXTURE_RESOURCE_BYTES": 5242880
+        },
+        "fallbacks": {},
+        "attribution": {
+          "entity": {
+            "GPU_PASS": 21012
+          },
+          "glow/entity": {
+            "GPU_PASS": 10506
+          }
+        },
+        "dirtyTraces": [],
+        "frameSamples": 2639,
+        "quantileSamples": 2639,
+        "frameTimeMs": {
+          "p95": 10.8393,
+          "p50": 5.8696,
+          "p999": 16.3861,
+          "p99": 12.918
+        }
+      },
+      "sampleSeconds": 15,
+      "souls": 12,
+      "warmupSeconds": 5,
+      "repetitions": 1,
+      "scenario": "souls-12-plain",
+      "metrics": {
+        "samples": 2638,
+        "capturedSeconds": 14.994046899999999,
+        "averageFps": 175.93649116837165,
+        "low1Fps": 71.67710895955898,
+        "low01Fps": 30.026303041464324,
+        "frameTimeMs": {
+          "p50": 5.9344,
+          "p95": 9.2593,
+          "p99": 10.9599,
+          "p999": 12.7712
+        },
+        "longFramesAboveMs": {
+          "16.7": 1,
+          "33.3": 1,
+          "50": 1
+        },
+        "maximumFrameMs": 74.363,
+        "definition": "1000 / mean slowest ceil(samples * fraction) frame times in ms"
+      },
+      "rawSha256": "ce898753e18f6a45fa42a378094eeea46de3bb24105c74d3c646dbd884ed42cd"
+    },
+    {
+      "stats": {
+        "totals": {
+          "ARMOR_CHECK_NANOS": 14143500,
+          "FRAME_CPU_NANOS": 10835807800,
+          "GPU_BATCH_CPU_NANOS": 776663900,
+          "GPU_BONE_SUBMIT_NANOS": 285131500,
+          "GPU_DRAW_CALLS": 7587,
+          "GPU_DRAW_CPU_NANOS": 713251400,
+          "GPU_PASS": 7587,
+          "GPU_POSE_CAPTURE_NANOS": 1165572200,
+          "GPU_VERTEX_COUNT": 68829264,
+          "HIT": 10116,
+          "SKIN_CHECK_NANOS": 6229400,
+          "SOUL_GPU_DRAW_CALLS": 7587,
+          "SOUL_GPU_PASS": 7587,
+          "SOUL_RENDER": 2529,
+          "SOUL_RENDER_CPU_NANOS": 2219544700,
+          "SOUL_TEXTURE_HIT": 7587
+        },
+        "peaks": {
+          "GPU_RESOURCE_BYTES": 4429440,
+          "TEXTURE_RESOURCE_BYTES": 5242880
+        },
+        "fallbacks": {},
+        "attribution": {
+          "entity": {
+            "GPU_PASS": 5058
+          },
+          "glow/entity": {
+            "GPU_PASS": 2529
+          }
+        },
+        "dirtyTraces": [],
+        "frameSamples": 3250,
+        "quantileSamples": 3250,
+        "frameTimeMs": {
+          "p95": 7.6105,
+          "p50": 4.3406,
+          "p999": 11.6926,
+          "p99": 9.5054
+        }
+      },
+      "sampleSeconds": 15,
+      "souls": 1,
+      "warmupSeconds": 5,
+      "repetitions": 1,
+      "scenario": "souls-1-complementary",
+      "metrics": {
+        "samples": 3249,
+        "capturedSeconds": 15.0372989,
+        "averageFps": 216.0627398315531,
+        "low1Fps": 103.87004032360868,
+        "low01Fps": 84.52192287374537,
+        "frameTimeMs": {
+          "p50": 4.4142,
+          "p95": 7.0263,
+          "p99": 8.6193,
+          "p999": 11.0377
+        },
+        "longFramesAboveMs": {
+          "16.7": 0,
+          "33.3": 0,
+          "50": 0
+        },
+        "maximumFrameMs": 12.781,
+        "definition": "1000 / mean slowest ceil(samples * fraction) frame times in ms"
+      },
+      "rawSha256": "b48bf3ce87b3fa19ba235e2da536f7d52ba47e9e1587ab8ab79a8e7193346619"
+    },
+    {
+      "stats": {
+        "totals": {
+          "ARMOR_CHECK_NANOS": 20298600,
+          "FRAME_CPU_NANOS": 11126338700,
+          "GPU_BATCH_CPU_NANOS": 794233000,
+          "GPU_BONE_SUBMIT_NANOS": 520918400,
+          "GPU_DRAW_CALLS": 6537,
+          "GPU_DRAW_CPU_NANOS": 733906700,
+          "GPU_PASS": 13074,
+          "GPU_POSE_CAPTURE_NANOS": 2037366500,
+          "GPU_VERTEX_COUNT": 118607328,
+          "HIT": 17432,
+          "SKIN_CHECK_NANOS": 7578600,
+          "SOUL_GPU_DRAW_CALLS": 6537,
+          "SOUL_GPU_PASS": 13074,
+          "SOUL_RENDER": 4358,
+          "SOUL_RENDER_CPU_NANOS": 3466054200,
+          "SOUL_TEXTURE_HIT": 13074
+        },
+        "peaks": {
+          "GPU_RESOURCE_BYTES": 6428160,
+          "TEXTURE_RESOURCE_BYTES": 5242880
+        },
+        "fallbacks": {},
+        "attribution": {
+          "entity": {
+            "GPU_PASS": 8716
+          },
+          "glow/entity": {
+            "GPU_PASS": 4358
+          }
+        },
+        "dirtyTraces": [],
+        "frameSamples": 2901,
+        "quantileSamples": 2901,
+        "frameTimeMs": {
+          "p95": 8.5797,
+          "p50": 4.935,
+          "p999": 14.0264,
+          "p99": 10.8975
+        }
+      },
+      "sampleSeconds": 15,
+      "souls": 4,
+      "warmupSeconds": 5,
+      "repetitions": 1,
+      "scenario": "souls-4-complementary",
+      "metrics": {
+        "samples": 2900,
+        "capturedSeconds": 15.0417283,
+        "averageFps": 192.79699394650015,
+        "low1Fps": 94.92234206804362,
+        "low01Fps": 61.023734164340986,
+        "frameTimeMs": {
+          "p50": 5.177,
+          "p95": 7.6482,
+          "p99": 9.2585,
+          "p999": 11.3552
+        },
+        "longFramesAboveMs": {
+          "16.7": 1,
+          "33.3": 0,
+          "50": 0
+        },
+        "maximumFrameMs": 25.1246,
+        "definition": "1000 / mean slowest ceil(samples * fraction) frame times in ms"
+      },
+      "rawSha256": "c6326b9d9a1877321ba979dd0420a9de7aec04047e6640872005d12ffdb9dc54"
+    },
+    {
+      "stats": {
+        "totals": {
+          "ARMOR_CHECK_NANOS": 33761600,
+          "FRAME_CPU_NANOS": 11863541600,
+          "GPU_BATCH_CPU_NANOS": 652971200,
+          "GPU_BONE_SUBMIT_NANOS": 1076380600,
+          "GPU_DRAW_CALLS": 4206,
+          "GPU_DRAW_CPU_NANOS": 606063200,
+          "GPU_PASS": 25236,
+          "GPU_POSE_CAPTURE_NANOS": 3979951800,
+          "GPU_VERTEX_COUNT": 228940992,
+          "HIT": 33648,
+          "SKIN_CHECK_NANOS": 12992600,
+          "SOUL_GPU_DRAW_CALLS": 4206,
+          "SOUL_GPU_PASS": 25236,
+          "SOUL_RENDER": 8412,
+          "SOUL_RENDER_CPU_NANOS": 6272248800,
+          "SOUL_TEXTURE_HIT": 25236
+        },
+        "peaks": {
+          "GPU_RESOURCE_BYTES": 14423040,
+          "TEXTURE_RESOURCE_BYTES": 5242880
+        },
+        "fallbacks": {},
+        "attribution": {
+          "entity": {
+            "GPU_PASS": 16824
+          },
+          "glow/entity": {
+            "GPU_PASS": 8412
+          }
+        },
+        "dirtyTraces": [],
+        "frameSamples": 1949,
+        "quantileSamples": 1949,
+        "frameTimeMs": {
+          "p95": 13.2524,
+          "p50": 8.0279,
+          "p999": 75.4208,
+          "p99": 15.6931
+        }
+      },
+      "sampleSeconds": 15,
+      "souls": 12,
+      "warmupSeconds": 5,
+      "repetitions": 1,
+      "scenario": "souls-12-complementary",
+      "metrics": {
+        "samples": 1948,
+        "capturedSeconds": 15.0121726,
+        "averageFps": 129.76136445433622,
+        "low1Fps": 53.841583524044715,
+        "low01Fps": 19.218129614753373,
+        "frameTimeMs": {
+          "p50": 7.9309,
+          "p95": 11.3459,
+          "p99": 12.9765,
+          "p999": 30.7697
+        },
+        "longFramesAboveMs": {
+          "16.7": 4,
+          "33.3": 1,
+          "50": 1
+        },
+        "maximumFrameMs": 73.2987,
+        "definition": "1000 / mean slowest ceil(samples * fraction) frame times in ms"
+      },
+      "rawSha256": "8854d5ddd48b5f646ff600cab72153bafaa1be6fe5c069372b0f49948cead31d"
+    }
+  ],
+  "singleRoundComplete": true,
+  "animationDataAssessment": [
+    {
+      "scenario": "animation-0-idle",
+      "activeActors": {
+        "soul-20": {
+          "samples": 56,
+          "distinctTicks": 56,
+          "distinctPoses": 56,
+          "expectedActionSeen": true
+        },
+        "soul-21": {
+          "samples": 56,
+          "distinctTicks": 56,
+          "distinctPoses": 56,
+          "expectedActionSeen": true
+        }
+      },
+      "singleSampleTransitionActors": [
+        "soul-14",
+        "soul-15",
+        "soul-16",
+        "soul-17",
+        "soul-18",
+        "soul-19"
+      ],
+      "playerSampled": false,
+      "continuousSoulData": true
+    },
+    {
+      "scenario": "animation-0-walk",
+      "activeActors": {
+        "soul-22": {
+          "samples": 55,
+          "distinctTicks": 55,
+          "distinctPoses": 55,
+          "expectedActionSeen": true
+        },
+        "soul-23": {
+          "samples": 55,
+          "distinctTicks": 55,
+          "distinctPoses": 55,
+          "expectedActionSeen": true
+        }
+      },
+      "singleSampleTransitionActors": [
+        "soul-20",
+        "soul-21"
+      ],
+      "playerSampled": false,
+      "continuousSoulData": true
+    },
+    {
+      "scenario": "animation-0-fly",
+      "activeActors": {
+        "soul-24": {
+          "samples": 55,
+          "distinctTicks": 55,
+          "distinctPoses": 55,
+          "expectedActionSeen": true
+        },
+        "soul-25": {
+          "samples": 55,
+          "distinctTicks": 55,
+          "distinctPoses": 55,
+          "expectedActionSeen": true
+        }
+      },
+      "singleSampleTransitionActors": [
+        "soul-22",
+        "soul-23"
+      ],
+      "playerSampled": false,
+      "continuousSoulData": true
+    },
+    {
+      "scenario": "animation-1-idle",
+      "activeActors": {
+        "soul-26": {
+          "samples": 60,
+          "distinctTicks": 60,
+          "distinctPoses": 60,
+          "expectedActionSeen": true
+        },
+        "soul-27": {
+          "samples": 60,
+          "distinctTicks": 60,
+          "distinctPoses": 60,
+          "expectedActionSeen": true
+        }
+      },
+      "singleSampleTransitionActors": [
+        "soul-24",
+        "soul-25"
+      ],
+      "playerSampled": false,
+      "continuousSoulData": true
+    },
+    {
+      "scenario": "animation-1-walk",
+      "activeActors": {
+        "soul-28": {
+          "samples": 56,
+          "distinctTicks": 56,
+          "distinctPoses": 56,
+          "expectedActionSeen": true
+        },
+        "soul-29": {
+          "samples": 56,
+          "distinctTicks": 56,
+          "distinctPoses": 56,
+          "expectedActionSeen": true
+        }
+      },
+      "singleSampleTransitionActors": [
+        "soul-26",
+        "soul-27"
+      ],
+      "playerSampled": false,
+      "continuousSoulData": true
+    },
+    {
+      "scenario": "animation-1-fly",
+      "activeActors": {
+        "soul-30": {
+          "samples": 56,
+          "distinctTicks": 56,
+          "distinctPoses": 56,
+          "expectedActionSeen": true
+        },
+        "soul-31": {
+          "samples": 56,
+          "distinctTicks": 56,
+          "distinctPoses": 56,
+          "expectedActionSeen": true
+        }
+      },
+      "singleSampleTransitionActors": [
+        "soul-28",
+        "soul-29"
+      ],
+      "playerSampled": false,
+      "continuousSoulData": true
+    },
+    {
+      "scenario": "animation-2-idle",
+      "activeActors": {
+        "soul-32": {
+          "samples": 60,
+          "distinctTicks": 60,
+          "distinctPoses": 60,
+          "expectedActionSeen": true
+        },
+        "soul-33": {
+          "samples": 60,
+          "distinctTicks": 60,
+          "distinctPoses": 60,
+          "expectedActionSeen": true
+        }
+      },
+      "singleSampleTransitionActors": [
+        "soul-30",
+        "soul-31"
+      ],
+      "playerSampled": false,
+      "continuousSoulData": true
+    },
+    {
+      "scenario": "animation-2-walk",
+      "activeActors": {
+        "soul-34": {
+          "samples": 54,
+          "distinctTicks": 54,
+          "distinctPoses": 54,
+          "expectedActionSeen": true
+        },
+        "soul-35": {
+          "samples": 55,
+          "distinctTicks": 55,
+          "distinctPoses": 55,
+          "expectedActionSeen": true
+        }
+      },
+      "singleSampleTransitionActors": [
+        "soul-32",
+        "soul-33"
+      ],
+      "playerSampled": false,
+      "continuousSoulData": true
+    },
+    {
+      "scenario": "animation-2-fly",
+      "activeActors": {
+        "soul-36": {
+          "samples": 56,
+          "distinctTicks": 56,
+          "distinctPoses": 56,
+          "expectedActionSeen": true
+        },
+        "soul-37": {
+          "samples": 56,
+          "distinctTicks": 56,
+          "distinctPoses": 56,
+          "expectedActionSeen": true
+        }
+      },
+      "singleSampleTransitionActors": [
+        "soul-34",
+        "soul-35"
+      ],
+      "playerSampled": false,
+      "continuousSoulData": true
+    }
+  ],
+  "frameTimingAccepted": false,
+  "limitations": [
+    "Original round fixture camera yaw was overridden by DS; its performance and animation screenshots face away from the actors.",
+    "Original player idle/walk/fly phases have no player samples. The later startup smoke verifies visible cave-dragon idle; full player walk/fly validation remains unconfirmed.",
+    "Removed soul actors with one transition sample triggered continuity assertions; all repeatedly sampled soul actors advanced with the expected animation.",
+    "Original creative inventory redirected to creative tabs with no entity preview. The later startup smoke verifies survival inventory CPU entity preview.",
+    "Original fixture source was corrected after the one round; that performance/animation round was not repeated. A separate requested startup smoke checks the renamed jar."
+  ],
+  "pass": false,
+  "formalAcceptanceComplete": false,
+  "comparisonToOldVersion": null,
+  "startupSmoke": {
+    "pass": true,
+    "kind": "startup-world-smoke",
+    "jarSha256": "754f15bb0ded0b8e393f7a37ca6382ff4f49353d6f796211e50b19acfc037923",
+    "visualVerified": true,
+    "titleReached": true,
+    "worldReached": true,
+    "runtimePass": true,
+    "performanceResampled": false,
+    "dsroErrors": [],
+    "otherModErrors": [
+      "[0610月2026 16:57:19.540] [Worker-ResourceReload-8/ERROR] [dev.ftb.mods.ftblibrary.icon.EntityIconLoader/]: Entity artifacts:mimic is using legacy invisible texture, please update it to use the new system!",
+      "[0610月2026 16:57:19.554] [Worker-ResourceReload-8/ERROR] [dev.ftb.mods.ftblibrary.icon.EntityIconLoader/]: Entity iceandfire:stone_statue is using legacy invisible texture, please update it to use the new system!",
+      "[0610月2026 16:57:20.083] [Worker-ResourceReload-27/ERROR] [me.pepperbell.continuity.client.ContinuityClient/]: No tile or block matches provided in file 'minecraft:optifine/ctm/glass/black/glass_black.properties' in pack '[无缝玻璃] Clear Glass Pack 1.21.zip'",
+      "[0610月2026 16:57:20.083] [Worker-ResourceReload-27/ERROR] [me.pepperbell.continuity.client.ContinuityClient/]: No valid connection type provided in file 'minecraft:optifine/ctm/glass/black/glass_black.properties' in pack '[无缝玻璃] Clear Glass Pack 1.21.zip'",
+      "[0610月2026 16:57:20.084] [Worker-ResourceReload-27/ERROR] [me.pepperbell.continuity.client.ContinuityClient/]: No tile or block matches provided in file 'minecraft:optifine/ctm/glass/blue/glass_blue.properties' in pack '[无缝玻璃] Clear Glass Pack 1.21.zip'",
+      "[0610月2026 16:57:20.084] [Worker-ResourceReload-27/ERROR] [me.pepperbell.continuity.client.ContinuityClient/]: No valid connection type provided in file 'minecraft:optifine/ctm/glass/blue/glass_blue.properties' in pack '[无缝玻璃] Clear Glass Pack 1.21.zip'",
+      "[0610月2026 16:57:20.085] [Worker-ResourceReload-27/ERROR] [me.pepperbell.continuity.client.ContinuityClient/]: No tile or block matches provided in file 'minecraft:optifine/ctm/glass/brown/glass_brown.properties' in pack '[无缝玻璃] Clear Glass Pack 1.21.zip'",
+      "[0610月2026 16:57:20.085] [Worker-ResourceReload-27/ERROR] [me.pepperbell.continuity.client.ContinuityClient/]: No valid connection type provided in file 'minecraft:optifine/ctm/glass/brown/glass_brown.properties' in pack '[无缝玻璃] Clear Glass Pack 1.21.zip'",
+      "[0610月2026 16:57:20.086] [Worker-ResourceReload-27/ERROR] [me.pepperbell.continuity.client.ContinuityClient/]: No tile or block matches provided in file 'minecraft:optifine/ctm/glass/cyan/glass_cyan.properties' in pack '[无缝玻璃] Clear Glass Pack 1.21.zip'",
+      "[0610月2026 16:57:20.086] [Worker-ResourceReload-27/ERROR] [me.pepperbell.continuity.client.ContinuityClient/]: No valid connection type provided in file 'minecraft:optifine/ctm/glass/cyan/glass_cyan.properties' in pack '[无缝玻璃] Clear Glass Pack 1.21.zip'",
+      "[0610月2026 16:57:20.086] [Worker-ResourceReload-27/ERROR] [me.pepperbell.continuity.client.ContinuityClient/]: No tile or block matches provided in file 'minecraft:optifine/ctm/glass/gray/glass_gray.properties' in pack '[无缝玻璃] Clear Glass Pack 1.21.zip'",
+      "[0610月2026 16:57:20.086] [Worker-ResourceReload-27/ERROR] [me.pepperbell.continuity.client.ContinuityClient/]: No valid connection type provided in file 'minecraft:optifine/ctm/glass/gray/glass_gray.properties' in pack '[无缝玻璃] Clear Glass Pack 1.21.zip'",
+      "[0610月2026 16:57:20.086] [Worker-ResourceReload-27/ERROR] [me.pepperbell.continuity.client.ContinuityClient/]: No tile or block matches provided in file 'minecraft:optifine/ctm/glass/green/glass_green.properties' in pack '[无缝玻璃] Clear Glass Pack 1.21.zip'",
+      "[0610月2026 16:57:20.087] [Worker-ResourceReload-27/ERROR] [me.pepperbell.continuity.client.ContinuityClient/]: No valid connection type provided in file 'minecraft:optifine/ctm/glass/green/glass_green.properties' in pack '[无缝玻璃] Clear Glass Pack 1.21.zip'",
+      "[0610月2026 16:57:20.087] [Worker-ResourceReload-27/ERROR] [me.pepperbell.continuity.client.ContinuityClient/]: No tile or block matches provided in file 'minecraft:optifine/ctm/glass/lightblue/glass_light_blue.properties' in pack '[无缝玻璃] Clear Glass Pack 1.21.zip'",
+      "[0610月2026 16:57:20.087] [Worker-ResourceReload-27/ERROR] [me.pepperbell.continuity.client.ContinuityClient/]: No valid connection type provided in file 'minecraft:optifine/ctm/glass/lightblue/glass_light_blue.properties' in pack '[无缝玻璃] Clear Glass Pack 1.21.zip'",
+      "[0610月2026 16:57:20.088] [Worker-ResourceReload-27/ERROR] [me.pepperbell.continuity.client.ContinuityClient/]: No tile or block matches provided in file 'minecraft:optifine/ctm/glass/lime/glass_lime.properties' in pack '[无缝玻璃] Clear Glass Pack 1.21.zip'",
+      "[0610月2026 16:57:20.088] [Worker-ResourceReload-27/ERROR] [me.pepperbell.continuity.client.ContinuityClient/]: No valid connection type provided in file 'minecraft:optifine/ctm/glass/lime/glass_lime.properties' in pack '[无缝玻璃] Clear Glass Pack 1.21.zip'",
+      "[0610月2026 16:57:20.089] [Worker-ResourceReload-27/ERROR] [me.pepperbell.continuity.client.ContinuityClient/]: No tile or block matches provided in file 'minecraft:optifine/ctm/glass/magenta/glass_magenta.properties' in pack '[无缝玻璃] Clear Glass Pack 1.21.zip'",
+      "[0610月2026 16:57:20.089] [Worker-ResourceReload-27/ERROR] [me.pepperbell.continuity.client.ContinuityClient/]: No valid connection type provided in file 'minecraft:optifine/ctm/glass/magenta/glass_magenta.properties' in pack '[无缝玻璃] Clear Glass Pack 1.21.zip'",
+      "[0610月2026 16:57:20.089] [Worker-ResourceReload-27/ERROR] [me.pepperbell.continuity.client.ContinuityClient/]: No tile or block matches provided in file 'minecraft:optifine/ctm/glass/orange/glass_orange.properties' in pack '[无缝玻璃] Clear Glass Pack 1.21.zip'",
+      "[0610月2026 16:57:20.089] [Worker-ResourceReload-27/ERROR] [me.pepperbell.continuity.client.ContinuityClient/]: No valid connection type provided in file 'minecraft:optifine/ctm/glass/orange/glass_orange.properties' in pack '[无缝玻璃] Clear Glass Pack 1.21.zip'",
+      "[0610月2026 16:57:20.090] [Worker-ResourceReload-27/ERROR] [me.pepperbell.continuity.client.ContinuityClient/]: No tile or block matches provided in file 'minecraft:optifine/ctm/glass/pink/glass_pink.properties' in pack '[无缝玻璃] Clear Glass Pack 1.21.zip'",
+      "[0610月2026 16:57:20.090] [Worker-ResourceReload-27/ERROR] [me.pepperbell.continuity.client.ContinuityClient/]: No valid connection type provided in file 'minecraft:optifine/ctm/glass/pink/glass_pink.properties' in pack '[无缝玻璃] Clear Glass Pack 1.21.zip'",
+      "[0610月2026 16:57:20.091] [Worker-ResourceReload-27/ERROR] [me.pepperbell.continuity.client.ContinuityClient/]: No tile or block matches provided in file 'minecraft:optifine/ctm/glass/purple/glass_purple.properties' in pack '[无缝玻璃] Clear Glass Pack 1.21.zip'",
+      "[0610月2026 16:57:20.091] [Worker-ResourceReload-27/ERROR] [me.pepperbell.continuity.client.ContinuityClient/]: No valid connection type provided in file 'minecraft:optifine/ctm/glass/purple/glass_purple.properties' in pack '[无缝玻璃] Clear Glass Pack 1.21.zip'",
+      "[0610月2026 16:57:20.091] [Worker-ResourceReload-27/ERROR] [me.pepperbell.continuity.client.ContinuityClient/]: No tile or block matches provided in file 'minecraft:optifine/ctm/glass/red/glass_red.properties' in pack '[无缝玻璃] Clear Glass Pack 1.21.zip'",
+      "[0610月2026 16:57:20.092] [Worker-ResourceReload-27/ERROR] [me.pepperbell.continuity.client.ContinuityClient/]: No valid connection type provided in file 'minecraft:optifine/ctm/glass/red/glass_red.properties' in pack '[无缝玻璃] Clear Glass Pack 1.21.zip'",
+      "[0610月2026 16:57:20.092] [Worker-ResourceReload-27/ERROR] [me.pepperbell.continuity.client.ContinuityClient/]: No tile or block matches provided in file 'minecraft:optifine/ctm/glass/silver/glass_silver.properties' in pack '[无缝玻璃] Clear Glass Pack 1.21.zip'",
+      "[0610月2026 16:57:20.092] [Worker-ResourceReload-27/ERROR] [me.pepperbell.continuity.client.ContinuityClient/]: No valid connection type provided in file 'minecraft:optifine/ctm/glass/silver/glass_silver.properties' in pack '[无缝玻璃] Clear Glass Pack 1.21.zip'",
+      "[0610月2026 16:57:20.093] [Worker-ResourceReload-27/ERROR] [me.pepperbell.continuity.client.ContinuityClient/]: No tile or block matches provided in file 'minecraft:optifine/ctm/glass/white/glass_white.properties' in pack '[无缝玻璃] Clear Glass Pack 1.21.zip'",
+      "[0610月2026 16:57:20.093] [Worker-ResourceReload-27/ERROR] [me.pepperbell.continuity.client.ContinuityClient/]: No valid connection type provided in file 'minecraft:optifine/ctm/glass/white/glass_white.properties' in pack '[无缝玻璃] Clear Glass Pack 1.21.zip'",
+      "[0610月2026 16:57:20.094] [Worker-ResourceReload-27/ERROR] [me.pepperbell.continuity.client.ContinuityClient/]: No tile or block matches provided in file 'minecraft:optifine/ctm/glass/yellow/glass_yellow.properties' in pack '[无缝玻璃] Clear Glass Pack 1.21.zip'",
+      "[0610月2026 16:57:20.094] [Worker-ResourceReload-27/ERROR] [me.pepperbell.continuity.client.ContinuityClient/]: No valid connection type provided in file 'minecraft:optifine/ctm/glass/yellow/glass_yellow.properties' in pack '[无缝玻璃] Clear Glass Pack 1.21.zip'",
+      "[0610月2026 16:57:21.317] [Worker-ResourceReload-9/ERROR] [GeckoLib/]: Unable to parse animation: mass_buff",
+      "[0610月2026 16:57:21.342] [Worker-ResourceReload-25/ERROR] [GeckoLib/]: Unable to parse animation: mass_buff",
+      "[0610月2026 16:57:21.370] [Worker-ResourceReload-19/ERROR] [GeckoLib/]: Unable to parse animation: mass_buff",
+      "[0610月2026 16:57:21.623] [Worker-ResourceReload-14/ERROR] [GeckoLib/]: Unable to parse animation: mass_buff",
+      "[0610月2026 16:57:21.840] [Worker-ResourceReload-2/ERROR] [GeckoLib/]: Unable to parse animation: attack_single",
+      "[0610月2026 16:57:21.883] [Worker-ResourceReload-16/ERROR] [GeckoLib/]: Unable to parse animation: climb",
+      "[0610月2026 16:57:22.001] [Worker-ResourceReload-0/ERROR] [GeckoLib/]: Unable to parse animation: mass_buff",
+      "[0610月2026 16:57:22.079] [Worker-ResourceReload-16/ERROR] [GeckoLib/]: Unable to parse animation: empty",
+      "[0610月2026 16:57:22.398] [Worker-ResourceReload-29/ERROR] [GeckoLib/]: Unable to parse animation: attack_single",
+      "[0610月2026 16:57:22.612] [Worker-ResourceReload-9/ERROR] [GeckoLib/]: Unable to parse animation: flapping_wings_standing",
+      "[0610月2026 16:57:22.834] [Worker-ResourceReload-21/ERROR] [GeckoLib/]: Unable to parse animation: climb",
+      "[0610月2026 16:57:22.934] [Worker-ResourceReload-21/ERROR] [GeckoLib/]: Unable to parse animation: empty",
+      "[0610月2026 16:57:22.982] [Worker-ResourceReload-9/ERROR] [GeckoLib/]: Unable to parse animation: supernova",
+      "[0610月2026 16:57:23.011] [Worker-ResourceReload-19/ERROR] [GeckoLib/]: Unable to parse animation: flapping_wings_standing",
+      "[0610月2026 16:57:23.020] [Worker-ResourceReload-12/ERROR] [net.minecraft.Util/]: Invalid path in pack: beyonddimensions:textures/gui/sprites/widget/漏斗禁止.png, ignoring",
+      "[0610月2026 16:57:23.029] [Worker-ResourceReload-12/ERROR] [net.minecraft.Util/]: Invalid path in pack: beyonddimensions:textures/gui/sprites/widget/漏斗图.png, ignoring",
+      "[0610月2026 16:57:23.029] [Worker-ResourceReload-12/ERROR] [net.minecraft.Util/]: Invalid path in pack: beyonddimensions:textures/gui/sprites/widget/漏斗允许.png, ignoring",
+      "[0610月2026 16:57:23.149] [Worker-ResourceReload-11/ERROR] [GeckoLib/]: Unable to parse animation: mass_buff",
+      "[0610月2026 16:57:23.225] [Worker-ResourceReload-0/ERROR] [GeckoLib/]: Unable to parse animation: flapping_wings_standing",
+      "[0610月2026 16:57:23.716] [Worker-ResourceReload-10/ERROR] [GeckoLib/]: Unable to parse animation: supernova",
+      "[0610月2026 16:57:23.771] [Worker-ResourceReload-20/ERROR] [net.minecraft.server.packs.PathPackResources/]: Invalid path legendary_monsters:textures/item/the_great_frost_3d2Old_hilight.png: Invalid segment 'the_great_frost_3d2Old_hilight.png' in path 'textures/item/the_great_frost_3d2Old_hilight.png'",
+      "[0610月2026 16:57:23.776] [Worker-ResourceReload-7/ERROR] [GeckoLib/]: Unable to parse animation: attack_single",
+      "[0610月2026 16:57:23.898] [Worker-ResourceReload-25/ERROR] [GeckoLib/]: Unable to parse animation: climb",
+      "[0610月2026 16:57:24.200] [Worker-ResourceReload-3/ERROR] [GeckoLib/]: Unable to parse animation: supernova",
+      "[0610月2026 16:57:24.346] [Worker-ResourceReload-25/ERROR] [GeckoLib/]: Unable to parse animation: empty",
+      "[0610月2026 16:57:24.441] [Worker-ResourceReload-4/ERROR] [net.minecraft.Util/]: Invalid path in pack: beyonddimensions:textures/gui/sprites/widget/漏斗禁止.png, ignoring",
+      "[0610月2026 16:57:24.441] [Worker-ResourceReload-4/ERROR] [net.minecraft.Util/]: Invalid path in pack: beyonddimensions:textures/gui/sprites/widget/漏斗图.png, ignoring",
+      "[0610月2026 16:57:24.441] [Worker-ResourceReload-4/ERROR] [net.minecraft.Util/]: Invalid path in pack: beyonddimensions:textures/gui/sprites/widget/漏斗允许.png, ignoring",
+      "[0610月2026 16:57:24.456] [Worker-ResourceReload-4/ERROR] [net.minecraft.Util/]: Invalid path in pack: dragonsurvival:textures/armor/dragon_model/cnb/flower_crown 2.png, ignoring",
+      "[0610月2026 16:57:24.575] [Worker-ResourceReload-4/ERROR] [net.minecraft.Util/]: Invalid path in pack: legendary_monsters:textures/entity/posessed_paladin/old/posessed_paladin — kopia.png, ignoring",
+      "[0610月2026 16:57:25.287] [Worker-ResourceReload-20/ERROR] [net.minecraft.server.packs.PathPackResources/]: Invalid path minecraft:textures/block/gIass_hilight.png: Invalid segment 'gIass_hilight.png' in path 'textures/block/gIass_hilight.png'",
+      "[0610月2026 16:57:25.288] [Worker-ResourceReload-20/ERROR] [net.minecraft.server.packs.PathPackResources/]: Invalid path minecraft:textures/block/gIass_hilight.png: Invalid segment 'gIass_hilight.png' in path 'textures/block/gIass_hilight.png'",
+      "[0610月2026 16:57:25.288] [Worker-ResourceReload-20/ERROR] [net.minecraft.server.packs.PathPackResources/]: Invalid path minecraft:textures/block/gIass_hilight.png: Invalid segment 'gIass_hilight.png' in path 'textures/block/gIass_hilight.png'",
+      "[0610月2026 16:57:25.288] [Worker-ResourceReload-20/ERROR] [net.minecraft.server.packs.PathPackResources/]: Invalid path minecraft:textures/block/gIass_hilight.png: Invalid segment 'gIass_hilight.png' in path 'textures/block/gIass_hilight.png'",
+      "[0610月2026 16:57:25.288] [Worker-ResourceReload-20/ERROR] [net.minecraft.server.packs.PathPackResources/]: Invalid path minecraft:textures/block/gIass_hilight.png: Invalid segment 'gIass_hilight.png' in path 'textures/block/gIass_hilight.png'",
+      "[0610月2026 16:57:25.288] [Worker-ResourceReload-20/ERROR] [net.minecraft.server.packs.PathPackResources/]: Invalid path minecraft:textures/block/gIass_hilight.png: Invalid segment 'gIass_hilight.png' in path 'textures/block/gIass_hilight.png'",
+      "[0610月2026 16:57:25.288] [Worker-ResourceReload-20/ERROR] [net.minecraft.server.packs.PathPackResources/]: Invalid path minecraft:textures/block/gIass_hilight.png: Invalid segment 'gIass_hilight.png' in path 'textures/block/gIass_hilight.png'",
+      "[0610月2026 16:57:25.288] [Worker-ResourceReload-20/ERROR] [net.minecraft.server.packs.PathPackResources/]: Invalid path minecraft:textures/block/gIass_hilight.png: Invalid segment 'gIass_hilight.png' in path 'textures/block/gIass_hilight.png'",
+      "[0610月2026 16:57:25.288] [Worker-ResourceReload-20/ERROR] [net.minecraft.server.packs.PathPackResources/]: Invalid path minecraft:textures/block/gIass_hilight.png: Invalid segment 'gIass_hilight.png' in path 'textures/block/gIass_hilight.png'",
+      "[0610月2026 16:57:25.288] [Worker-ResourceReload-20/ERROR] [net.minecraft.server.packs.PathPackResources/]: Invalid path minecraft:textures/block/gIass_hilight.png: Invalid segment 'gIass_hilight.png' in path 'textures/block/gIass_hilight.png'",
+      "[0610月2026 16:57:25.288] [Worker-ResourceReload-20/ERROR] [net.minecraft.server.packs.PathPackResources/]: Invalid path minecraft:textures/block/gIass_hilight.png: Invalid segment 'gIass_hilight.png' in path 'textures/block/gIass_hilight.png'",
+      "[0610月2026 16:57:25.288] [Worker-ResourceReload-20/ERROR] [net.minecraft.server.packs.PathPackResources/]: Invalid path minecraft:textures/block/gIass_hilight.png: Invalid segment 'gIass_hilight.png' in path 'textures/block/gIass_hilight.png'",
+      "[0610月2026 16:57:25.288] [Worker-ResourceReload-20/ERROR] [net.minecraft.server.packs.PathPackResources/]: Invalid path minecraft:textures/block/gIass_hilight.png: Invalid segment 'gIass_hilight.png' in path 'textures/block/gIass_hilight.png'",
+      "[0610月2026 16:57:25.288] [Worker-ResourceReload-20/ERROR] [net.minecraft.server.packs.PathPackResources/]: Invalid path minecraft:textures/block/gIass_hilight.png: Invalid segment 'gIass_hilight.png' in path 'textures/block/gIass_hilight.png'",
+      "[0610月2026 16:57:25.288] [Worker-ResourceReload-20/ERROR] [net.minecraft.server.packs.PathPackResources/]: Invalid path minecraft:textures/block/gIass_hilight.png: Invalid segment 'gIass_hilight.png' in path 'textures/block/gIass_hilight.png'",
+      "[0610月2026 16:57:25.288] [Worker-ResourceReload-20/ERROR] [net.minecraft.server.packs.PathPackResources/]: Invalid path minecraft:textures/block/gIass_hilight.png: Invalid segment 'gIass_hilight.png' in path 'textures/block/gIass_hilight.png'",
+      "[0610月2026 16:57:25.288] [Worker-ResourceReload-20/ERROR] [net.minecraft.server.packs.PathPackResources/]: Invalid path minecraft:textures/block/gIass_hilight.png: Invalid segment 'gIass_hilight.png' in path 'textures/block/gIass_hilight.png'",
+      "[0610月2026 16:57:25.288] [Worker-ResourceReload-20/ERROR] [net.minecraft.server.packs.PathPackResources/]: Invalid path minecraft:textures/block/gIass_hilight.png: Invalid segment 'gIass_hilight.png' in path 'textures/block/gIass_hilight.png'",
+      "[0610月2026 16:57:25.288] [Worker-ResourceReload-20/ERROR] [net.minecraft.server.packs.PathPackResources/]: Invalid path minecraft:textures/block/gIass_hilight.png: Invalid segment 'gIass_hilight.png' in path 'textures/block/gIass_hilight.png'",
+      "[0610月2026 16:57:25.288] [Worker-ResourceReload-20/ERROR] [net.minecraft.server.packs.PathPackResources/]: Invalid path minecraft:textures/block/gIass_hilight.png: Invalid segment 'gIass_hilight.png' in path 'textures/block/gIass_hilight.png'",
+      "[0610月2026 16:57:25.288] [Worker-ResourceReload-20/ERROR] [net.minecraft.server.packs.PathPackResources/]: Invalid path minecraft:textures/block/gIass_hilight.png: Invalid segment 'gIass_hilight.png' in path 'textures/block/gIass_hilight.png'",
+      "[0610月2026 16:57:25.288] [Worker-ResourceReload-20/ERROR] [net.minecraft.server.packs.PathPackResources/]: Invalid path minecraft:textures/block/gIass_hilight.png: Invalid segment 'gIass_hilight.png' in path 'textures/block/gIass_hilight.png'",
+      "[0610月2026 16:57:25.288] [Worker-ResourceReload-20/ERROR] [net.minecraft.server.packs.PathPackResources/]: Invalid path minecraft:textures/block/gIass_hilight.png: Invalid segment 'gIass_hilight.png' in path 'textures/block/gIass_hilight.png'",
+      "[0610月2026 16:57:25.288] [Worker-ResourceReload-20/ERROR] [net.minecraft.server.packs.PathPackResources/]: Invalid path minecraft:textures/block/gIass_hilight.png: Invalid segment 'gIass_hilight.png' in path 'textures/block/gIass_hilight.png'",
+      "[0610月2026 16:57:25.288] [Worker-ResourceReload-20/ERROR] [net.minecraft.server.packs.PathPackResources/]: Invalid path minecraft:textures/block/gIass_hilight.png: Invalid segment 'gIass_hilight.png' in path 'textures/block/gIass_hilight.png'",
+      "[0610月2026 16:57:25.288] [Worker-ResourceReload-20/ERROR] [net.minecraft.server.packs.PathPackResources/]: Invalid path minecraft:textures/block/gIass_hilight.png: Invalid segment 'gIass_hilight.png' in path 'textures/block/gIass_hilight.png'",
+      "[0610月2026 16:57:25.288] [Worker-ResourceReload-20/ERROR] [net.minecraft.server.packs.PathPackResources/]: Invalid path minecraft:textures/block/gIass_hilight.png: Invalid segment 'gIass_hilight.png' in path 'textures/block/gIass_hilight.png'",
+      "[0610月2026 16:57:25.288] [Worker-ResourceReload-20/ERROR] [net.minecraft.server.packs.PathPackResources/]: Invalid path minecraft:textures/block/gIass_hilight.png: Invalid segment 'gIass_hilight.png' in path 'textures/block/gIass_hilight.png'",
+      "[0610月2026 16:57:25.288] [Worker-ResourceReload-20/ERROR] [net.minecraft.server.packs.PathPackResources/]: Invalid path minecraft:textures/block/gIass_hilight.png: Invalid segment 'gIass_hilight.png' in path 'textures/block/gIass_hilight.png'",
+      "[0610月2026 16:57:25.288] [Worker-ResourceReload-20/ERROR] [net.minecraft.server.packs.PathPackResources/]: Invalid path minecraft:textures/block/gIass_hilight.png: Invalid segment 'gIass_hilight.png' in path 'textures/block/gIass_hilight.png'",
+      "[0610月2026 16:57:25.288] [Worker-ResourceReload-20/ERROR] [net.minecraft.server.packs.PathPackResources/]: Invalid path minecraft:textures/block/gIass_hilight.png: Invalid segment 'gIass_hilight.png' in path 'textures/block/gIass_hilight.png'",
+      "[0610月2026 16:57:25.288] [Worker-ResourceReload-20/ERROR] [net.minecraft.server.packs.PathPackResources/]: Invalid path minecraft:textures/block/gIass_hilight.png: Invalid segment 'gIass_hilight.png' in path 'textures/block/gIass_hilight.png'",
+      "[0610月2026 16:57:25.288] [Worker-ResourceReload-20/ERROR] [net.minecraft.server.packs.PathPackResources/]: Invalid path minecraft:textures/block/gIass_hilight.png: Invalid segment 'gIass_hilight.png' in path 'textures/block/gIass_hilight.png'",
+      "[0610月2026 16:57:25.288] [Worker-ResourceReload-20/ERROR] [net.minecraft.server.packs.PathPackResources/]: Invalid path minecraft:textures/block/gIass_hilight.png: Invalid segment 'gIass_hilight.png' in path 'textures/block/gIass_hilight.png'",
+      "[0610月2026 16:57:25.288] [Worker-ResourceReload-20/ERROR] [net.minecraft.server.packs.PathPackResources/]: Invalid path minecraft:textures/block/gIass_hilight.png: Invalid segment 'gIass_hilight.png' in path 'textures/block/gIass_hilight.png'",
+      "[0610月2026 16:57:25.289] [Worker-ResourceReload-20/ERROR] [net.minecraft.server.packs.PathPackResources/]: Invalid path minecraft:textures/block/gIass_hilight.png: Invalid segment 'gIass_hilight.png' in path 'textures/block/gIass_hilight.png'",
+      "[0610月2026 16:57:25.289] [Worker-ResourceReload-20/ERROR] [net.minecraft.server.packs.VanillaPackResources/]: Invalid path minecraft:textures/block/gIass_hilight.png: Invalid segment 'gIass_hilight.png' in path 'textures/block/gIass_hilight.png'",
+      "[0610月2026 16:57:43.239] [Render thread/ERROR] [net.minecraft.client.sounds.SoundEngine/SOUNDS]: Error starting SoundSystem. Turning off sounds & music",
+      "[0610月2026 16:57:44.591] [Render thread/ERROR] [dev.kosmx.playerAnim.minecraftApi.codec.AnimationCodecs/]: Unknown error when trying to apply emotecraft",
+      "[0610月2026 16:57:44.595] [Render thread/ERROR] [dev.kosmx.playerAnim.minecraftApi.codec.AnimationCodecs/]: Unknown error when trying to apply gecko_legacy",
+      "[0610月2026 16:58:04.152] [Worker-ResourceReload-23/ERROR] [net.minecraft.world.level.storage.loot.LootDataType/]: Couldn't parse element ResourceKey[minecraft:root / minecraft:loot_table]:beyonddimensions:blocks/schematicannon_pathway - Unknown registry key in ResourceKey[minecraft:root / minecraft:item]: beyonddimensions:schematicannon_pathway",
+      "[0610月2026 16:58:04.325] [Worker-ResourceReload-23/ERROR] [net.minecraft.world.level.storage.loot.LootDataType/]: Couldn't parse element ResourceKey[minecraft:root / minecraft:loot_table]:beyonddimensions:blocks/rs_net_pathway - Unknown registry key in ResourceKey[minecraft:root / minecraft:item]: beyonddimensions:rs_net_pathway",
+      "[0610月2026 16:58:04.335] [Worker-ResourceReload-23/ERROR] [net.minecraft.world.level.storage.loot.LootDataType/]: Couldn't parse element ResourceKey[minecraft:root / minecraft:loot_table]:beyonddimensions:blocks/ars_source_pathway - Unknown registry key in ResourceKey[minecraft:root / minecraft:item]: beyonddimensions:ars_source_pathway",
+      "[0610月2026 16:58:04.591] [Worker-ResourceReload-23/ERROR] [net.minecraft.world.level.storage.loot.LootDataType/]: Couldn't parse element ResourceKey[minecraft:root / minecraft:loot_table]:beyonddimensions:blocks/mana_pool_pathway - Unknown registry key in ResourceKey[minecraft:root / minecraft:item]: beyonddimensions:mana_pool_pathway",
+      "[0610月2026 16:58:06.140] [Worker-ResourceReload-23/ERROR] [net.minecraft.Util/]: Invalid path in pack: biomespy:tags/worldgen/structure/uninit_safe.json‎, ignoring",
+      "[0610月2026 16:58:09.060] [Render thread/ERROR] [net.minecraft.world.item.crafting.RecipeManager/]: Parsing error loading recipe frostfire_dragon:rime_obsidian_lantern: com.google.gson.JsonParseException: Map entry 'A' : Failed to parse either. First: Not a json array: {\"item\":\"frostfire_dragon:rime_crystal_cluster\"}; Second: No key tag in MapLike[{\"item\":\"frostfire_dragon:rime_crystal_cluster\"}]; Unknown registry key in ResourceKey[minecraft:root / minecraft:item]: frostfire_dragon:rime_crystal_cluster",
+      "[0610月2026 16:58:09.173] [Render thread/ERROR] [net.minecraft.world.item.crafting.RecipeManager/]: Parsing error loading recipe frostfire_dragon:crying_obsidian_bricks_chiseled_from_stonecutting: com.google.gson.JsonParseException: Unknown registry key in ResourceKey[minecraft:root / minecraft:item]: frostfire_dragon:crying_obsidian_bricks_chiseled",
+      "[0610月2026 16:58:09.220] [Render thread/ERROR] [net.minecraft.world.item.crafting.RecipeManager/]: Parsing error loading recipe justenoughbreeding:breeding/iceandfire/lightning_dragon: com.google.gson.JsonParseException: No key tag in MapLike[{\"item\":\"iceandfire:dragonegg_amythest\"}]; Unknown registry key in ResourceKey[minecraft:root / minecraft:item]: iceandfire:dragonegg_amythest",
+      "[0610月2026 16:58:09.421] [Render thread/ERROR] [net.minecraft.world.item.crafting.RecipeManager/]: Parsing error loading recipe frostfire_dragon:crying_obsidian_brick_wall_from_stonecutting: com.google.gson.JsonParseException: Unknown registry key in ResourceKey[minecraft:root / minecraft:item]: frostfire_dragon:crying_obsidian_brick_wall",
+      "[0610月2026 16:58:09.445] [Render thread/ERROR] [net.minecraft.world.item.crafting.RecipeManager/]: Parsing error loading recipe frostfire_dragon:crying_obsidian_brick_stairs_from_stonecutting: com.google.gson.JsonParseException: Unknown registry key in ResourceKey[minecraft:root / minecraft:item]: frostfire_dragon:crying_obsidian_brick_stairs",
+      "[0610月2026 16:58:09.461] [Render thread/ERROR] [net.minecraft.world.item.crafting.RecipeManager/]: Parsing error loading recipe frostfire_dragon:crying_obsidian_brick_slab_from_stonecutting: com.google.gson.JsonParseException: Unknown registry key in ResourceKey[minecraft:root / minecraft:item]: frostfire_dragon:crying_obsidian_brick_slab",
+      "[0610月2026 16:58:09.638] [Render thread/ERROR] [net.minecraft.world.item.crafting.RecipeManager/]: Parsing error loading recipe frostfire_dragon:crying_obsidian_pillar_from_stonecutting: com.google.gson.JsonParseException: Unknown registry key in ResourceKey[minecraft:root / minecraft:item]: frostfire_dragon:crying_obsidian_pillar",
+      "[0610月2026 16:58:10.375] [Render thread/ERROR] [net.minecraft.advancements.AdvancementTree/]: Couldn't load advancements: [dungeons_arise:find_thornborn_towers, dungeons_arise:find_fishing_hut]",
+      "[0610月2026 16:58:10.437] [Render thread/ERROR] [Curios API/]: scroll is not a registered slot type!",
+      "[0610月2026 16:58:33.096] [VoicechatSoundManagerThread/ERROR] [voicechat/]: [voicechat] Failed to start sound manager",
+      "[0610月2026 16:58:46.303] [MicrophoneThread/ERROR] [voicechat/]: [voicechat] Failed to start microphone thread"
+    ],
+    "rawResult": "smoke/smoke-result.json"
+  }
+}

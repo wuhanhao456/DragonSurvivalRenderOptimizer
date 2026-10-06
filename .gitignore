@@ -29,3 +29,8 @@ validation/runtime-iris/*.png
 validation/default-gpu/*.png
 validation/multi-dragon-*/*.png
 validation/low-frames/**/*.png
+validation/alpha4/*.png
+!validation/alpha4/configuration.png
+!validation/alpha4/breath.png
+!validation/alpha4/breath-recovery.png
+!validation/alpha4/inventory.png

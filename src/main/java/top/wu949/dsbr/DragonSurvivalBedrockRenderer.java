@@ -11,7 +11,7 @@ import org.apache.logging.log4j.Logger;
 @Mod(DragonSurvivalBedrockRenderer.MOD_ID)
 public final class DragonSurvivalBedrockRenderer {
     public static final String MOD_ID = "dsbr";
-    public static final Logger LOGGER = LogManager.getLogger("Dragon Survival Bedrock Renderer");
+    public static final Logger LOGGER = LogManager.getLogger("Dragon Survival Render Optimizer");
 
     public DragonSurvivalBedrockRenderer(final IEventBus modBus, final ModContainer modContainer) {
         if (FMLLoader.getDist().isClient()) {

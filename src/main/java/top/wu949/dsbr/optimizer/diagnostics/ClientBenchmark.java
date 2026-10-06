@@ -19,7 +19,6 @@ public final class ClientBenchmark {
     public static String start(int count, int repeat) {
         var mc = Minecraft.getInstance();
         if (active) return "Benchmark already running; use /beloongrender benchmark stop";
-        if (top.wu949.dsbr.client.DSBRRenderConfig.legacyActive()) return "Select /dsbr textures before comparing the three modern modes";
         if (!top.wu949.dsbr.optimizer.compat.OptimizerMixinPlugin.gpuCompatible) return "Benchmark requires all three modes to be compatible: " + top.wu949.dsbr.optimizer.compat.OptimizerMixinPlugin.status;
         if (mc.level == null) return "Enter a fixed test scene before starting the benchmark";
         if (count != 1 && count != 4 && count != 12) return "Dragon player count must be 1, 4 or 12";

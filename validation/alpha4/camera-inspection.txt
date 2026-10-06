@@ -1,0 +1,26 @@
+class net.minecraft.world.entity.decoration.ArmorStand
+getX=0.0
+getY=-55.0
+getZ=20.0
+getXRot=12.0
+getYRot=180.0
+getPosition=getEyeHeight=1.7775
+class net.minecraft.client.Camera
+getX=getY=getZ=getXRot=12.0
+getYRot=5.2997823
+getPosition=(0.0, -53.22249984741211, 20.0)
+getEyeHeight=class net.minecraft.client.player.LocalPlayer
+getX=5.0
+getY=-60.0
+getZ=4.0
+getXRot=0.0
+getYRot=0.0
+getPosition=getEyeHeight=2.2275
+stage=2
+ticks=2204
+count=2
+shader=1
+model=0
+action=0
+failures=[]
+positions=[BlockPos{x=-5, y=-60, z=0}, BlockPos{x=-2, y=-60, z=0}, BlockPos{x=1, y=-60, z=0}, BlockPos{x=4, y=-60, z=0}, BlockPos{x=-5, y=-60, z=3}, BlockPos{x=-2, y=-60, z=3}, BlockPos{x=1, y=-60, z=3}, BlockPos{x=4, y=-60, z=3}, BlockPos{x=-5, y=-60, z=6}, BlockPos{x=-2, y=-60, z=6}, BlockPos{x=1, y=-60, z=6}, BlockPos{x=4, y=-60, z=6}]

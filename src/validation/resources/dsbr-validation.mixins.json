@@ -3,6 +3,6 @@
   "minVersion": "0.8",
   "package": "top.wu949.dsbr.optimizer.validation.mixin",
   "compatibilityLevel": "JAVA_21",
-  "client": ["FrameBoundaryMixin", "MinecraftFrameLimitAccess"],
+  "client": ["FrameBoundaryMixin", "MinecraftFrameLimitAccess", "AnimationSampleMixin"],
   "injectors": {"defaultRequire": 1}
 }

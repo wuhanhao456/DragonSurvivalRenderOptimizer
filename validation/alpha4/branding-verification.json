@@ -1,0 +1,39 @@
+{
+  "pass": true,
+  "testedJarSha256": "56b8905941e31981b1813496e6f231259f0904b4674a8e36935b1089811d0981",
+  "releaseJarSha256": "754f15bb0ded0b8e393f7a37ca6382ff4f49353d6f796211e50b19acfc037923",
+  "unchangedEntries": 64,
+  "changedEntries": [
+    {
+      "entry": "META-INF/neoforge.mods.toml",
+      "difference": "Display names only; line endings ignored"
+    },
+    {
+      "entry": "assets/dsbr/lang/en_us.json",
+      "difference": "Display names only; line endings ignored"
+    },
+    {
+      "entry": "assets/dsbr/lang/zh_cn.json",
+      "difference": "Display names only; line endings ignored"
+    },
+    {
+      "entry": "pack.mcmeta",
+      "difference": "Display names only; line endings ignored"
+    },
+    {
+      "entry": "top/wu949/dsbr/DragonSurvivalBedrockRenderer.class",
+      "difference": "UTF-8 constant names only; all method code and attributes identical"
+    },
+    {
+      "entry": "top/wu949/dsbr/client/DSBRClient.class",
+      "difference": "UTF-8 constant names only; all method code and attributes identical"
+    },
+    {
+      "entry": "top/wu949/dsbr/optimizer/RenderOptimizer.class",
+      "difference": "UTF-8 constant names only; all method code and attributes identical"
+    }
+  ],
+  "verificationMethod": "Jar content and class constant comparison",
+  "modId": "dsbr",
+  "newName": "Dragon Survival Render Optimizer"
+}

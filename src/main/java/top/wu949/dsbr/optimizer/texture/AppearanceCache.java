@@ -25,6 +25,7 @@ public final class AppearanceCache {
         AppearanceKey key;
         String digest;
         final ResourceLocation[] bases = new ResourceLocation[2], textures = new ResourceLocation[2];
+        final ResourceLocation[] soulTextures = new ResourceLocation[2];
         boolean same(DragonStateHandler h) {
             var c = h.getCurrentStageCustomization(); var size = h.body().value().textureSize();
             if (key == null || !Objects.equals(species, h.speciesId()) || !Objects.equals(body, h.body()) || !Objects.equals(model, h.getModel()) || !Objects.equals(stage, h.stageKey())
@@ -37,7 +38,7 @@ public final class AppearanceCache {
             return true;
         }
         void update(DragonStateHandler h) {
-            key = AppearanceKey.skin(h); digest = key.digest(); Arrays.fill(bases, null); Arrays.fill(textures, null);
+            key = AppearanceKey.skin(h); digest = key.digest(); Arrays.fill(bases, null); Arrays.fill(textures, null); Arrays.fill(soulTextures, null);
             species = h.speciesId(); body = h.body(); model = h.getModel(); stage = h.stageKey();
             width = key.width(); height = key.height(); custom = key.custom(); blank = key.blank(); defaultSkin = key.defaultSkin(); wings = key.wings();
             for (int i = 0; i < LAYERS.length; i++) {
@@ -63,6 +64,11 @@ public final class AppearanceCache {
         var e = entry(h); int i = glow ? 1 : 0;
         if (!base.equals(e.bases[i])) { e.bases[i] = base; e.textures[i] = base.withSuffix("_bro_" + e.digest); }
         return e.textures[i];
+    }
+    public static ResourceLocation soulTexture(DragonStateHandler h, boolean glow) {
+        var e = entry(h); int i = glow ? 1 : 0;
+        if (e.soulTextures[i] == null) e.soulTextures[i] = ResourceLocation.fromNamespaceAndPath("dsbr", "soul/" + (glow ? "glow_" : "normal_") + e.digest);
+        return e.soulTextures[i];
     }
     public static void maintenance() { long cutoff = System.nanoTime() - 30_000_000_000L; entries.values().removeIf(e -> e.touched < cutoff); ArmorAppearance.maintenance(cutoff); }
     public static void clear() { entries.clear(); ArmorAppearance.clear(); }

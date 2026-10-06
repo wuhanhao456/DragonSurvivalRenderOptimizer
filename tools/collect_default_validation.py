@@ -1,5 +1,6 @@
 """Collect fresh-config GPU checks separately from the alpha.1 rendering regression."""
 import argparse, hashlib, json, pathlib, shutil, tomllib, xml.etree.ElementTree as ET
+from artifact_name import artifact_name
 
 project = pathlib.Path(__file__).resolve().parents[1]
 p = argparse.ArgumentParser()
@@ -8,12 +9,12 @@ a = p.parse_args()
 read = lambda path: json.loads(path.read_text(encoding='utf-8'))
 digest = lambda path: hashlib.sha256(path.read_bytes()).hexdigest()
 version = next(x.split('=', 1)[1] for x in (project / 'gradle.properties').read_text(encoding='utf-8').splitlines() if x.startswith('mod_version='))
-jar_hash = digest(a.build / 'libs' / ('dsbr-' + version + '.jar'))
+jar_hash = digest(a.build / 'libs' / (artifact_name(project) + '.jar'))
 out = project / 'validation/default-gpu'; out.mkdir(exist_ok=True)
 cases = []
 for label, directory in (('plain', a.plain), ('iris', a.iris)):
     result = read(directory / 'probe-result.json'); stats = read(directory / 'default-gpu.json')
-    assert result['pass'] and result['startupMode'] == 'GPU' and not result['legacyActive']
+    assert result['pass'] and result['startupMode'] == 'GPU'
     assert digest(directory / 'mods/optimizer.jar') == jar_hash
     assert tomllib.loads((directory / 'config/dsbr-optimizer-client.toml').read_text(encoding='utf-8'))['mode'] == 'GPU'
     assert stats['totals']['GPU_PASS'] > 0 and stats['totals'].get('READBACK', 0) == 0 and not stats['fallbacks']

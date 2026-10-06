@@ -1,0 +1,12 @@
+{
+  "isolatedInstance": "C:\\Users\\Administrator\\AppData\\Local\\Temp\\dsbr-validation-iris-20261006-162756",
+  "purpose": "Inspect fixture camera yaw and correct real player yaw within the existing run; no runtime scene repeated",
+  "agentHashes": {
+    "inspect.jar": "3c5cabf32521cde2ca9ddadd983a5375743ed2e22f19a8163e56061f49f34890",
+    "repair.jar": "d7f70c486efab1b4957961a79336b95d21d122070702dca1a4bd740df70716a5"
+  },
+  "testedDriverHash": "90f3c00d12f5300350bd4f36cd166a7600afa47d3241d3690b37c123327c236d",
+  "correctedDriverHash": "7e25565c4f9b04dc4c53d62de96019797b49131d8a124c99ae5b44000d267092",
+  "sourceCorrectedAfterRun": true,
+  "performanceSceneImagesInvalid": true
+}

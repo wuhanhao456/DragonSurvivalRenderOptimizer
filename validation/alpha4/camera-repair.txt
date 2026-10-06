@@ -1,0 +1,1 @@
+Fixture camera correction: Dragon Survival camera follows the real player's interpolated yaw even for the ArmorStand camera. Player yaw fixed at 180 degrees. No scene repeated.

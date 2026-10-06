@@ -1,0 +1,1137 @@
+[
+  {
+    "name": "[Asteor的状态栏和血量显示] asteorbar-neoforge-1.21.1-1.5.3.jar",
+    "bytes": 122385,
+    "sha256": "cec7fa107cde6b8db7fcbef346ec8d08d36412d1a893a3b792fa6cc2cf3168b5"
+  },
+  {
+    "name": "[FTB任务] ftb-quests-neoforge-2101.1.34.jar",
+    "bytes": 1609252,
+    "sha256": "ea09118f399f24640ccbe5b4171b59a4d7becba789a8c36783dbb2a04c00bf24"
+  },
+  {
+    "name": "[FTB区块] ftb-chunks-neoforge-2101.1.21.jar",
+    "bytes": 655753,
+    "sha256": "2cc32a613dd04d9355b88e6f455235aaf00768c270489657c9949f23b9195588"
+  },
+  {
+    "name": "[FTB区块兼容Xaero的地图] ftbxaerocompat-neoforge-1.1.4.jar",
+    "bytes": 109301,
+    "sha256": "dd27664945866d4092803c261cdd0d5ba4df755853e2cc87fae9c96cbd986681"
+  },
+  {
+    "name": "[FTB团队] ftb-teams-neoforge-2101.1.10.jar",
+    "bytes": 302712,
+    "sha256": "a656f2aa0e11a933aab3ba697690aa0eb2041f65e6c5daa448897ee0a6d37a6c"
+  },
+  {
+    "name": "[FTB基础] ftb-essentials-neoforge-2101.1.10.jar",
+    "bytes": 217288,
+    "sha256": "a61de1b883ec9d6d652276f453e8e60b18bd315fef8c62f21d6545260d526587"
+  },
+  {
+    "name": "[FTB连锁] ftb-ultimine-neoforge-2101.1.15.jar",
+    "bytes": 177109,
+    "sha256": "1393a85ceb6e4794450d5f06043e3a033278e31b86de8e03950d8b87604b2213"
+  },
+  {
+    "name": "[F键扫荡] fsweep-neoforge-1.21.1-1.5.0.jar",
+    "bytes": 119134,
+    "sha256": "199cefcfaf4386860cd1085ffed1ca1a1548cd1cd8c700fb85eb246b5661bc28"
+  },
+  {
+    "name": "[GTBC的魔法书] gametechbcs_spellbooks-3.0.0-1.21.1.jar",
+    "bytes": 1689146,
+    "sha256": "e8e5e8f605d08ec56f64de1e54dcecdb2dc95eb4d14f910db5a5b80353346d83"
+  },
+  {
+    "name": "[Iron的法术与魔法书] irons_spellbooks-1.21.1-3.16.3.jar",
+    "bytes": 13890046,
+    "sha256": "13d644474ddba4f8478b4ce68294687fd509c994b3f344a224142b102dbe6f73"
+  },
+  {
+    "name": "[JEI工作方块] JustEnoughProfessions-neoforge-1.21.1-4.0.5.jar",
+    "bytes": 24879,
+    "sha256": "b34d6bb434d507874a6ebe49d40169c26f7cad8f51c9ffea615eedb153746696"
+  },
+  {
+    "name": "[JEI物品管理器] jei-1.21.1-neoforge-19.51.0.418.jar",
+    "bytes": 1804792,
+    "sha256": "8bc3936d869e4040a5649c58b7e8be1c78c82a245c0dc07bdd68ab49121a222c"
+  },
+  {
+    "name": "[JEI生物繁殖] justenoughbreeding-neoforge-1.21.1-3.2.1.jar",
+    "bytes": 593705,
+    "sha256": "0c79081af07c4f556feda06047a8ca801af6e979b468d14c74ec88a5d2529f19"
+  },
+  {
+    "name": "[JEI药水效果] jeed-1.21-2.3.4-neoforge.jar",
+    "bytes": 166820,
+    "sha256": "44383b03237ef16e6b3873f60bf801d012155dfa2c83db115e17c6fdce319e94"
+  },
+  {
+    "name": "[Mowzie的生物] mowziesmobs-1.21.1-1.8.2.jar",
+    "bytes": 36042925,
+    "sha256": "b8e7e39fb6430326de7fbb193db56588ee8bd04d0054527924fe588f37131e4f"
+  },
+  {
+    "name": "[Redden的石灯笼] reddensstonelantern-1.0.4-neoforge-1.21.1.jar",
+    "bytes": 617092,
+    "sha256": "401bc898c2d11de178a8cdd1225874940e5a3a3baa9a2cc1137f817b6a8ed53e"
+  },
+  {
+    "name": "[Xaero的世界地图] xaeroworldmap-neoforge-1.21.1-1.41.2.jar",
+    "bytes": 1387921,
+    "sha256": "36b163fe8be4c2e800668c49294473da61eb360d821db675a2a948f8cc7c3d2b"
+  },
+  {
+    "name": "[Xaero的小地图] xaerominimap-neoforge-1.21.1-26.1.0.jar",
+    "bytes": 2138254,
+    "sha256": "6bd6cbab01ff57b9ba2fbfee18f9605593101f15d80e8d19dc59c385d2535ccc"
+  },
+  {
+    "name": "[YUNG的下界要塞优化] YungsBetterNetherFortresses-1.21.1-NeoForge-3.1.5.jar",
+    "bytes": 609639,
+    "sha256": "5450a64a7036237f449496837e08f3e5b3aa1d7974a10df43944172def75d8ff"
+  },
+  {
+    "name": "[YUNG的丛林神庙优化] YungsBetterJungleTemples-1.21.1-NeoForge-3.1.2.jar",
+    "bytes": 795839,
+    "sha256": "a0d57b78c7a1891796f342b1f09c214bc27bedf0a3a894f029dfdb2db9f813d0"
+  },
+  {
+    "name": "[YUNG的末地岛屿优化] YungsBetterEndIsland-1.21.1-NeoForge-3.1.2.jar",
+    "bytes": 398130,
+    "sha256": "8005f1ea798d09fc05dad07a21ed1f393a523a718197cdbd37b1ce6d9a17e4a4"
+  },
+  {
+    "name": "[YUNG的沙漠神殿优化] YungsBetterDesertTemples-1.21.1-NeoForge-4.1.5.jar",
+    "bytes": 905839,
+    "sha256": "2c3191ad447092cc7873a06e92f16bd3e2ff9dc31e93268b8893d06dd89e1fd6"
+  },
+  {
+    "name": "[YUNG的沼泽小屋优化] YungsBetterWitchHuts-1.21.1-NeoForge-4.1.1.jar",
+    "bytes": 174789,
+    "sha256": "888b1e6d1ada21982a75abfb4afb040c9bc2cc68777ec5fcd1199b978e3d4f8d"
+  },
+  {
+    "name": "[YUNG的海底神殿优化] YungsBetterOceanMonuments-1.21.1-NeoForge-4.1.2.jar",
+    "bytes": 1025571,
+    "sha256": "cdcf8fe0e08c75261048d43c6ed4898972d23e096dd04a2524c136f06416ab02"
+  },
+  {
+    "name": "[YUNG的矿井优化] YungsBetterMineshafts-1.21.1-NeoForge-5.1.1.jar",
+    "bytes": 493967,
+    "sha256": "5625930dfb3240820d6e4ecf55fff0c39f70ce782fad117a4d418251184c7be0"
+  },
+  {
+    "name": "[YUNG的要塞优化] YungsBetterStrongholds-1.21.1-NeoForge-5.1.3.jar",
+    "bytes": 461244,
+    "sha256": "a9cab2fc01538368862365691f7d215309801aed0b390351681b6b60a1db7b58"
+  },
+  {
+    "name": "[万用皮肤补丁] CustomSkinLoader_Universal-15.0.1.jar",
+    "bytes": 218215,
+    "sha256": "026d8b38ea93edccd647f60568193e79801a377b7bd4e916dcfc0d5482b767fc"
+  },
+  {
+    "name": "[东方秘术] iss_magicfromtheeast-1.1.5.jar",
+    "bytes": 1680780,
+    "sha256": "e5ab22492b300d8f5e797f3f9d196e1e06f4a4a1db3650ac5a5979e6956e4920"
+  },
+  {
+    "name": "[交易刷新] traderefresh-3.0.4.jar",
+    "bytes": 131975,
+    "sha256": "ca4b3df6b1b60bed60b6cbb49e7043a4ea0f64f960cd8c000d2c603dd2ab35ce"
+  },
+  {
+    "name": "[传奇怪物] legendary_monsters-2.2.3 MC 1.21.1.jar",
+    "bytes": 44748618,
+    "sha256": "54ab1d14156d69505a26f389ec6dee8f1202724ef9fda556d40fcbc5abaad231"
+  },
+  {
+    "name": "[传送石碑] waystones-neoforge-1.21.1-21.1.46.jar",
+    "bytes": 1223229,
+    "sha256": "ca76a4457160e8353b1f013a21ab377b264141f466d84ec8952a123058b8af78"
+  },
+  {
+    "name": "[伤害数字显示] 1.21-damage_number-2.0.3.jar",
+    "bytes": 61526,
+    "sha256": "540ee3eedb8f151c648682120a3e3249bac5cc02de6c7b3ed0b2a5d2d9c57e8c"
+  },
+  {
+    "name": "[假死修复] NaNny-1.21.1-1.0.1.jar",
+    "bytes": 4729,
+    "sha256": "e9667ea0a7f43bf79b166dfd741ba35365056befc6663d9f21000216c101fd90"
+  },
+  {
+    "name": "[全局数据包] Paxi-1.21.1-NeoForge-5.1.3.jar",
+    "bytes": 102980,
+    "sha256": "4b60f8eb3b8b8880eff7c3ac825cde84394848eac3915ed61ade607cdd331ce7"
+  },
+  {
+    "name": "[农夫乐事] FarmersDelight-1.21.1-1.3.4.jar",
+    "bytes": 3160490,
+    "sha256": "139ad7696462c89c03eea463f805abffa552526c5dadaadae221dd9624cb197c"
+  },
+  {
+    "name": "[冰火传说社区版] iceandfire-2.1.3.jar",
+    "bytes": 20903070,
+    "sha256": "5c67db7c93a02cc45285e23cc25b4b40b63025f445b528057747641f187f94f5"
+  },
+  {
+    "name": "[冰火传说：悚域] iceandfire_dreadland-0.1.2.jar",
+    "bytes": 680235,
+    "sha256": "110090646adbda8d5dc5f6cdd1cef17ea6b5c37a01e05d93909c9e5a600a8db4"
+  },
+  {
+    "name": "[分页进度] ForgedPaginatedAdvancements-0.0.2+1.21.1.jar",
+    "bytes": 72603,
+    "sha256": "9f1ed754d136f911a4a04b679343a7b267ee09a050834cab7d07be3478248c69"
+  },
+  {
+    "name": "[原版移植] VanillaBackport-neoforge-1.21.1-1.1.7.10.jar",
+    "bytes": 54902084,
+    "sha256": "ecd807ac358e243ede17819455788c7b7a0ce5e0af4aecee82c1c62c586d818d"
+  },
+  {
+    "name": "[可点击的进度] clickadv-1.21-3.8.jar",
+    "bytes": 14593,
+    "sha256": "1d149d19063ecf862757460504d72eabcf31339d986c16ba23e4cee1b43a13fd"
+  },
+  {
+    "name": "[可视化工作台] VisualWorkbench-v21.1.2-1.21.1-NeoForge.jar",
+    "bytes": 76670,
+    "sha256": "f9bea7865d57c0f32075fc1e8b760d048cf77513c8d93fa41c181ad190eb4449"
+  },
+  {
+    "name": "[可重复的试炼宝库] repeatable_trial_vaults-neoforge-1.21-1.0.3.jar",
+    "bytes": 12970,
+    "sha256": "4a13fe4fbd0738e6129caf1cfcaf7ea26949ffd6e70caf384ab67a9b99475741"
+  },
+  {
+    "name": "[商店] ViScriptShop-neoforge-1.21.1-1.2.2.3.jar",
+    "bytes": 1003072,
+    "sha256": "f5f90e6c8ff92653d5d1447008f7c625557ad492db61e81161cd4cd40fb12e3f"
+  },
+  {
+    "name": "[地图生成锁定] lockdown-1.1.1.jar",
+    "bytes": 31521,
+    "sha256": "1d11761b860041d4e0e381f353e7145d72627fca6c446c88179023d16b32003c"
+  },
+  {
+    "name": "[地牢浮现之时 - 海洋扩展] DungeonsAriseSevenSeas-1.21.x-1.0.4-neoforge.jar",
+    "bytes": 244981,
+    "sha256": "549040fbd81d1b33aea38681109685e86d63985785246a831112c4ba5740d2df"
+  },
+  {
+    "name": "[地牢浮现之时] DungeonsArise-1.21.1-2.1.68-release.jar",
+    "bytes": 11842679,
+    "sha256": "7eee1eca7e3b2c6c1bede055934f391ae2e8349ffe33e106f451176d2cfcf0e4"
+  },
+  {
+    "name": "[多态合成] polymorph-neoforge-1.1.0+1.21.1.jar",
+    "bytes": 174972,
+    "sha256": "bec8118978adeb052de9c4eaf9a595830621d82515a764f32f9c8a4dd52ab94b"
+  },
+  {
+    "name": "[天顶剑] zenith-1.1.2.jar",
+    "bytes": 53969,
+    "sha256": "428bb4250a74311216d20ce77b07be0de641e6d27e882462c9d35da2e8b751e1"
+  },
+  {
+    "name": "[奇异饰品] artifacts-neoforge-13.2.5.jar",
+    "bytes": 1086922,
+    "sha256": "e36a929420a0a616abdb28f5bbbdb866a426aa3bb78d1b39bc1183927c101ce6"
+  },
+  {
+    "name": "[女仆御剑] maid_sword_soaring-neoforge1.21.1-1.0.7.jar",
+    "bytes": 1367378,
+    "sha256": "b242390b52464dfb25195d5d73fb1e64041c4619588a1232c063ddf803101561"
+  },
+  {
+    "name": "[客户端整理] clientsort-neoforge-2.2.2+1.21.1.jar",
+    "bytes": 342154,
+    "sha256": "2844d0f7374ebfb0dd0782a675ef53311bb3cedacb1cf6258c35025eb809225f"
+  },
+  {
+    "name": "[对话框] chatbox-neoforge-1.21.1-1.1.5.jar",
+    "bytes": 1456829,
+    "sha256": "f8d474dfe6915d53c82ab59892e621d621cb91ea2ae1a616aa2ddff476268eb9"
+  },
+  {
+    "name": "[小烦维的剑] xfws_swords-0.0.8.jar",
+    "bytes": 175341,
+    "sha256": "4b6618ba258db1788dc2d10ae0c4a2df8a599e864e621af07714f0efa80169a1"
+  },
+  {
+    "name": "[尖刺] SpikySpikes-v21.1.2-1.21.1-NeoForge.jar",
+    "bytes": 128685,
+    "sha256": "919e16693d13979332b0bcd7852efb610624cb0b16242d89b20c29723fb3164d"
+  },
+  {
+    "name": "[属性修复] attributefix-neoforge-1.21.1-21.1.3.jar",
+    "bytes": 19809,
+    "sha256": "b2b20f3d44e824071284c14de3f4d3323d420e1c450040b339a5c37d2c382ad4"
+  },
+  {
+    "name": "[帕秋莉手册] Patchouli-1.21.1-93-NEOFORGE.jar",
+    "bytes": 646777,
+    "sha256": "959af52ed6640c316c3a8469203420be4aeea11ad6603890ba83bf48f5d9f993"
+  },
+  {
+    "name": "[幻化] transmog-neoforge-1.6.0+1.21.1.jar",
+    "bytes": 90605,
+    "sha256": "02a7b0ecde78c5d36e5185aa20552ea071fa6141c57730f8f082c013c9e1da07"
+  },
+  {
+    "name": "[建筑之杖] BuildingWands-neoforge-MC1.21.1-3.0.5.jar",
+    "bytes": 465238,
+    "sha256": "565c7c31926a7d4f5dd365bae79fc891d5d21f09d3beb0026e7743b9f8bcc57f"
+  },
+  {
+    "name": "[建筑棒] ConstructionSticks-1.21.1-1.5.0.jar",
+    "bytes": 264738,
+    "sha256": "26520f830b243840f8ce6faf2ba0ec4abe9ea8ef1afd1086ca9d6f56bfb7dde2"
+  },
+  {
+    "name": "[我们走过的生物群系] Oh-The-Biomes-Weve-Gone-NeoForge-2.6.0.jar",
+    "bytes": 20484967,
+    "sha256": "d63c45e82bb88d533119d9c814fa43738fd0cca5506c04daad774a1bf8946f93"
+  },
+  {
+    "name": "[战利品箱子] lootr-neoforge-1.21.1-1.11.38.127.jar",
+    "bytes": 1075929,
+    "sha256": "5c74de4709d1c13b25880fdd241a89d5d9f331346d20edc76f80ccd4d99dc66c"
+  },
+  {
+    "name": "[拾光定影] exposure-neoforge-1.21.1-1.9.18.jar",
+    "bytes": 2192415,
+    "sha256": "674c537a99f69b2bae53521c95dae59bc5f4eb2eb15418eec0ecbaf36b53d888"
+  },
+  {
+    "name": "[拾光定影：拍立得] exposure_polaroid-neoforge-1.21.1-1.1.6.jar",
+    "bytes": 361404,
+    "sha256": "a39485de154de47422671b763677814bfe09227214775c78a0052e5b22b30e61"
+  },
+  {
+    "name": "[提示框革新] tooltipoverhaul-neoforge-1.21.1-1.5.1.jar",
+    "bytes": 574348,
+    "sha256": "2761738e610763386d4c4cba2a77fcbf976aefeb42b4cbd6e3807a6c1a1744cf"
+  },
+  {
+    "name": "[搬运] carryon-neoforge-1.21.1-2.2.2.11.jar",
+    "bytes": 347647,
+    "sha256": "b18c734fb574c05c78dd33c4cd4c152e55efc8aecc0b6de876cc21be3c147f7f"
+  },
+  {
+    "name": "[救救我的答辩网络] smsn-neoforge-1.4.3-1.21.1.jar",
+    "bytes": 116160,
+    "sha256": "52af12f26e469759aa073a1d9d0badab4ae54b2994441f914d29fdb04e3fe4e6"
+  },
+  {
+    "name": "[数据包修复] packetfixer-3.3.1-1.20.5-1.21.X-merged.jar",
+    "bytes": 46623,
+    "sha256": "2979a8a3f44e5d5df4f9f6315d18c220f3debf736bb8a2c2740acdfb13bd820f"
+  },
+  {
+    "name": "[方块小镇] yuushya-1.21.0-neoforge-2.2.3.jar",
+    "bytes": 23381639,
+    "sha256": "193c1469ece0bd281364e817cd099aae1e0929c2bbd34f835358a2e5b194125f"
+  },
+  {
+    "name": "[方块建模] yuushya_modelling-1.21.1-2.4.1.jar",
+    "bytes": 693143,
+    "sha256": "eede4bd24a1b20aeb007c03761903aed8061b9b826dc68349a8ca146c9944ae5"
+  },
+  {
+    "name": "[旅人标题] TravelersTitles-1.21.1-NeoForge-5.1.3.jar",
+    "bytes": 235345,
+    "sha256": "f7d6811b58a432e4d7f0e80bfcc48210f7a8da251d1c3e528a73c26d0f2a56ed"
+  },
+  {
+    "name": "[旋律与典籍] tunes_n_tomes-1.1.0-HOTFIX.jar",
+    "bytes": 21903598,
+    "sha256": "7b0c6770437ddc7aa8f07bed4fb2b8df267cae5bd0517c767180608afcffe065"
+  },
+  {
+    "name": "[旋律魔法] melodymagic-2.0.0.jar",
+    "bytes": 799130,
+    "sha256": "6722971d068047df45de2378612992efb43782e784c9e8c445dcc68b1ec35707"
+  },
+  {
+    "name": "[无题鸭] untitledduckmod-1.7.0-neoforge-1.21.1.jar",
+    "bytes": 330692,
+    "sha256": "2bf8efe84914e6fec38569f9325f89eb42b0943fdd740d38c954b479f3f9d76d"
+  },
+  {
+    "name": "[旷野之息高塔：再重制] totw_modded-neoforge-1.21-1.0.9.jar",
+    "bytes": 281334,
+    "sha256": "64ff8d5a1bd9efb7c3f2974c07176145ce760b25a5b62be0eecc597151be928a"
+  },
+  {
+    "name": "[暮色森林] twilightforest-1.21.1-4.8.3345-universal.jar",
+    "bytes": 27154121,
+    "sha256": "493da16d10210f9f53a3c33b3d8fcb4ae9b14016ee420d753c894562bd9aba35"
+  },
+  {
+    "name": "[暮色风味乐事] twilightdelight-3.2.2.jar",
+    "bytes": 1340378,
+    "sha256": "511893674e5cf13fd7702adf6b4fbb326fe3cfd61641753ce0d81c4820ea181d"
+  },
+  {
+    "name": "[更好的藏宝图] treasuredistance-1.0.jar",
+    "bytes": 6496,
+    "sha256": "7cdbe75c12a1de20804511b880d09eae800832211cf247c15b30f1a9570ea00d"
+  },
+  {
+    "name": "[更高级联机设置] mcwifipnp-1.9.0-1.21-neoforge.jar",
+    "bytes": 123285,
+    "sha256": "e726f0ca3c76db428fcbfa46c6830451886a9cff6539318a38d723ec9460bcc3"
+  },
+  {
+    "name": "[未至之地] regions-unexplored-0.6.2-neoforge-21.1.jar",
+    "bytes": 6365953,
+    "sha256": "ccf32ed714f2724f54406b9e02a8d6f94d87dc5c72397bc39b3d6ed8f32412ea"
+  },
+  {
+    "name": "[树叶快速腐烂] fastleafdecay-35.jar",
+    "bytes": 9511,
+    "sha256": "0b90f259caef64c3aa09d05427859990a51adec072540a9c598370b86c966a98"
+  },
+  {
+    "name": "[检视] inspectability-neoforge-1.0-1.21.1.jar",
+    "bytes": 22620,
+    "sha256": "f56e5069bc4e3c74b19d099189ca71ab243e0ea56a67e166945850c4869a5c86"
+  },
+  {
+    "name": "[永恒星光] eternalstarlight-0.9.1+1.21.1+neoforge.jar",
+    "bytes": 59325382,
+    "sha256": "e77369ad1a779036b243ef0f7b24776640a3ff84968e6f3be1931bc953e92b09"
+  },
+  {
+    "name": "[火把大师] torchmaster-neoforge-1.21.1-21.1.13.jar",
+    "bytes": 161205,
+    "sha256": "661afe53647ef687d3d970e5df7b53107d94d080671e25317f67cb02b4349cba"
+  },
+  {
+    "name": "[火花] spark-1.10.124-neoforge.jar",
+    "bytes": 3642581,
+    "sha256": "647e8a81afbe414dba1df4ba15fd06c5d32d4cb544e68828405e8e074c2e16db"
+  },
+  {
+    "name": "[灵魂绑定] soulbound-neoforge-1.0.1+1.21.1.jar",
+    "bytes": 17464,
+    "sha256": "e5bf18bd477cc20e59d81255fdb73be6e9519b24237de47f819e057e94a28596"
+  },
+  {
+    "name": "[灾变] L_Ender's Cataclysm 1.21.1-3.33.jar",
+    "bytes": 73375661,
+    "sha256": "23921a268acc8b695291f12e89c5e4c261ee5f59a3b6d763793461efb3e7e1d6"
+  },
+  {
+    "name": "[灾变：出场动画] cinematiccataclysm-1.0.1-1.21.1.jar",
+    "bytes": 70727,
+    "sha256": "b0a91232fbca75f55d114e62456a957ed2c5be161c5a19bf71d8addf8316a1c9"
+  },
+  {
+    "name": "[炽海生机] netherdepthsupgrade-3.3-1.21.1-NeoForge.jar",
+    "bytes": 590699,
+    "sha256": "9e1b2365f181794e7a1efb343b8d47dfccfa6ad2a03e8ca1eff162f2f1a13901"
+  },
+  {
+    "name": "[爆炸不破坏方块] explosionbreaksnoblock-neoforge-1.21-0.3.2.jar",
+    "bytes": 24121,
+    "sha256": "b64c93a574b9d8468a9938b8106f535c03191653128380f99e67bf5418dc27da"
+  },
+  {
+    "name": "[猛龙之居] wyrmroost-1.4.1.jar",
+    "bytes": 4361540,
+    "sha256": "bb8f68044365e5af5be41966c3f83bf4dbfc32b79b592be8243dc4b2955c0160"
+  },
+  {
+    "name": "[玉] Jade-1.21.1-NeoForge-15.10.6.jar",
+    "bytes": 726853,
+    "sha256": "276f1f65a20d04f536989c4f311949d770b52c440c23c2b904a08860f3c93810"
+  },
+  {
+    "name": "[现代化UI] ModernUI-NeoForge-1.21.1-3.13.0.1-universal.jar",
+    "bytes": 25228113,
+    "sha256": "258623778012daad6fdd8793add3324b970df62a07c477697c43fe85deef1db6"
+  },
+  {
+    "name": "[现代化修复] modernfix-neoforge-5.27.24+mc1.21.1.jar",
+    "bytes": 604333,
+    "sha256": "e6e9446890f0feb3aab3f6e73ae18cb17575c370f232179fef7baa30e61538fe"
+  },
+  {
+    "name": "[盔甲架姿势] ArmorStatues-v21.1.0-1.21.1-NeoForge.jar",
+    "bytes": 263404,
+    "sha256": "46583801bce6a80b84e0aaf9a10ddb135206c94bee4df9aef6f69f5c0f47a7ed"
+  },
+  {
+    "name": "[祸乱鬼魅] BOMD-NeoForge-1.21-1.3.3.jar",
+    "bytes": 1952017,
+    "sha256": "93da8753a00229e41c5ed399e6cf849737e7bd9b4109d5d8e4ad3a20136deb82"
+  },
+  {
+    "name": "[禁用实验性设置警告] yeetusexperimentus-neoforge-87.0.0.jar",
+    "bytes": 570057,
+    "sha256": "9117db8b5905abf18f64fdf8f8d8ca5a91c23abd0a7fa2c9986c21aa17d74e75"
+  },
+  {
+    "name": "[穿草攻击] CutThrough-v21.1.0-1.21.1-NeoForge.jar",
+    "bytes": 51371,
+    "sha256": "9b01eb578d8ba1e6fd463e7cc5fad33c484e5cef1ffd9ed77ef9c02424c40801"
+  },
+  {
+    "name": "[简单的语音聊天] voicechat-neoforge-1.21.1-2.6.22.jar",
+    "bytes": 4918442,
+    "sha256": "63116a4d21bd57221482d971dd85822f7c723c210b60411670cdb0aa26873cac"
+  },
+  {
+    "name": "[简易战利品查看器] simplelootviewer-neoforge-1.21.1-21.1.4.jar",
+    "bytes": 50995,
+    "sha256": "5dc7023bcd48d4be9c7998771bfc7c37d0dcd7f66f03d2ecae221724c448639d"
+  },
+  {
+    "name": "[简易铁砧] EasyAnvils-v21.1.0-1.21.1-NeoForge.jar",
+    "bytes": 152297,
+    "sha256": "dcd0e562710a639b4fdd60a7500dc9404c6fbd1007215a088248ce1c57ccc6dc"
+  },
+  {
+    "name": "[精妙核心] sophisticatedcore-1.21.1-1.5.1.2341.jar",
+    "bytes": 1785221,
+    "sha256": "48d9b3703fedb455fc0aef1f57089f90cc0d2a2400979cef3bc37763fa125c41"
+  },
+  {
+    "name": "[精妙背包] sophisticatedbackpacks-1.21.1-3.26.3.2158.jar",
+    "bytes": 1251706,
+    "sha256": "8656ae953d67d1d21e42ed3f103d2be07cdf23bab445c8fc3af468cfd8852514"
+  },
+  {
+    "name": "[经验机制改革] Clumps-neoforge-1.21.1-19.0.0.1.jar",
+    "bytes": 18382,
+    "sha256": "b524ccdace2ef8fd19f5b2074f7de1103ac5065c52553f064c00e098346c293e"
+  },
+  {
+    "name": "[结构标题] structurecredits-1.21.1-3.0.jar",
+    "bytes": 80442,
+    "sha256": "4b002cda7412bd3657dbc0c7f87fb9f0f1aea707933834fb34cbd4603c62d0ef"
+  },
+  {
+    "name": "[结构罗盘强化版] Explorer's Compass Enhance-1.21.1-neoforge-1.6.0.jar",
+    "bytes": 597162,
+    "sha256": "1c55af492bc45dffd76fd8413dad178a1d5d3f0e203059394813c76ef1612272"
+  },
+  {
+    "name": "[网络音乐机] netmusic-1.5.2-neoforge+mc1.21.1.jar",
+    "bytes": 1472596,
+    "sha256": "731fba4b4d47256d5f44f8392b093b53c7d1c650b66111eda75b820f7f89a14b"
+  },
+  {
+    "name": "[美化] beautify-neoforge-1.21.1-2.0.2.jar",
+    "bytes": 932199,
+    "sha256": "30fe272345eb016408d9144a7d33795a8bff0f33f68d9ab71805d0088b818f26"
+  },
+  {
+    "name": "[美化附魔书] BEB-NeoForge-1.21-6.0.0.jar",
+    "bytes": 1772579,
+    "sha256": "fb31fe9e9684481443d888fadbd54f39e7cb19309a171d53bdf9473cff9c2ba6"
+  },
+  {
+    "name": "[群青] ultramarine-1.21.1-0.7.jar",
+    "bytes": 4931591,
+    "sha256": "91537fe70699f6c44eea9d86c1b4ea0e1883dd38855b1d55e17018e7275f3d03"
+  },
+  {
+    "name": "[自定义游戏加载界面] drippyloadingscreen_neoforge_3.1.5_MC_1.21.1.jar",
+    "bytes": 168632,
+    "sha256": "f1fcb6cf3cbc7a6055fed0912bf284a7c455a0830de42460943fc5e130072759"
+  },
+  {
+    "name": "[自由视角] freecam-neoforge-1.3.0+mc1.21.jar",
+    "bytes": 1137632,
+    "sha256": "09b865a3987a0f1c87bcc9430550ccc4107729f29bff53a1cd5ab1e9c3d82376"
+  },
+  {
+    "name": "[花哨菜单] fancymenu_neoforge_3.9.12_MC_1.21.1.jar",
+    "bytes": 25912346,
+    "sha256": "fd0f446c22bb42a0a3ac5cbdcb614abcba5a70f99e2a0cda6556a8efad2859a5"
+  },
+  {
+    "name": "[苹果皮] appleskin-neoforge-mc1.21-3.0.9.jar",
+    "bytes": 75804,
+    "sha256": "38b48dd6231341c9f964ce6e42c57ec866c6cc8f72bec938390a59bafb3922df"
+  },
+  {
+    "name": "[血条显示] HealthBars-v21.1.0-1.21.1-NeoForge.jar",
+    "bytes": 113200,
+    "sha256": "7df06caf587e5a417ff101ab1eaa15d2de856ea580774bd0016e811d342e1e88"
+  },
+  {
+    "name": "[袭击增强] raidsenhanced-1.0.2-1.21.1.jar",
+    "bytes": 1042533,
+    "sha256": "12311ddd5b66ee45bb64239dd6858f7e1554eb1c474515bfe483d498b5c13bcd"
+  },
+  {
+    "name": "[试验假人] dummmmmmy-1.21-2.0.12-neoforge.jar",
+    "bytes": 219158,
+    "sha256": "4d35c6cdc7a17d6175f116ec8b31ce5ebc740e5d1412ce32cc721b042b2f5298"
+  },
+  {
+    "name": "[超越维度] beyonddimensions-1.21.1-neoforge-0.7.30.jar",
+    "bytes": 3550119,
+    "sha256": "8832414c035521fb69d62983c0918e2b77b7beb5005954f4f94dac2c837f85b1"
+  },
+  {
+    "name": "[越肩视角重置版] ShoulderSurfing-NeoForge-1.21.1-4.22.12.jar",
+    "bytes": 271011,
+    "sha256": "b9572a0b325432f988b728714c857fb8254f2e16e88fed78393a4cbcdd0ba299"
+  },
+  {
+    "name": "[车万女仆] touhoulittlemaid-1.5.3-neoforge+mc1.21.1.jar",
+    "bytes": 24408776,
+    "sha256": "f6db04195820c8508704277ea76d63723804ff236a7b780369ba59ebe5cd9c27"
+  },
+  {
+    "name": "[输入法冲突修复] IMBlocker-5.6.1-neoforge+1.20.6-1.21.8.jar",
+    "bytes": 222741,
+    "sha256": "fcdb1755d5729aabc194cbfec65fcb1233b780e44216b037684d3edd256a8289"
+  },
+  {
+    "name": "[进度牌匾] AdvancementPlaques-1.21.1-neoforge-1.6.8.jar",
+    "bytes": 195730,
+    "sha256": "a24674330b8de59a02e0ebe4dd81fcff15d90e8c1cdcc32980d73c1cab050933"
+  },
+  {
+    "name": "[连接纹理] continuity-3.0.0+0.0.1+1.21.1.neoforge-all.jar",
+    "bytes": 1172399,
+    "sha256": "324b943f53b7843c225426ea0f4313f6bba8d4218f0dd76b872d55bcf22aa227"
+  },
+  {
+    "name": "[逆卡巴拉：觉醒] fdbosses-3.2-1.21.1.jar",
+    "bytes": 25979434,
+    "sha256": "b388d0e1c4987dff41eadac5e236ebc16d41b18bb06b9bbcbf7c40a53fdef78c"
+  },
+  {
+    "name": "[通用意见反馈] generalfeedback-1.0.1.jar",
+    "bytes": 71746,
+    "sha256": "9c846406e668bcc8001783b6119bbb6888a1d684a3510eb036a1b4d53162f796"
+  },
+  {
+    "name": "[通用拼音搜索] jecharacters-1.21.1-neoforge-4.5.29.jar",
+    "bytes": 254111,
+    "sha256": "b622c1ec7860bf776012fa8262d5425bd128889661b325028a1f407b35621dff"
+  },
+  {
+    "name": "[通用骨粉] UniversalBoneMeal-v21.1.0-1.21.1-NeoForge.jar",
+    "bytes": 88949,
+    "sha256": "18bcaeffe41f50babd00211d81e072a0986437b55780cc978a8ae10a53974cbc"
+  },
+  {
+    "name": "[酒狐的魔法书] winefoxs_spellbooks-1.21.1-1.0.1.jar",
+    "bytes": 1047980,
+    "sha256": "f90bd1709e0801d13e70fc77a1808b4636bb9657182464ee60e4a4a8e682cf30"
+  },
+  {
+    "name": "[钠] sodium-neoforge-0.8.13+mc1.21.1.jar",
+    "bytes": 1292934,
+    "sha256": "575d187b15328d7bddd8a9b1bee64333c22c14735f5780ec49eac0cd5503c08d"
+  },
+  {
+    "name": "[钠：光影] iris-neoforge-1.8.14-beta.1+mc1.21.1.jar",
+    "bytes": 2540723,
+    "sha256": "60d5f8bf52f25e9986440f4a4270a6bd986d9cff994510e1108ac1547063b314"
+  },
+  {
+    "name": "[钠：氯化物] chloride-NEOFORGE-mc1.21.1-v1.8.1.jar",
+    "bytes": 527889,
+    "sha256": "d0b0a80a241078f917afb96e53821d7c70c38faebaca9adee0c86a9a8cb482c1"
+  },
+  {
+    "name": "[钠：视频界面] reeses-sodium-options-neoforge-2.2.4+mc1.21.1.jar",
+    "bytes": 258894,
+    "sha256": "e4c86cad7c86c3601261441c0282571dc6b1ebeb41b694c11eb58b2becb90b51"
+  },
+  {
+    "name": "[铁氧体磁芯] ferritecore-7.0.3-neoforge.jar",
+    "bytes": 121559,
+    "sha256": "d87ea28262715ebff45b8a82d493e6b468e7a4521bc021df5d88302196d030a8"
+  },
+  {
+    "name": "[铁魔法：言出法随] voicecastaddon-1.0.2.jar",
+    "bytes": 139476,
+    "sha256": "e202e7cde131b7379a015a612d3b43fef84e092c78742560b7812ee17cf9b119"
+  },
+  {
+    "name": "[键位冲突显示] Controlling-neoforge-1.21.1-19.0.5.jar",
+    "bytes": 77555,
+    "sha256": "cc525fb6b030d9e4d33176983f278919e17b33935e2ca568929bdfa98f2b44a0"
+  },
+  {
+    "name": "[阿卡什宝典] AkashicTome-1.8-30.jar",
+    "bytes": 50256,
+    "sha256": "c60f58fba975fe22681d69bd06dc93818e53a67830d9118167979852206f6ca8"
+  },
+  {
+    "name": "[附魔描述] enchdesc-neoforge-1.21.1-21.1.11.jar",
+    "bytes": 82648,
+    "sha256": "868d3eab3305d96dd3ecf510d18a7aa7444e2aea168695cf4aff23a96bec975f"
+  },
+  {
+    "name": "[附魔灌注台] EnchantingInfuser-v21.1.4-1.21.1-NeoForge.jar",
+    "bytes": 200056,
+    "sha256": "8f0d315de1e404e5760297b862ab13f1d0f16246f9e6ce1db612ac332c4a2089"
+  },
+  {
+    "name": "[额外乐事] extradelight-2.6.6.jar",
+    "bytes": 10959956,
+    "sha256": "656bcd42f3dee8b6d961f7c11804f105f05f88d60824d38a29d3c81f609fa6be"
+  },
+  {
+    "name": "[首领崛起] block_factorys_bosses-2.1.2-neo-1.21.1.jar",
+    "bytes": 23943105,
+    "sha256": "9e230bd509e7aeb3af4c08125db0340734c0179d83483649a16e45c0ea085e8c"
+  },
+  {
+    "name": "[黑暗二重身] darkdoppelganger-3.4.0-1.21.1.jar",
+    "bytes": 4503628,
+    "sha256": "7a4b916c68f6821acec53fc26784a72f285c20aa62c94b95658fe283c887f552"
+  },
+  {
+    "name": "[默认选项] defaultoptions-neoforge-1.21.1-21.1.8.jar",
+    "bytes": 105507,
+    "sha256": "d12790dc1f0857778d282c00ad5be56882ac6fce44769c1f012be09b5604874a"
+  },
+  {
+    "name": "[鼠标手势] MouseTweaks-neoforge-mc1.21-2.26.1.jar",
+    "bytes": 73938,
+    "sha256": "68e6f4201c5de97b77929a7215c9552495696ca6a3bf3ae4eacc34e135f6cc8b"
+  },
+  {
+    "name": "[龙之生存] DragonSurvival-1.21.1-v2.0.71-25.09.2026-all.jar",
+    "bytes": 13739883,
+    "sha256": "22406fdf0dd16063826f79a737cc6371c7faf6e07cb8369b379c61032d4cc190"
+  },
+  {
+    "name": "[龙之生存：以太龙] ds_aether_addon-1.1.0-neoforge-1.21.1.jar",
+    "bytes": 1278940,
+    "sha256": "83238ddbb6bc89e06d4dbbb2f1cac00bba3a9bfd4acdbc0eb10e3e6d2bdb4776"
+  },
+  {
+    "name": "[龙之生存：冰火传说联动] dragon_survival_iaf_integration-1.2.3.jar",
+    "bytes": 58092,
+    "sha256": "c2995112a9f4e2d32f44a84711083a11799710a4b334a2714549bccdb86da521"
+  },
+  {
+    "name": "[龙之生存：冰焰龙] frostfire_dragon-1.6.0.jar",
+    "bytes": 806243,
+    "sha256": "2eb679110a2e2baec0b6f21f3d646d8a541a5c2d67e307387d019d96ad8094f2"
+  },
+  {
+    "name": "[龙之生存：夜煞] ds_night_striker_addon-1.0.3-neoforge-1.21.1.jar",
+    "bytes": 10277113,
+    "sha256": "463d9da27b67539eb11d34629b7d1b4c5b1766a570f1079cc9b9b9644273344c"
+  },
+  {
+    "name": "[龙之生存：星界龙] astral_dragon-0.5.2.jar",
+    "bytes": 1206532,
+    "sha256": "9502ee5c2989c673378b333e6764093818e3d8151832f96a272afdffb8bf69d3"
+  },
+  {
+    "name": "[龙之生存：星辰龙] star_dragon-2.0.8.jar",
+    "bytes": 3395254,
+    "sha256": "1c4542c54a65e5694f88f5e1489f0e3f768d7d96428c4539637e561db730171f"
+  },
+  {
+    "name": "[龙之生存：晶咒龙] crystcursed_dragon-1.4.0.jar",
+    "bytes": 2116497,
+    "sha256": "15331d5815dc76d37228b548d2dbf3d55b81e393e243d95a48963949e5d58743"
+  },
+  {
+    "name": "[龙之生存：机械龙] annihilator_type_a-1.1.3.jar",
+    "bytes": 1151890,
+    "sha256": "6450848be14744ed02192f08678684af2c084e363a1360483777d4c786cc7db2"
+  },
+  {
+    "name": "[龙之生存：滚筒飞行] dragon_barrel_roll-2.0.2.jar",
+    "bytes": 319669,
+    "sha256": "f8a342ac12993f1835eeed004cbca062ea037ce81ffa36132edaa0cb6a75a69e"
+  },
+  {
+    "name": "[龙之生存：翼麒麟] wing_kirin-3.0.1.jar",
+    "bytes": 1034842,
+    "sha256": "75561f23dd654269c54f4957bd307c68d8ddd98594ff8ff7ca992b2258644127"
+  },
+  {
+    "name": "[龙之生存：苔原龙] tundradragon-1.5.0-neoforge-1.21.1.jar",
+    "bytes": 445050,
+    "sha256": "e45de6d8a978c8233a29f810f353575b048b47d7f7c9ae81c8126b91a475e7b2"
+  },
+  {
+    "name": "[龙之画] blackaures_paintings-1.3-neoforge-1.21.1.jar",
+    "bytes": 331498,
+    "sha256": "a7b31a4712a99df819d17401453ec705b7d9df84b9050bbe9d4486ed3b6fbabb"
+  },
+  {
+    "name": "advertisement_starcarefree_game-1.0.1.jar",
+    "bytes": 82554,
+    "sha256": "ae727e486c6c7301d68085babee3729b3c0d18d983c851b47c25b11da3f9c4e6"
+  },
+  {
+    "name": "beloong-0.10.1.jar",
+    "bytes": 5099732,
+    "sha256": "ce6410616dd316276b199cf362695e6b4bc23cc850a5c8e2c89f02219612618d"
+  },
+  {
+    "name": "boss_respawner-0.1.0.jar",
+    "bytes": 93001,
+    "sha256": "58073a329bf2447b966524a7974aad9e293411a2ddd74929e58a777759579198"
+  },
+  {
+    "name": "dihuang_loong-0.6.3-beta.jar",
+    "bytes": 621778,
+    "sha256": "b2e176f9082d66b2f444b702bc043357ffdd4b5338a5af4b0555a1b81f3afa64"
+  },
+  {
+    "name": "minopp-1.4.0+1.21.1+neoforge.jar",
+    "bytes": 287211,
+    "sha256": "c4c9a8b6216a31169c663d9f7429711dae28f345356012dc71fa1f850427d2be"
+  },
+  {
+    "name": "optimizer.jar",
+    "bytes": 136131,
+    "sha256": "56b8905941e31981b1813496e6f231259f0904b4674a8e36935b1089811d0981"
+  },
+  {
+    "name": "SlideShow-NeoForge-1.21.1-0.9.9.jar",
+    "bytes": 2783763,
+    "sha256": "8d9c85b51cb2530536bb5480b1ae1d65bcab4ee037c33d6dd0411c80c1736ba2"
+  },
+  {
+    "name": "sound-physics-remastered-neoforge-1.21.1-1.5.1.jar",
+    "bytes": 202454,
+    "sha256": "bddc71ecd4f074a101eb3785599d13c69e64025e1029aa0fd0a28fcf9bccf2ea"
+  },
+  {
+    "name": "startuptime-1.0.0.jar",
+    "bytes": 9620,
+    "sha256": "155c81044bfb51e3377aad4816d29bb69c08ec2229ae5723e0b593e4ccb42a22"
+  },
+  {
+    "name": "teleportwaypoint-0.5.0.jar",
+    "bytes": 209319,
+    "sha256": "953e08c25e485a561fa1dc085be5ead64eb8817d4e7046363c19e174bebf7f11"
+  },
+  {
+    "name": "validation.jar",
+    "bytes": 58322,
+    "sha256": "90f3c00d12f5300350bd4f36cd166a7600afa47d3241d3690b37c123327c236d"
+  },
+  {
+    "name": "【优化】0Pack2Reload-NeoForge-1.21.1-1.0.1.jar",
+    "bytes": 5561,
+    "sha256": "a0c5e1558db5c5bab7547cfe68f75b84ddaad3abcbe7b6a0eb72238e61ff610d"
+  },
+  {
+    "name": "【优化】alltheleaks-1.1.13+1.21.1-neoforge.jar",
+    "bytes": 565062,
+    "sha256": "c9b76623003dd05dda452d9ed42cb23623b09383fe9ac1efb41c46a3b69ff601"
+  },
+  {
+    "name": "【优化】biomespy-neoforge-1.21.1-1.3.3.jar",
+    "bytes": 38566,
+    "sha256": "2207ccff37f0631ebfaf692cf5aed9304835298c34df31c39b8558fd8c568acb"
+  },
+  {
+    "name": "【优化】entityculling-neoforge-1.10.5-mc1.21.1.jar",
+    "bytes": 1585287,
+    "sha256": "2eacd2bada39bf1d1ef695736646790c619c0e6cdeaf3d7e3cfc9139d26fae02"
+  },
+  {
+    "name": "【优化】fastpaintings-1.21-1.3.1-neoforge.jar",
+    "bytes": 155814,
+    "sha256": "28a730a18cc90f536f6bd201a0119fd8bfe3bf40d8b744c892f40c749ca3e8db"
+  },
+  {
+    "name": "【优化】gnetum-3.3.6.jar",
+    "bytes": 120726,
+    "sha256": "19471108f3c2d799831ee52bc9d04d99cf745f0c1699b992ee981508befb583b"
+  },
+  {
+    "name": "【优化】immersive_optimization-neoforge-1.21.1-0.2.0.jar",
+    "bytes": 56122,
+    "sha256": "c30f5f599558f9776fac7f033b1e9774e5d2f9bba3c00e34d2f8b25022344de7"
+  },
+  {
+    "name": "【优化】noisium-neoforge-2.3.0+mc1.21-1.21.1.jar",
+    "bytes": 60296,
+    "sha256": "e95209d593bc00d7c5de94f746ffd1dfbfa70ac8fbe938393ef930d00416109c"
+  },
+  {
+    "name": "【优化】Not Enough Recipe Book-NEOFORGE-0.4.3+1.21.jar",
+    "bytes": 23830,
+    "sha256": "ad4abc829b00061d4e162dee0dfa74219b3474d7f21385388aca8d5f27bf23d0"
+  },
+  {
+    "name": "【优化】rhenium-1.0.0+neo.jar",
+    "bytes": 43992,
+    "sha256": "1507c0a842d69e4e1105980c90623ede0e9f2e6f50dccf8ad1d3e8556a154007"
+  },
+  {
+    "name": "【前置】architectury-13.0.8-neoforge.jar",
+    "bytes": 584004,
+    "sha256": "5ec578f814e8cca87aeffa6e424032e78d9ea5ea6b603dd834c2dc13c31141ee"
+  },
+  {
+    "name": "【前置】balm-neoforge-1.21.1-21.0.66.jar",
+    "bytes": 783793,
+    "sha256": "6be660e1f6d169553bf44f66d4f78bb9e96a1d66ce108d9608819e3ce6bfba34"
+  },
+  {
+    "name": "【前置】bookshelf-neoforge-1.21.1-21.1.81.jar",
+    "bytes": 328813,
+    "sha256": "19e88d40da2b6a114c2b808f7fb469d96e66a5379df0a8a43fcb7834498b3e76"
+  },
+  {
+    "name": "【前置】carrasconlib-neoforge-1.21.1-0.1.jar",
+    "bytes": 87988,
+    "sha256": "ed8d004fe4d0eeedb316df9820014ff7136cf39c7e0f44740cc61549bd778161"
+  },
+  {
+    "name": "【前置】CerbonsAPI-NeoForge-1.21-1.3.0.jar",
+    "bytes": 250545,
+    "sha256": "5c750762b31ab79127df6f455351fe79793d8c2b41e1a0f94b335a5a1123534d"
+  },
+  {
+    "name": "【前置】cloth-config-15.0.140-neoforge.jar",
+    "bytes": 1163890,
+    "sha256": "65e722e0d98431a07c45f8bdd8d529a217cc8c175fde1740248bd5c1b4f3c0d4"
+  },
+  {
+    "name": "【前置】collective-1.21.1-8.40.jar",
+    "bytes": 1061918,
+    "sha256": "c466e9a8319e12d8fae912aeb9d9453efed43246f64edc48c4aa7ca14238a834"
+  },
+  {
+    "name": "【前置】Corgilib-NeoForge-1.21.1-5.0.0.9.jar",
+    "bytes": 309763,
+    "sha256": "5e058a4fcb29a538821351081fcf10172fc707767756774afed1bf0e1953c7e3"
+  },
+  {
+    "name": "【前置】cupboard-1.21.1-4.1.jar",
+    "bytes": 30206,
+    "sha256": "7d3f1bcca3acf2e7b1f3d359d5e0691cbb5a0f95869064752e7612b2d13e5b9e"
+  },
+  {
+    "name": "【前置】curios-neoforge-9.5.1+1.21.1.jar",
+    "bytes": 410690,
+    "sha256": "a45df2125c26219974aba7507ffc9afe7b83acc941a386af3faacb1cc0056fde"
+  },
+  {
+    "name": "【前置】fdlib-1.0.9-1.21.1.jar",
+    "bytes": 973335,
+    "sha256": "84c2ba547695abbe488533681714ee53bc4412c6983f305d2d9deaa3ada0a710"
+  },
+  {
+    "name": "【前置】ForgeConfigAPIPort-v21.1.6-1.21.1-NeoForge.jar",
+    "bytes": 104654,
+    "sha256": "1fffe12e3e8343ef52d306ee29f7d6f6724d47a185a375c4a3c75aab3894c68d"
+  },
+  {
+    "name": "【前置】ftb-library-neoforge-2101.1.35.jar",
+    "bytes": 1439018,
+    "sha256": "be7b2bd0b5370a9951624a1d84fd802efecae88d5a0cd24552731f887430599d"
+  },
+  {
+    "name": "【前置】ftb-xmod-compat-neoforge-21.1.10.jar",
+    "bytes": 152024,
+    "sha256": "781cbeb22e932c7a44de6b0b6528d86fdd30295a44f1558bcd51864def755419"
+  },
+  {
+    "name": "【前置】geckolib-neoforge-1.21.1-4.9.3.jar",
+    "bytes": 634531,
+    "sha256": "20a1995e4074f387ff549e2c57ea79dd7d41ee83c6afb9dd6a6e840e592d1c47"
+  },
+  {
+    "name": "【前置】gtbcs_spell_lib-1.6.0-1.21.1.jar",
+    "bytes": 154846,
+    "sha256": "72a255b4c6512d5a64c382870baf1782f941cc05cdb315f43cd57fa90d379ade"
+  },
+  {
+    "name": "【前置】Iceberg-1.21.1-neoforge-1.3.2.jar",
+    "bytes": 213853,
+    "sha256": "0d620c975619b04110b94a73d5b42d252563ff59c1eae9d21ab2ee7e38460a3c"
+  },
+  {
+    "name": "【前置】irons_lib-1.21.1-2.1.0.jar",
+    "bytes": 406284,
+    "sha256": "3d0ad1003d6edeaad2500b9922267b4192d2c603cdd846fda339b168f4deff72"
+  },
+  {
+    "name": "【前置】jupiter-2.3.7-1.21.1-neoforge.jar",
+    "bytes": 278988,
+    "sha256": "95af332af250f97fe2d9d288fe6b2057c266673a388348bf33756b0b693ace15"
+  },
+  {
+    "name": "【前置】konkrete_neoforge_1.9.9_MC_1.21.jar",
+    "bytes": 618842,
+    "sha256": "791c5538751dd3015ef3a2ce92d98719e1a28a48ebbd817b78506771256654cd"
+  },
+  {
+    "name": "【前置】l2library-3.0.8.jar",
+    "bytes": 973882,
+    "sha256": "26038e30873cf505bc289e28f9dcf084561b8a4929b294dd0552ba5e52505dd6"
+  },
+  {
+    "name": "【前置】ldlib2-neoforge-1.21.1-2.2.41-all.jar",
+    "bytes": 7626423,
+    "sha256": "eba8badc44a6fa0a8d4e5f444c7785f230300c9f774d61a710958c7280fc1b02"
+  },
+  {
+    "name": "【前置】lionfishapi-3.1.jar",
+    "bytes": 91596,
+    "sha256": "aeebf0692650afbbc78259c0d4e3d5b7edf037707e8ae5d56045066d83a19cf6"
+  },
+  {
+    "name": "【前置】lithostitched-1.7.13-neoforge-21.1.jar",
+    "bytes": 852541,
+    "sha256": "a90b1d485b138328ceaa156b7897b0829eb1ee1522b997870a53129ae65e5512"
+  },
+  {
+    "name": "【前置】melody_neoforge_1.0.10_MC_1.21.jar",
+    "bytes": 36096,
+    "sha256": "6b973a4564703c531fc0eae09db08b07a38091e0a743c687b8d2049457e84871"
+  },
+  {
+    "name": "【前置】moonlight-neoforge-1.21.1-3.0.18.jar",
+    "bytes": 1593129,
+    "sha256": "9a70e3e36de0ab25b7587424b3f97946288b6e8192fff7b5487f8e7ce02fddc7"
+  },
+  {
+    "name": "【前置】OctoLib-NEOFORGE-0.6.2+1.21.jar",
+    "bytes": 544378,
+    "sha256": "92ba07d9d9e55a65421f3c3f203c72fe5149cb024d5277267e81d812e11a7f38"
+  },
+  {
+    "name": "【前置】Oh-The-Trees-Youll-Grow-neoforge-1.21.1-5.3.2.jar",
+    "bytes": 167431,
+    "sha256": "571feb4d223ee2b5661ed3450ea5c68db18627badcef4d59095a329fc03a7685"
+  },
+  {
+    "name": "【前置】Platform-neoforge-1.21.1-1.3.3.jar",
+    "bytes": 489341,
+    "sha256": "2d7175e43943d22cbb4f8d4533f0ad620f87a3ac12c77a4f15c3a35d965c4f18"
+  },
+  {
+    "name": "【前置】player-animation-lib-forge-2.0.4+1.21.1.jar",
+    "bytes": 203149,
+    "sha256": "dbe5de45f5cd60c0e5e47af14e6d564534a98456e973cf670cb881f6938eee92"
+  },
+  {
+    "name": "【前置】prickle-neoforge-1.21.1-21.1.11.jar",
+    "bytes": 84812,
+    "sha256": "ccf46c442ed3c7fe41ad056f0940560829ec4dd88360985dfacd78f4614eb167"
+  },
+  {
+    "name": "【前置】PuzzlesLib-v21.1.52-1.21.1-NeoForge.jar",
+    "bytes": 1425176,
+    "sha256": "00069866c4c6bb67ee5192d1b425d46e6a1601dc598e61bd10b67ba5fa8b029c"
+  },
+  {
+    "name": "【前置】rhino-2101.2.7-build.85.jar",
+    "bytes": 882075,
+    "sha256": "95df92ce578b2504cb16d8c9fc285303bf062eb15452246a18e57b7cf091c19a"
+  },
+  {
+    "name": "【前置】Searchables-neoforge-1.21.1-1.0.2.jar",
+    "bytes": 77326,
+    "sha256": "ca193f0c69033d8f709f9e073a7c1ef4ea46714e5c2f94eb23ace12781c6aa68"
+  },
+  {
+    "name": "【前置】TerraBlender-neoforge-1.21.1-4.1.0.8.jar",
+    "bytes": 120364,
+    "sha256": "edb34c388fe17ea88d0a7fd11174bbf8ae8f28a4c8ce886f1bf9a5cf0ebc36b8"
+  },
+  {
+    "name": "【前置】uranus-3.0-beta.1.jar",
+    "bytes": 221525,
+    "sha256": "3ab2a8c474aa306cc139ea03e343b20c0267b4887dedc05eed43968a8aed9232"
+  },
+  {
+    "name": "【前置】YungsApi-1.21.1-NeoForge-5.1.8.jar",
+    "bytes": 389834,
+    "sha256": "bacd2385965bcfa4adcc0841656110b8e21ee024407a5ee706d30929f7c240cc"
+  },
+  {
+    "name": "【结构】abridged-2.0.2-neoforge-21.1.jar",
+    "bytes": 217186,
+    "sha256": "e346909876d72c9f14b5b9dcd4a3653fa850cac5b45be8a94fc222079fe2710d"
+  },
+  {
+    "name": "【结构】ATi Structures Vanilla V1.4.7.jar",
+    "bytes": 8264794,
+    "sha256": "e7de7e898d3d107b7ac204b327fd9fcabd4acd3ef7a4c86e9dace3c4b6c3d3cc"
+  },
+  {
+    "name": "【结构】ctov-3.6.3.jar",
+    "bytes": 7139609,
+    "sha256": "4815b19b83541f09cba556e222612bc5ddcc31f7c4ba2198f4b4d6376cca8b2e"
+  },
+  {
+    "name": "【结构】huge-structure-blocks-neoforge-1.1.6.jar",
+    "bytes": 100359,
+    "sha256": "d8ed9763439300a5f3fdcd4aa06cb481ef3e72a4433231f05f88684e9a323f22"
+  },
+  {
+    "name": "【结构】MoogsSoaringStructures-universal-1.21-2.2.0.jar",
+    "bytes": 5022443,
+    "sha256": "2caca5b2dab3ea4541eb3207bab9d5efcc034e3bf7d89788fd95d7b582d24ed2"
+  },
+  {
+    "name": "【结构】MoogsStructureLib-neoforge-1.21.1-3.3.1.jar",
+    "bytes": 436563,
+    "sha256": "f3ed1be05117d706a96a3f0d6a7a975d156eff69d705bd16ab47fafde846ec22"
+  },
+  {
+    "name": "【结构】MoogsVoyagerStructures-universal-1.21-5.1.3.jar",
+    "bytes": 2234287,
+    "sha256": "07dba4e4d81bd342bf5000be19da1e5132a242d6c591da46e6d2e73aeebe5103"
+  },
+  {
+    "name": "【结构】SkyVillages-1.0.6-1.21.x-neoforge-release.jar",
+    "bytes": 246630,
+    "sha256": "5ef7b63c6f1999a632085975afa14f00146369c142fd72980d760cbb617dd52f"
+  },
+  {
+    "name": "【结构】tidal-towns-2.0.jar",
+    "bytes": 586133,
+    "sha256": "349ab80789a83bca9dd9fc1d9f9244962b808ff358a27eba465fe93a081d35a4"
+  },
+  {
+    "name": "【魔改】hotai-2.0.jar",
+    "bytes": 137100,
+    "sha256": "14e2af94e0e60a005090de6b2621c717e4108ff3db8a4b3576858abd3463ba38"
+  },
+  {
+    "name": "【魔改】incontrol-1.21-10.3.0.jar",
+    "bytes": 356782,
+    "sha256": "3776c11310008edaffdda0320c1a8436555ff59de36a6e3959452cbdefa98111"
+  },
+  {
+    "name": "【魔改】kubejs-neoforge-2101.7.2-build.377.jar",
+    "bytes": 2294111,
+    "sha256": "43b656bc2d4ce867141abb828c9481f080a38585b99bcfa07e54732a4976a601"
+  },
+  {
+    "name": "记得删 ProbeJS-8.0.3.jar",
+    "bytes": 3405057,
+    "sha256": "afb957ce00611cfc7de4bb33ac1ac8ea1d880c741ac14b9c67876b207b1377e7"
+  },
+  {
+    "name": "记得删 worldedit-mod-7.3.8.jar",
+    "bytes": 6222854,
+    "sha256": "5e7752c97876d87411e3760bcc573cc431f43c453722e6959fa7fe54db1b01ca"
+  }
+]

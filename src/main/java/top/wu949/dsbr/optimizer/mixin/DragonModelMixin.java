@@ -17,6 +17,9 @@ public abstract class DragonModelMixin {
     @Shadow private ResourceLocation overrideTexture;
     @Inject(method = "dynamicTexture", at = @At("RETURN"), cancellable = true)
     private static void beloong$immutableKey(Player player, DragonStateHandler h, boolean glow, CallbackInfoReturnable<ResourceLocation> ci) {
+        if (h.body() != null && top.wu949.dsbr.optimizer.soul.SoulRenderContext.sharedTexture(player)) {
+            ci.setReturnValue(top.wu949.dsbr.optimizer.texture.AppearanceCache.soulTexture(h, glow)); return;
+        }
         if (TextureCache.enabled() && h.body() != null) ci.setReturnValue(top.wu949.dsbr.optimizer.OptimizationStage.VALUE >= 2 ? top.wu949.dsbr.optimizer.texture.AppearanceCache.texture(h, ci.getReturnValue(), glow) : ci.getReturnValue().withSuffix("_bro_" + AppearanceKey.skin(h).digest()));
     }
     @Inject(method = "getTextureResource(Lby/dragonsurvivalteam/dragonsurvival/common/entity/DragonEntity;)Lnet/minecraft/resources/ResourceLocation;", at = @At("HEAD"))

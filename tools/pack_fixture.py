@@ -59,7 +59,7 @@ def copy_mods(pack, destination):
     candidates=[]; excluded=[]
     files=tracked(pack,'mods'); paths=[p for p in files if p.suffix=='.jar' and p.is_file()] if files is not None else list((pack/'mods').glob('*.jar'))
     for path in paths:
-        if path.name.startswith('dsbr-'): continue
+        if path.name.startswith(('dsbr-', 'dsro-')): continue
         info=metadata(path)
         if not info['compatible']: excluded.append({'name':path.name,'reason':'MC/NeoForge range excludes fixture'}); continue
         candidates.append((path,info))

@@ -31,24 +31,22 @@ def amd64_dll(data):
 project = Path(__file__).resolve().parents[1]
 workspace = project.parent
 parser = argparse.ArgumentParser()
-parser.add_argument('--runtime', type=Path, default=Path('E:/mc/.minecraft'))
+parser.add_argument('--runtime', type=Path, default=Path('C:/mc/.minecraft'))
 parser.add_argument('--build', type=Path, default=Path(os.environ['LOCALAPPDATA']) / 'Temp/DSBR-build')
 parser.add_argument('--pack', type=Path, default=workspace / 'BeLoong')
 parser.add_argument('--manifest', type=Path, default=workspace / 'outputs/dragon-animation-compare/ds-2.0.71/BeLoong.json')
 parser.add_argument('--game-jar', type=Path, default=workspace / 'outputs/dragon-animation-compare/ds-2.0.71/BeLoong.jar')
-parser.add_argument('--java', type=Path, default=Path('C:/Program Files/Java/jdk-21/bin/java.exe'))
+parser.add_argument('--java', type=Path, default=Path('C:/Program Files/Microsoft/jdk-21.0.11.10-hotspot/bin/java.exe'))
 parser.add_argument('--iris', action='store_true')
 parser.add_argument('--shaderpacks', action='store_true')
 parser.add_argument('--compat-only', action='store_true')
 parser.add_argument('--default-mode-only', action='store_true', help='Check fresh-config GPU rendering without issuing mode commands')
 parser.add_argument('--multi-dragon-benchmark', action='store_true', help='Render-only 1/4/12 player short comparison')
-parser.add_argument('--old-config', action='store_true', help='Seed a 0.1.x dsbr-client.toml with saved Bedrock settings')
-parser.add_argument('--force-legacy', action='store_true', help='Assert unsupported DS ignores even an explicit legacy opt-in')
 parser.add_argument('--optimizer-jar', type=Path)
 parser.add_argument('--counts', default='1,4,12')
 parser.add_argument('--warm', type=int, default=5)
 parser.add_argument('--sample', type=int, default=15)
-parser.add_argument('--repeats', type=int, default=2)
+parser.add_argument('--repeats', type=int, default=1)
 parser.add_argument('--gpu-only', action='store_true')
 parser.add_argument('--fullpack', action='store_true')
 parser.add_argument('--scenario', choices=['fixed','appearance','flight-new','flight-preloaded'], default='fixed')
@@ -59,10 +57,10 @@ parser.add_argument('--prepare-world', action='store_true')
 parser.add_argument('--world-template', type=Path)
 parser.add_argument('--fixture-mods', type=Path, help='Explicit test-only dependency overrides')
 parser.add_argument('--visual-scenes', action='store_true')
+parser.add_argument('--single-round', action='store_true', help='One candidate-only soul/config/animation validation launch')
 args = parser.parse_args()
 if args.shaderpacks and not args.iris: parser.error('--shaderpacks requires --iris')
 if args.compat_only and args.iris: parser.error('--compat-only excludes Iris/DS/Gecko')
-if args.force_legacy and not args.old_config: parser.error('--force-legacy requires --old-config')
 provenance=args.pack/'fixture-provenance.json'
 if provenance.is_file():
     original=json.loads(provenance.read_text(encoding='utf-8'))
@@ -77,13 +75,11 @@ if provenance.is_file(): shutil.copyfile(provenance,root/'fixture-provenance.jso
 if args.world_template:
     if not args.world_template.parent.parent.name.startswith('dsbr-validation-'): raise ValueError('Only isolated probe world templates allowed')
     shutil.copytree(args.world_template, root / 'saves/multi-render-validation')
-if args.old_config:
-    (root / 'config/dsbr-client.toml').write_text('[general]\nnormal_render_mode="BEDROCK"\narmor_render_mode="BEDROCK"\nanimation_speed_multiplier=0.5\n' + ('legacy_backend_enabled=true\n' if args.force_legacy else ''), encoding='utf-8')
 (root / 'options.txt').write_text('onboardAccessibility:false\npauseOnLostFocus:false\nmaxFps:120\nenableVsync:false\n', encoding='utf-8')
 if args.shaderpacks:
     (root / 'shaderpacks').mkdir()
     for pack in (args.pack / 'shaderpacks').glob('*.zip'): shutil.copyfile(pack, root / 'shaderpacks' / pack.name)
-    if args.default_mode_only or args.multi_dragon_benchmark or args.visual_scenes:
+    if args.default_mode_only or args.multi_dragon_benchmark or args.visual_scenes or args.single_round:
         startup_pack = 'ComplementaryReimagined_r5.9.zip'
         if not (root / 'shaderpacks' / startup_pack).is_file(): raise ValueError('Default-mode probe requires ' + startup_pack)
         (root / 'config/iris.properties').write_text('shadersEnabled=true\nshaderPack=' + startup_pack + '\n', encoding='utf-8')
@@ -124,17 +120,28 @@ if args.fullpack:
             shutil.copyfile(override, root / 'mods' / override.name)
             selection['selected'].append({'name':override.name,**info,'sha256':hashlib.sha256(override.read_bytes()).hexdigest(),'fixtureOverride':True})
     (root / 'fixture-mods.json').write_text(json.dumps(selection, ensure_ascii=False, indent=2), encoding='utf-8')
-for pattern in ([] if args.compat_only else ['*v2.0.71*', '*4.9.3*'] + (['*iris-neoforge*', '*sodium-neoforge*'] if args.iris else [])):
+for pattern in ([] if args.compat_only else ['*v2.0.71*', '*4.9.3*'] + (['*tundradragon-1.5.0*','*ds_aether_addon-1.1.0*'] if args.single_round else []) + (['*iris-neoforge*', '*sodium-neoforge*'] if args.iris else [])):
     files = list((args.pack / 'mods').glob(pattern))
     if len(files) != 1: raise ValueError('Ambiguous mod: ' + pattern)
     shutil.copyfile(files[0], root / 'mods' / files[0].name)
-if args.shaderpacks and (args.default_mode_only or args.multi_dragon_benchmark or args.visual_scenes):
+if args.shaderpacks and (args.default_mode_only or args.multi_dragon_benchmark or args.visual_scenes or args.single_round):
     (root / 'config/iris.properties').write_text('shadersEnabled=true\nshaderPack=ComplementaryReimagined_r5.9.zip\n', encoding='utf-8')
-version = next(x.split('=', 1)[1] for x in (project / 'gradle.properties').read_text(encoding='utf-8').splitlines() if x.startswith('mod_version='))
-shutil.copyfile(args.optimizer_jar or args.build / 'libs' / ('dsbr-' + version + '.jar'), root / 'mods/optimizer.jar')
+from artifact_name import artifact_name
+shutil.copyfile(args.optimizer_jar or args.build / 'libs' / (artifact_name(project) + '.jar'), root / 'mods/optimizer.jar')
 shutil.copyfile(args.build / 'validation' / ('dsbr-render-fallback-validation.jar' if args.compat_only else 'dsbr-render-validation.jar'), root / 'mods/validation.jar')
 shutil.copyfile(args.game_jar, root / args.game_jar.name)
 spec = json.loads(args.manifest.read_text(encoding='utf-8'))
+# FML's production providers load these artifacts directly, outside the manifest classpath.
+game_arguments = spec['arguments']['game']
+def game_value(flag): return game_arguments[game_arguments.index(flag) + 1]
+neo_version = game_value('--fml.neoForgeVersion')
+mc_neoform = game_value('--fml.mcVersion') + '-' + game_value('--fml.neoFormVersion')
+for relative in (f'net/neoforged/neoforge/{neo_version}/neoforge-{neo_version}-client.jar',
+                 f'net/neoforged/neoforge/{neo_version}/neoforge-{neo_version}-universal.jar',
+                 f'net/minecraft/client/{mc_neoform}/client-{mc_neoform}-srg.jar',
+                 f'net/minecraft/client/{mc_neoform}/client-{mc_neoform}-extra.jar'):
+    if not (args.runtime / 'libraries' / relative).is_file():
+        raise ValueError('Incomplete NeoForge installation: ' + relative)
 libraries = unique_paths([args.runtime / 'libraries' / lib['downloads']['artifact']['path'] for lib in spec['libraries']
     if allowed(lib) and supported_library(lib) and lib.get('downloads', {}).get('artifact')])
 for lib in libraries:
@@ -164,7 +171,7 @@ def expand(items):
 jvm = expand(spec['arguments']['jvm'])
 for i, value in enumerate(jvm[:-1]):
     if value in ('-p', '--module-path', '-cp', '-classpath', '--class-path'): jvm[i+1] = os.pathsep.join(map(str, unique_paths(jvm[i+1].split(os.pathsep))))
-argv = ['-Ddsbr.validationStage=' + str(args.stage), '-Xms1G', '-Xmx' + args.heap, *(['-XX:StartFlightRecording=filename=' + str(root / 'diagnostic.jfr') + ',settings=profile,dumponexit=true'] if args.jfr else []), *['-Dbeloongrender.' + k + '=' + str(v).lower() for k,v in {'visualScenes':args.visual_scenes, 'fullpack':args.fullpack, 'counts':args.counts, 'warm':args.warm, 'sample':args.sample, 'repeats':args.repeats, 'gpuOnly':args.gpu_only, 'scenario':args.scenario, 'prepareWorld':args.prepare_world, 'fixtureWorld':bool(args.world_template)}.items()], '-Dbeloongrender.probe=' + str(not args.compat_only and not args.multi_dragon_benchmark).lower(), '-Dbeloongrender.multiBenchmark=' + str(args.multi_dragon_benchmark).lower(), '-Dbeloongrender.compatProbe=' + str(args.compat_only).lower(), '-Dbeloongrender.defaultModeOnly=' + str(args.default_mode_only).lower(), '-Dbeloongrender.shaders=' + str(args.shaderpacks).lower(), '-Dmixin.debug.verbose=true', *jvm, spec['mainClass'], *expand(spec['arguments']['game']), '--width', '1280', '--height', '720']
+argv = ['-Djdk.net.unixdomain.tmpdir=' + str(root / 'unused-socket-dir'), '-Ddsbr.validationStage=' + str(args.stage), '-Xms1G', '-Xmx' + args.heap, *(['-XX:StartFlightRecording=filename=' + str(root / 'diagnostic.jfr') + ',settings=profile,dumponexit=true'] if args.jfr else []), *['-Dbeloongrender.' + k + '=' + str(v).lower() for k,v in {'singleRound':args.single_round, 'visualScenes':args.visual_scenes, 'fullpack':args.fullpack, 'counts':args.counts, 'warm':args.warm, 'sample':args.sample, 'repeats':args.repeats, 'gpuOnly':args.gpu_only, 'scenario':args.scenario, 'prepareWorld':args.prepare_world, 'fixtureWorld':bool(args.world_template)}.items()], '-Dbeloongrender.probe=' + str(not args.compat_only and not args.multi_dragon_benchmark and not args.single_round).lower(), '-Dbeloongrender.multiBenchmark=' + str(args.multi_dragon_benchmark).lower(), '-Dbeloongrender.compatProbe=' + str(args.compat_only).lower(), '-Dbeloongrender.defaultModeOnly=' + str(args.default_mode_only).lower(), '-Dbeloongrender.shaders=' + str(args.shaderpacks).lower(), '-Dmixin.debug.verbose=true', *jvm, spec['mainClass'], *expand(spec['arguments']['game']), '--width', '1280', '--height', '720']
 argfile = root / 'launch-args.txt'
 argfile.write_text('\n'.join('"' + arg.replace('\\', '\\\\').replace('"', '\\"') + '"' for arg in argv), encoding='utf-8')
 with (root / 'logs/console.log').open('wb') as stream:

@@ -1,6 +1,24 @@
 # 实现与验证记录
 
-当前交付为 **0.2.0-alpha.3 预发布测试版**，默认 GPU、物品栏 CPU。最终客户端 SHA-256：`fd6a3b321d19b30900d80cf0f9682ae30fb71dee24b36c19f5757b40bd9140ef`。完整记录索引见 [validation/low-frames/matrix.json](validation/low-frames/matrix.json)，原始全帧采样与对照见 [PERFORMANCE.md](PERFORMANCE.md)。
+当前交付为 **DSRO 0.2.0-alpha.4 预发布测试版**，默认 GPU。发布 jar SHA-256：`754f15bb0ded0b8e393f7a37ca6382ff4f49353d6f796211e50b19acfc037923`。按要求只运行新版一轮，没有旧版对照或重复长测；17 个客户端场景执行完毕，**本轮未全部通过，也未完成正式验收**。完整结果见 [单轮报告](validation/alpha4/SUMMARY.md) 和 [原始驱动结果](validation/alpha4/single-round-result.json)。
+
+| alpha.4 检查 | 实际结果 |
+| --- | --- |
+| 构建与 OpenGL | 16 项 Java 测试通过；真实 OpenGL 纹理复制、标准／Iris 顶点布局、三套独立姿态与异常状态恢复检查通过，GL error = 0 |
+| 配置 | 只显示六项有效设置，修改及保存得到确认；旧 Bedrock/YSM 后端、菜单及配置入口已移除 |
+| 龙魂合批 | 无光影及 Complementary 的 1／4／12 龙魂场景均有 GPU 提交和纹理命中；4／12 龙魂实际绘制调用少于实例提交，采样期普通纹理读回为零 |
+| 龙魂动画数据 | 三种模型的待机、行走及飞行九个阶段中，持续采样的龙魂均有推进的时间、变化的骨骼姿态及正确动作；移除对象仅留下的单帧过渡样本触发了原始驱动断言，原始失败列表保留 |
+| 玩家与视觉限制 | DS 相机钩子覆盖测试朝向，玩家待机／行走／飞行缺少样本，前面的截图未拍到模型；后续吐息及恢复有玩家控制器、姿态和可见模型证据。完整玩家动画尚未确认 |
+| GUI 与生命周期 | 创造模式物品栏没有实体预览，CPU 预览断言未能验证；模式切换、资源重载及最终清理执行完毕，纹理／网格资源归零 |
+| 帧时间 | 原始 CSV 保留；相机问题使本轮帧时间不作为有效性能结论，不计算对旧版的提升 |
+
+驱动的相机、单帧过渡对象与创造模式界面问题已修正源码，并通过重新编译；没有重跑客户端场景。本轮实际运行及截图来自更名前的 DSBR jar（SHA-256：`56b8905941e31981b1813496e6f231259f0904b4674a8e36935b1089811d0981`）。DSRO 发布 jar 只修改显示名称与日志文字：64 项内容逐字节相同，其余 7 项只有名称文字变化，class 方法指令和属性相同，详见 [更名核对](validation/alpha4/branding-verification.json)。可查看更名前的 [配置界面](validation/alpha4/configuration.png)、[吐息](validation/alpha4/breath.png)、[恢复后的可见模型](validation/alpha4/breath-recovery.png) 及 [创造模式界面](validation/alpha4/inventory.png)。
+
+后续根据启动验证要求，对更名后的发布 jar 单独启动整合包并进入复制的隔离世界：主菜单与世界均进入成功，玩家龙模型及四个龙魂可见；118 个玩家待机动画样本的时间和姿态推进，世界有 GPU 几何提交，物品栏 CPU 实体预览统计大于零，检查期间 GPU 没有停用。截图已审阅，未发现 DSRO 相关 ERROR/FATAL。整合包仍有其他模组的配方／资源报错，全部列入 [启动检查](validation/alpha4/smoke/SUMMARY.md)。这次追加检查没有重复性能采样或九个动作阶段，玩家完整行走／飞行和全部模型组合仍未确认。
+
+## alpha.3 历史记录
+
+以下为 **0.2.0-alpha.3 预发布测试版**的记录，不能当作 alpha.4 的本次验证结果。客户端 SHA-256：`fd6a3b321d19b30900d80cf0f9682ae30fb71dee24b36c19f5757b40bd9140ef`。完整记录索引见 [validation/low-frames/matrix.json](validation/low-frames/matrix.json)，原始全帧采样与对照见 [PERFORMANCE.md](PERFORMANCE.md)。
 
 | alpha.3 检查 | 实际结果 |
 | --- | --- |

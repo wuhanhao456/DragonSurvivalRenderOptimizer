@@ -6,6 +6,8 @@ layout(std430,binding=0) readonly buffer Geometry { Quad quads[]; };
 layout(std430,binding=1) readonly buffer Poses { Bone bones[]; };
 layout(std430,binding=2) writeonly buffer Output { uint outputWords[]; };
 uniform uint quadCount;
+uniform uint instanceCount;
+uniform uint boneCount;
 uniform uint stride;
 uniform uvec3 entityIds;
 uniform bool recalculateNormal;
@@ -18,8 +20,8 @@ uint normByte(float x) { return uint(int(clamp(x,-1.0,1.0)*127.0))&255u; }
 vec3 safeUnit(vec3 v) { float s=dot(v,v); return s>1e-30 ? v*inversesqrt(s) : vec3(0.0); }
 void main() {
     uint id=gl_GlobalInvocationID.x;
-    if(id>=quadCount) return;
-    Quad q=quads[id]; Bone b=bones[q.meta.x];
+    if(id>=quadCount*instanceCount) return;
+    Quad q=quads[id%quadCount]; Bone b=bones[(id/quadCount)*boneCount+q.meta.x];
     vec3 p[4]; vec2 uv[4];
     uv[0]=q.uv01.xy; uv[1]=q.uv01.zw; uv[2]=q.uv23.xy; uv[3]=q.uv23.zw;
     for(int i=0;i<4;i++) p[i]=(b.position*q.p[i]).xyz;

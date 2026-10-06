@@ -1,5 +1,6 @@
 """Collect successful probes and bounded evidence, excluding worlds/accounts/dependency jars."""
 import argparse, hashlib, json, pathlib, shutil, subprocess, sys, xml.etree.ElementTree as ET
+from artifact_name import artifact_name
 
 project = pathlib.Path(__file__).resolve().parents[1]
 p = argparse.ArgumentParser(); p.add_argument('--runtime', required=True, type=pathlib.Path); p.add_argument('--fallback', required=True, type=pathlib.Path); p.add_argument('--build', required=True, type=pathlib.Path); a = p.parse_args()
@@ -8,11 +9,10 @@ digest = lambda path: hashlib.sha256(path.read_bytes()).hexdigest()
 runtime = read(a.runtime / 'probe-result.json'); fallback = read(a.fallback / 'probe-result.json')
 assert runtime['pass'] and fallback['pass'], 'Cannot archive failed probes as passes'
 version = next(x.split('=', 1)[1] for x in (project / 'gradle.properties').read_text(encoding='utf-8').splitlines() if x.startswith('mod_version='))
-jar = a.build / 'libs' / ('dsbr-' + version + '.jar'); tested_hash = digest(a.runtime / 'mods/optimizer.jar')
+jar = a.build / 'libs' / (artifact_name(project) + '.jar'); tested_hash = digest(a.runtime / 'mods/optimizer.jar')
 assert digest(jar) == tested_hash == digest(a.fallback / 'mods/optimizer.jar'), 'Probe jar differs from delivery jar'
 assert runtime['afterClearTextureBytes'] == runtime['afterClearMeshBytes'] == 0, 'Resource cleanup failed'
-assert runtime['modId'] == 'dsbr' and not runtime['legacyActive'], 'Wrong identity or legacy takeover on DS 2.0.71'
-assert runtime['legacyConfigFlag'] and runtime['savedOldRenderMode'] == 'BEDROCK', 'Old config migration was not exercised'
+assert runtime['modId'] == 'dsbr', 'Wrong identity or legacy takeover on DS 2.0.71'
 out = project / 'validation'; target = out / 'runtime-iris'; target.mkdir(parents=True, exist_ok=True)
 files = ['probe-result.json', 'baseline-textures.json', 'equivalent-state.json', 'changed-skin.json', 'changed-armor.json', 'restored-skin.json', 'gpu-mode.json', 'after-reload.json', 'plain-textures.png']
 inventory = {}
@@ -51,7 +51,6 @@ summary = {'date': '2026-10-06', 'version': version, 'testedJarSha256': tested_h
            'hardware': {'cpu': 'Intel Core i7-13700K', 'gpu': 'NVIDIA RTX 5070 Ti', 'driver': '596.49'},
            'javaTests': cases, 'benchmarkToolSyntheticTests': {'count': 4, 'pass': True, 'performanceMeasurements': False},
            'openGLTests': read(out / 'gl-results.json'), 'compatibility': runtime['compatibility'], 'optionalDependencyFallback': fallback,
-           'upgradeMigration': {'modId': runtime['modId'], 'oldRenderModePreserved': runtime['savedOldRenderMode'], 'legacyConfigFlag': runtime['legacyConfigFlag'], 'legacyActiveOnDS2071': runtime['legacyActive']},
            'cache': {'equivalentSyncs': sync['totals']['STATE_SYNC'], 'equivalentGenerated': 0, 'changedSkinGenerated': 1, 'changedArmorGenerated': 1, 'restoredGenerated': 0},
            'cleanup': {'textureBytes': runtime['afterClearTextureBytes'], 'meshBytes': runtime['afterClearMeshBytes']},
            'inventoryRegression': inventory, 'shaderSmokeTests': shaders, 'formalPerformanceMatrixCompleted': False, 'fullModpackVisualRegressionCompleted': False, 'releaseAcceptanceComplete': False,

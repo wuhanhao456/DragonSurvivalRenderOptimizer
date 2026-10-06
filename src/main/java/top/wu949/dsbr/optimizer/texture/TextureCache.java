@@ -42,7 +42,8 @@ public final class TextureCache {
             var entry = skins.get(normal);
             if (entry != null && entry.content.equals(OptimizationStage.VALUE >= 2 ? AppearanceCache.skin(h) : AppearanceKey.skin(h)) && valid(entry.normal) && valid(entry.glow)) {
                 mark(h); touch(entry.normal); touch(entry.glow);
-                Diagnostics.INSTANCE.count(HIT, attribution(p, h, normal)); return true;
+                Diagnostics.INSTANCE.count(HIT, attribution(p, h, normal));
+                if (top.wu949.dsbr.optimizer.soul.SoulRenderContext.sharedTexture(p)) Diagnostics.INSTANCE.count(SOUL_TEXTURE_HIT, "soul"); return true;
             }
         } catch (RuntimeException | LinkageError e) { fail("skin key", e); }
         return false;

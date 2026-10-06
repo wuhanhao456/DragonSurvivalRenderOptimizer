@@ -17,7 +17,8 @@
     "DragonGlowMixin",
     "BufferSourceMixin",
     "BufferFormatAccessor",
-    "IrisBufferSourceMixin"
+    "IrisBufferSourceMixin",
+    "SoulRendererMixin"
   ],
   "injectors": {
     "defaultRequire": 1

@@ -5,7 +5,7 @@ plugins {
 version = mod_version
 if (providers.gradleProperty('dsbrBuildDir').isPresent()) layout.buildDirectory = file(providers.gradleProperty('dsbrBuildDir').get())
 group = 'top.wu949.dsbr'
-base { archivesName = 'dsbr' }
+base { archivesName = mod_archive_name }
 java.toolchain.languageVersion = JavaLanguageVersion.of(21)
 java.withSourcesJar()
 repositories {
