@@ -1,0 +1,65 @@
+{
+  "pass": false,
+  "failures": [
+    "java.lang.IllegalStateException: Current soul did not enter render list within 200 ticks"
+  ],
+  "repetitions": 1,
+  "candidateOnly": true,
+  "textureBytesAfterClear": 0,
+  "meshBytesAfterClear": 0,
+  "stats": {
+    "totals": {
+      "ARMOR_CHECK_NANOS": 26856200,
+      "ARMOR_GENERATE_NANOS": 504900,
+      "COPY": 3,
+      "FRAME_CPU_NANOS": 11179555900,
+      "GENERATED": 2,
+      "GPU_BATCH_CPU_NANOS": 1412351600,
+      "GPU_BONE_SUBMIT_NANOS": 227486500,
+      "GPU_DRAW_CALLS": 16551,
+      "GPU_DRAW_CPU_NANOS": 1336935000,
+      "GPU_PASS": 16551,
+      "GPU_POSE_CAPTURE_NANOS": 1027297000,
+      "GPU_VERTEX_COUNT": 150150672,
+      "HIT": 22067,
+      "PLAYER_GPU_DRAW_CALLS": 16551,
+      "PLAYER_GPU_PASS": 16551,
+      "PLAYER_GPU_POSE_CAPTURE_NANOS": 1028563100,
+      "POSE_UPLOAD": 16551,
+      "REQUEST": 8,
+      "SKIN_CHECK_NANOS": 49255200,
+      "SKIN_GENERATE_NANOS": 13885600,
+      "STATE_SYNC": 4
+    },
+    "peaks": {
+      "GPU_RESOURCE_BYTES": 2959488,
+      "TEXTURE_RESOURCE_BYTES": 5242880
+    },
+    "fallbacks": {},
+    "attribution": {
+      "shadow": {
+        "GPU_PASS": 5518
+      },
+      "glow/shadow": {
+        "GPU_PASS": 2759
+      },
+      "entity": {
+        "GPU_PASS": 5516
+      },
+      "glow/entity": {
+        "GPU_PASS": 2758
+      }
+    },
+    "dirtyTraces": [],
+    "frameSamples": 2761,
+    "quantileSamples": 2761,
+    "frameTimeMs": {
+      "p95": 10.7692,
+      "p50": 4.0151,
+      "p999": 718.5018,
+      "p99": 19.9908
+    }
+  },
+  "compatibility": "versions\u003d[beloong\u003d0.10.1, dragonsurvival\u003d2.0.71, dsbr\u003d0.2.0-alpha.5, geckolib\u003d4.9.3, iris\u003d1.8.14-beta.1+mc1.21.1, sodium\u003d0.8.13+mc1.21.1]; texture\u003dtrue; GPU\u003dtrue; Iris\u003dtrue; souls\u003dtrue; NPC\u003dCore 0.10.1 NPC interfaces verified",
+  "scenes": 1
+}

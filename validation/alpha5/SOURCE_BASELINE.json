@@ -1,0 +1,18 @@
+{
+  "repository": "https://github.com/wuhanhao456/DragonSurvivalRenderOptimizer",
+  "oldRepositoryRedirect": "https://github.com/wuhanhao456/DragonSurvivalBedrockRenderer",
+  "checkedBeforeImplementation": true,
+  "initialWorkingTreeClean": true,
+  "localHeadAndRemoteMain": "4901eac29f3e84129b26916724c414c754070f92",
+  "baselineTag": "0.2.0-alpha.4",
+  "baselineClientMatchesGithubRelease": true,
+  "baselineJarSha256": "754f15bb0ded0b8e393f7a37ca6382ff4f49353d6f796211e50b19acfc037923",
+  "candidateJarSha256": "49e2f6db28517232841e19bc7c420b974cac9b2b7867f8aca41d6b1485252360",
+  "worldTemplateSha256": "3b0825f9b01a90781f92462d9bb43771ec40fc36079bd82d4cda8f739e3ddb2d",
+  "performanceDriverSha256": "4ae7f69c7a5932041cfabdf10aec7f054d2d53f6f388918493320ab347e59974",
+  "originalUncPrototypeModified": false,
+  "actualUserMinecraftInstanceModified": false,
+  "date": "2026-10-07",
+  "finalJarSha256": "db1f8a395b2f8228420c0c0ecf78747de5731702d695973aefe7278c35763c09",
+  "finalChangeVerification": "final-guard-verification.json"
+}

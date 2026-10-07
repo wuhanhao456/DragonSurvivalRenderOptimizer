@@ -1,0 +1,239 @@
+[
+  {
+    "poseVariants": {
+      "4": 76,
+      "5": 76,
+      "6": 76,
+      "8": 76
+    },
+    "stats": {
+      "totals": {
+        "ARMOR_CHECK_NANOS": 1056900,
+        "CPU_VERTEX_SUBMIT_NANOS": 318162100,
+        "FRAME_CPU_NANOS": 1276921500,
+        "GPU_BATCH_CPU_NANOS": 87901900,
+        "GPU_BONE_SUBMIT_NANOS": 3264500,
+        "GPU_DRAW_CALLS": 234,
+        "GPU_DRAW_CPU_NANOS": 85103700,
+        "GPU_PASS": 234,
+        "GPU_POSE_CAPTURE_NANOS": 19429700,
+        "GPU_VERTEX_COUNT": 2122848,
+        "HIT": 312,
+        "NPC_CPU_BONE": 63232,
+        "NPC_CPU_VERTEX_SUBMIT_NANOS": 318162100,
+        "PLAYER_GPU_DRAW_CALLS": 234,
+        "PLAYER_GPU_PASS": 234,
+        "PLAYER_GPU_POSE_CAPTURE_NANOS": 19455700,
+        "POSE_UPLOAD": 234,
+        "SKIN_CHECK_NANOS": 420500
+      },
+      "peaks": {
+        "GPU_RESOURCE_BYTES": 2960000,
+        "TEXTURE_RESOURCE_BYTES": 5242880
+      },
+      "fallbacks": {},
+      "attribution": {
+        "entity": {
+          "GPU_PASS": 156
+        },
+        "glow/entity": {
+          "GPU_PASS": 78
+        }
+      },
+      "dirtyTraces": [],
+      "frameSamples": 81,
+      "quantileSamples": 81,
+      "frameTimeMs": {
+        "p99": 2480.9858,
+        "p999": 2480.9858,
+        "p50": 14.6116,
+        "p95": 44.4315
+      }
+    },
+    "case": "npc-disabled",
+    "animations": "{4\u003d[idle], 5\u003d[idle], 6\u003d[idle], 8\u003d[idle]}",
+    "shader": "ComplementaryUnbound_r5.9.zip"
+  },
+  {
+    "poseVariants": {
+      "4": 3,
+      "5": 3,
+      "6": 2,
+      "8": 2
+    },
+    "stats": {
+      "totals": {
+        "ARMOR_CHECK_NANOS": 11611500,
+        "ARMOR_GENERATE_NANOS": 202000,
+        "COPY": 3,
+        "FRAME_CPU_NANOS": 5499570800,
+        "GENERATED": 2,
+        "GPU_BATCH_CPU_NANOS": 763183700,
+        "GPU_BONE_SUBMIT_NANOS": 92595800,
+        "GPU_DRAW_CALLS": 4230,
+        "GPU_DRAW_CPU_NANOS": 720080700,
+        "GPU_PASS": 5922,
+        "GPU_POSE_CAPTURE_NANOS": 668966000,
+        "GPU_VERTEX_COUNT": 70590240,
+        "HIT": 3383,
+        "NPC_GPU_DRAW_CALLS": 1692,
+        "NPC_GPU_PASS": 3384,
+        "NPC_GPU_POSE_CAPTURE_NANOS": 476685300,
+        "PLAYER_GPU_DRAW_CALLS": 2538,
+        "PLAYER_GPU_PASS": 2538,
+        "PLAYER_GPU_POSE_CAPTURE_NANOS": 192944700,
+        "POSE_UPLOAD": 4230,
+        "RELEASE": 3,
+        "SKIN_CHECK_NANOS": 4357900,
+        "SKIN_GENERATE_NANOS": 1557800
+      },
+      "peaks": {
+        "GPU_RESOURCE_BYTES": 11503648,
+        "TEXTURE_RESOURCE_BYTES": 5242880
+      },
+      "fallbacks": {},
+      "attribution": {
+        "entity": {
+          "GPU_PASS": 5076
+        },
+        "glow/entity": {
+          "GPU_PASS": 846
+        }
+      },
+      "dirtyTraces": [],
+      "frameSamples": 846,
+      "quantileSamples": 846,
+      "frameTimeMs": {
+        "p99": 90.3621,
+        "p999": 3843.8034,
+        "p50": 8.442,
+        "p95": 16.9906
+      }
+    },
+    "case": "after-reload",
+    "animations": "{4\u003d[idle], 5\u003d[idle], 6\u003d[idle], 8\u003d[idle]}",
+    "shader": "ComplementaryUnbound_r5.9.zip"
+  },
+  {
+    "poseVariants": {},
+    "stats": {
+      "totals": {
+        "ARMOR_CHECK_NANOS": 1547100,
+        "CPU_VERTEX_SUBMIT_NANOS": 45598000,
+        "FRAME_CPU_NANOS": 942727400,
+        "GPU_BATCH_CPU_NANOS": 93809400,
+        "GPU_BONE_SUBMIT_NANOS": 21222700,
+        "GPU_DRAW_CALLS": 1148,
+        "GPU_DRAW_CPU_NANOS": 89127600,
+        "GPU_PASS": 1148,
+        "GPU_POSE_CAPTURE_NANOS": 85795900,
+        "GPU_VERTEX_COUNT": 13537216,
+        "GUI_CPU_PASS": 165,
+        "HIT": 1368,
+        "NPC_GPU_DRAW_CALLS": 287,
+        "NPC_GPU_PASS": 287,
+        "NPC_GPU_POSE_CAPTURE_NANOS": 25107700,
+        "PLAYER_CPU_BONE": 44880,
+        "PLAYER_CPU_VERTEX_SUBMIT_NANOS": 45598000,
+        "PLAYER_GPU_DRAW_CALLS": 861,
+        "PLAYER_GPU_PASS": 861,
+        "PLAYER_GPU_POSE_CAPTURE_NANOS": 60860300,
+        "POSE_UPLOAD": 1148,
+        "SKIN_CHECK_NANOS": 965900
+      },
+      "peaks": {
+        "GPU_RESOURCE_BYTES": 6830960,
+        "TEXTURE_RESOURCE_BYTES": 5242880
+      },
+      "fallbacks": {},
+      "attribution": {
+        "shadow": {
+          "GPU_PASS": 432
+        },
+        "glow/shadow": {
+          "GPU_PASS": 144
+        },
+        "entity": {
+          "GPU_PASS": 429
+        },
+        "glow/entity": {
+          "GPU_PASS": 143
+        },
+        "gui": {
+          "GUI_CPU_PASS": 165
+        }
+      },
+      "dirtyTraces": [],
+      "frameSamples": 144,
+      "quantileSamples": 144,
+      "frameTimeMs": {
+        "p99": 59.3241,
+        "p999": 241.0716,
+        "p50": 8.6206,
+        "p95": 13.0905
+      }
+    },
+    "case": "inventory",
+    "animations": "{}",
+    "shader": "ComplementaryUnbound_r5.9.zip"
+  },
+  {
+    "poseVariants": {
+      "4": 348,
+      "5": 348,
+      "6": 349,
+      "8": 349
+    },
+    "stats": {
+      "totals": {
+        "ARMOR_CHECK_NANOS": 3640000,
+        "ARMOR_GENERATE_NANOS": 303600,
+        "COPY": 3,
+        "FRAME_CPU_NANOS": 1603519000,
+        "GENERATED": 2,
+        "GPU_BATCH_CPU_NANOS": 171428300,
+        "GPU_BONE_SUBMIT_NANOS": 37241900,
+        "GPU_DRAW_CALLS": 1745,
+        "GPU_DRAW_CPU_NANOS": 163905700,
+        "GPU_PASS": 2441,
+        "GPU_POSE_CAPTURE_NANOS": 188424500,
+        "GPU_VERTEX_COUNT": 29092448,
+        "HIT": 1395,
+        "NPC_GPU_DRAW_CALLS": 698,
+        "NPC_GPU_PASS": 1394,
+        "NPC_GPU_POSE_CAPTURE_NANOS": 112964000,
+        "PLAYER_GPU_DRAW_CALLS": 1047,
+        "PLAYER_GPU_PASS": 1047,
+        "PLAYER_GPU_POSE_CAPTURE_NANOS": 75839300,
+        "POSE_UPLOAD": 1745,
+        "SKIN_CHECK_NANOS": 1689600,
+        "SKIN_GENERATE_NANOS": 1289800
+      },
+      "peaks": {
+        "GPU_RESOURCE_BYTES": 9024288,
+        "TEXTURE_RESOURCE_BYTES": 5242880
+      },
+      "fallbacks": {},
+      "attribution": {
+        "entity": {
+          "GPU_PASS": 2092
+        },
+        "glow/entity": {
+          "GPU_PASS": 349
+        }
+      },
+      "dirtyTraces": [],
+      "frameSamples": 349,
+      "quantileSamples": 349,
+      "frameTimeMs": {
+        "p99": 12.0951,
+        "p999": 18.1282,
+        "p50": 8.3546,
+        "p95": 11.3316
+      }
+    },
+    "case": "after-mode-switch",
+    "animations": "{4\u003d[idle], 5\u003d[idle], 6\u003d[idle], 8\u003d[idle]}",
+    "shader": "ComplementaryUnbound_r5.9.zip"
+  }
+]

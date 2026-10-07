@@ -12,6 +12,10 @@
   "dsbr.configuration.traceDirtyFlags.tooltip": "最多记录 32 条皮肤失效调用栈，仅排查问题时开启。",
   "dsbr.configuration.detailedDiagnostics": "详细诊断",
   "dsbr.configuration.detailedDiagnostics.tooltip": "记录每个玩家和纹理的详细数据，仅排查问题时开启。",
+  "dsbr.configuration.beloongNpcGpu": "可选 BeLoong NPC GPU 渲染",
+  "dsbr.configuration.beloongNpcGpu.tooltip": "GPU 模式下加速已验证的 Core 0.10.1 NPC 几何。Core 为可选模组，未知版本使用原渲染。",
+  "dsbr.configuration.reuseCpuVertexScratch": "复用 CPU 几何临时存储",
+  "dsbr.configuration.reuseCpuVertexScratch.tooltip": "GPU 模式下复用已审查回退路径的矩阵和向量，包含物品栏预览。",
   "dsbr.configuration.mode.GPU": "GPU 与纹理优化",
   "dsbr.configuration.mode.TEXTURES": "仅纹理优化",
   "dsbr.configuration.mode.VANILLA": "原版渲染"

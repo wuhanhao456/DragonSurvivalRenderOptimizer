@@ -1,0 +1,168 @@
+{
+  "scene": "mo-4",
+  "version": "candidate",
+  "jarSha256": "49e2f6db28517232841e19bc7c420b974cac9b2b7867f8aca41d6b1485252360",
+  "driverSha256": "4ae7f69c7a5932041cfabdf10aec7f054d2d53f6f388918493320ab347e59974",
+  "metrics": {
+    "samples": 13753,
+    "capturedSeconds": 60.0294563,
+    "averageFps": 229.1041906371556,
+    "low1Fps": 92.6265693407532,
+    "low01Fps": 43.90870251665865,
+    "frameTimeMs": {
+      "p50": 4.0092,
+      "p95": 6.8742,
+      "p99": 8.5598,
+      "p999": 11.8577
+    },
+    "longFramesAboveMs": {
+      "16.7": 9,
+      "33.3": 1,
+      "50": 0
+    },
+    "maximumFrameMs": 46.8245,
+    "definition": "1000 / mean slowest ceil(samples * fraction) frame times in ms"
+  },
+  "row": {
+    "scene": "mo-4",
+    "warmupSeconds": 15.0,
+    "samplingSeconds": 60.0,
+    "width": 1280,
+    "height": 720,
+    "renderDistance": 6,
+    "vsync": false,
+    "effectiveFpsLimit": 260,
+    "swapInterval": 0,
+    "stats": {
+      "totals": {
+        "ARMOR_CHECK_NANOS": 60215400,
+        "FRAME_CPU_NANOS": 42219615600,
+        "GPU_BATCH_CPU_NANOS": 7347349500,
+        "GPU_BONE_SUBMIT_NANOS": 1406042700,
+        "GPU_DRAW_CALLS": 55016,
+        "GPU_DRAW_CPU_NANOS": 7079584700,
+        "GPU_PASS": 96278,
+        "GPU_POSE_CAPTURE_NANOS": 5285434500,
+        "GPU_VERTEX_COUNT": 1472008096,
+        "HIT": 55016,
+        "NPC_GPU_DRAW_CALLS": 13754,
+        "NPC_GPU_PASS": 55016,
+        "NPC_GPU_POSE_CAPTURE_NANOS": 3398930000,
+        "PLAYER_GPU_DRAW_CALLS": 41262,
+        "PLAYER_GPU_PASS": 41262,
+        "PLAYER_GPU_POSE_CAPTURE_NANOS": 1896680800,
+        "POSE_UPLOAD": 55016,
+        "SKIN_CHECK_NANOS": 30289100
+      },
+      "peaks": {
+        "GPU_RESOURCE_BYTES": 12549744,
+        "TEXTURE_RESOURCE_BYTES": 5242880
+      },
+      "fallbacks": {},
+      "attribution": {
+        "entity": {
+          "GPU_PASS": 82524
+        },
+        "glow/entity": {
+          "GPU_PASS": 13754
+        }
+      },
+      "dirtyTraces": [],
+      "frameSamples": 13754,
+      "quantileSamples": 13754,
+      "frameTimeMs": {
+        "p95": 6.9812,
+        "p50": 3.9902,
+        "p999": 12.1366,
+        "p99": 8.7681
+      }
+    },
+    "rawFrames": "mo-4.csv",
+    "actors": [
+      {
+        "type": "beloong:mo",
+        "scale": 1.0
+      },
+      {
+        "type": "beloong:mo",
+        "scale": 1.0
+      },
+      {
+        "type": "beloong:mo",
+        "scale": 1.0
+      },
+      {
+        "type": "beloong:mo",
+        "scale": 1.0
+      }
+    ],
+    "textureBytes": 5242880,
+    "meshBytes": 3323664,
+    "npcGeometryCalls": 55016,
+    "npcGeometryNanos": 3378631500,
+    "camera": [
+      0.0,
+      -52.0,
+      36.0,
+      180.0,
+      13.0
+    ],
+    "shaderPack": "ComplementaryUnbound_r5.9.zip"
+  },
+  "result": {
+    "pass": true,
+    "scenes": 1,
+    "stats": {
+      "totals": {
+        "ARMOR_CHECK_NANOS": 60215400,
+        "FRAME_CPU_NANOS": 42219615600,
+        "GPU_BATCH_CPU_NANOS": 7347349500,
+        "GPU_BONE_SUBMIT_NANOS": 1406042700,
+        "GPU_DRAW_CALLS": 55016,
+        "GPU_DRAW_CPU_NANOS": 7079584700,
+        "GPU_PASS": 96278,
+        "GPU_POSE_CAPTURE_NANOS": 5285434500,
+        "GPU_VERTEX_COUNT": 1472008096,
+        "HIT": 55016,
+        "NPC_GPU_DRAW_CALLS": 13754,
+        "NPC_GPU_PASS": 55016,
+        "NPC_GPU_POSE_CAPTURE_NANOS": 3398930000,
+        "PLAYER_GPU_DRAW_CALLS": 41262,
+        "PLAYER_GPU_PASS": 41262,
+        "PLAYER_GPU_POSE_CAPTURE_NANOS": 1896680800,
+        "POSE_UPLOAD": 55016,
+        "SKIN_CHECK_NANOS": 30289100
+      },
+      "peaks": {
+        "GPU_RESOURCE_BYTES": 12549744,
+        "TEXTURE_RESOURCE_BYTES": 5242880
+      },
+      "fallbacks": {},
+      "attribution": {
+        "entity": {
+          "GPU_PASS": 82524
+        },
+        "glow/entity": {
+          "GPU_PASS": 13754
+        }
+      },
+      "dirtyTraces": [],
+      "frameSamples": 13754,
+      "quantileSamples": 13754,
+      "frameTimeMs": {
+        "p95": 6.9812,
+        "p50": 3.9902,
+        "p999": 12.1366,
+        "p99": 8.7681
+      }
+    },
+    "meshBytesAfterClear": 0,
+    "textureBytesAfterClear": 0,
+    "compatibility": "versions=[beloong=0.10.1, dragonsurvival=2.0.71, dsbr=0.2.0-alpha.5, geckolib=4.9.3, iris=1.8.14-beta.1+mc1.21.1, sodium=0.8.13+mc1.21.1]; texture=true; GPU=true; Iris=true; souls=true; NPC=Core 0.10.1 NPC interfaces verified"
+  },
+  "rawSha256": "c6f2cdf4ab6e80cb83c6478186dc036b03c3cd1d16d9a628617b7567d3df4cc4",
+  "runLabel": "initial",
+  "rawFrames": "samples/initial/mo-4-candidate/mo-4.csv",
+  "screenshot": "samples/initial/mo-4-candidate/mo-4.png",
+  "localEvidenceId": "dsbr-validation-iris-20261007-015149"
+}

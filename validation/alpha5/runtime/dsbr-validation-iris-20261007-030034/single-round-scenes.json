@@ -1,0 +1,18 @@
+[
+  {
+    "configuration": {
+      "screen": "net.neoforged.neoforge.client.gui.ConfigurationScreen$ConfigurationSectionScreen",
+      "fields": [
+        "mode",
+        "textureBudgetMiB",
+        "meshBudgetMiB",
+        "unusedTextureSeconds",
+        "traceDirtyFlags",
+        "detailedDiagnostics",
+        "beloongNpcGpu",
+        "reuseCpuVertexScratch"
+      ],
+      "saveVerified": true
+    }
+  }
+]

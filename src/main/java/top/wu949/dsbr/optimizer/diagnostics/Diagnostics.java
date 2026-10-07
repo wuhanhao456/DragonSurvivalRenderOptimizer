@@ -11,7 +11,10 @@ import java.util.concurrent.atomic.LongAccumulator;
 
 /** Bounded attribution; totals survive eviction of individual owners/texture keys. */
 public final class Diagnostics {
-    public enum Counter { REQUEST, STATE_SYNC, GENERATED, HIT, RELEASE, READBACK, COPY, GPU_PASS, GPU_VERTICES, GUI_CPU_PASS, CPU_FALLBACK, GPU_DRAW_CALLS, SOUL_RENDER, SOUL_GPU_PASS, SOUL_GPU_DRAW_CALLS, SOUL_CPU_FALLBACK, SOUL_TEXTURE_HIT }
+    public enum Counter { REQUEST, STATE_SYNC, GENERATED, HIT, RELEASE, READBACK, COPY, GPU_PASS, GPU_VERTICES, GUI_CPU_PASS, CPU_FALLBACK, GPU_DRAW_CALLS, SOUL_RENDER, SOUL_GPU_PASS, SOUL_GPU_DRAW_CALLS, SOUL_CPU_FALLBACK, SOUL_TEXTURE_HIT,
+        PLAYER_GPU_PASS, PLAYER_GPU_DRAW_CALLS, PLAYER_CPU_BONE, PLAYER_CPU_FALLBACK,
+        NPC_GPU_PASS, NPC_GPU_DRAW_CALLS, NPC_CPU_BONE, NPC_CPU_FALLBACK, SOUL_CPU_BONE, POSE_UPLOAD, FRAME_ANIMATION_HIT, FRAME_ANIMATION_MISS }
+    public void add(String counter, long amount) { totals.computeIfAbsent(counter, x -> new LongAdder()).add(amount); }
     public static final Diagnostics INSTANCE = new Diagnostics();
     private final Map<String, LongAdder> totals = new ConcurrentHashMap<>();
     private final Map<String, LongAdder> timings = new ConcurrentHashMap<>();

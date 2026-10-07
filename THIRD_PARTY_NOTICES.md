@@ -61,3 +61,7 @@ Original optimizer source from BeLoong Render Optimizer (MIT; copyright (c) 2026
 - Gradle wrapper: Apache-2.0; build tooling only. JUnit 5: EPL-2.0; test tooling only. Mixin/MixinExtras are supplied by NeoForge and are not shaded into this mod.
 
 The optimizer's MIT license covers its original source only and does not change licenses or distribution permissions of any dependency or reference project.
+
+## Optional BeLoong NPC adapter (0.2.0-alpha.5)
+
+BeLoong Core 0.10.1 is an optional external mod. Its public renderer/animation behavior was inspected to verify compatibility. The adapter stores class names and verification hashes only; no Core classes, models, textures or animations are redistributed. The geometry scratch path follows GeckoLib 4.9.3's MIT-licensed default vertex calculations and continues to call the supplied library's pivot, rotation and flat-cube helpers.

@@ -1,5 +1,13 @@
 # 实现与验证记录
 
+当前版本为 **DSRO 0.2.0-alpha.5 预发布测试版**，最终客户端 SHA-256：`db1f8a395b2f8228420c0c0ecf78747de5731702d695973aefe7278c35763c09`。新增完全可选的 Core 0.10.1 末/地黄龙适配、相邻批次合并、单次姿态上传和 CPU 临时存储复用。仅保留有证据支持且通过保护线的改动；同帧动画复用未产生命中，已撤出发布代码。
+
+alpha.4/候选的七场景配对短测与一次触发复核见 [alpha.5 性能记录](validation/alpha5/SUMMARY.md)，完整 CSV、截图和摘要均可检查。最终 jar 与测量 jar 仅有启动方法签名保护差异，78 项其余内容逐字节相同，见 [核对](validation/alpha5/final-guard-verification.json)。实际最终 jar 的依赖、画面、动画和清理检查单独归档于 `validation/alpha5/runtime`。
+
+这属于本机短测，不是原服务器 A/B 或原 3×300 秒正式 Low 验收。纯玩家场景收益有限；NPC 繁重场景才是本轮的主要收益。无效启动、驱动问题和未覆盖范围均保留说明，详见 [无效运行](validation/alpha5/INVALID_RUNS.md) 与 [兼容边界](COMPATIBILITY.md)。
+
+## alpha.4 历史记录
+
 当前交付为 **DSRO 0.2.0-alpha.4 预发布测试版**，默认 GPU。发布 jar SHA-256：`754f15bb0ded0b8e393f7a37ca6382ff4f49353d6f796211e50b19acfc037923`。按要求只运行新版一轮，没有旧版对照或重复长测；17 个客户端场景执行完毕，**本轮未全部通过，也未完成正式验收**。完整结果见 [单轮报告](validation/alpha4/SUMMARY.md) 和 [原始驱动结果](validation/alpha4/single-round-result.json)。
 
 | alpha.4 检查 | 实际结果 |

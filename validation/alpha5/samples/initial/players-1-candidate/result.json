@@ -1,0 +1,150 @@
+{
+  "scene": "players-1",
+  "version": "candidate",
+  "jarSha256": "49e2f6db28517232841e19bc7c420b974cac9b2b7867f8aca41d6b1485252360",
+  "driverSha256": "4ae7f69c7a5932041cfabdf10aec7f054d2d53f6f388918493320ab347e59974",
+  "metrics": {
+    "samples": 18613,
+    "capturedSeconds": 60.0252814,
+    "averageFps": 310.08600985917246,
+    "low1Fps": 116.28093523699113,
+    "low01Fps": 54.78338218184911,
+    "frameTimeMs": {
+      "p50": 2.8911,
+      "p95": 5.5003,
+      "p99": 6.8945,
+      "p999": 9.1975
+    },
+    "longFramesAboveMs": {
+      "16.7": 8,
+      "33.3": 2,
+      "50": 1
+    },
+    "maximumFrameMs": 52.1072,
+    "definition": "1000 / mean slowest ceil(samples * fraction) frame times in ms"
+  },
+  "row": {
+    "scene": "players-1",
+    "warmupSeconds": 15.0,
+    "samplingSeconds": 60.0,
+    "width": 1280,
+    "height": 720,
+    "renderDistance": 6,
+    "vsync": false,
+    "effectiveFpsLimit": 260,
+    "swapInterval": 0,
+    "stats": {
+      "totals": {
+        "ARMOR_CHECK_NANOS": 52871900,
+        "FRAME_CPU_NANOS": 36857116800,
+        "GPU_BATCH_CPU_NANOS": 5555460500,
+        "GPU_BONE_SUBMIT_NANOS": 581170900,
+        "GPU_DRAW_CALLS": 55842,
+        "GPU_DRAW_CPU_NANOS": 5337942000,
+        "GPU_PASS": 55842,
+        "GPU_POSE_CAPTURE_NANOS": 2694905500,
+        "GPU_VERTEX_COUNT": 506598624,
+        "HIT": 74456,
+        "PLAYER_GPU_DRAW_CALLS": 55842,
+        "PLAYER_GPU_PASS": 55842,
+        "PLAYER_GPU_POSE_CAPTURE_NANOS": 2699615200,
+        "POSE_UPLOAD": 55842,
+        "SKIN_CHECK_NANOS": 28334900
+      },
+      "peaks": {
+        "GPU_RESOURCE_BYTES": 2959488,
+        "TEXTURE_RESOURCE_BYTES": 5242880
+      },
+      "fallbacks": {},
+      "attribution": {
+        "entity": {
+          "GPU_PASS": 37228
+        },
+        "glow/entity": {
+          "GPU_PASS": 18614
+        }
+      },
+      "dirtyTraces": [],
+      "frameSamples": 18614,
+      "quantileSamples": 18614,
+      "frameTimeMs": {
+        "p50": 2.8907,
+        "p999": 9.3702,
+        "p99": 7.027,
+        "p95": 5.5209
+      }
+    },
+    "rawFrames": "players-1.csv",
+    "actors": [
+      {
+        "scale": 1.2375,
+        "type": "minecraft:player"
+      }
+    ],
+    "textureBytes": 5242880,
+    "meshBytes": 1489824,
+    "npcGeometryCalls": 0,
+    "npcGeometryNanos": 0,
+    "camera": [
+      0.0,
+      -52.0,
+      36.0,
+      180.0,
+      13.0
+    ],
+    "shaderPack": "ComplementaryUnbound_r5.9.zip"
+  },
+  "result": {
+    "pass": true,
+    "scenes": 1,
+    "stats": {
+      "totals": {
+        "ARMOR_CHECK_NANOS": 52871900,
+        "FRAME_CPU_NANOS": 36857116800,
+        "GPU_BATCH_CPU_NANOS": 5555460500,
+        "GPU_BONE_SUBMIT_NANOS": 581170900,
+        "GPU_DRAW_CALLS": 55842,
+        "GPU_DRAW_CPU_NANOS": 5337942000,
+        "GPU_PASS": 55842,
+        "GPU_POSE_CAPTURE_NANOS": 2694905500,
+        "GPU_VERTEX_COUNT": 506598624,
+        "HIT": 74456,
+        "PLAYER_GPU_DRAW_CALLS": 55842,
+        "PLAYER_GPU_PASS": 55842,
+        "PLAYER_GPU_POSE_CAPTURE_NANOS": 2699615200,
+        "POSE_UPLOAD": 55842,
+        "SKIN_CHECK_NANOS": 28334900
+      },
+      "peaks": {
+        "GPU_RESOURCE_BYTES": 2959488,
+        "TEXTURE_RESOURCE_BYTES": 5242880
+      },
+      "fallbacks": {},
+      "attribution": {
+        "entity": {
+          "GPU_PASS": 37228
+        },
+        "glow/entity": {
+          "GPU_PASS": 18614
+        }
+      },
+      "dirtyTraces": [],
+      "frameSamples": 18614,
+      "quantileSamples": 18614,
+      "frameTimeMs": {
+        "p50": 2.8907,
+        "p999": 9.3702,
+        "p99": 7.027,
+        "p95": 5.5209
+      }
+    },
+    "meshBytesAfterClear": 0,
+    "textureBytesAfterClear": 0,
+    "compatibility": "versions=[beloong=0.10.1, dragonsurvival=2.0.71, dsbr=0.2.0-alpha.5, geckolib=4.9.3, iris=1.8.14-beta.1+mc1.21.1, sodium=0.8.13+mc1.21.1]; texture=true; GPU=true; Iris=true; souls=true; NPC=Core 0.10.1 NPC interfaces verified"
+  },
+  "rawSha256": "95be01ecf9a8df006f43922d634e2519418a7419df15662fbd6cdaf40e2819c4",
+  "runLabel": "initial",
+  "rawFrames": "samples/initial/players-1-candidate/players-1.csv",
+  "screenshot": "samples/initial/players-1-candidate/players-1.png",
+  "localEvidenceId": "dsbr-validation-iris-20261007-011505"
+}

@@ -1,3 +1,17 @@
+# DSRO 0.2.0-alpha.5
+
+新增 **完全可选** 的 BeLoong Core 0.10.1 末/地黄龙 GPU 适配。只有 Dragon Survival 2.0.71 及其官方前置也能启动和使用优化；缺少 Core、版本或接口不符时只关闭 NPC 适配。生产字节码没有 Core 类型依赖，不打包 Core 内容。
+
+玩家、龙魂、NPC 的兼容相邻命令合批，每批姿态一次上传；标准 CPU 回退复用矩阵和向量。保持独立姿态、原动画和技能骨骼计算、渲染层、Iris 阶段与透明回退。GPU 默认开启，物品栏保持 CPU，旧配置键和值兼容。新增 `beloongNpcGpu`、`reuseCpuVertexScratch` 两项设置和分组统计。
+
+本机 i7-13700K / RTX 5070 Ti、Unbound r5.9、1280×720 的单轮短测（每景 15 秒预热 / 60 秒采样）中：4 末的平均 FPS / 1% Low 为 +104% / +85%，4 地黄龙为 +37% / +35%，混合 12 NPC 为 +202% / +156%。NPC 几何 CPU 耗时约下降 90%–92%；计时包含骨骼遍历和捕获提交，不包含动画求值。纯玩家收益有限，1 玩家首次退步后的唯一复核通过，原始结果仍保留。
+
+详细源码、兼容清单、完整 CSV、截图、功能和失败记录放在 [validation/alpha5](validation/alpha5)。最终 jar 与测量 jar 的渲染/动画/资源逐文件一致，仅增加启动签名保护；最终 jar 单独执行依赖与世界验证。同帧动画复用没有命中，撤出发布代码；FancyMenu/KubeJS 配置未修改。
+
+这是预发布短测结论，不能代表原服务器、原报告机器或 3×300 秒正式 Low 验收。未覆盖的视觉组合和重载警告见运行报告，不宣称整包所有问题已解决。GitHub Release **只附 `dsro-0.2.0-alpha.5.jar`**，同一客户端只保留一份 DSBR/DSRO；不需要服务器安装。
+
+---
+
 # DSRO 0.2.0-alpha.4
 
 更名为 **Dragon Survival Render Optimizer（DSRO）**，仓库名为 `DragonSurvivalRenderOptimizer`，新版附件为 `dsro-0.2.0-alpha.4.jar`。继续使用兼容 mod ID `dsbr`、原配置文件名与命令。更名只修改显示名称和日志文字，渲染代码逐文件核对相同。

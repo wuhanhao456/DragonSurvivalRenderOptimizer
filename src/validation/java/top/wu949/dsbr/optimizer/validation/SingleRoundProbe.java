@@ -58,6 +58,10 @@ public final class SingleRoundProbe {
     private static long deadline;
     private static CompletableFuture<Void> setup;
     private static ArmorStand camera;
+    private static Set<String> expectedSoulActors=Set.of();
+    public static boolean fixedCamera() {
+        return Boolean.getBoolean("beloongrender.singleRound") && !done && camera != null && Minecraft.getInstance().getCameraEntity() == camera;
+    }
     private static CompletableFuture<Void> reload;
     private static Path directory;
     @SubscribeEvent public static void tick(ClientTickEvent.Post event) {
@@ -70,7 +74,7 @@ public final class SingleRoundProbe {
             if (!creating) {
                 if (!(mc.screen instanceof TitleScreen)) return;
                 if (OptimizerConfig.MODE.get() != OptimizerConfig.Mode.GPU) throw new IllegalStateException("Fresh config is not GPU");
-                if (OptimizerConfig.SPEC.getValues().valueMap().size() != 6) throw new IllegalStateException("Unexpected configuration fields");
+                if (!Set.of(6,8,9).contains(OptimizerConfig.SPEC.getValues().valueMap().size())) throw new IllegalStateException("Unexpected configuration fields");
                 GLFW.glfwHideWindow(mc.getWindow().getWindow()); mc.options.pauseOnLostFocus = false;
                 mc.options.enableVsync().set(false); mc.options.framerateLimit().set(260); mc.options.renderDistance().set(6);
                 if (Files.exists(directory.resolve("saves/single-round"))) throw new IllegalStateException("Existing world refused");
@@ -101,6 +105,7 @@ public final class SingleRoundProbe {
                 OptimizerConfig.MESH_MIB.set(128); OptimizerConfig.SPEC.save(); config.put("saveVerified",true); rows.add(Map.of("configuration",config));
                 mc.setScreen(null); shader(mc,false); camera = new ArmorStand(mc.level,0,-55,20); camera.moveTo(0,-55,20,180,12); camera.setOldPosAndRot();
                 mc.setCameraEntity(camera); mc.options.setCameraType(CameraType.FIRST_PERSON); mc.options.hideGui = true;
+                if(Boolean.getBoolean("beloongrender.singleRoundActionsOnly")){shader(mc,true);stage=3;setup=null;model=0;action=0;ticks=0;return;}
                 souls(mc,COUNTS[0],0,"idle",false); beginWarm(); stage = 2; return;
             }
             if (stage == 2) {
@@ -125,7 +130,15 @@ public final class SingleRoundProbe {
                 var h=DragonStateProvider.getData(mc.player);
                 if (!h.speciesId().getPath().equals(MODELS[model][0])) return;
                 souls(mc,4,model,ACTIONS[action],true);
-                AnimationSamples.begin(MODELS[model][0]+"/"+ACTIONS[action]); stage=4; ticks=0; return;
+                if(Boolean.getBoolean("beloongrender.singleRoundActionsOnly")&&model==0&&action==0)mc.levelRenderer.allChanged();
+                stage=11;ticks=0;return;
+            }
+            if(stage==11){
+                if(ticks<20)return;
+                var current=new HashSet<String>();
+                for(var pos:positions){var soul=(DragonSoulBlockEntity)mc.level.getBlockEntity(pos);if(soul==null||soul.fakePlayerIndex<0){if(ticks<200)return;var debug=new java.util.ArrayList<Map<String,Object>>();for(var p:positions){var b=mc.level.getBlockEntity(p);debug.add(Map.of("position",p.toString(),"state",mc.level.getBlockState(p).toString(),"entity",b==null?"null":b.getClass().getName(),"fakeIndex",b instanceof DragonSoulBlockEntity s?s.fakePlayerIndex:-2,"validDragonData",b instanceof DragonSoulBlockEntity s&&s.getHandler()!=null&&s.getHandler().isDragon()));}Files.writeString(directory.resolve("single-round-fixture-failure.json"),new com.google.gson.GsonBuilder().setPrettyPrinting().create().toJson(debug));throw new IllegalStateException("Current soul did not enter render list within 200 ticks");}current.add("soul-"+soul.fakePlayerIndex);}
+                expectedSoulActors=Set.copyOf(current);check(current.size()==4,"Four current soul instances required");
+                AnimationSamples.begin(MODELS[model][0]+"/"+ACTIONS[action]);stage=4;ticks=0;return;
             }
             if (stage == 4) {
                 movement(mc,action);
@@ -135,16 +148,17 @@ public final class SingleRoundProbe {
                 var actors=new HashMap<String,List<Map<String,Object>>>();
                 for(var sample:samples) actors.computeIfAbsent((String)sample.get("actor"),k->new ArrayList<>()).add(sample);
                 for(var entry:actors.entrySet()) {
-                    // An entity removed between ticks can contribute one final render sample.
-                    // Such a transition cannot establish either continuity or a frozen animation.
-                    if (entry.getKey().startsWith("soul-") && entry.getValue().size() < 2) continue;
+                    // Async chunk render lists may still include a replaced block entity for several
+                    // frames. Validate identities from current world blocks, never a sample-count cutoff.
+                    if (entry.getKey().startsWith("soul-") && !expectedSoulActors.contains(entry.getKey())) continue;
                     check(entry.getValue().stream().map(r->r.get("tick")).distinct().count()>1,name+": frozen time for "+entry.getKey());
                     if(action>0) check(entry.getValue().stream().map(r->r.get("poseHash")).distinct().count()>1,name+": frozen pose for "+entry.getKey());
                     if(entry.getKey().startsWith("soul-")) check(entry.getValue().stream().anyMatch(r -> r.get("controllers").toString().contains("animation="+ACTIONS[action])),name+": incorrect soul animation for "+entry.getKey());
                 }
                 check(actors.keySet().stream().anyMatch(k->k.startsWith("soul-")),name+": no soul animation samples");
                 check(actors.containsKey("player"),name+": player outside render scene");
-                rows.add(Map.of("scenario",name,"samples",samples)); save();
+                check(actors.keySet().containsAll(expectedSoulActors),name+": current soul not sampled");
+                rows.add(Map.of("scenario",name,"samples",samples,"expectedSoulActors",expectedSoulActors,"settleTicks",20)); save();
                 if (++action<ACTIONS.length) { stage=3; ticks=0; return; }
                 action=0; if(++model<MODELS.length) { setup=null; stage=3; ticks=0; return; }
                 model=0; setup=null; stage=9; ticks=0; mc.setCameraEntity(mc.player); mc.options.setCameraType(CameraType.THIRD_PERSON_FRONT); mc.options.hideGui=false; return;

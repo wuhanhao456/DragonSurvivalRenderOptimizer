@@ -1,0 +1,29 @@
+{
+  "totals": {
+    "ARMOR_CHECK_NANOS": 2413900,
+    "ARMOR_GENERATE_NANOS": 1732200,
+    "COPY": 1,
+    "CPU_VERTEX_SUBMIT_NANOS": 103604800,
+    "FRAME_CPU_NANOS": 423684200,
+    "GENERATED": 1,
+    "HIT": 708,
+    "PLAYER_CPU_BONE": 144432,
+    "PLAYER_CPU_VERTEX_SUBMIT_NANOS": 103604800,
+    "REQUEST": 2,
+    "SKIN_CHECK_NANOS": 840800
+  },
+  "peaks": {
+    "TEXTURE_RESOURCE_BYTES": 10485760
+  },
+  "fallbacks": {},
+  "attribution": {},
+  "dirtyTraces": [],
+  "frameSamples": 177,
+  "quantileSamples": 177,
+  "frameTimeMs": {
+    "p50": 8.3538,
+    "p999": 14.9266,
+    "p99": 13.5967,
+    "p95": 12.8465
+  }
+}

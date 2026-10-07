@@ -1,0 +1,50 @@
+{
+  "totals": {
+    "ARMOR_CHECK_NANOS": 15184200,
+    "ARMOR_GENERATE_NANOS": 768800,
+    "COPY": 6,
+    "CPU_VERTEX_SUBMIT_NANOS": 68205500,
+    "FRAME_CPU_NANOS": 3524560900,
+    "GENERATED": 4,
+    "GPU_BATCH_CPU_NANOS": 535696900,
+    "GPU_BONE_SUBMIT_NANOS": 99150700,
+    "GPU_DRAW_CALLS": 5523,
+    "GPU_DRAW_CPU_NANOS": 489681900,
+    "GPU_PASS": 5523,
+    "GPU_POSE_CAPTURE_NANOS": 289384100,
+    "GPU_VERTEX_COUNT": 50104656,
+    "HIT": 7893,
+    "PLAYER_CPU_BONE": 96288,
+    "PLAYER_CPU_VERTEX_SUBMIT_NANOS": 68205500,
+    "PLAYER_GPU_DRAW_CALLS": 5523,
+    "PLAYER_GPU_PASS": 5523,
+    "PLAYER_GPU_POSE_CAPTURE_NANOS": 290019900,
+    "POSE_UPLOAD": 5523,
+    "RELEASE": 11,
+    "REQUEST": 33,
+    "SKIN_CHECK_NANOS": 8448800,
+    "SKIN_GENERATE_NANOS": 1991000
+  },
+  "peaks": {
+    "GPU_RESOURCE_BYTES": 2071680,
+    "TEXTURE_RESOURCE_BYTES": 10485760
+  },
+  "fallbacks": {},
+  "attribution": {
+    "entity": {
+      "GPU_PASS": 3682
+    },
+    "glow/entity": {
+      "GPU_PASS": 1841
+    }
+  },
+  "dirtyTraces": [],
+  "frameSamples": 2020,
+  "quantileSamples": 2020,
+  "frameTimeMs": {
+    "p50": 8.3528,
+    "p999": 38.276,
+    "p99": 13.5125,
+    "p95": 12.5653
+  }
+}

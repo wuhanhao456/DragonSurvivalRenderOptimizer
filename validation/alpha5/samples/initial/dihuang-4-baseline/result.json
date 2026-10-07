@@ -1,0 +1,154 @@
+{
+  "scene": "dihuang-4",
+  "version": "baseline",
+  "jarSha256": "754f15bb0ded0b8e393f7a37ca6382ff4f49353d6f796211e50b19acfc037923",
+  "driverSha256": "4ae7f69c7a5932041cfabdf10aec7f054d2d53f6f388918493320ab347e59974",
+  "metrics": {
+    "samples": 11382,
+    "capturedSeconds": 60.0273165,
+    "averageFps": 189.61367363473593,
+    "low1Fps": 76.3980542353808,
+    "low01Fps": 39.241526691595936,
+    "frameTimeMs": {
+      "p50": 4.9546,
+      "p95": 8.1183,
+      "p99": 10.2213,
+      "p999": 18.1006
+    },
+    "longFramesAboveMs": {
+      "16.7": 13,
+      "33.3": 0,
+      "50": 0
+    },
+    "maximumFrameMs": 31.9051,
+    "definition": "1000 / mean slowest ceil(samples * fraction) frame times in ms"
+  },
+  "row": {
+    "scene": "dihuang-4",
+    "warmupSeconds": 15.0,
+    "samplingSeconds": 60.0,
+    "width": 1280,
+    "height": 720,
+    "renderDistance": 6,
+    "vsync": false,
+    "effectiveFpsLimit": 260,
+    "swapInterval": 0,
+    "stats": {
+      "totals": {
+        "ARMOR_CHECK_NANOS": 53695600,
+        "FRAME_CPU_NANOS": 44503189700,
+        "GPU_BATCH_CPU_NANOS": 4095544900,
+        "GPU_BONE_SUBMIT_NANOS": 396402600,
+        "GPU_DRAW_CALLS": 34149,
+        "GPU_DRAW_CPU_NANOS": 3906086400,
+        "GPU_PASS": 34149,
+        "GPU_POSE_CAPTURE_NANOS": 1638679600,
+        "GPU_VERTEX_COUNT": 309799728,
+        "HIT": 45532,
+        "SKIN_CHECK_NANOS": 35927200
+      },
+      "peaks": {
+        "GPU_RESOURCE_BYTES": 2920320,
+        "TEXTURE_RESOURCE_BYTES": 5242880
+      },
+      "fallbacks": {},
+      "attribution": {
+        "entity": {
+          "GPU_PASS": 22766
+        },
+        "glow/entity": {
+          "GPU_PASS": 11383
+        }
+      },
+      "dirtyTraces": [],
+      "frameSamples": 11383,
+      "quantileSamples": 11383,
+      "frameTimeMs": {
+        "p95": 8.1626,
+        "p50": 4.938,
+        "p999": 22.0297,
+        "p99": 10.1883
+      }
+    },
+    "rawFrames": "dihuang-4.csv",
+    "actors": [
+      {
+        "type": "beloong:dihuang_loong",
+        "scale": 1.0
+      },
+      {
+        "type": "beloong:dihuang_loong",
+        "scale": 1.0
+      },
+      {
+        "type": "beloong:dihuang_loong",
+        "scale": 1.0
+      },
+      {
+        "type": "beloong:dihuang_loong",
+        "scale": 1.0
+      }
+    ],
+    "textureBytes": 5242880,
+    "meshBytes": 1450656,
+    "npcGeometryCalls": 45532,
+    "npcGeometryNanos": 13066672100,
+    "camera": [
+      0.0,
+      -52.0,
+      36.0,
+      180.0,
+      13.0
+    ],
+    "shaderPack": "ComplementaryUnbound_r5.9.zip"
+  },
+  "result": {
+    "pass": true,
+    "scenes": 1,
+    "stats": {
+      "totals": {
+        "ARMOR_CHECK_NANOS": 53695600,
+        "FRAME_CPU_NANOS": 44503189700,
+        "GPU_BATCH_CPU_NANOS": 4095544900,
+        "GPU_BONE_SUBMIT_NANOS": 396402600,
+        "GPU_DRAW_CALLS": 34149,
+        "GPU_DRAW_CPU_NANOS": 3906086400,
+        "GPU_PASS": 34149,
+        "GPU_POSE_CAPTURE_NANOS": 1638679600,
+        "GPU_VERTEX_COUNT": 309799728,
+        "HIT": 45532,
+        "SKIN_CHECK_NANOS": 35927200
+      },
+      "peaks": {
+        "GPU_RESOURCE_BYTES": 2920320,
+        "TEXTURE_RESOURCE_BYTES": 5242880
+      },
+      "fallbacks": {},
+      "attribution": {
+        "entity": {
+          "GPU_PASS": 22766
+        },
+        "glow/entity": {
+          "GPU_PASS": 11383
+        }
+      },
+      "dirtyTraces": [],
+      "frameSamples": 11383,
+      "quantileSamples": 11383,
+      "frameTimeMs": {
+        "p95": 8.1626,
+        "p50": 4.938,
+        "p999": 22.0297,
+        "p99": 10.1883
+      }
+    },
+    "meshBytesAfterClear": 0,
+    "textureBytesAfterClear": 0,
+    "compatibility": "versions=[dragonsurvival=2.0.71, dsbr=0.2.0-alpha.4, geckolib=4.9.3, iris=1.8.14-beta.1+mc1.21.1, sodium=0.8.13+mc1.21.1]; texture=true; GPU=true; Iris=true; souls=true"
+  },
+  "rawSha256": "c831a2fdb789c33ae048b4df556610177ee631403f941c649363d228e62a1710",
+  "runLabel": "initial",
+  "rawFrames": "samples/initial/dihuang-4-baseline/dihuang-4.csv",
+  "screenshot": "samples/initial/dihuang-4-baseline/dihuang-4.png",
+  "localEvidenceId": "dsbr-validation-iris-20261007-015726"
+}

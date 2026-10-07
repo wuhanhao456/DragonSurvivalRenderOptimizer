@@ -34,7 +34,7 @@ public final class GlIntegrationCheck {
             int error = GL11.glGetError(); if (error != GL11.GL_NO_ERROR) throw new AssertionError("GL error " + error);
             results.put("glError", error);
         } finally { GLFW.glfwDestroyWindow(window); GLFW.glfwTerminate(); }
-        var directory = Path.of("validation/alpha4"); Files.createDirectories(directory);
+        var directory = Path.of(System.getProperty("dsbr.glResults", "validation/alpha5")); Files.createDirectories(directory);
         Files.writeString(directory.resolve("gl-results.json"), new com.google.gson.GsonBuilder().setPrettyPrinting().create().toJson(results));
         System.out.println(results);
     }
@@ -128,7 +128,11 @@ public final class GlIntegrationCheck {
                     independent.translate(0, 5, 2); snapshots.get(i).bone(1, independent.last(), 0x80112233 + i, 0x700080, 0x55);
                 }
                 GL15.glBindBuffer(GL43.GL_SHADER_STORAGE_BUFFER, poses); GL15.glBufferData(GL43.GL_SHADER_STORAGE_BUFFER, (long)snapshot.data.capacity() * snapshots.size(), GL15.GL_STREAM_DRAW);
-                for (int i = 0; i < snapshots.size(); i++) GL15.glBufferSubData(GL43.GL_SHADER_STORAGE_BUFFER, (long)i * snapshot.data.capacity(), snapshots.get(i).data);
+                try (var staging = new PoseStaging()) {
+                    var packed = staging.prepare(snapshot.data.capacity() * snapshots.size());
+                    for (int i = 0; i < snapshots.size(); i++) PoseStaging.copy(packed, i * snapshot.data.capacity(), snapshots.get(i).data);
+                    GL15.glBufferData(GL43.GL_SHADER_STORAGE_BUFFER, packed, GL15.GL_STREAM_DRAW);
+                }
                 for (var format : List.of(DefaultVertexFormat.NEW_ENTITY, extended)) for (boolean recalc : List.of(false, true)) {
                     var attributes = new IrisBridge.Attributes(format, 65530, 124, 25000, recalc, false);
                     int size = mesh.quads.size() * 4 * format.getVertexSize();

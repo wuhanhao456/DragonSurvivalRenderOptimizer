@@ -1,0 +1,85 @@
+[
+  {
+    "scene": "mo-4",
+    "warmupSeconds": 5.0,
+    "samplingSeconds": 5.0,
+    "width": 1280,
+    "height": 720,
+    "renderDistance": 6,
+    "vsync": false,
+    "effectiveFpsLimit": 260,
+    "swapInterval": 0,
+    "stats": {
+      "totals": {
+        "ARMOR_CHECK_NANOS": 6623900,
+        "FRAME_CPU_NANOS": 4075385800,
+        "GPU_BATCH_CPU_NANOS": 198995000,
+        "GPU_BONE_SUBMIT_NANOS": 21913000,
+        "GPU_DRAW_CALLS": 1686,
+        "GPU_DRAW_CPU_NANOS": 188466300,
+        "GPU_PASS": 1686,
+        "GPU_POSE_CAPTURE_NANOS": 92982300,
+        "GPU_VERTEX_COUNT": 15295392,
+        "HIT": 2248,
+        "PLAYER_GPU_DRAW_CALLS": 1686,
+        "PLAYER_GPU_PASS": 1686,
+        "PLAYER_GPU_POSE_CAPTURE_NANOS": 93218800,
+        "POSE_UPLOAD": 1686,
+        "SKIN_CHECK_NANOS": 1539100
+      },
+      "peaks": {
+        "GPU_RESOURCE_BYTES": 2959488,
+        "TEXTURE_RESOURCE_BYTES": 5242880
+      },
+      "fallbacks": {},
+      "attribution": {
+        "entity": {
+          "GPU_PASS": 1124
+        },
+        "glow/entity": {
+          "GPU_PASS": 562
+        }
+      },
+      "dirtyTraces": [],
+      "frameSamples": 562,
+      "quantileSamples": 562,
+      "frameTimeMs": {
+        "p999": 198.6239,
+        "p50": 8.265,
+        "p95": 13.1924,
+        "p99": 18.586
+      }
+    },
+    "rawFrames": "mo-4.csv",
+    "actors": [
+      {
+        "type": "beloong:mo",
+        "scale": 1.0
+      },
+      {
+        "type": "beloong:mo",
+        "scale": 1.0
+      },
+      {
+        "type": "beloong:mo",
+        "scale": 1.0
+      },
+      {
+        "type": "beloong:mo",
+        "scale": 1.0
+      }
+    ],
+    "textureBytes": 5242880,
+    "meshBytes": 1489824,
+    "npcGeometryCalls": 2248,
+    "npcGeometryNanos": 1659457900,
+    "camera": [
+      0.0,
+      -52.0,
+      36.0,
+      180.0,
+      13.0
+    ],
+    "shaderPack": "ComplementaryUnbound_r5.9.zip"
+  }
+]

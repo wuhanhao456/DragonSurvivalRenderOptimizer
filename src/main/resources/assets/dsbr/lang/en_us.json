@@ -12,6 +12,10 @@
   "dsbr.configuration.traceDirtyFlags.tooltip": "Save up to 32 invalidation call stacks. Enable only for troubleshooting.",
   "dsbr.configuration.detailedDiagnostics": "Detailed diagnostics",
   "dsbr.configuration.detailedDiagnostics.tooltip": "Record individual players and textures. Enable only for troubleshooting.",
+  "dsbr.configuration.beloongNpcGpu": "Optional BeLoong NPC GPU rendering",
+  "dsbr.configuration.beloongNpcGpu.tooltip": "GPU mode: accelerate verified Core 0.10.1 NPC geometry. Core is optional; unknown versions use their original renderer.",
+  "dsbr.configuration.reuseCpuVertexScratch": "Reuse CPU geometry scratch",
+  "dsbr.configuration.reuseCpuVertexScratch.tooltip": "GPU mode: reuse temporary matrices and vectors on audited fallback paths, including inventory previews.",
   "dsbr.configuration.mode.GPU": "GPU + textures",
   "dsbr.configuration.mode.TEXTURES": "Textures only",
   "dsbr.configuration.mode.VANILLA": "Original renderer"

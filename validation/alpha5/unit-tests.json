@@ -1,0 +1,144 @@
+{
+  "tests": 23,
+  "failures": 0,
+  "cases": [
+    {
+      "class": "top.wu949.dsbr.optimizer.BatchLimitsTest",
+      "name": "memoryAndGlLimitsSplitExpandedInstances()",
+      "seconds": 0.012,
+      "pass": true
+    },
+    {
+      "class": "top.wu949.dsbr.optimizer.BatchLimitsTest",
+      "name": "invalidOrOverflowingGeometryCannotBeDispatched()",
+      "seconds": 0.001,
+      "pass": true
+    },
+    {
+      "class": "top.wu949.dsbr.optimizer.CachePolicyTest",
+      "name": "PoseSnapshotsDoNotChangeWhenNextPlayerMutatesSharedStack()",
+      "seconds": 0.559,
+      "pass": true
+    },
+    {
+      "class": "top.wu949.dsbr.optimizer.CachePolicyTest",
+      "name": "ContentKeysSurviveEquivalentSyncAndChangeForAppearance()",
+      "seconds": 0.026,
+      "pass": true
+    },
+    {
+      "class": "top.wu949.dsbr.optimizer.CachePolicyTest",
+      "name": "lruRespectsPendingBatchLeasesAndReleasesExactlyOnce()",
+      "seconds": 0.003,
+      "pass": true
+    },
+    {
+      "class": "top.wu949.dsbr.optimizer.CachePolicyTest",
+      "name": "retentionPreservesUnseenTexturesAndExpiresAfterThirtySeconds()",
+      "seconds": 0.0,
+      "pass": true
+    },
+    {
+      "class": "top.wu949.dsbr.optimizer.ContractTest",
+      "name": "pinnedDsJarHasAllTextureInjectionContractsIncludingFramebufferOwner()",
+      "seconds": 0.022,
+      "pass": true
+    },
+    {
+      "class": "top.wu949.dsbr.optimizer.ContractTest",
+      "name": "modifiedSignatureFailsClosed()",
+      "seconds": 0.001,
+      "pass": true
+    },
+    {
+      "class": "top.wu949.dsbr.optimizer.CpuGeometryTest",
+      "name": "allConsumerValuesMatchOriginalForPivotRotationNegativeScaleAndFlatCubes()",
+      "seconds": 0.083,
+      "pass": true
+    },
+    {
+      "class": "top.wu949.dsbr.optimizer.CpuVertexScratchTest",
+      "name": "reentrantConsumersCannotOverwriteCallerAndExceptionReleases()",
+      "seconds": 0.002,
+      "pass": true
+    },
+    {
+      "class": "top.wu949.dsbr.optimizer.CpuVertexScratchTest",
+      "name": "deepRecursionIsTrimmedOnlyAfterAllOwnersReturn()",
+      "seconds": 0.0,
+      "pass": true
+    },
+    {
+      "class": "top.wu949.dsbr.optimizer.DeferredBatchesTest",
+      "name": "equivalentIrisWrappersFlushEveryPoseInSubmissionOrder()",
+      "seconds": 0.004,
+      "pass": true
+    },
+    {
+      "class": "top.wu949.dsbr.optimizer.DeferredBatchesTest",
+      "name": "equalBufferOwnersKeepSeparateShaderStages()",
+      "seconds": 0.0,
+      "pass": true
+    },
+    {
+      "class": "top.wu949.dsbr.optimizer.DiagnosticsTest",
+      "name": "boundedQuantilesKeepTotalFrameDenominator()",
+      "seconds": 0.011,
+      "pass": true
+    },
+    {
+      "class": "top.wu949.dsbr.optimizer.DiagnosticsTest",
+      "name": "snapshotRetainsOwnerValuesAcrossLaterMutation()",
+      "seconds": 0.001,
+      "pass": true
+    },
+    {
+      "class": "top.wu949.dsbr.optimizer.FrameWindowTest",
+      "name": "lowUsesTailMeanRatherThanPercentile()",
+      "seconds": 0.001,
+      "pass": true
+    },
+    {
+      "class": "top.wu949.dsbr.optimizer.FrameWindowTest",
+      "name": "overflowNeverReportsLow()",
+      "seconds": 0.0,
+      "pass": true
+    },
+    {
+      "class": "top.wu949.dsbr.optimizer.FrameWindowTest",
+      "name": "captureExcludesIntervalBeforeItsFirstBoundary()",
+      "seconds": 0.004,
+      "pass": true
+    },
+    {
+      "class": "top.wu949.dsbr.optimizer.GeometryContractTest",
+      "name": "pinnedLibraryHasBothCpuHookSignaturesAndMissingEitherFailsClosed()",
+      "seconds": 0.002,
+      "pass": true
+    },
+    {
+      "class": "top.wu949.dsbr.optimizer.OptionalNpcAdapterTest",
+      "name": "missingOrAlteredResourcesDisableOnlyNpcAdapter()",
+      "seconds": 0.002,
+      "pass": true
+    },
+    {
+      "class": "top.wu949.dsbr.optimizer.OptionalNpcAdapterTest",
+      "name": "absentOrMismatchedCoreNeverAttemptsClassDiscovery()",
+      "seconds": 0.0,
+      "pass": true
+    },
+    {
+      "class": "top.wu949.dsbr.optimizer.PosePoolTest",
+      "name": "commandsHaveIndependentLeasesAndHiddenBonesAreReset()",
+      "seconds": 0.001,
+      "pass": true
+    },
+    {
+      "class": "top.wu949.dsbr.optimizer.PoseStagingTest",
+      "name": "commandsRetainIndependentDataAndCursorsAcrossPackedUpload()",
+      "seconds": 0.0,
+      "pass": true
+    }
+  ]
+}

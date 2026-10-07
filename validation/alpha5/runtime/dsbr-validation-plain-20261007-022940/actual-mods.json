@@ -1,0 +1,22 @@
+[
+  {
+    "file": "[龙之生存] DragonSurvival-1.21.1-v2.0.71-25.09.2026-all.jar",
+    "bytes": 13739883,
+    "sha256": "22406fdf0dd16063826f79a737cc6371c7faf6e07cb8369b379c61032d4cc190"
+  },
+  {
+    "file": "optimizer.jar",
+    "bytes": 150417,
+    "sha256": "db1f8a395b2f8228420c0c0ecf78747de5731702d695973aefe7278c35763c09"
+  },
+  {
+    "file": "validation.jar",
+    "bytes": 90389,
+    "sha256": "326ff475daee3c02036d9104d480bf08b6b39f9fa5bf4b16ae1778d93ebfa6a5"
+  },
+  {
+    "file": "【前置】geckolib-neoforge-1.21.1-4.9.3.jar",
+    "bytes": 634531,
+    "sha256": "20a1995e4074f387ff549e2c57ea79dd7d41ee83c6afb9dd6a6e840e592d1c47"
+  }
+]

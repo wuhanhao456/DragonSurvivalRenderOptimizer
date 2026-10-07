@@ -26,6 +26,8 @@ public final class OptimizerMixinPlugin implements IMixinConfigPlugin {
         texturesCompatible &= textureContracts();
         soulCompatible = texturesCompatible && contract(DS + "client.render.blocks.DragonSoulRenderer", "render", "(Lby/dragonsurvivalteam/dragonsurvival/server/tileentity/DragonSoulBlockEntity;FLcom/mojang/blaze3d/vertex/PoseStack;Lnet/minecraft/client/renderer/MultiBufferSource;II)V");
         gpuCompatible = texturesCompatible && contract("software.bernie.geckolib.renderer.GeoRenderer", "renderCubesOfBone", "(Lcom/mojang/blaze3d/vertex/PoseStack;Lsoftware/bernie/geckolib/cache/object/GeoBone;Lcom/mojang/blaze3d/vertex/VertexConsumer;III)V");
+        gpuCompatible &= contract("software.bernie.geckolib.renderer.GeoRenderer", "renderCube", "(Lcom/mojang/blaze3d/vertex/PoseStack;Lsoftware/bernie/geckolib/cache/object/GeoCube;Lcom/mojang/blaze3d/vertex/VertexConsumer;III)V")
+                && contract("software.bernie.geckolib.renderer.GeoRenderer", "createVerticesOfQuad", "(Lsoftware/bernie/geckolib/cache/object/GeoQuad;Lorg/joml/Matrix4f;Lorg/joml/Vector3f;Lcom/mojang/blaze3d/vertex/VertexConsumer;III)V");
         gpuCompatible &= contract("software.bernie.geckolib.renderer.GeoRenderer", "actuallyRender", "(Lcom/mojang/blaze3d/vertex/PoseStack;Lsoftware/bernie/geckolib/animatable/GeoAnimatable;Lsoftware/bernie/geckolib/cache/object/BakedGeoModel;Lnet/minecraft/client/renderer/RenderType;Lnet/minecraft/client/renderer/MultiBufferSource;Lcom/mojang/blaze3d/vertex/VertexConsumer;ZFIII)V")
                 && contract("net.minecraft.client.renderer.MultiBufferSource$BufferSource", "getBuffer", "(Lnet/minecraft/client/renderer/RenderType;)Lcom/mojang/blaze3d/vertex/VertexConsumer;")
                 && contract("net.minecraft.client.renderer.MultiBufferSource$BufferSource", "endBatch", "(Lnet/minecraft/client/renderer/RenderType;Lcom/mojang/blaze3d/vertex/BufferBuilder;)V")
@@ -40,8 +42,10 @@ public final class OptimizerMixinPlugin implements IMixinConfigPlugin {
                     && contract("net.irisshaders.batchedentityrendering.impl.FullyBufferedMultiBufferSource", "endBatchWithType", "(Lnet/irisshaders/batchedentityrendering/impl/TransparencyType;)V");
             gpuCompatible &= irisCompatible;
         }
-        status = "versions=" + versions.entrySet().stream().filter(e -> Set.of("dragonsurvival", "geckolib", "iris", "sodium", "dsbr").contains(e.getKey())).toList()
+        OptionalNpcAdapter.discover(versions.get("beloong"), name -> MixinService.getService().getResourceAsStream(name));
+        status = "versions=" + versions.entrySet().stream().filter(e -> Set.of("dragonsurvival", "geckolib", "iris", "sodium", "dsbr", "beloong").contains(e.getKey())).toList()
                 + "; texture=" + texturesCompatible + "; GPU=" + gpuCompatible + "; Iris=" + irisCompatible + "; souls=" + soulCompatible
+                + "; NPC=" + OptionalNpcAdapter.status
                 + (versions.containsKey("beloong_render_optimizer") ? "; duplicate standalone optimizer detected: integrated patches disabled" : "");
         org.slf4j.LoggerFactory.getLogger("RenderOptimizer").info(status);
     }

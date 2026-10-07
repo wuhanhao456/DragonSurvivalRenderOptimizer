@@ -1,0 +1,12 @@
+[
+  {
+    "file": "optimizer.jar",
+    "bytes": 150417,
+    "sha256": "db1f8a395b2f8228420c0c0ecf78747de5731702d695973aefe7278c35763c09"
+  },
+  {
+    "file": "validation.jar",
+    "bytes": 3168,
+    "sha256": "e6ceed864c0ee8bc940a3d72187143aa1f9fc8c47bcce4696136c745e481a30d"
+  }
+]

@@ -1,0 +1,6 @@
+{
+  "scenario": "DS and Gecko absent; startup and cleanup remain usable",
+  "configuredMode": "GPU",
+  "pass": true,
+  "compatibility": "versions\u003d[dsbr\u003d0.2.0-alpha.5]; texture\u003dfalse; GPU\u003dfalse; Iris\u003dfalse; souls\u003dfalse; NPC\u003dabsent (DS remains enabled)"
+}

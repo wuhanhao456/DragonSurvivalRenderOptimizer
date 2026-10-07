@@ -1,5 +1,7 @@
 # 正式性能验收流程
 
+alpha.5 的当前范围是用户选择的配对短测，见 [validation/alpha5](validation/alpha5)：15 秒预热、60 秒全帧采样、每景一次，只有触发保护线的场景再复核一次。它不补跑或冒充下述 alpha.3 三轮长测。`tools/run_alpha5_short.py` 接收显式的基线/候选 jar、Java/runtime、冻结整包、测试世界与构建路径；同时冻结 `validationJar`，场景为 1/4/12 玩家、4 末、4 地黄龙、混合 12 NPC、17 龙魂加 4 末。主比较用 Complementary Unbound r5.9，测试驱动修正相机后两版本共用同一驱动。`tools/collect_alpha5.py` 核对 jar/驱动/完整 CSV 摘要并归档相对路径证据，不上传启动参数或账户。
+
 alpha.3／alpha.2 的 Low 帧比较方法见 [LOW_FPS.md](LOW_FPS.md)。当前已保存 9 组 60 秒预热／300 秒完整采样；用户要求停止剩余长测，完整三轮矩阵未完成，结果见 [PERFORMANCE.md](PERFORMANCE.md)。功能测试 JSON 不能代替性能结果。
 
 以下保留游戏内三模式基准和 alpha.2 的历史复现流程；它与 alpha.3 的版本间配对比较不同。

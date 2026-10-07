@@ -1,0 +1,84 @@
+{
+  "pass": false,
+  "failures": [
+    "Current soul missing",
+    "Current soul missing",
+    "Current soul missing",
+    "Current soul missing",
+    "Four current soul instances required",
+    "animation-0-idle: no soul animation samples"
+  ],
+  "repetitions": 1,
+  "candidateOnly": true,
+  "textureBytesAfterClear": 0,
+  "meshBytesAfterClear": 0,
+  "stats": {
+    "totals": {
+      "ARMOR_CHECK_NANOS": 17876000,
+      "ARMOR_GENERATE_NANOS": 4129900,
+      "COPY": 12,
+      "CPU_VERTEX_SUBMIT_NANOS": 551790100,
+      "FRAME_CPU_NANOS": 12466387500,
+      "GENERATED": 12,
+      "GPU_BATCH_CPU_NANOS": 1452249200,
+      "GPU_BONE_SUBMIT_NANOS": 1303232000,
+      "GPU_DRAW_CALLS": 11331,
+      "GPU_DRAW_CPU_NANOS": 1384119100,
+      "GPU_PASS": 22662,
+      "GPU_POSE_CAPTURE_NANOS": 2641075000,
+      "GPU_VERTEX_COUNT": 514155456,
+      "GUI_CPU_PASS": 474,
+      "HIT": 15929,
+      "PLAYER_CPU_BONE": 213648,
+      "PLAYER_CPU_VERTEX_SUBMIT_NANOS": 342707700,
+      "PLAYER_GPU_DRAW_CALLS": 7554,
+      "PLAYER_GPU_PASS": 7554,
+      "PLAYER_GPU_POSE_CAPTURE_NANOS": 598043300,
+      "POSE_UPLOAD": 11331,
+      "READBACK": 4,
+      "RELEASE": 13,
+      "SKIN_CHECK_NANOS": 10027200,
+      "SKIN_GENERATE_NANOS": 5248900,
+      "SOUL_CPU_BONE": 52032,
+      "SOUL_CPU_VERTEX_SUBMIT_NANOS": 209082400,
+      "SOUL_GPU_DRAW_CALLS": 3777,
+      "SOUL_GPU_PASS": 15108,
+      "SOUL_GPU_POSE_CAPTURE_NANOS": 2044623500,
+      "SOUL_RENDER": 5100,
+      "SOUL_RENDER_CPU_NANOS": 3199905300
+    },
+    "peaks": {
+      "GPU_RESOURCE_BYTES": 39007616,
+      "TEXTURE_RESOURCE_BYTES": 7340032
+    },
+    "fallbacks": {},
+    "attribution": {
+      "shadow": {
+        "GPU_PASS": 2518
+      },
+      "glow/shadow": {
+        "GPU_PASS": 1259
+      },
+      "entity": {
+        "GPU_PASS": 12590
+      },
+      "glow/entity": {
+        "GPU_PASS": 6295
+      },
+      "gui": {
+        "GUI_CPU_PASS": 474
+      }
+    },
+    "dirtyTraces": [],
+    "frameSamples": 1287,
+    "quantileSamples": 1287,
+    "frameTimeMs": {
+      "p99": 61.613,
+      "p999": 1023.8791,
+      "p50": 8.7734,
+      "p95": 19.2311
+    }
+  },
+  "compatibility": "versions\u003d[beloong\u003d0.10.1, dragonsurvival\u003d2.0.71, dsbr\u003d0.2.0-alpha.5, geckolib\u003d4.9.3, iris\u003d1.8.14-beta.1+mc1.21.1, sodium\u003d0.8.13+mc1.21.1]; texture\u003dtrue; GPU\u003dtrue; Iris\u003dtrue; souls\u003dtrue; NPC\u003dCore 0.10.1 NPC interfaces verified",
+  "scenes": 11
+}

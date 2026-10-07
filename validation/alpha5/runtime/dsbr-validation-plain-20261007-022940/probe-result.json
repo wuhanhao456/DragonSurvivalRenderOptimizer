@@ -1,0 +1,68 @@
+{
+  "pass": true,
+  "stats": {
+    "totals": {
+      "ARMOR_CHECK_NANOS": 1788700,
+      "ARMOR_GENERATE_NANOS": 247500,
+      "COPY": 3,
+      "CPU_VERTEX_SUBMIT_NANOS": 128206700,
+      "FRAME_CPU_NANOS": 718743700,
+      "GENERATED": 2,
+      "GPU_BATCH_CPU_NANOS": 51723700,
+      "GPU_BONE_SUBMIT_NANOS": 12591800,
+      "GPU_DRAW_CALLS": 690,
+      "GPU_DRAW_CPU_NANOS": 48219000,
+      "GPU_PASS": 690,
+      "GPU_POSE_CAPTURE_NANOS": 32461400,
+      "GPU_VERTEX_COUNT": 6259680,
+      "GUI_CPU_PASS": 690,
+      "HIT": 1839,
+      "PLAYER_CPU_BONE": 187680,
+      "PLAYER_CPU_VERTEX_SUBMIT_NANOS": 128206700,
+      "PLAYER_GPU_DRAW_CALLS": 690,
+      "PLAYER_GPU_PASS": 690,
+      "PLAYER_GPU_POSE_CAPTURE_NANOS": 32553100,
+      "POSE_UPLOAD": 690,
+      "RELEASE": 3,
+      "REQUEST": 4,
+      "SKIN_CHECK_NANOS": 982700,
+      "SKIN_GENERATE_NANOS": 716100
+    },
+    "peaks": {
+      "GPU_RESOURCE_BYTES": 1452416,
+      "TEXTURE_RESOURCE_BYTES": 5242880
+    },
+    "fallbacks": {
+      "benchmark cancelled": "validation command test"
+    },
+    "attribution": {
+      "entity": {
+        "GPU_PASS": 460
+      },
+      "glow/entity": {
+        "GPU_PASS": 230
+      },
+      "gui": {
+        "GUI_CPU_PASS": 690
+      }
+    },
+    "dirtyTraces": [],
+    "frameSamples": 230,
+    "quantileSamples": 230,
+    "frameTimeMs": {
+      "p50": 8.3471,
+      "p999": 52.7998,
+      "p99": 13.3621,
+      "p95": 12.4745
+    }
+  },
+  "textureBytes": 5242880,
+  "meshBytes": 1125824,
+  "beforeReloadTextureBytes": 5242880,
+  "beforeReloadMeshBytes": 1125312,
+  "afterClearTextureBytes": 0,
+  "afterClearMeshBytes": 0,
+  "compatibility": "versions\u003d[dragonsurvival\u003d2.0.71, dsbr\u003d0.2.0-alpha.5, geckolib\u003d4.9.3]; texture\u003dtrue; GPU\u003dtrue; Iris\u003dfalse; souls\u003dtrue; NPC\u003dabsent (DS remains enabled)",
+  "modId": "dsbr",
+  "startupMode": "GPU"
+}

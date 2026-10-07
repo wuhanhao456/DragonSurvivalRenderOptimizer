@@ -1,0 +1,2861 @@
+{
+  "version": "0.2.0-alpha.5",
+  "formalAcceptanceComplete": false,
+  "exploratory": true,
+  "warmupSeconds": 15,
+  "sampleSeconds": 60,
+  "repetitions": 1,
+  "complete": true,
+  "unitTests": {
+    "tests": 23,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "hardware": {
+    "cpu": "Intel Core i7-13700K",
+    "gpu": "NVIDIA GeForce RTX 5070 Ti",
+    "ramGiB": 128,
+    "driver": "596.49",
+    "java": "Oracle 21.0.8",
+    "os": "Windows"
+  },
+  "comparisonTo": "0.2.0-alpha.4 GPU",
+  "shaderPack": "ComplementaryUnbound_r5.9.zip",
+  "display": {
+    "width": 1280,
+    "height": 720,
+    "viewDistance": 6,
+    "vsync": false,
+    "unlimitedFps": true
+  },
+  "jvmMemory": [
+    "-Xms1G",
+    "-Xmx8G"
+  ],
+  "comparisons": [
+    {
+      "runLabel": "initial",
+      "scene": "dihuang-4",
+      "averageFpsChangePercent": 37.32410754003461,
+      "low1ChangePercent": 35.49159083623839,
+      "low01ChangePercent": 31.14173744570621,
+      "p95ChangePercent": -23.18096153135508,
+      "p99ChangePercent": -23.2093764980971,
+      "npcGeometryCpuReductionPercent": 89.60073310479035,
+      "recheckRequired": false
+    },
+    {
+      "runLabel": "initial",
+      "scene": "mixed-12",
+      "averageFpsChangePercent": 202.10181485433708,
+      "low1ChangePercent": 156.46785357115442,
+      "low01ChangePercent": 81.25789391543033,
+      "p95ChangePercent": -62.896163285484754,
+      "p99ChangePercent": -62.36879356376212,
+      "npcGeometryCpuReductionPercent": 92.15784615679357,
+      "recheckRequired": false
+    },
+    {
+      "runLabel": "initial",
+      "scene": "mo-4",
+      "averageFpsChangePercent": 104.20904452122195,
+      "low1ChangePercent": 85.07024207172135,
+      "low01ChangePercent": 43.7881417648915,
+      "p95ChangePercent": -46.61313120330532,
+      "p99ChangePercent": -47.346665108354,
+      "npcGeometryCpuReductionPercent": 91.18524552104113,
+      "recheckRequired": false
+    },
+    {
+      "runLabel": "initial",
+      "scene": "players-1",
+      "averageFpsChangePercent": -5.26627466989904,
+      "low1ChangePercent": -3.930149245827552,
+      "low01ChangePercent": -5.967200612420543,
+      "p95ChangePercent": 1.3712010910632344,
+      "p99ChangePercent": 4.3277597034122595,
+      "recheckRequired": true
+    },
+    {
+      "runLabel": "initial",
+      "scene": "players-12",
+      "averageFpsChangePercent": 0.7062379582955858,
+      "low1ChangePercent": 5.4276913905746405,
+      "low01ChangePercent": 16.80065631145493,
+      "p95ChangePercent": 1.3863035171940874,
+      "p99ChangePercent": -1.389497075258983,
+      "recheckRequired": false
+    },
+    {
+      "runLabel": "initial",
+      "scene": "players-4",
+      "averageFpsChangePercent": -3.3499922472288834,
+      "low1ChangePercent": -0.8225028814330182,
+      "low01ChangePercent": 8.247696050838083,
+      "p95ChangePercent": 2.0993125780381705,
+      "p99ChangePercent": 1.0227952777324356,
+      "recheckRequired": false
+    },
+    {
+      "runLabel": "initial",
+      "scene": "souls17-mo4",
+      "averageFpsChangePercent": 41.1386309328017,
+      "low1ChangePercent": 28.855945461332677,
+      "low01ChangePercent": 16.36831541837629,
+      "p95ChangePercent": -26.090697171421017,
+      "p99ChangePercent": -25.95680699835977,
+      "npcGeometryCpuReductionPercent": 90.88785969556311,
+      "recheckRequired": false
+    },
+    {
+      "runLabel": "recheck",
+      "scene": "players-1",
+      "averageFpsChangePercent": 2.094209467038244,
+      "low1ChangePercent": 9.281898052112503,
+      "low01ChangePercent": 18.839396070001424,
+      "p95ChangePercent": -3.359155529071256,
+      "p99ChangePercent": -3.0978213919334863,
+      "recheckRequired": false
+    }
+  ],
+  "finalComparisons": [
+    {
+      "runLabel": "initial",
+      "scene": "dihuang-4",
+      "averageFpsChangePercent": 37.32410754003461,
+      "low1ChangePercent": 35.49159083623839,
+      "low01ChangePercent": 31.14173744570621,
+      "p95ChangePercent": -23.18096153135508,
+      "p99ChangePercent": -23.2093764980971,
+      "npcGeometryCpuReductionPercent": 89.60073310479035,
+      "recheckRequired": false
+    },
+    {
+      "runLabel": "initial",
+      "scene": "mixed-12",
+      "averageFpsChangePercent": 202.10181485433708,
+      "low1ChangePercent": 156.46785357115442,
+      "low01ChangePercent": 81.25789391543033,
+      "p95ChangePercent": -62.896163285484754,
+      "p99ChangePercent": -62.36879356376212,
+      "npcGeometryCpuReductionPercent": 92.15784615679357,
+      "recheckRequired": false
+    },
+    {
+      "runLabel": "initial",
+      "scene": "mo-4",
+      "averageFpsChangePercent": 104.20904452122195,
+      "low1ChangePercent": 85.07024207172135,
+      "low01ChangePercent": 43.7881417648915,
+      "p95ChangePercent": -46.61313120330532,
+      "p99ChangePercent": -47.346665108354,
+      "npcGeometryCpuReductionPercent": 91.18524552104113,
+      "recheckRequired": false
+    },
+    {
+      "runLabel": "recheck",
+      "scene": "players-1",
+      "averageFpsChangePercent": 2.094209467038244,
+      "low1ChangePercent": 9.281898052112503,
+      "low01ChangePercent": 18.839396070001424,
+      "p95ChangePercent": -3.359155529071256,
+      "p99ChangePercent": -3.0978213919334863,
+      "recheckRequired": false
+    },
+    {
+      "runLabel": "initial",
+      "scene": "players-12",
+      "averageFpsChangePercent": 0.7062379582955858,
+      "low1ChangePercent": 5.4276913905746405,
+      "low01ChangePercent": 16.80065631145493,
+      "p95ChangePercent": 1.3863035171940874,
+      "p99ChangePercent": -1.389497075258983,
+      "recheckRequired": false
+    },
+    {
+      "runLabel": "initial",
+      "scene": "players-4",
+      "averageFpsChangePercent": -3.3499922472288834,
+      "low1ChangePercent": -0.8225028814330182,
+      "low01ChangePercent": 8.247696050838083,
+      "p95ChangePercent": 2.0993125780381705,
+      "p99ChangePercent": 1.0227952777324356,
+      "recheckRequired": false
+    },
+    {
+      "runLabel": "initial",
+      "scene": "souls17-mo4",
+      "averageFpsChangePercent": 41.1386309328017,
+      "low1ChangePercent": 28.855945461332677,
+      "low01ChangePercent": 16.36831541837629,
+      "p95ChangePercent": -26.090697171421017,
+      "p99ChangePercent": -25.95680699835977,
+      "npcGeometryCpuReductionPercent": 90.88785969556311,
+      "recheckRequired": false
+    }
+  ],
+  "performanceGuardPass": true,
+  "samples": [
+    {
+      "scene": "players-1",
+      "version": "baseline",
+      "jarSha256": "754f15bb0ded0b8e393f7a37ca6382ff4f49353d6f796211e50b19acfc037923",
+      "driverSha256": "4ae7f69c7a5932041cfabdf10aec7f054d2d53f6f388918493320ab347e59974",
+      "metrics": {
+        "samples": 19651,
+        "capturedSeconds": 60.0353572,
+        "averageFps": 327.3237791279436,
+        "low1Fps": 121.03790556991251,
+        "low01Fps": 58.259865215801824,
+        "frameTimeMs": {
+          "p50": 2.7884,
+          "p95": 5.4259,
+          "p99": 6.6085,
+          "p999": 9.0169
+        },
+        "longFramesAboveMs": {
+          "16.7": 9,
+          "33.3": 1,
+          "50": 0
+        },
+        "maximumFrameMs": 44.3865,
+        "definition": "1000 / mean slowest ceil(samples * fraction) frame times in ms"
+      },
+      "row": {
+        "scene": "players-1",
+        "warmupSeconds": 15.0,
+        "samplingSeconds": 60.0,
+        "width": 1280,
+        "height": 720,
+        "renderDistance": 6,
+        "vsync": false,
+        "effectiveFpsLimit": 260,
+        "swapInterval": 0,
+        "stats": {
+          "totals": {
+            "ARMOR_CHECK_NANOS": 73349800,
+            "FRAME_CPU_NANOS": 36114287800,
+            "GPU_BATCH_CPU_NANOS": 6212631500,
+            "GPU_BONE_SUBMIT_NANOS": 615198300,
+            "GPU_DRAW_CALLS": 58956,
+            "GPU_DRAW_CPU_NANOS": 5991665200,
+            "GPU_PASS": 58956,
+            "GPU_POSE_CAPTURE_NANOS": 2655496600,
+            "GPU_VERTEX_COUNT": 534848832,
+            "HIT": 78608,
+            "SKIN_CHECK_NANOS": 32897800
+          },
+          "peaks": {
+            "GPU_RESOURCE_BYTES": 2920320,
+            "TEXTURE_RESOURCE_BYTES": 5242880
+          },
+          "fallbacks": {},
+          "attribution": {
+            "entity": {
+              "GPU_PASS": 39304
+            },
+            "glow/entity": {
+              "GPU_PASS": 19652
+            }
+          },
+          "dirtyTraces": [],
+          "frameSamples": 19652,
+          "quantileSamples": 19652,
+          "frameTimeMs": {
+            "p999": 9.0857,
+            "p99": 6.7626,
+            "p95": 5.3546,
+            "p50": 2.798
+          }
+        },
+        "rawFrames": "players-1.csv",
+        "actors": [
+          {
+            "scale": 1.2375,
+            "type": "minecraft:player"
+          }
+        ],
+        "textureBytes": 5242880,
+        "meshBytes": 1450656,
+        "npcGeometryCalls": 0,
+        "npcGeometryNanos": 0,
+        "camera": [
+          0.0,
+          -52.0,
+          36.0,
+          180.0,
+          13.0
+        ],
+        "shaderPack": "ComplementaryUnbound_r5.9.zip"
+      },
+      "result": {
+        "pass": true,
+        "scenes": 1,
+        "stats": {
+          "totals": {
+            "ARMOR_CHECK_NANOS": 73349800,
+            "FRAME_CPU_NANOS": 36114287800,
+            "GPU_BATCH_CPU_NANOS": 6212631500,
+            "GPU_BONE_SUBMIT_NANOS": 615198300,
+            "GPU_DRAW_CALLS": 58956,
+            "GPU_DRAW_CPU_NANOS": 5991665200,
+            "GPU_PASS": 58956,
+            "GPU_POSE_CAPTURE_NANOS": 2655496600,
+            "GPU_VERTEX_COUNT": 534848832,
+            "HIT": 78608,
+            "SKIN_CHECK_NANOS": 32897800
+          },
+          "peaks": {
+            "GPU_RESOURCE_BYTES": 2920320,
+            "TEXTURE_RESOURCE_BYTES": 5242880
+          },
+          "fallbacks": {},
+          "attribution": {
+            "entity": {
+              "GPU_PASS": 39304
+            },
+            "glow/entity": {
+              "GPU_PASS": 19652
+            }
+          },
+          "dirtyTraces": [],
+          "frameSamples": 19652,
+          "quantileSamples": 19652,
+          "frameTimeMs": {
+            "p999": 9.0857,
+            "p99": 6.7626,
+            "p95": 5.3546,
+            "p50": 2.798
+          }
+        },
+        "meshBytesAfterClear": 0,
+        "textureBytesAfterClear": 0,
+        "compatibility": "versions=[dragonsurvival=2.0.71, dsbr=0.2.0-alpha.4, geckolib=4.9.3, iris=1.8.14-beta.1+mc1.21.1, sodium=0.8.13+mc1.21.1]; texture=true; GPU=true; Iris=true; souls=true"
+      },
+      "rawSha256": "c766cd8341692a739d9577ad3ee90e910db7d3d15c75575b1e8f1796bbb220a9",
+      "runLabel": "initial",
+      "rawFrames": "samples/initial/players-1-baseline/players-1.csv",
+      "screenshot": "samples/initial/players-1-baseline/players-1.png",
+      "localEvidenceId": "dsbr-validation-iris-20261007-011220"
+    },
+    {
+      "scene": "players-4",
+      "version": "baseline",
+      "jarSha256": "754f15bb0ded0b8e393f7a37ca6382ff4f49353d6f796211e50b19acfc037923",
+      "driverSha256": "4ae7f69c7a5932041cfabdf10aec7f054d2d53f6f388918493320ab347e59974",
+      "metrics": {
+        "samples": 12889,
+        "capturedSeconds": 60.0445694,
+        "averageFps": 214.65721427923174,
+        "low1Fps": 84.68296535849647,
+        "low01Fps": 39.90663076297794,
+        "frameTimeMs": {
+          "p50": 4.2693,
+          "p95": 7.2881,
+          "p99": 9.1905,
+          "p999": 13.9527
+        },
+        "longFramesAboveMs": {
+          "16.7": 11,
+          "33.3": 2,
+          "50": 0
+        },
+        "maximumFrameMs": 36.7928,
+        "definition": "1000 / mean slowest ceil(samples * fraction) frame times in ms"
+      },
+      "row": {
+        "scene": "players-4",
+        "warmupSeconds": 15.0,
+        "samplingSeconds": 60.0,
+        "width": 1280,
+        "height": 720,
+        "renderDistance": 6,
+        "vsync": false,
+        "effectiveFpsLimit": 260,
+        "swapInterval": 0,
+        "stats": {
+          "totals": {
+            "ARMOR_CHECK_NANOS": 95305900,
+            "FRAME_CPU_NANOS": 42692267700,
+            "GPU_BATCH_CPU_NANOS": 8693559400,
+            "GPU_BONE_SUBMIT_NANOS": 2118206600,
+            "GPU_DRAW_CALLS": 154680,
+            "GPU_DRAW_CPU_NANOS": 8400190900,
+            "GPU_PASS": 154680,
+            "GPU_POSE_CAPTURE_NANOS": 8638691000,
+            "GPU_VERTEX_COUNT": 1403256960,
+            "HIT": 206240,
+            "SKIN_CHECK_NANOS": 43440000
+          },
+          "peaks": {
+            "GPU_RESOURCE_BYTES": 8234784,
+            "TEXTURE_RESOURCE_BYTES": 11534336
+          },
+          "fallbacks": {},
+          "attribution": {
+            "entity": {
+              "GPU_PASS": 103120
+            },
+            "glow/entity": {
+              "GPU_PASS": 51560
+            }
+          },
+          "dirtyTraces": [],
+          "frameSamples": 12890,
+          "quantileSamples": 12890,
+          "frameTimeMs": {
+            "p95": 7.2865,
+            "p50": 4.2789,
+            "p999": 17.5659,
+            "p99": 9.2095
+          }
+        },
+        "rawFrames": "players-4.csv",
+        "actors": [
+          {
+            "type": "minecraft:player",
+            "scale": 1.2375
+          },
+          {
+            "type": "minecraft:player",
+            "scale": 1.2375
+          },
+          {
+            "type": "minecraft:player",
+            "scale": 1.2375
+          },
+          {
+            "type": "minecraft:player",
+            "scale": 1.2375
+          }
+        ],
+        "textureBytes": 11534336,
+        "meshBytes": 2356128,
+        "npcGeometryCalls": 0,
+        "npcGeometryNanos": 0,
+        "camera": [
+          0.0,
+          -52.0,
+          36.0,
+          180.0,
+          13.0
+        ],
+        "shaderPack": "ComplementaryUnbound_r5.9.zip"
+      },
+      "result": {
+        "pass": true,
+        "scenes": 1,
+        "stats": {
+          "totals": {
+            "ARMOR_CHECK_NANOS": 95305900,
+            "FRAME_CPU_NANOS": 42692267700,
+            "GPU_BATCH_CPU_NANOS": 8693559400,
+            "GPU_BONE_SUBMIT_NANOS": 2118206600,
+            "GPU_DRAW_CALLS": 154680,
+            "GPU_DRAW_CPU_NANOS": 8400190900,
+            "GPU_PASS": 154680,
+            "GPU_POSE_CAPTURE_NANOS": 8638691000,
+            "GPU_VERTEX_COUNT": 1403256960,
+            "HIT": 206240,
+            "SKIN_CHECK_NANOS": 43440000
+          },
+          "peaks": {
+            "GPU_RESOURCE_BYTES": 8234784,
+            "TEXTURE_RESOURCE_BYTES": 11534336
+          },
+          "fallbacks": {},
+          "attribution": {
+            "entity": {
+              "GPU_PASS": 103120
+            },
+            "glow/entity": {
+              "GPU_PASS": 51560
+            }
+          },
+          "dirtyTraces": [],
+          "frameSamples": 12890,
+          "quantileSamples": 12890,
+          "frameTimeMs": {
+            "p95": 7.2865,
+            "p50": 4.2789,
+            "p999": 17.5659,
+            "p99": 9.2095
+          }
+        },
+        "meshBytesAfterClear": 0,
+        "textureBytesAfterClear": 0,
+        "compatibility": "versions=[dragonsurvival=2.0.71, dsbr=0.2.0-alpha.4, geckolib=4.9.3, iris=1.8.14-beta.1+mc1.21.1, sodium=0.8.13+mc1.21.1]; texture=true; GPU=true; Iris=true; souls=true"
+      },
+      "rawSha256": "160ab6131a02681ff3ce09c3a26c5dbb0bdab498be534affb996e8159e9118de",
+      "runLabel": "initial",
+      "rawFrames": "samples/initial/players-4-baseline/players-4.csv",
+      "screenshot": "samples/initial/players-4-baseline/players-4.png",
+      "localEvidenceId": "dsbr-validation-iris-20261007-012036"
+    },
+    {
+      "scene": "players-1",
+      "version": "candidate",
+      "jarSha256": "49e2f6db28517232841e19bc7c420b974cac9b2b7867f8aca41d6b1485252360",
+      "driverSha256": "4ae7f69c7a5932041cfabdf10aec7f054d2d53f6f388918493320ab347e59974",
+      "metrics": {
+        "samples": 18613,
+        "capturedSeconds": 60.0252814,
+        "averageFps": 310.08600985917246,
+        "low1Fps": 116.28093523699113,
+        "low01Fps": 54.78338218184911,
+        "frameTimeMs": {
+          "p50": 2.8911,
+          "p95": 5.5003,
+          "p99": 6.8945,
+          "p999": 9.1975
+        },
+        "longFramesAboveMs": {
+          "16.7": 8,
+          "33.3": 2,
+          "50": 1
+        },
+        "maximumFrameMs": 52.1072,
+        "definition": "1000 / mean slowest ceil(samples * fraction) frame times in ms"
+      },
+      "row": {
+        "scene": "players-1",
+        "warmupSeconds": 15.0,
+        "samplingSeconds": 60.0,
+        "width": 1280,
+        "height": 720,
+        "renderDistance": 6,
+        "vsync": false,
+        "effectiveFpsLimit": 260,
+        "swapInterval": 0,
+        "stats": {
+          "totals": {
+            "ARMOR_CHECK_NANOS": 52871900,
+            "FRAME_CPU_NANOS": 36857116800,
+            "GPU_BATCH_CPU_NANOS": 5555460500,
+            "GPU_BONE_SUBMIT_NANOS": 581170900,
+            "GPU_DRAW_CALLS": 55842,
+            "GPU_DRAW_CPU_NANOS": 5337942000,
+            "GPU_PASS": 55842,
+            "GPU_POSE_CAPTURE_NANOS": 2694905500,
+            "GPU_VERTEX_COUNT": 506598624,
+            "HIT": 74456,
+            "PLAYER_GPU_DRAW_CALLS": 55842,
+            "PLAYER_GPU_PASS": 55842,
+            "PLAYER_GPU_POSE_CAPTURE_NANOS": 2699615200,
+            "POSE_UPLOAD": 55842,
+            "SKIN_CHECK_NANOS": 28334900
+          },
+          "peaks": {
+            "GPU_RESOURCE_BYTES": 2959488,
+            "TEXTURE_RESOURCE_BYTES": 5242880
+          },
+          "fallbacks": {},
+          "attribution": {
+            "entity": {
+              "GPU_PASS": 37228
+            },
+            "glow/entity": {
+              "GPU_PASS": 18614
+            }
+          },
+          "dirtyTraces": [],
+          "frameSamples": 18614,
+          "quantileSamples": 18614,
+          "frameTimeMs": {
+            "p50": 2.8907,
+            "p999": 9.3702,
+            "p99": 7.027,
+            "p95": 5.5209
+          }
+        },
+        "rawFrames": "players-1.csv",
+        "actors": [
+          {
+            "scale": 1.2375,
+            "type": "minecraft:player"
+          }
+        ],
+        "textureBytes": 5242880,
+        "meshBytes": 1489824,
+        "npcGeometryCalls": 0,
+        "npcGeometryNanos": 0,
+        "camera": [
+          0.0,
+          -52.0,
+          36.0,
+          180.0,
+          13.0
+        ],
+        "shaderPack": "ComplementaryUnbound_r5.9.zip"
+      },
+      "result": {
+        "pass": true,
+        "scenes": 1,
+        "stats": {
+          "totals": {
+            "ARMOR_CHECK_NANOS": 52871900,
+            "FRAME_CPU_NANOS": 36857116800,
+            "GPU_BATCH_CPU_NANOS": 5555460500,
+            "GPU_BONE_SUBMIT_NANOS": 581170900,
+            "GPU_DRAW_CALLS": 55842,
+            "GPU_DRAW_CPU_NANOS": 5337942000,
+            "GPU_PASS": 55842,
+            "GPU_POSE_CAPTURE_NANOS": 2694905500,
+            "GPU_VERTEX_COUNT": 506598624,
+            "HIT": 74456,
+            "PLAYER_GPU_DRAW_CALLS": 55842,
+            "PLAYER_GPU_PASS": 55842,
+            "PLAYER_GPU_POSE_CAPTURE_NANOS": 2699615200,
+            "POSE_UPLOAD": 55842,
+            "SKIN_CHECK_NANOS": 28334900
+          },
+          "peaks": {
+            "GPU_RESOURCE_BYTES": 2959488,
+            "TEXTURE_RESOURCE_BYTES": 5242880
+          },
+          "fallbacks": {},
+          "attribution": {
+            "entity": {
+              "GPU_PASS": 37228
+            },
+            "glow/entity": {
+              "GPU_PASS": 18614
+            }
+          },
+          "dirtyTraces": [],
+          "frameSamples": 18614,
+          "quantileSamples": 18614,
+          "frameTimeMs": {
+            "p50": 2.8907,
+            "p999": 9.3702,
+            "p99": 7.027,
+            "p95": 5.5209
+          }
+        },
+        "meshBytesAfterClear": 0,
+        "textureBytesAfterClear": 0,
+        "compatibility": "versions=[beloong=0.10.1, dragonsurvival=2.0.71, dsbr=0.2.0-alpha.5, geckolib=4.9.3, iris=1.8.14-beta.1+mc1.21.1, sodium=0.8.13+mc1.21.1]; texture=true; GPU=true; Iris=true; souls=true; NPC=Core 0.10.1 NPC interfaces verified"
+      },
+      "rawSha256": "95be01ecf9a8df006f43922d634e2519418a7419df15662fbd6cdaf40e2819c4",
+      "runLabel": "initial",
+      "rawFrames": "samples/initial/players-1-candidate/players-1.csv",
+      "screenshot": "samples/initial/players-1-candidate/players-1.png",
+      "localEvidenceId": "dsbr-validation-iris-20261007-011505"
+    },
+    {
+      "scene": "players-4",
+      "version": "candidate",
+      "jarSha256": "49e2f6db28517232841e19bc7c420b974cac9b2b7867f8aca41d6b1485252360",
+      "driverSha256": "4ae7f69c7a5932041cfabdf10aec7f054d2d53f6f388918493320ab347e59974",
+      "metrics": {
+        "samples": 12457,
+        "capturedSeconds": 60.0435114,
+        "averageFps": 207.46621424275997,
+        "low1Fps": 83.98644552833991,
+        "low01Fps": 43.19800837243861,
+        "frameTimeMs": {
+          "p50": 4.4626,
+          "p95": 7.4411,
+          "p99": 9.2845,
+          "p999": 15.2657
+        },
+        "longFramesAboveMs": {
+          "16.7": 9,
+          "33.3": 0,
+          "50": 0
+        },
+        "maximumFrameMs": 33.2239,
+        "definition": "1000 / mean slowest ceil(samples * fraction) frame times in ms"
+      },
+      "row": {
+        "scene": "players-4",
+        "warmupSeconds": 15.0,
+        "samplingSeconds": 60.0,
+        "width": 1280,
+        "height": 720,
+        "renderDistance": 6,
+        "vsync": false,
+        "effectiveFpsLimit": 260,
+        "swapInterval": 0,
+        "stats": {
+          "totals": {
+            "ARMOR_CHECK_NANOS": 142676900,
+            "FRAME_CPU_NANOS": 42585108000,
+            "GPU_BATCH_CPU_NANOS": 9853669400,
+            "GPU_BONE_SUBMIT_NANOS": 2040752800,
+            "GPU_DRAW_CALLS": 112122,
+            "GPU_DRAW_CPU_NANOS": 9555079500,
+            "GPU_PASS": 149496,
+            "GPU_POSE_CAPTURE_NANOS": 8195655300,
+            "GPU_VERTEX_COUNT": 1356227712,
+            "HIT": 199328,
+            "PLAYER_GPU_DRAW_CALLS": 112122,
+            "PLAYER_GPU_PASS": 149496,
+            "PLAYER_GPU_POSE_CAPTURE_NANOS": 8201905300,
+            "POSE_UPLOAD": 112122,
+            "SKIN_CHECK_NANOS": 40671700
+          },
+          "peaks": {
+            "GPU_RESOURCE_BYTES": 9978624,
+            "TEXTURE_RESOURCE_BYTES": 11534336
+          },
+          "fallbacks": {},
+          "attribution": {
+            "entity": {
+              "GPU_PASS": 99664
+            },
+            "glow/entity": {
+              "GPU_PASS": 49832
+            }
+          },
+          "dirtyTraces": [],
+          "frameSamples": 12458,
+          "quantileSamples": 12458,
+          "frameTimeMs": {
+            "p95": 7.4979,
+            "p50": 4.455,
+            "p999": 15.9388,
+            "p99": 9.3424
+          }
+        },
+        "rawFrames": "players-4.csv",
+        "actors": [
+          {
+            "scale": 1.2375,
+            "type": "minecraft:player"
+          },
+          {
+            "scale": 1.2375,
+            "type": "minecraft:player"
+          },
+          {
+            "scale": 1.2375,
+            "type": "minecraft:player"
+          },
+          {
+            "scale": 1.2375,
+            "type": "minecraft:player"
+          }
+        ],
+        "textureBytes": 11534336,
+        "meshBytes": 4099968,
+        "npcGeometryCalls": 0,
+        "npcGeometryNanos": 0,
+        "camera": [
+          0.0,
+          -52.0,
+          36.0,
+          180.0,
+          13.0
+        ],
+        "shaderPack": "ComplementaryUnbound_r5.9.zip"
+      },
+      "result": {
+        "pass": true,
+        "scenes": 1,
+        "stats": {
+          "totals": {
+            "ARMOR_CHECK_NANOS": 142676900,
+            "FRAME_CPU_NANOS": 42585108000,
+            "GPU_BATCH_CPU_NANOS": 9853669400,
+            "GPU_BONE_SUBMIT_NANOS": 2040752800,
+            "GPU_DRAW_CALLS": 112122,
+            "GPU_DRAW_CPU_NANOS": 9555079500,
+            "GPU_PASS": 149496,
+            "GPU_POSE_CAPTURE_NANOS": 8195655300,
+            "GPU_VERTEX_COUNT": 1356227712,
+            "HIT": 199328,
+            "PLAYER_GPU_DRAW_CALLS": 112122,
+            "PLAYER_GPU_PASS": 149496,
+            "PLAYER_GPU_POSE_CAPTURE_NANOS": 8201905300,
+            "POSE_UPLOAD": 112122,
+            "SKIN_CHECK_NANOS": 40671700
+          },
+          "peaks": {
+            "GPU_RESOURCE_BYTES": 9978624,
+            "TEXTURE_RESOURCE_BYTES": 11534336
+          },
+          "fallbacks": {},
+          "attribution": {
+            "entity": {
+              "GPU_PASS": 99664
+            },
+            "glow/entity": {
+              "GPU_PASS": 49832
+            }
+          },
+          "dirtyTraces": [],
+          "frameSamples": 12458,
+          "quantileSamples": 12458,
+          "frameTimeMs": {
+            "p95": 7.4979,
+            "p50": 4.455,
+            "p999": 15.9388,
+            "p99": 9.3424
+          }
+        },
+        "meshBytesAfterClear": 0,
+        "textureBytesAfterClear": 0,
+        "compatibility": "versions=[beloong=0.10.1, dragonsurvival=2.0.71, dsbr=0.2.0-alpha.5, geckolib=4.9.3, iris=1.8.14-beta.1+mc1.21.1, sodium=0.8.13+mc1.21.1]; texture=true; GPU=true; Iris=true; souls=true; NPC=Core 0.10.1 NPC interfaces verified"
+      },
+      "rawSha256": "eacc4bbea33a86d636e26fce5d867ec02d5bb36dbc677e14663dcba27a9e34b1",
+      "runLabel": "initial",
+      "rawFrames": "samples/initial/players-4-candidate/players-4.csv",
+      "screenshot": "samples/initial/players-4-candidate/players-4.png",
+      "localEvidenceId": "dsbr-validation-iris-20261007-011750"
+    },
+    {
+      "scene": "dihuang-4",
+      "version": "baseline",
+      "jarSha256": "754f15bb0ded0b8e393f7a37ca6382ff4f49353d6f796211e50b19acfc037923",
+      "driverSha256": "4ae7f69c7a5932041cfabdf10aec7f054d2d53f6f388918493320ab347e59974",
+      "metrics": {
+        "samples": 11382,
+        "capturedSeconds": 60.0273165,
+        "averageFps": 189.61367363473593,
+        "low1Fps": 76.3980542353808,
+        "low01Fps": 39.241526691595936,
+        "frameTimeMs": {
+          "p50": 4.9546,
+          "p95": 8.1183,
+          "p99": 10.2213,
+          "p999": 18.1006
+        },
+        "longFramesAboveMs": {
+          "16.7": 13,
+          "33.3": 0,
+          "50": 0
+        },
+        "maximumFrameMs": 31.9051,
+        "definition": "1000 / mean slowest ceil(samples * fraction) frame times in ms"
+      },
+      "row": {
+        "scene": "dihuang-4",
+        "warmupSeconds": 15.0,
+        "samplingSeconds": 60.0,
+        "width": 1280,
+        "height": 720,
+        "renderDistance": 6,
+        "vsync": false,
+        "effectiveFpsLimit": 260,
+        "swapInterval": 0,
+        "stats": {
+          "totals": {
+            "ARMOR_CHECK_NANOS": 53695600,
+            "FRAME_CPU_NANOS": 44503189700,
+            "GPU_BATCH_CPU_NANOS": 4095544900,
+            "GPU_BONE_SUBMIT_NANOS": 396402600,
+            "GPU_DRAW_CALLS": 34149,
+            "GPU_DRAW_CPU_NANOS": 3906086400,
+            "GPU_PASS": 34149,
+            "GPU_POSE_CAPTURE_NANOS": 1638679600,
+            "GPU_VERTEX_COUNT": 309799728,
+            "HIT": 45532,
+            "SKIN_CHECK_NANOS": 35927200
+          },
+          "peaks": {
+            "GPU_RESOURCE_BYTES": 2920320,
+            "TEXTURE_RESOURCE_BYTES": 5242880
+          },
+          "fallbacks": {},
+          "attribution": {
+            "entity": {
+              "GPU_PASS": 22766
+            },
+            "glow/entity": {
+              "GPU_PASS": 11383
+            }
+          },
+          "dirtyTraces": [],
+          "frameSamples": 11383,
+          "quantileSamples": 11383,
+          "frameTimeMs": {
+            "p95": 8.1626,
+            "p50": 4.938,
+            "p999": 22.0297,
+            "p99": 10.1883
+          }
+        },
+        "rawFrames": "dihuang-4.csv",
+        "actors": [
+          {
+            "type": "beloong:dihuang_loong",
+            "scale": 1.0
+          },
+          {
+            "type": "beloong:dihuang_loong",
+            "scale": 1.0
+          },
+          {
+            "type": "beloong:dihuang_loong",
+            "scale": 1.0
+          },
+          {
+            "type": "beloong:dihuang_loong",
+            "scale": 1.0
+          }
+        ],
+        "textureBytes": 5242880,
+        "meshBytes": 1450656,
+        "npcGeometryCalls": 45532,
+        "npcGeometryNanos": 13066672100,
+        "camera": [
+          0.0,
+          -52.0,
+          36.0,
+          180.0,
+          13.0
+        ],
+        "shaderPack": "ComplementaryUnbound_r5.9.zip"
+      },
+      "result": {
+        "pass": true,
+        "scenes": 1,
+        "stats": {
+          "totals": {
+            "ARMOR_CHECK_NANOS": 53695600,
+            "FRAME_CPU_NANOS": 44503189700,
+            "GPU_BATCH_CPU_NANOS": 4095544900,
+            "GPU_BONE_SUBMIT_NANOS": 396402600,
+            "GPU_DRAW_CALLS": 34149,
+            "GPU_DRAW_CPU_NANOS": 3906086400,
+            "GPU_PASS": 34149,
+            "GPU_POSE_CAPTURE_NANOS": 1638679600,
+            "GPU_VERTEX_COUNT": 309799728,
+            "HIT": 45532,
+            "SKIN_CHECK_NANOS": 35927200
+          },
+          "peaks": {
+            "GPU_RESOURCE_BYTES": 2920320,
+            "TEXTURE_RESOURCE_BYTES": 5242880
+          },
+          "fallbacks": {},
+          "attribution": {
+            "entity": {
+              "GPU_PASS": 22766
+            },
+            "glow/entity": {
+              "GPU_PASS": 11383
+            }
+          },
+          "dirtyTraces": [],
+          "frameSamples": 11383,
+          "quantileSamples": 11383,
+          "frameTimeMs": {
+            "p95": 8.1626,
+            "p50": 4.938,
+            "p999": 22.0297,
+            "p99": 10.1883
+          }
+        },
+        "meshBytesAfterClear": 0,
+        "textureBytesAfterClear": 0,
+        "compatibility": "versions=[dragonsurvival=2.0.71, dsbr=0.2.0-alpha.4, geckolib=4.9.3, iris=1.8.14-beta.1+mc1.21.1, sodium=0.8.13+mc1.21.1]; texture=true; GPU=true; Iris=true; souls=true"
+      },
+      "rawSha256": "c831a2fdb789c33ae048b4df556610177ee631403f941c649363d228e62a1710",
+      "runLabel": "initial",
+      "rawFrames": "samples/initial/dihuang-4-baseline/dihuang-4.csv",
+      "screenshot": "samples/initial/dihuang-4-baseline/dihuang-4.png",
+      "localEvidenceId": "dsbr-validation-iris-20261007-015726"
+    },
+    {
+      "scene": "mixed-12",
+      "version": "baseline",
+      "jarSha256": "754f15bb0ded0b8e393f7a37ca6382ff4f49353d6f796211e50b19acfc037923",
+      "driverSha256": "4ae7f69c7a5932041cfabdf10aec7f054d2d53f6f388918493320ab347e59974",
+      "metrics": {
+        "samples": 3634,
+        "capturedSeconds": 60.0187417,
+        "averageFps": 60.54775386935511,
+        "low1Fps": 28.788160067771997,
+        "low01Fps": 19.528484736048117,
+        "frameTimeMs": {
+          "p50": 15.659,
+          "p95": 22.6548,
+          "p99": 27.9045,
+          "p999": 47.6458
+        },
+        "longFramesAboveMs": {
+          "16.7": 1271,
+          "33.3": 14,
+          "50": 3
+        },
+        "maximumFrameMs": 54.1427,
+        "definition": "1000 / mean slowest ceil(samples * fraction) frame times in ms"
+      },
+      "row": {
+        "scene": "mixed-12",
+        "warmupSeconds": 15.0,
+        "samplingSeconds": 60.0,
+        "width": 1280,
+        "height": 720,
+        "renderDistance": 6,
+        "vsync": false,
+        "effectiveFpsLimit": 260,
+        "swapInterval": 0,
+        "stats": {
+          "totals": {
+            "ARMOR_CHECK_NANOS": 17811200,
+            "FRAME_CPU_NANOS": 53348856300,
+            "GPU_BATCH_CPU_NANOS": 980567700,
+            "GPU_BONE_SUBMIT_NANOS": 128547200,
+            "GPU_DRAW_CALLS": 10905,
+            "GPU_DRAW_CPU_NANOS": 896007100,
+            "GPU_PASS": 10905,
+            "GPU_POSE_CAPTURE_NANOS": 566550500,
+            "GPU_VERTEX_COUNT": 98930160,
+            "HIT": 14540,
+            "SKIN_CHECK_NANOS": 9597600
+          },
+          "peaks": {
+            "GPU_RESOURCE_BYTES": 2920320,
+            "TEXTURE_RESOURCE_BYTES": 5242880
+          },
+          "fallbacks": {},
+          "attribution": {
+            "entity": {
+              "GPU_PASS": 7270
+            },
+            "glow/entity": {
+              "GPU_PASS": 3635
+            }
+          },
+          "dirtyTraces": [],
+          "frameSamples": 3635,
+          "quantileSamples": 3635,
+          "frameTimeMs": {
+            "p999": 49.0635,
+            "p99": 27.8682,
+            "p95": 22.5273,
+            "p50": 15.686
+          }
+        },
+        "rawFrames": "mixed-12.csv",
+        "actors": [
+          {
+            "scale": 1.0,
+            "type": "beloong:mo"
+          },
+          {
+            "scale": 1.0,
+            "type": "beloong:dihuang_loong"
+          },
+          {
+            "scale": 1.0,
+            "type": "beloong:mo"
+          },
+          {
+            "scale": 1.0,
+            "type": "beloong:dihuang_loong"
+          },
+          {
+            "scale": 1.0,
+            "type": "beloong:mo"
+          },
+          {
+            "scale": 1.0,
+            "type": "beloong:dihuang_loong"
+          },
+          {
+            "scale": 1.0,
+            "type": "beloong:mo"
+          },
+          {
+            "scale": 1.0,
+            "type": "beloong:dihuang_loong"
+          },
+          {
+            "scale": 1.0,
+            "type": "beloong:mo"
+          },
+          {
+            "scale": 1.0,
+            "type": "beloong:dihuang_loong"
+          },
+          {
+            "scale": 1.0,
+            "type": "beloong:mo"
+          },
+          {
+            "scale": 1.0,
+            "type": "beloong:dihuang_loong"
+          }
+        ],
+        "textureBytes": 5242880,
+        "meshBytes": 1450656,
+        "npcGeometryCalls": 43620,
+        "npcGeometryNanos": 27352218300,
+        "camera": [
+          0.0,
+          -52.0,
+          36.0,
+          180.0,
+          13.0
+        ],
+        "shaderPack": "ComplementaryUnbound_r5.9.zip"
+      },
+      "result": {
+        "pass": true,
+        "scenes": 1,
+        "stats": {
+          "totals": {
+            "ARMOR_CHECK_NANOS": 17811200,
+            "FRAME_CPU_NANOS": 53348856300,
+            "GPU_BATCH_CPU_NANOS": 980567700,
+            "GPU_BONE_SUBMIT_NANOS": 128547200,
+            "GPU_DRAW_CALLS": 10905,
+            "GPU_DRAW_CPU_NANOS": 896007100,
+            "GPU_PASS": 10905,
+            "GPU_POSE_CAPTURE_NANOS": 566550500,
+            "GPU_VERTEX_COUNT": 98930160,
+            "HIT": 14540,
+            "SKIN_CHECK_NANOS": 9597600
+          },
+          "peaks": {
+            "GPU_RESOURCE_BYTES": 2920320,
+            "TEXTURE_RESOURCE_BYTES": 5242880
+          },
+          "fallbacks": {},
+          "attribution": {
+            "entity": {
+              "GPU_PASS": 7270
+            },
+            "glow/entity": {
+              "GPU_PASS": 3635
+            }
+          },
+          "dirtyTraces": [],
+          "frameSamples": 3635,
+          "quantileSamples": 3635,
+          "frameTimeMs": {
+            "p999": 49.0635,
+            "p99": 27.8682,
+            "p95": 22.5273,
+            "p50": 15.686
+          }
+        },
+        "meshBytesAfterClear": 0,
+        "textureBytesAfterClear": 0,
+        "compatibility": "versions=[dragonsurvival=2.0.71, dsbr=0.2.0-alpha.4, geckolib=4.9.3, iris=1.8.14-beta.1+mc1.21.1, sodium=0.8.13+mc1.21.1]; texture=true; GPU=true; Iris=true; souls=true"
+      },
+      "rawSha256": "afda711afdc050d3c86a7f9f1923db7d23ababd761707a4ec64b21b0da7510cc",
+      "runLabel": "initial",
+      "rawFrames": "samples/initial/mixed-12-baseline/mixed-12.csv",
+      "screenshot": "samples/initial/mixed-12-baseline/mixed-12.png",
+      "localEvidenceId": "dsbr-validation-iris-20261007-020554"
+    },
+    {
+      "scene": "mo-4",
+      "version": "baseline",
+      "jarSha256": "754f15bb0ded0b8e393f7a37ca6382ff4f49353d6f796211e50b19acfc037923",
+      "driverSha256": "4ae7f69c7a5932041cfabdf10aec7f054d2d53f6f388918493320ab347e59974",
+      "metrics": {
+        "samples": 6735,
+        "capturedSeconds": 60.031547700000004,
+        "averageFps": 112.19101052761964,
+        "low1Fps": 50.04941275478372,
+        "low01Fps": 30.53708183283565,
+        "frameTimeMs": {
+          "p50": 8.4774,
+          "p95": 12.8762,
+          "p99": 16.2569,
+          "p999": 27.4523
+        },
+        "longFramesAboveMs": {
+          "16.7": 57,
+          "33.3": 2,
+          "50": 0
+        },
+        "maximumFrameMs": 46.5477,
+        "definition": "1000 / mean slowest ceil(samples * fraction) frame times in ms"
+      },
+      "row": {
+        "scene": "mo-4",
+        "warmupSeconds": 15.0,
+        "samplingSeconds": 60.0,
+        "width": 1280,
+        "height": 720,
+        "renderDistance": 6,
+        "vsync": false,
+        "effectiveFpsLimit": 260,
+        "swapInterval": 0,
+        "stats": {
+          "totals": {
+            "ARMOR_CHECK_NANOS": 33144900,
+            "FRAME_CPU_NANOS": 49925102700,
+            "GPU_BATCH_CPU_NANOS": 2126121200,
+            "GPU_BONE_SUBMIT_NANOS": 255440700,
+            "GPU_DRAW_CALLS": 20208,
+            "GPU_DRAW_CPU_NANOS": 1986915800,
+            "GPU_PASS": 20208,
+            "GPU_POSE_CAPTURE_NANOS": 1026929000,
+            "GPU_VERTEX_COUNT": 183326976,
+            "HIT": 26944,
+            "SKIN_CHECK_NANOS": 16685500
+          },
+          "peaks": {
+            "GPU_RESOURCE_BYTES": 2920320,
+            "TEXTURE_RESOURCE_BYTES": 5242880
+          },
+          "fallbacks": {},
+          "attribution": {
+            "entity": {
+              "GPU_PASS": 13472
+            },
+            "glow/entity": {
+              "GPU_PASS": 6736
+            }
+          },
+          "dirtyTraces": [],
+          "frameSamples": 6736,
+          "quantileSamples": 6736,
+          "frameTimeMs": {
+            "p99": 15.9739,
+            "p999": 30.1052,
+            "p50": 8.4281,
+            "p95": 13.0013
+          }
+        },
+        "rawFrames": "mo-4.csv",
+        "actors": [
+          {
+            "scale": 1.0,
+            "type": "beloong:mo"
+          },
+          {
+            "scale": 1.0,
+            "type": "beloong:mo"
+          },
+          {
+            "scale": 1.0,
+            "type": "beloong:mo"
+          },
+          {
+            "scale": 1.0,
+            "type": "beloong:mo"
+          }
+        ],
+        "textureBytes": 5242880,
+        "meshBytes": 1450656,
+        "npcGeometryCalls": 26944,
+        "npcGeometryNanos": 18771702600,
+        "camera": [
+          0.0,
+          -52.0,
+          36.0,
+          180.0,
+          13.0
+        ],
+        "shaderPack": "ComplementaryUnbound_r5.9.zip"
+      },
+      "result": {
+        "pass": true,
+        "scenes": 1,
+        "stats": {
+          "totals": {
+            "ARMOR_CHECK_NANOS": 33144900,
+            "FRAME_CPU_NANOS": 49925102700,
+            "GPU_BATCH_CPU_NANOS": 2126121200,
+            "GPU_BONE_SUBMIT_NANOS": 255440700,
+            "GPU_DRAW_CALLS": 20208,
+            "GPU_DRAW_CPU_NANOS": 1986915800,
+            "GPU_PASS": 20208,
+            "GPU_POSE_CAPTURE_NANOS": 1026929000,
+            "GPU_VERTEX_COUNT": 183326976,
+            "HIT": 26944,
+            "SKIN_CHECK_NANOS": 16685500
+          },
+          "peaks": {
+            "GPU_RESOURCE_BYTES": 2920320,
+            "TEXTURE_RESOURCE_BYTES": 5242880
+          },
+          "fallbacks": {},
+          "attribution": {
+            "entity": {
+              "GPU_PASS": 13472
+            },
+            "glow/entity": {
+              "GPU_PASS": 6736
+            }
+          },
+          "dirtyTraces": [],
+          "frameSamples": 6736,
+          "quantileSamples": 6736,
+          "frameTimeMs": {
+            "p99": 15.9739,
+            "p999": 30.1052,
+            "p50": 8.4281,
+            "p95": 13.0013
+          }
+        },
+        "meshBytesAfterClear": 0,
+        "textureBytesAfterClear": 0,
+        "compatibility": "versions=[dragonsurvival=2.0.71, dsbr=0.2.0-alpha.4, geckolib=4.9.3, iris=1.8.14-beta.1+mc1.21.1, sodium=0.8.13+mc1.21.1]; texture=true; GPU=true; Iris=true; souls=true"
+      },
+      "rawSha256": "51a3990f18a3381b11e0d0162abaa560e4042a93afe75cae701110390b7ccae5",
+      "runLabel": "initial",
+      "rawFrames": "samples/initial/mo-4-baseline/mo-4.csv",
+      "screenshot": "samples/initial/mo-4-baseline/mo-4.png",
+      "localEvidenceId": "dsbr-validation-iris-20261007-015439"
+    },
+    {
+      "scene": "players-12",
+      "version": "baseline",
+      "jarSha256": "754f15bb0ded0b8e393f7a37ca6382ff4f49353d6f796211e50b19acfc037923",
+      "driverSha256": "4ae7f69c7a5932041cfabdf10aec7f054d2d53f6f388918493320ab347e59974",
+      "metrics": {
+        "samples": 6988,
+        "capturedSeconds": 60.0178502,
+        "averageFps": 116.4320277503042,
+        "low1Fps": 48.06421708986409,
+        "low01Fps": 23.26050469313911,
+        "frameTimeMs": {
+          "p50": 8.1701,
+          "p95": 12.2484,
+          "p99": 15.3005,
+          "p999": 39.7637
+        },
+        "longFramesAboveMs": {
+          "16.7": 35,
+          "33.3": 11,
+          "50": 0
+        },
+        "maximumFrameMs": 48.1011,
+        "definition": "1000 / mean slowest ceil(samples * fraction) frame times in ms"
+      },
+      "row": {
+        "scene": "players-12",
+        "warmupSeconds": 15.0,
+        "samplingSeconds": 60.0,
+        "width": 1280,
+        "height": 720,
+        "renderDistance": 6,
+        "vsync": false,
+        "effectiveFpsLimit": 260,
+        "swapInterval": 0,
+        "stats": {
+          "totals": {
+            "ARMOR_CHECK_NANOS": 154837400,
+            "FRAME_CPU_NANOS": 49217695400,
+            "GPU_BATCH_CPU_NANOS": 11089523400,
+            "GPU_BONE_SUBMIT_NANOS": 3597336400,
+            "GPU_DRAW_CALLS": 251604,
+            "GPU_DRAW_CPU_NANOS": 10716240300,
+            "GPU_PASS": 251604,
+            "GPU_POSE_CAPTURE_NANOS": 14368550100,
+            "GPU_VERTEX_COUNT": 2282551488,
+            "HIT": 335472,
+            "SKIN_CHECK_NANOS": 54989100
+          },
+          "peaks": {
+            "GPU_RESOURCE_BYTES": 22406688,
+            "TEXTURE_RESOURCE_BYTES": 28311552
+          },
+          "fallbacks": {},
+          "attribution": {
+            "entity": {
+              "GPU_PASS": 167736
+            },
+            "glow/entity": {
+              "GPU_PASS": 83868
+            }
+          },
+          "dirtyTraces": [],
+          "frameSamples": 6989,
+          "quantileSamples": 6989,
+          "frameTimeMs": {
+            "p50": 8.1665,
+            "p95": 12.3361,
+            "p99": 15.0918,
+            "p999": 41.9031
+          }
+        },
+        "rawFrames": "players-12.csv",
+        "actors": [
+          {
+            "type": "minecraft:player",
+            "scale": 1.2375
+          },
+          {
+            "type": "minecraft:player",
+            "scale": 1.2375
+          },
+          {
+            "type": "minecraft:player",
+            "scale": 1.2375
+          },
+          {
+            "type": "minecraft:player",
+            "scale": 1.2375
+          },
+          {
+            "type": "minecraft:player",
+            "scale": 1.2375
+          },
+          {
+            "type": "minecraft:player",
+            "scale": 1.2375
+          },
+          {
+            "type": "minecraft:player",
+            "scale": 1.2375
+          },
+          {
+            "type": "minecraft:player",
+            "scale": 1.2375
+          },
+          {
+            "type": "minecraft:player",
+            "scale": 1.2375
+          },
+          {
+            "type": "minecraft:player",
+            "scale": 1.2375
+          },
+          {
+            "type": "minecraft:player",
+            "scale": 1.2375
+          },
+          {
+            "type": "minecraft:player",
+            "scale": 1.2375
+          }
+        ],
+        "textureBytes": 28311552,
+        "meshBytes": 4770720,
+        "npcGeometryCalls": 0,
+        "npcGeometryNanos": 0,
+        "camera": [
+          0.0,
+          -52.0,
+          36.0,
+          180.0,
+          13.0
+        ],
+        "shaderPack": "ComplementaryUnbound_r5.9.zip"
+      },
+      "result": {
+        "pass": true,
+        "scenes": 1,
+        "stats": {
+          "totals": {
+            "ARMOR_CHECK_NANOS": 154837400,
+            "FRAME_CPU_NANOS": 49217695400,
+            "GPU_BATCH_CPU_NANOS": 11089523400,
+            "GPU_BONE_SUBMIT_NANOS": 3597336400,
+            "GPU_DRAW_CALLS": 251604,
+            "GPU_DRAW_CPU_NANOS": 10716240300,
+            "GPU_PASS": 251604,
+            "GPU_POSE_CAPTURE_NANOS": 14368550100,
+            "GPU_VERTEX_COUNT": 2282551488,
+            "HIT": 335472,
+            "SKIN_CHECK_NANOS": 54989100
+          },
+          "peaks": {
+            "GPU_RESOURCE_BYTES": 22406688,
+            "TEXTURE_RESOURCE_BYTES": 28311552
+          },
+          "fallbacks": {},
+          "attribution": {
+            "entity": {
+              "GPU_PASS": 167736
+            },
+            "glow/entity": {
+              "GPU_PASS": 83868
+            }
+          },
+          "dirtyTraces": [],
+          "frameSamples": 6989,
+          "quantileSamples": 6989,
+          "frameTimeMs": {
+            "p50": 8.1665,
+            "p95": 12.3361,
+            "p99": 15.0918,
+            "p999": 41.9031
+          }
+        },
+        "meshBytesAfterClear": 0,
+        "textureBytesAfterClear": 0,
+        "compatibility": "versions=[dragonsurvival=2.0.71, dsbr=0.2.0-alpha.4, geckolib=4.9.3, iris=1.8.14-beta.1+mc1.21.1, sodium=0.8.13+mc1.21.1]; texture=true; GPU=true; Iris=true; souls=true"
+      },
+      "rawSha256": "1c332a3bff60ecbaaedd005dc125db7fb76b14014100e4a1d483b91dea1320d1",
+      "runLabel": "initial",
+      "rawFrames": "samples/initial/players-12-baseline/players-12.csv",
+      "screenshot": "samples/initial/players-12-baseline/players-12.png",
+      "localEvidenceId": "dsbr-validation-iris-20261007-014616"
+    },
+    {
+      "scene": "souls17-mo4",
+      "version": "baseline",
+      "jarSha256": "754f15bb0ded0b8e393f7a37ca6382ff4f49353d6f796211e50b19acfc037923",
+      "driverSha256": "4ae7f69c7a5932041cfabdf10aec7f054d2d53f6f388918493320ab347e59974",
+      "metrics": {
+        "samples": 3983,
+        "capturedSeconds": 60.0084059,
+        "averageFps": 66.37403444173144,
+        "low1Fps": 31.96470074167695,
+        "low01Fps": 19.700056785413686,
+        "frameTimeMs": {
+          "p50": 14.3792,
+          "p95": 20.8055,
+          "p99": 25.606,
+          "p999": 46.3397
+        },
+        "longFramesAboveMs": {
+          "16.7": 899,
+          "33.3": 10,
+          "50": 3
+        },
+        "maximumFrameMs": 55.723,
+        "definition": "1000 / mean slowest ceil(samples * fraction) frame times in ms"
+      },
+      "row": {
+        "scene": "souls17-mo4",
+        "warmupSeconds": 15.0,
+        "samplingSeconds": 60.0,
+        "width": 1280,
+        "height": 720,
+        "renderDistance": 6,
+        "vsync": false,
+        "effectiveFpsLimit": 260,
+        "swapInterval": 0,
+        "stats": {
+          "totals": {
+            "ARMOR_CHECK_NANOS": 111140300,
+            "FRAME_CPU_NANOS": 52172228400,
+            "GPU_BATCH_CPU_NANOS": 4643467000,
+            "GPU_BONE_SUBMIT_NANOS": 3119988400,
+            "GPU_DRAW_CALLS": 23904,
+            "GPU_DRAW_CPU_NANOS": 4448111200,
+            "GPU_PASS": 215136,
+            "GPU_POSE_CAPTURE_NANOS": 12039496700,
+            "GPU_VERTEX_COUNT": 1951713792,
+            "HIT": 286848,
+            "SKIN_CHECK_NANOS": 48957500,
+            "SOUL_GPU_DRAW_CALLS": 11952,
+            "SOUL_GPU_PASS": 203184,
+            "SOUL_RENDER": 67728,
+            "SOUL_RENDER_CPU_NANOS": 18579175900,
+            "SOUL_TEXTURE_HIT": 203184
+          },
+          "peaks": {
+            "GPU_RESOURCE_BYTES": 41500512,
+            "TEXTURE_RESOURCE_BYTES": 7340032
+          },
+          "fallbacks": {},
+          "attribution": {
+            "entity": {
+              "GPU_PASS": 143424
+            },
+            "glow/entity": {
+              "GPU_PASS": 71712
+            }
+          },
+          "dirtyTraces": [],
+          "frameSamples": 3984,
+          "quantileSamples": 3984,
+          "frameTimeMs": {
+            "p95": 20.7338,
+            "p50": 14.3906,
+            "p999": 50.9626,
+            "p99": 25.6193
+          }
+        },
+        "rawFrames": "souls17-mo4.csv",
+        "actors": [
+          {
+            "scale": 1.0,
+            "type": "beloong:mo"
+          },
+          {
+            "scale": 1.0,
+            "type": "beloong:mo"
+          },
+          {
+            "scale": 1.0,
+            "type": "beloong:mo"
+          },
+          {
+            "scale": 1.0,
+            "type": "beloong:mo"
+          }
+        ],
+        "textureBytes": 7340032,
+        "meshBytes": 6581664,
+        "npcGeometryCalls": 15936,
+        "npcGeometryNanos": 11127659500,
+        "camera": [
+          0.0,
+          -52.0,
+          36.0,
+          180.0,
+          13.0
+        ],
+        "shaderPack": "ComplementaryUnbound_r5.9.zip"
+      },
+      "result": {
+        "pass": true,
+        "scenes": 1,
+        "stats": {
+          "totals": {
+            "ARMOR_CHECK_NANOS": 111140300,
+            "FRAME_CPU_NANOS": 52172228400,
+            "GPU_BATCH_CPU_NANOS": 4643467000,
+            "GPU_BONE_SUBMIT_NANOS": 3119988400,
+            "GPU_DRAW_CALLS": 23904,
+            "GPU_DRAW_CPU_NANOS": 4448111200,
+            "GPU_PASS": 215136,
+            "GPU_POSE_CAPTURE_NANOS": 12039496700,
+            "GPU_VERTEX_COUNT": 1951713792,
+            "HIT": 286848,
+            "SKIN_CHECK_NANOS": 48957500,
+            "SOUL_GPU_DRAW_CALLS": 11952,
+            "SOUL_GPU_PASS": 203184,
+            "SOUL_RENDER": 67728,
+            "SOUL_RENDER_CPU_NANOS": 18579175900,
+            "SOUL_TEXTURE_HIT": 203184
+          },
+          "peaks": {
+            "GPU_RESOURCE_BYTES": 41500512,
+            "TEXTURE_RESOURCE_BYTES": 7340032
+          },
+          "fallbacks": {},
+          "attribution": {
+            "entity": {
+              "GPU_PASS": 143424
+            },
+            "glow/entity": {
+              "GPU_PASS": 71712
+            }
+          },
+          "dirtyTraces": [],
+          "frameSamples": 3984,
+          "quantileSamples": 3984,
+          "frameTimeMs": {
+            "p95": 20.7338,
+            "p50": 14.3906,
+            "p999": 50.9626,
+            "p99": 25.6193
+          }
+        },
+        "meshBytesAfterClear": 0,
+        "textureBytesAfterClear": 0,
+        "compatibility": "versions=[dragonsurvival=2.0.71, dsbr=0.2.0-alpha.4, geckolib=4.9.3, iris=1.8.14-beta.1+mc1.21.1, sodium=0.8.13+mc1.21.1]; texture=true; GPU=true; Iris=true; souls=true"
+      },
+      "rawSha256": "9c7a7fd1ab25d2706aa307ef6f7252cdd437cd3c26ac3979bd9a3364ddb25b22",
+      "runLabel": "initial",
+      "rawFrames": "samples/initial/souls17-mo4-baseline/souls17-mo4.csv",
+      "screenshot": "samples/initial/souls17-mo4-baseline/souls17-mo4.png",
+      "localEvidenceId": "dsbr-validation-iris-20261007-020842"
+    },
+    {
+      "scene": "dihuang-4",
+      "version": "candidate",
+      "jarSha256": "49e2f6db28517232841e19bc7c420b974cac9b2b7867f8aca41d6b1485252360",
+      "driverSha256": "4ae7f69c7a5932041cfabdf10aec7f054d2d53f6f388918493320ab347e59974",
+      "metrics": {
+        "samples": 15630,
+        "capturedSeconds": 60.026433499999996,
+        "averageFps": 260.385285092775,
+        "low1Fps": 103.51293905144964,
+        "low01Fps": 51.46201990357947,
+        "frameTimeMs": {
+          "p50": 3.4713,
+          "p95": 6.2364,
+          "p99": 7.849,
+          "p999": 10.9659
+        },
+        "longFramesAboveMs": {
+          "16.7": 7,
+          "33.3": 2,
+          "50": 0
+        },
+        "maximumFrameMs": 39.7502,
+        "definition": "1000 / mean slowest ceil(samples * fraction) frame times in ms"
+      },
+      "row": {
+        "scene": "dihuang-4",
+        "warmupSeconds": 15.0,
+        "samplingSeconds": 60.0,
+        "width": 1280,
+        "height": 720,
+        "renderDistance": 6,
+        "vsync": false,
+        "effectiveFpsLimit": 260,
+        "swapInterval": 0,
+        "stats": {
+          "totals": {
+            "ARMOR_CHECK_NANOS": 50173300,
+            "FRAME_CPU_NANOS": 39866223600,
+            "GPU_BATCH_CPU_NANOS": 7521994000,
+            "GPU_BONE_SUBMIT_NANOS": 1070607600,
+            "GPU_DRAW_CALLS": 62524,
+            "GPU_DRAW_CPU_NANOS": 7261435500,
+            "GPU_PASS": 109417,
+            "GPU_POSE_CAPTURE_NANOS": 4109089900,
+            "GPU_VERTEX_COUNT": 935609136,
+            "HIT": 62524,
+            "NPC_GPU_DRAW_CALLS": 15631,
+            "NPC_GPU_PASS": 62524,
+            "NPC_GPU_POSE_CAPTURE_NANOS": 1873653000,
+            "PLAYER_GPU_DRAW_CALLS": 46893,
+            "PLAYER_GPU_PASS": 46893,
+            "PLAYER_GPU_POSE_CAPTURE_NANOS": 2240763000,
+            "POSE_UPLOAD": 62524,
+            "SKIN_CHECK_NANOS": 51546100
+          },
+          "peaks": {
+            "GPU_RESOURCE_BYTES": 6842032,
+            "TEXTURE_RESOURCE_BYTES": 5242880
+          },
+          "fallbacks": {},
+          "attribution": {
+            "entity": {
+              "GPU_PASS": 93786
+            },
+            "glow/entity": {
+              "GPU_PASS": 15631
+            }
+          },
+          "dirtyTraces": [],
+          "frameSamples": 15631,
+          "quantileSamples": 15631,
+          "frameTimeMs": {
+            "p50": 3.4565,
+            "p95": 6.3614,
+            "p99": 7.951,
+            "p999": 11.6471
+          }
+        },
+        "rawFrames": "dihuang-4.csv",
+        "actors": [
+          {
+            "type": "beloong:dihuang_loong",
+            "scale": 1.0
+          },
+          {
+            "type": "beloong:dihuang_loong",
+            "scale": 1.0
+          },
+          {
+            "type": "beloong:dihuang_loong",
+            "scale": 1.0
+          },
+          {
+            "type": "beloong:dihuang_loong",
+            "scale": 1.0
+          }
+        ],
+        "textureBytes": 5242880,
+        "meshBytes": 2292784,
+        "npcGeometryCalls": 62524,
+        "npcGeometryNanos": 1865940300,
+        "camera": [
+          0.0,
+          -52.0,
+          36.0,
+          180.0,
+          13.0
+        ],
+        "shaderPack": "ComplementaryUnbound_r5.9.zip"
+      },
+      "result": {
+        "pass": true,
+        "scenes": 1,
+        "stats": {
+          "totals": {
+            "ARMOR_CHECK_NANOS": 50173300,
+            "FRAME_CPU_NANOS": 39866223600,
+            "GPU_BATCH_CPU_NANOS": 7521994000,
+            "GPU_BONE_SUBMIT_NANOS": 1070607600,
+            "GPU_DRAW_CALLS": 62524,
+            "GPU_DRAW_CPU_NANOS": 7261435500,
+            "GPU_PASS": 109417,
+            "GPU_POSE_CAPTURE_NANOS": 4109089900,
+            "GPU_VERTEX_COUNT": 935609136,
+            "HIT": 62524,
+            "NPC_GPU_DRAW_CALLS": 15631,
+            "NPC_GPU_PASS": 62524,
+            "NPC_GPU_POSE_CAPTURE_NANOS": 1873653000,
+            "PLAYER_GPU_DRAW_CALLS": 46893,
+            "PLAYER_GPU_PASS": 46893,
+            "PLAYER_GPU_POSE_CAPTURE_NANOS": 2240763000,
+            "POSE_UPLOAD": 62524,
+            "SKIN_CHECK_NANOS": 51546100
+          },
+          "peaks": {
+            "GPU_RESOURCE_BYTES": 6842032,
+            "TEXTURE_RESOURCE_BYTES": 5242880
+          },
+          "fallbacks": {},
+          "attribution": {
+            "entity": {
+              "GPU_PASS": 93786
+            },
+            "glow/entity": {
+              "GPU_PASS": 15631
+            }
+          },
+          "dirtyTraces": [],
+          "frameSamples": 15631,
+          "quantileSamples": 15631,
+          "frameTimeMs": {
+            "p50": 3.4565,
+            "p95": 6.3614,
+            "p99": 7.951,
+            "p999": 11.6471
+          }
+        },
+        "meshBytesAfterClear": 0,
+        "textureBytesAfterClear": 0,
+        "compatibility": "versions=[beloong=0.10.1, dragonsurvival=2.0.71, dsbr=0.2.0-alpha.5, geckolib=4.9.3, iris=1.8.14-beta.1+mc1.21.1, sodium=0.8.13+mc1.21.1]; texture=true; GPU=true; Iris=true; souls=true; NPC=Core 0.10.1 NPC interfaces verified"
+      },
+      "rawSha256": "de80c6b893a244d1da151e4994599c14f8a56fbed2abe85928d0f7b67c8afcd9",
+      "runLabel": "initial",
+      "rawFrames": "samples/initial/dihuang-4-candidate/dihuang-4.csv",
+      "screenshot": "samples/initial/dihuang-4-candidate/dihuang-4.png",
+      "localEvidenceId": "dsbr-validation-iris-20261007-020014"
+    },
+    {
+      "scene": "mixed-12",
+      "version": "candidate",
+      "jarSha256": "49e2f6db28517232841e19bc7c420b974cac9b2b7867f8aca41d6b1485252360",
+      "driverSha256": "4ae7f69c7a5932041cfabdf10aec7f054d2d53f6f388918493320ab347e59974",
+      "metrics": {
+        "samples": 10979,
+        "capturedSeconds": 60.0221315,
+        "averageFps": 182.9158632928589,
+        "low1Fps": 73.83237620844304,
+        "low01Fps": 35.3969201461571,
+        "frameTimeMs": {
+          "p50": 5.1507,
+          "p95": 8.4058,
+          "p99": 10.5008,
+          "p999": 21.8941
+        },
+        "longFramesAboveMs": {
+          "16.7": 14,
+          "33.3": 2,
+          "50": 0
+        },
+        "maximumFrameMs": 34.5634,
+        "definition": "1000 / mean slowest ceil(samples * fraction) frame times in ms"
+      },
+      "row": {
+        "scene": "mixed-12",
+        "warmupSeconds": 15.0,
+        "samplingSeconds": 60.0,
+        "width": 1280,
+        "height": 720,
+        "renderDistance": 6,
+        "vsync": false,
+        "effectiveFpsLimit": 260,
+        "swapInterval": 0,
+        "stats": {
+          "totals": {
+            "ARMOR_CHECK_NANOS": 70380400,
+            "FRAME_CPU_NANOS": 44950542400,
+            "GPU_BATCH_CPU_NANOS": 6765553000,
+            "GPU_BONE_SUBMIT_NANOS": 1970936600,
+            "GPU_DRAW_CALLS": 54900,
+            "GPU_DRAW_CPU_NANOS": 6481581800,
+            "GPU_PASS": 164700,
+            "GPU_POSE_CAPTURE_NANOS": 8091351100,
+            "GPU_VERTEX_COUNT": 2150850240,
+            "HIT": 43920,
+            "NPC_GPU_DRAW_CALLS": 21960,
+            "NPC_GPU_PASS": 131760,
+            "NPC_GPU_POSE_CAPTURE_NANOS": 6519120500,
+            "PLAYER_GPU_DRAW_CALLS": 32940,
+            "PLAYER_GPU_PASS": 32940,
+            "PLAYER_GPU_POSE_CAPTURE_NANOS": 1579945400,
+            "POSE_UPLOAD": 54900,
+            "SKIN_CHECK_NANOS": 24481900
+          },
+          "peaks": {
+            "GPU_RESOURCE_BYTES": 18082304,
+            "TEXTURE_RESOURCE_BYTES": 5242880
+          },
+          "fallbacks": {},
+          "attribution": {
+            "entity": {
+              "GPU_PASS": 153720
+            },
+            "glow/entity": {
+              "GPU_PASS": 10980
+            }
+          },
+          "dirtyTraces": [],
+          "frameSamples": 10980,
+          "quantileSamples": 10980,
+          "frameTimeMs": {
+            "p95": 8.3357,
+            "p50": 5.1601,
+            "p999": 24.7825,
+            "p99": 10.1965
+          }
+        },
+        "rawFrames": "mixed-12.csv",
+        "actors": [
+          {
+            "scale": 1.0,
+            "type": "beloong:mo"
+          },
+          {
+            "scale": 1.0,
+            "type": "beloong:dihuang_loong"
+          },
+          {
+            "scale": 1.0,
+            "type": "beloong:mo"
+          },
+          {
+            "scale": 1.0,
+            "type": "beloong:dihuang_loong"
+          },
+          {
+            "scale": 1.0,
+            "type": "beloong:mo"
+          },
+          {
+            "scale": 1.0,
+            "type": "beloong:dihuang_loong"
+          },
+          {
+            "scale": 1.0,
+            "type": "beloong:mo"
+          },
+          {
+            "scale": 1.0,
+            "type": "beloong:dihuang_loong"
+          },
+          {
+            "scale": 1.0,
+            "type": "beloong:mo"
+          },
+          {
+            "scale": 1.0,
+            "type": "beloong:dihuang_loong"
+          },
+          {
+            "scale": 1.0,
+            "type": "beloong:mo"
+          },
+          {
+            "scale": 1.0,
+            "type": "beloong:dihuang_loong"
+          }
+        ],
+        "textureBytes": 5242880,
+        "meshBytes": 4468544,
+        "npcGeometryCalls": 131760,
+        "npcGeometryNanos": 6479266400,
+        "camera": [
+          0.0,
+          -52.0,
+          36.0,
+          180.0,
+          13.0
+        ],
+        "shaderPack": "ComplementaryUnbound_r5.9.zip"
+      },
+      "result": {
+        "pass": true,
+        "scenes": 1,
+        "stats": {
+          "totals": {
+            "ARMOR_CHECK_NANOS": 70380400,
+            "FRAME_CPU_NANOS": 44950542400,
+            "GPU_BATCH_CPU_NANOS": 6765553000,
+            "GPU_BONE_SUBMIT_NANOS": 1970936600,
+            "GPU_DRAW_CALLS": 54900,
+            "GPU_DRAW_CPU_NANOS": 6481581800,
+            "GPU_PASS": 164700,
+            "GPU_POSE_CAPTURE_NANOS": 8091351100,
+            "GPU_VERTEX_COUNT": 2150850240,
+            "HIT": 43920,
+            "NPC_GPU_DRAW_CALLS": 21960,
+            "NPC_GPU_PASS": 131760,
+            "NPC_GPU_POSE_CAPTURE_NANOS": 6519120500,
+            "PLAYER_GPU_DRAW_CALLS": 32940,
+            "PLAYER_GPU_PASS": 32940,
+            "PLAYER_GPU_POSE_CAPTURE_NANOS": 1579945400,
+            "POSE_UPLOAD": 54900,
+            "SKIN_CHECK_NANOS": 24481900
+          },
+          "peaks": {
+            "GPU_RESOURCE_BYTES": 18082304,
+            "TEXTURE_RESOURCE_BYTES": 5242880
+          },
+          "fallbacks": {},
+          "attribution": {
+            "entity": {
+              "GPU_PASS": 153720
+            },
+            "glow/entity": {
+              "GPU_PASS": 10980
+            }
+          },
+          "dirtyTraces": [],
+          "frameSamples": 10980,
+          "quantileSamples": 10980,
+          "frameTimeMs": {
+            "p95": 8.3357,
+            "p50": 5.1601,
+            "p999": 24.7825,
+            "p99": 10.1965
+          }
+        },
+        "meshBytesAfterClear": 0,
+        "textureBytesAfterClear": 0,
+        "compatibility": "versions=[beloong=0.10.1, dragonsurvival=2.0.71, dsbr=0.2.0-alpha.5, geckolib=4.9.3, iris=1.8.14-beta.1+mc1.21.1, sodium=0.8.13+mc1.21.1]; texture=true; GPU=true; Iris=true; souls=true; NPC=Core 0.10.1 NPC interfaces verified"
+      },
+      "rawSha256": "66b804fe21ceb527a7845e1ed7c45a73ad81e4f96064ee584729e7794192a3c4",
+      "runLabel": "initial",
+      "rawFrames": "samples/initial/mixed-12-candidate/mixed-12.csv",
+      "screenshot": "samples/initial/mixed-12-candidate/mixed-12.png",
+      "localEvidenceId": "dsbr-validation-iris-20261007-020305"
+    },
+    {
+      "scene": "mo-4",
+      "version": "candidate",
+      "jarSha256": "49e2f6db28517232841e19bc7c420b974cac9b2b7867f8aca41d6b1485252360",
+      "driverSha256": "4ae7f69c7a5932041cfabdf10aec7f054d2d53f6f388918493320ab347e59974",
+      "metrics": {
+        "samples": 13753,
+        "capturedSeconds": 60.0294563,
+        "averageFps": 229.1041906371556,
+        "low1Fps": 92.6265693407532,
+        "low01Fps": 43.90870251665865,
+        "frameTimeMs": {
+          "p50": 4.0092,
+          "p95": 6.8742,
+          "p99": 8.5598,
+          "p999": 11.8577
+        },
+        "longFramesAboveMs": {
+          "16.7": 9,
+          "33.3": 1,
+          "50": 0
+        },
+        "maximumFrameMs": 46.8245,
+        "definition": "1000 / mean slowest ceil(samples * fraction) frame times in ms"
+      },
+      "row": {
+        "scene": "mo-4",
+        "warmupSeconds": 15.0,
+        "samplingSeconds": 60.0,
+        "width": 1280,
+        "height": 720,
+        "renderDistance": 6,
+        "vsync": false,
+        "effectiveFpsLimit": 260,
+        "swapInterval": 0,
+        "stats": {
+          "totals": {
+            "ARMOR_CHECK_NANOS": 60215400,
+            "FRAME_CPU_NANOS": 42219615600,
+            "GPU_BATCH_CPU_NANOS": 7347349500,
+            "GPU_BONE_SUBMIT_NANOS": 1406042700,
+            "GPU_DRAW_CALLS": 55016,
+            "GPU_DRAW_CPU_NANOS": 7079584700,
+            "GPU_PASS": 96278,
+            "GPU_POSE_CAPTURE_NANOS": 5285434500,
+            "GPU_VERTEX_COUNT": 1472008096,
+            "HIT": 55016,
+            "NPC_GPU_DRAW_CALLS": 13754,
+            "NPC_GPU_PASS": 55016,
+            "NPC_GPU_POSE_CAPTURE_NANOS": 3398930000,
+            "PLAYER_GPU_DRAW_CALLS": 41262,
+            "PLAYER_GPU_PASS": 41262,
+            "PLAYER_GPU_POSE_CAPTURE_NANOS": 1896680800,
+            "POSE_UPLOAD": 55016,
+            "SKIN_CHECK_NANOS": 30289100
+          },
+          "peaks": {
+            "GPU_RESOURCE_BYTES": 12549744,
+            "TEXTURE_RESOURCE_BYTES": 5242880
+          },
+          "fallbacks": {},
+          "attribution": {
+            "entity": {
+              "GPU_PASS": 82524
+            },
+            "glow/entity": {
+              "GPU_PASS": 13754
+            }
+          },
+          "dirtyTraces": [],
+          "frameSamples": 13754,
+          "quantileSamples": 13754,
+          "frameTimeMs": {
+            "p95": 6.9812,
+            "p50": 3.9902,
+            "p999": 12.1366,
+            "p99": 8.7681
+          }
+        },
+        "rawFrames": "mo-4.csv",
+        "actors": [
+          {
+            "type": "beloong:mo",
+            "scale": 1.0
+          },
+          {
+            "type": "beloong:mo",
+            "scale": 1.0
+          },
+          {
+            "type": "beloong:mo",
+            "scale": 1.0
+          },
+          {
+            "type": "beloong:mo",
+            "scale": 1.0
+          }
+        ],
+        "textureBytes": 5242880,
+        "meshBytes": 3323664,
+        "npcGeometryCalls": 55016,
+        "npcGeometryNanos": 3378631500,
+        "camera": [
+          0.0,
+          -52.0,
+          36.0,
+          180.0,
+          13.0
+        ],
+        "shaderPack": "ComplementaryUnbound_r5.9.zip"
+      },
+      "result": {
+        "pass": true,
+        "scenes": 1,
+        "stats": {
+          "totals": {
+            "ARMOR_CHECK_NANOS": 60215400,
+            "FRAME_CPU_NANOS": 42219615600,
+            "GPU_BATCH_CPU_NANOS": 7347349500,
+            "GPU_BONE_SUBMIT_NANOS": 1406042700,
+            "GPU_DRAW_CALLS": 55016,
+            "GPU_DRAW_CPU_NANOS": 7079584700,
+            "GPU_PASS": 96278,
+            "GPU_POSE_CAPTURE_NANOS": 5285434500,
+            "GPU_VERTEX_COUNT": 1472008096,
+            "HIT": 55016,
+            "NPC_GPU_DRAW_CALLS": 13754,
+            "NPC_GPU_PASS": 55016,
+            "NPC_GPU_POSE_CAPTURE_NANOS": 3398930000,
+            "PLAYER_GPU_DRAW_CALLS": 41262,
+            "PLAYER_GPU_PASS": 41262,
+            "PLAYER_GPU_POSE_CAPTURE_NANOS": 1896680800,
+            "POSE_UPLOAD": 55016,
+            "SKIN_CHECK_NANOS": 30289100
+          },
+          "peaks": {
+            "GPU_RESOURCE_BYTES": 12549744,
+            "TEXTURE_RESOURCE_BYTES": 5242880
+          },
+          "fallbacks": {},
+          "attribution": {
+            "entity": {
+              "GPU_PASS": 82524
+            },
+            "glow/entity": {
+              "GPU_PASS": 13754
+            }
+          },
+          "dirtyTraces": [],
+          "frameSamples": 13754,
+          "quantileSamples": 13754,
+          "frameTimeMs": {
+            "p95": 6.9812,
+            "p50": 3.9902,
+            "p999": 12.1366,
+            "p99": 8.7681
+          }
+        },
+        "meshBytesAfterClear": 0,
+        "textureBytesAfterClear": 0,
+        "compatibility": "versions=[beloong=0.10.1, dragonsurvival=2.0.71, dsbr=0.2.0-alpha.5, geckolib=4.9.3, iris=1.8.14-beta.1+mc1.21.1, sodium=0.8.13+mc1.21.1]; texture=true; GPU=true; Iris=true; souls=true; NPC=Core 0.10.1 NPC interfaces verified"
+      },
+      "rawSha256": "c6f2cdf4ab6e80cb83c6478186dc036b03c3cd1d16d9a628617b7567d3df4cc4",
+      "runLabel": "initial",
+      "rawFrames": "samples/initial/mo-4-candidate/mo-4.csv",
+      "screenshot": "samples/initial/mo-4-candidate/mo-4.png",
+      "localEvidenceId": "dsbr-validation-iris-20261007-015149"
+    },
+    {
+      "scene": "players-12",
+      "version": "candidate",
+      "jarSha256": "49e2f6db28517232841e19bc7c420b974cac9b2b7867f8aca41d6b1485252360",
+      "driverSha256": "4ae7f69c7a5932041cfabdf10aec7f054d2d53f6f388918493320ab347e59974",
+      "metrics": {
+        "samples": 7039,
+        "capturedSeconds": 60.0319059,
+        "averageFps": 117.2543149258901,
+        "low1Fps": 50.672994462797746,
+        "low01Fps": 27.168422142943257,
+        "frameTimeMs": {
+          "p50": 8.0743,
+          "p95": 12.4182,
+          "p99": 15.0879,
+          "p999": 29.746
+        },
+        "longFramesAboveMs": {
+          "16.7": 33,
+          "33.3": 6,
+          "50": 0
+        },
+        "maximumFrameMs": 43.7885,
+        "definition": "1000 / mean slowest ceil(samples * fraction) frame times in ms"
+      },
+      "row": {
+        "scene": "players-12",
+        "warmupSeconds": 15.0,
+        "samplingSeconds": 60.0,
+        "width": 1280,
+        "height": 720,
+        "renderDistance": 6,
+        "vsync": false,
+        "effectiveFpsLimit": 260,
+        "swapInterval": 0,
+        "stats": {
+          "totals": {
+            "ARMOR_CHECK_NANOS": 154463800,
+            "FRAME_CPU_NANOS": 48704119700,
+            "GPU_BATCH_CPU_NANOS": 10640694000,
+            "GPU_BONE_SUBMIT_NANOS": 3627465000,
+            "GPU_DRAW_CALLS": 176000,
+            "GPU_DRAW_CPU_NANOS": 10245518700,
+            "GPU_PASS": 253440,
+            "GPU_POSE_CAPTURE_NANOS": 14170911000,
+            "GPU_VERTEX_COUNT": 2299207680,
+            "HIT": 337920,
+            "PLAYER_GPU_DRAW_CALLS": 176000,
+            "PLAYER_GPU_PASS": 253440,
+            "PLAYER_GPU_POSE_CAPTURE_NANOS": 14180775400,
+            "POSE_UPLOAD": 176000,
+            "SKIN_CHECK_NANOS": 57750000
+          },
+          "peaks": {
+            "GPU_RESOURCE_BYTES": 28696320,
+            "TEXTURE_RESOURCE_BYTES": 28311552
+          },
+          "fallbacks": {},
+          "attribution": {
+            "entity": {
+              "GPU_PASS": 168960
+            },
+            "glow/entity": {
+              "GPU_PASS": 84480
+            }
+          },
+          "dirtyTraces": [],
+          "frameSamples": 7040,
+          "quantileSamples": 7040,
+          "frameTimeMs": {
+            "p95": 12.3427,
+            "p50": 8.0626,
+            "p999": 31.0671,
+            "p99": 15.3907
+          }
+        },
+        "rawFrames": "players-12.csv",
+        "actors": [
+          {
+            "scale": 1.2375,
+            "type": "minecraft:player"
+          },
+          {
+            "scale": 1.2375,
+            "type": "minecraft:player"
+          },
+          {
+            "scale": 1.2375,
+            "type": "minecraft:player"
+          },
+          {
+            "scale": 1.2375,
+            "type": "minecraft:player"
+          },
+          {
+            "scale": 1.2375,
+            "type": "minecraft:player"
+          },
+          {
+            "scale": 1.2375,
+            "type": "minecraft:player"
+          },
+          {
+            "scale": 1.2375,
+            "type": "minecraft:player"
+          },
+          {
+            "scale": 1.2375,
+            "type": "minecraft:player"
+          },
+          {
+            "scale": 1.2375,
+            "type": "minecraft:player"
+          },
+          {
+            "scale": 1.2375,
+            "type": "minecraft:player"
+          },
+          {
+            "scale": 1.2375,
+            "type": "minecraft:player"
+          },
+          {
+            "scale": 1.2375,
+            "type": "minecraft:player"
+          }
+        ],
+        "textureBytes": 28311552,
+        "meshBytes": 11060352,
+        "npcGeometryCalls": 0,
+        "npcGeometryNanos": 0,
+        "camera": [
+          0.0,
+          -52.0,
+          36.0,
+          180.0,
+          13.0
+        ],
+        "shaderPack": "ComplementaryUnbound_r5.9.zip"
+      },
+      "result": {
+        "pass": true,
+        "scenes": 1,
+        "stats": {
+          "totals": {
+            "ARMOR_CHECK_NANOS": 154463800,
+            "FRAME_CPU_NANOS": 48704119700,
+            "GPU_BATCH_CPU_NANOS": 10640694000,
+            "GPU_BONE_SUBMIT_NANOS": 3627465000,
+            "GPU_DRAW_CALLS": 176000,
+            "GPU_DRAW_CPU_NANOS": 10245518700,
+            "GPU_PASS": 253440,
+            "GPU_POSE_CAPTURE_NANOS": 14170911000,
+            "GPU_VERTEX_COUNT": 2299207680,
+            "HIT": 337920,
+            "PLAYER_GPU_DRAW_CALLS": 176000,
+            "PLAYER_GPU_PASS": 253440,
+            "PLAYER_GPU_POSE_CAPTURE_NANOS": 14180775400,
+            "POSE_UPLOAD": 176000,
+            "SKIN_CHECK_NANOS": 57750000
+          },
+          "peaks": {
+            "GPU_RESOURCE_BYTES": 28696320,
+            "TEXTURE_RESOURCE_BYTES": 28311552
+          },
+          "fallbacks": {},
+          "attribution": {
+            "entity": {
+              "GPU_PASS": 168960
+            },
+            "glow/entity": {
+              "GPU_PASS": 84480
+            }
+          },
+          "dirtyTraces": [],
+          "frameSamples": 7040,
+          "quantileSamples": 7040,
+          "frameTimeMs": {
+            "p95": 12.3427,
+            "p50": 8.0626,
+            "p999": 31.0671,
+            "p99": 15.3907
+          }
+        },
+        "meshBytesAfterClear": 0,
+        "textureBytesAfterClear": 0,
+        "compatibility": "versions=[beloong=0.10.1, dragonsurvival=2.0.71, dsbr=0.2.0-alpha.5, geckolib=4.9.3, iris=1.8.14-beta.1+mc1.21.1, sodium=0.8.13+mc1.21.1]; texture=true; GPU=true; Iris=true; souls=true; NPC=Core 0.10.1 NPC interfaces verified"
+      },
+      "rawSha256": "2ade273ad00fc597da68f8352ebf45a5216b8240bdc755bfb3224075288484fe",
+      "runLabel": "initial",
+      "rawFrames": "samples/initial/players-12-candidate/players-12.csv",
+      "screenshot": "samples/initial/players-12-candidate/players-12.png",
+      "localEvidenceId": "dsbr-validation-iris-20261007-014903"
+    },
+    {
+      "scene": "souls17-mo4",
+      "version": "candidate",
+      "jarSha256": "49e2f6db28517232841e19bc7c420b974cac9b2b7867f8aca41d6b1485252360",
+      "driverSha256": "4ae7f69c7a5932041cfabdf10aec7f054d2d53f6f388918493320ab347e59974",
+      "metrics": {
+        "samples": 5624,
+        "capturedSeconds": 60.034541100000006,
+        "averageFps": 93.67940350592602,
+        "low1Fps": 41.18841735457345,
+        "low01Fps": 22.924624217649438,
+        "frameTimeMs": {
+          "p50": 10.1386,
+          "p95": 15.3772,
+          "p99": 18.9595,
+          "p999": 37.0126
+        },
+        "longFramesAboveMs": {
+          "16.7": 145,
+          "33.3": 7,
+          "50": 1
+        },
+        "maximumFrameMs": 51.3657,
+        "definition": "1000 / mean slowest ceil(samples * fraction) frame times in ms"
+      },
+      "row": {
+        "scene": "souls17-mo4",
+        "warmupSeconds": 15.0,
+        "samplingSeconds": 60.0,
+        "width": 1280,
+        "height": 720,
+        "renderDistance": 6,
+        "vsync": false,
+        "effectiveFpsLimit": 260,
+        "swapInterval": 0,
+        "stats": {
+          "totals": {
+            "ARMOR_CHECK_NANOS": 174146600,
+            "FRAME_CPU_NANOS": 51076869000,
+            "GPU_BATCH_CPU_NANOS": 7508988000,
+            "GPU_BONE_SUBMIT_NANOS": 4856292800,
+            "GPU_DRAW_CALLS": 39375,
+            "GPU_DRAW_CPU_NANOS": 7232417800,
+            "GPU_PASS": 326250,
+            "GPU_POSE_CAPTURE_NANOS": 18386420900,
+            "GPU_VERTEX_COUNT": 3204540000,
+            "HIT": 405000,
+            "NPC_GPU_DRAW_CALLS": 5625,
+            "NPC_GPU_PASS": 22500,
+            "NPC_GPU_POSE_CAPTURE_NANOS": 1446005100,
+            "PLAYER_GPU_DRAW_CALLS": 16875,
+            "PLAYER_GPU_PASS": 16875,
+            "PLAYER_GPU_POSE_CAPTURE_NANOS": 759248300,
+            "POSE_UPLOAD": 39375,
+            "SKIN_CHECK_NANOS": 59390900,
+            "SOUL_GPU_DRAW_CALLS": 16875,
+            "SOUL_GPU_PASS": 286875,
+            "SOUL_GPU_POSE_CAPTURE_NANOS": 16193048400,
+            "SOUL_RENDER": 95625,
+            "SOUL_RENDER_CPU_NANOS": 25911397700,
+            "SOUL_TEXTURE_HIT": 286875
+          },
+          "peaks": {
+            "GPU_RESOURCE_BYTES": 48192912,
+            "TEXTURE_RESOURCE_BYTES": 7340032
+          },
+          "fallbacks": {},
+          "attribution": {
+            "entity": {
+              "GPU_PASS": 225000
+            },
+            "glow/entity": {
+              "GPU_PASS": 101250
+            }
+          },
+          "dirtyTraces": [],
+          "frameSamples": 5625,
+          "quantileSamples": 5625,
+          "frameTimeMs": {
+            "p99": 18.6621,
+            "p95": 15.1315,
+            "p50": 10.1236,
+            "p999": 38.6115
+          }
+        },
+        "rawFrames": "souls17-mo4.csv",
+        "actors": [
+          {
+            "scale": 1.0,
+            "type": "beloong:mo"
+          },
+          {
+            "scale": 1.0,
+            "type": "beloong:mo"
+          },
+          {
+            "scale": 1.0,
+            "type": "beloong:mo"
+          },
+          {
+            "scale": 1.0,
+            "type": "beloong:mo"
+          }
+        ],
+        "textureBytes": 7340032,
+        "meshBytes": 8964432,
+        "npcGeometryCalls": 22500,
+        "npcGeometryNanos": 1431618900,
+        "camera": [
+          0.0,
+          -52.0,
+          36.0,
+          180.0,
+          13.0
+        ],
+        "shaderPack": "ComplementaryUnbound_r5.9.zip"
+      },
+      "result": {
+        "pass": true,
+        "scenes": 1,
+        "stats": {
+          "totals": {
+            "ARMOR_CHECK_NANOS": 174146600,
+            "FRAME_CPU_NANOS": 51076869000,
+            "GPU_BATCH_CPU_NANOS": 7508988000,
+            "GPU_BONE_SUBMIT_NANOS": 4856292800,
+            "GPU_DRAW_CALLS": 39375,
+            "GPU_DRAW_CPU_NANOS": 7232417800,
+            "GPU_PASS": 326250,
+            "GPU_POSE_CAPTURE_NANOS": 18386420900,
+            "GPU_VERTEX_COUNT": 3204540000,
+            "HIT": 405000,
+            "NPC_GPU_DRAW_CALLS": 5625,
+            "NPC_GPU_PASS": 22500,
+            "NPC_GPU_POSE_CAPTURE_NANOS": 1446005100,
+            "PLAYER_GPU_DRAW_CALLS": 16875,
+            "PLAYER_GPU_PASS": 16875,
+            "PLAYER_GPU_POSE_CAPTURE_NANOS": 759248300,
+            "POSE_UPLOAD": 39375,
+            "SKIN_CHECK_NANOS": 59390900,
+            "SOUL_GPU_DRAW_CALLS": 16875,
+            "SOUL_GPU_PASS": 286875,
+            "SOUL_GPU_POSE_CAPTURE_NANOS": 16193048400,
+            "SOUL_RENDER": 95625,
+            "SOUL_RENDER_CPU_NANOS": 25911397700,
+            "SOUL_TEXTURE_HIT": 286875
+          },
+          "peaks": {
+            "GPU_RESOURCE_BYTES": 48192912,
+            "TEXTURE_RESOURCE_BYTES": 7340032
+          },
+          "fallbacks": {},
+          "attribution": {
+            "entity": {
+              "GPU_PASS": 225000
+            },
+            "glow/entity": {
+              "GPU_PASS": 101250
+            }
+          },
+          "dirtyTraces": [],
+          "frameSamples": 5625,
+          "quantileSamples": 5625,
+          "frameTimeMs": {
+            "p99": 18.6621,
+            "p95": 15.1315,
+            "p50": 10.1236,
+            "p999": 38.6115
+          }
+        },
+        "meshBytesAfterClear": 0,
+        "textureBytesAfterClear": 0,
+        "compatibility": "versions=[beloong=0.10.1, dragonsurvival=2.0.71, dsbr=0.2.0-alpha.5, geckolib=4.9.3, iris=1.8.14-beta.1+mc1.21.1, sodium=0.8.13+mc1.21.1]; texture=true; GPU=true; Iris=true; souls=true; NPC=Core 0.10.1 NPC interfaces verified"
+      },
+      "rawSha256": "a353acabca25028d63b6ec1352d83c884472c984b5bc89c4a9edd3fa12ca93f4",
+      "runLabel": "initial",
+      "rawFrames": "samples/initial/souls17-mo4-candidate/souls17-mo4.csv",
+      "screenshot": "samples/initial/souls17-mo4-candidate/souls17-mo4.png",
+      "localEvidenceId": "dsbr-validation-iris-20261007-021132"
+    },
+    {
+      "scene": "players-1",
+      "version": "baseline",
+      "jarSha256": "754f15bb0ded0b8e393f7a37ca6382ff4f49353d6f796211e50b19acfc037923",
+      "driverSha256": "4ae7f69c7a5932041cfabdf10aec7f054d2d53f6f388918493320ab347e59974",
+      "metrics": {
+        "samples": 17399,
+        "capturedSeconds": 60.030242,
+        "averageFps": 289.83724570025885,
+        "low1Fps": 105.17423419318632,
+        "low01Fps": 48.83951863542515,
+        "frameTimeMs": {
+          "p50": 3.0613,
+          "p95": 5.8735,
+          "p99": 7.4084,
+          "p999": 10.9145
+        },
+        "longFramesAboveMs": {
+          "16.7": 9,
+          "33.3": 2,
+          "50": 0
+        },
+        "maximumFrameMs": 48.832001,
+        "definition": "1000 / mean slowest ceil(samples * fraction) frame times in ms"
+      },
+      "row": {
+        "scene": "players-1",
+        "warmupSeconds": 15.0,
+        "samplingSeconds": 60.0,
+        "width": 1280,
+        "height": 720,
+        "renderDistance": 6,
+        "vsync": false,
+        "effectiveFpsLimit": 260,
+        "swapInterval": 0,
+        "stats": {
+          "totals": {
+            "ARMOR_CHECK_NANOS": 83759156,
+            "FRAME_CPU_NANOS": 38668035805,
+            "GPU_BATCH_CPU_NANOS": 5448422445,
+            "GPU_BONE_SUBMIT_NANOS": 583903232,
+            "GPU_DRAW_CALLS": 52200,
+            "GPU_DRAW_CPU_NANOS": 5225066385,
+            "GPU_PASS": 52200,
+            "GPU_POSE_CAPTURE_NANOS": 2454237934,
+            "GPU_VERTEX_COUNT": 473558400,
+            "HIT": 69600,
+            "SKIN_CHECK_NANOS": 41571644
+          },
+          "peaks": {
+            "GPU_RESOURCE_BYTES": 2920320,
+            "TEXTURE_RESOURCE_BYTES": 5242880
+          },
+          "fallbacks": {},
+          "attribution": {
+            "entity": {
+              "GPU_PASS": 34800
+            },
+            "glow/entity": {
+              "GPU_PASS": 17400
+            }
+          },
+          "dirtyTraces": [],
+          "frameSamples": 17400,
+          "quantileSamples": 17400,
+          "frameTimeMs": {
+            "p95": 5.759399,
+            "p50": 3.0948,
+            "p999": 10.5138,
+            "p99": 7.422301
+          }
+        },
+        "rawFrames": "players-1.csv",
+        "actors": [
+          {
+            "type": "minecraft:player",
+            "scale": 1.2375
+          }
+        ],
+        "textureBytes": 5242880,
+        "meshBytes": 1450656,
+        "npcGeometryCalls": 0,
+        "npcGeometryNanos": 0,
+        "camera": [
+          0.0,
+          -52.0,
+          36.0,
+          180.0,
+          13.0
+        ],
+        "shaderPack": "ComplementaryUnbound_r5.9.zip"
+      },
+      "result": {
+        "pass": true,
+        "scenes": 1,
+        "stats": {
+          "totals": {
+            "ARMOR_CHECK_NANOS": 83759156,
+            "FRAME_CPU_NANOS": 38668035805,
+            "GPU_BATCH_CPU_NANOS": 5448422445,
+            "GPU_BONE_SUBMIT_NANOS": 583903232,
+            "GPU_DRAW_CALLS": 52200,
+            "GPU_DRAW_CPU_NANOS": 5225066385,
+            "GPU_PASS": 52200,
+            "GPU_POSE_CAPTURE_NANOS": 2454237934,
+            "GPU_VERTEX_COUNT": 473558400,
+            "HIT": 69600,
+            "SKIN_CHECK_NANOS": 41571644
+          },
+          "peaks": {
+            "GPU_RESOURCE_BYTES": 2920320,
+            "TEXTURE_RESOURCE_BYTES": 5242880
+          },
+          "fallbacks": {},
+          "attribution": {
+            "entity": {
+              "GPU_PASS": 34800
+            },
+            "glow/entity": {
+              "GPU_PASS": 17400
+            }
+          },
+          "dirtyTraces": [],
+          "frameSamples": 17400,
+          "quantileSamples": 17400,
+          "frameTimeMs": {
+            "p95": 5.759399,
+            "p50": 3.0948,
+            "p999": 10.5138,
+            "p99": 7.422301
+          }
+        },
+        "meshBytesAfterClear": 0,
+        "textureBytesAfterClear": 0,
+        "compatibility": "versions=[dragonsurvival=2.0.71, dsbr=0.2.0-alpha.4, geckolib=4.9.3, iris=1.8.14-beta.1+mc1.21.1, sodium=0.8.13+mc1.21.1]; texture=true; GPU=true; Iris=true; souls=true"
+      },
+      "rawSha256": "dc4ab84f1f9be21d159898fee1793e7479b50c4ebdb44fef5c219310138ff4f1",
+      "runLabel": "recheck",
+      "rawFrames": "samples/recheck/players-1-baseline/players-1.csv",
+      "screenshot": "samples/recheck/players-1-baseline/players-1.png",
+      "localEvidenceId": "dsbr-validation-iris-20261007-021437"
+    },
+    {
+      "scene": "players-1",
+      "version": "candidate",
+      "jarSha256": "49e2f6db28517232841e19bc7c420b974cac9b2b7867f8aca41d6b1485252360",
+      "driverSha256": "4ae7f69c7a5932041cfabdf10aec7f054d2d53f6f388918493320ab347e59974",
+      "metrics": {
+        "samples": 17765,
+        "capturedSeconds": 60.0357454,
+        "averageFps": 295.9070447387166,
+        "low1Fps": 114.93639938808792,
+        "low01Fps": 58.04058898983505,
+        "frameTimeMs": {
+          "p50": 2.9985,
+          "p95": 5.6762,
+          "p99": 7.178901,
+          "p999": 9.292099
+        },
+        "longFramesAboveMs": {
+          "16.7": 6,
+          "33.3": 1,
+          "50": 1
+        },
+        "maximumFrameMs": 52.5846,
+        "definition": "1000 / mean slowest ceil(samples * fraction) frame times in ms"
+      },
+      "row": {
+        "scene": "players-1",
+        "warmupSeconds": 15.0,
+        "samplingSeconds": 60.0,
+        "width": 1280,
+        "height": 720,
+        "renderDistance": 6,
+        "vsync": false,
+        "effectiveFpsLimit": 260,
+        "swapInterval": 0,
+        "stats": {
+          "totals": {
+            "ARMOR_CHECK_NANOS": 73376731,
+            "FRAME_CPU_NANOS": 38056972351,
+            "GPU_BATCH_CPU_NANOS": 6654573498,
+            "GPU_BONE_SUBMIT_NANOS": 611352929,
+            "GPU_DRAW_CALLS": 53298,
+            "GPU_DRAW_CPU_NANOS": 6435890805,
+            "GPU_PASS": 53298,
+            "GPU_POSE_CAPTURE_NANOS": 2532961395,
+            "GPU_VERTEX_COUNT": 483519456,
+            "HIT": 71064,
+            "PLAYER_GPU_DRAW_CALLS": 53298,
+            "PLAYER_GPU_PASS": 53298,
+            "PLAYER_GPU_POSE_CAPTURE_NANOS": 2537581338,
+            "POSE_UPLOAD": 53298,
+            "SKIN_CHECK_NANOS": 43933554
+          },
+          "peaks": {
+            "GPU_RESOURCE_BYTES": 2959488,
+            "TEXTURE_RESOURCE_BYTES": 5242880
+          },
+          "fallbacks": {},
+          "attribution": {
+            "entity": {
+              "GPU_PASS": 35532
+            },
+            "glow/entity": {
+              "GPU_PASS": 17766
+            }
+          },
+          "dirtyTraces": [],
+          "frameSamples": 17766,
+          "quantileSamples": 17766,
+          "frameTimeMs": {
+            "p999": 9.279301,
+            "p99": 7.1915,
+            "p95": 5.645,
+            "p50": 3.0111
+          }
+        },
+        "rawFrames": "players-1.csv",
+        "actors": [
+          {
+            "scale": 1.2375,
+            "type": "minecraft:player"
+          }
+        ],
+        "textureBytes": 5242880,
+        "meshBytes": 1489824,
+        "npcGeometryCalls": 0,
+        "npcGeometryNanos": 0,
+        "camera": [
+          0.0,
+          -52.0,
+          36.0,
+          180.0,
+          13.0
+        ],
+        "shaderPack": "ComplementaryUnbound_r5.9.zip"
+      },
+      "result": {
+        "pass": true,
+        "scenes": 1,
+        "stats": {
+          "totals": {
+            "ARMOR_CHECK_NANOS": 73376731,
+            "FRAME_CPU_NANOS": 38056972351,
+            "GPU_BATCH_CPU_NANOS": 6654573498,
+            "GPU_BONE_SUBMIT_NANOS": 611352929,
+            "GPU_DRAW_CALLS": 53298,
+            "GPU_DRAW_CPU_NANOS": 6435890805,
+            "GPU_PASS": 53298,
+            "GPU_POSE_CAPTURE_NANOS": 2532961395,
+            "GPU_VERTEX_COUNT": 483519456,
+            "HIT": 71064,
+            "PLAYER_GPU_DRAW_CALLS": 53298,
+            "PLAYER_GPU_PASS": 53298,
+            "PLAYER_GPU_POSE_CAPTURE_NANOS": 2537581338,
+            "POSE_UPLOAD": 53298,
+            "SKIN_CHECK_NANOS": 43933554
+          },
+          "peaks": {
+            "GPU_RESOURCE_BYTES": 2959488,
+            "TEXTURE_RESOURCE_BYTES": 5242880
+          },
+          "fallbacks": {},
+          "attribution": {
+            "entity": {
+              "GPU_PASS": 35532
+            },
+            "glow/entity": {
+              "GPU_PASS": 17766
+            }
+          },
+          "dirtyTraces": [],
+          "frameSamples": 17766,
+          "quantileSamples": 17766,
+          "frameTimeMs": {
+            "p999": 9.279301,
+            "p99": 7.1915,
+            "p95": 5.645,
+            "p50": 3.0111
+          }
+        },
+        "meshBytesAfterClear": 0,
+        "textureBytesAfterClear": 0,
+        "compatibility": "versions=[beloong=0.10.1, dragonsurvival=2.0.71, dsbr=0.2.0-alpha.5, geckolib=4.9.3, iris=1.8.14-beta.1+mc1.21.1, sodium=0.8.13+mc1.21.1]; texture=true; GPU=true; Iris=true; souls=true; NPC=Core 0.10.1 NPC interfaces verified"
+      },
+      "rawSha256": "74d211bbd76176b4a75335027b667e0adc609c35549ccb2f8b631fe70bee782c",
+      "runLabel": "recheck",
+      "rawFrames": "samples/recheck/players-1-candidate/players-1.csv",
+      "screenshot": "samples/recheck/players-1-candidate/players-1.png",
+      "localEvidenceId": "dsbr-validation-iris-20261007-021726"
+    }
+  ],
+  "limitations": [
+    "One short pair per scene; only a triggered regression receives one targeted recheck.",
+    "The user's running server client remains open. These are isolated local render scenes, not a server A/B test.",
+    "No claim about the original spark-report hardware or a 3 x 300 s formal Low acceptance.",
+    "NPC geometry timer includes the original bone traversal and capture/submission, but excludes animation evaluation before actuallyRender and deferred drawing."
+  ]
+}

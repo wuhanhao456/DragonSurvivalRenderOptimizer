@@ -1,0 +1,154 @@
+{
+  "scene": "mo-4",
+  "version": "baseline",
+  "jarSha256": "754f15bb0ded0b8e393f7a37ca6382ff4f49353d6f796211e50b19acfc037923",
+  "driverSha256": "4ae7f69c7a5932041cfabdf10aec7f054d2d53f6f388918493320ab347e59974",
+  "metrics": {
+    "samples": 6735,
+    "capturedSeconds": 60.031547700000004,
+    "averageFps": 112.19101052761964,
+    "low1Fps": 50.04941275478372,
+    "low01Fps": 30.53708183283565,
+    "frameTimeMs": {
+      "p50": 8.4774,
+      "p95": 12.8762,
+      "p99": 16.2569,
+      "p999": 27.4523
+    },
+    "longFramesAboveMs": {
+      "16.7": 57,
+      "33.3": 2,
+      "50": 0
+    },
+    "maximumFrameMs": 46.5477,
+    "definition": "1000 / mean slowest ceil(samples * fraction) frame times in ms"
+  },
+  "row": {
+    "scene": "mo-4",
+    "warmupSeconds": 15.0,
+    "samplingSeconds": 60.0,
+    "width": 1280,
+    "height": 720,
+    "renderDistance": 6,
+    "vsync": false,
+    "effectiveFpsLimit": 260,
+    "swapInterval": 0,
+    "stats": {
+      "totals": {
+        "ARMOR_CHECK_NANOS": 33144900,
+        "FRAME_CPU_NANOS": 49925102700,
+        "GPU_BATCH_CPU_NANOS": 2126121200,
+        "GPU_BONE_SUBMIT_NANOS": 255440700,
+        "GPU_DRAW_CALLS": 20208,
+        "GPU_DRAW_CPU_NANOS": 1986915800,
+        "GPU_PASS": 20208,
+        "GPU_POSE_CAPTURE_NANOS": 1026929000,
+        "GPU_VERTEX_COUNT": 183326976,
+        "HIT": 26944,
+        "SKIN_CHECK_NANOS": 16685500
+      },
+      "peaks": {
+        "GPU_RESOURCE_BYTES": 2920320,
+        "TEXTURE_RESOURCE_BYTES": 5242880
+      },
+      "fallbacks": {},
+      "attribution": {
+        "entity": {
+          "GPU_PASS": 13472
+        },
+        "glow/entity": {
+          "GPU_PASS": 6736
+        }
+      },
+      "dirtyTraces": [],
+      "frameSamples": 6736,
+      "quantileSamples": 6736,
+      "frameTimeMs": {
+        "p99": 15.9739,
+        "p999": 30.1052,
+        "p50": 8.4281,
+        "p95": 13.0013
+      }
+    },
+    "rawFrames": "mo-4.csv",
+    "actors": [
+      {
+        "scale": 1.0,
+        "type": "beloong:mo"
+      },
+      {
+        "scale": 1.0,
+        "type": "beloong:mo"
+      },
+      {
+        "scale": 1.0,
+        "type": "beloong:mo"
+      },
+      {
+        "scale": 1.0,
+        "type": "beloong:mo"
+      }
+    ],
+    "textureBytes": 5242880,
+    "meshBytes": 1450656,
+    "npcGeometryCalls": 26944,
+    "npcGeometryNanos": 18771702600,
+    "camera": [
+      0.0,
+      -52.0,
+      36.0,
+      180.0,
+      13.0
+    ],
+    "shaderPack": "ComplementaryUnbound_r5.9.zip"
+  },
+  "result": {
+    "pass": true,
+    "scenes": 1,
+    "stats": {
+      "totals": {
+        "ARMOR_CHECK_NANOS": 33144900,
+        "FRAME_CPU_NANOS": 49925102700,
+        "GPU_BATCH_CPU_NANOS": 2126121200,
+        "GPU_BONE_SUBMIT_NANOS": 255440700,
+        "GPU_DRAW_CALLS": 20208,
+        "GPU_DRAW_CPU_NANOS": 1986915800,
+        "GPU_PASS": 20208,
+        "GPU_POSE_CAPTURE_NANOS": 1026929000,
+        "GPU_VERTEX_COUNT": 183326976,
+        "HIT": 26944,
+        "SKIN_CHECK_NANOS": 16685500
+      },
+      "peaks": {
+        "GPU_RESOURCE_BYTES": 2920320,
+        "TEXTURE_RESOURCE_BYTES": 5242880
+      },
+      "fallbacks": {},
+      "attribution": {
+        "entity": {
+          "GPU_PASS": 13472
+        },
+        "glow/entity": {
+          "GPU_PASS": 6736
+        }
+      },
+      "dirtyTraces": [],
+      "frameSamples": 6736,
+      "quantileSamples": 6736,
+      "frameTimeMs": {
+        "p99": 15.9739,
+        "p999": 30.1052,
+        "p50": 8.4281,
+        "p95": 13.0013
+      }
+    },
+    "meshBytesAfterClear": 0,
+    "textureBytesAfterClear": 0,
+    "compatibility": "versions=[dragonsurvival=2.0.71, dsbr=0.2.0-alpha.4, geckolib=4.9.3, iris=1.8.14-beta.1+mc1.21.1, sodium=0.8.13+mc1.21.1]; texture=true; GPU=true; Iris=true; souls=true"
+  },
+  "rawSha256": "51a3990f18a3381b11e0d0162abaa560e4042a93afe75cae701110390b7ccae5",
+  "runLabel": "initial",
+  "rawFrames": "samples/initial/mo-4-baseline/mo-4.csv",
+  "screenshot": "samples/initial/mo-4-baseline/mo-4.png",
+  "localEvidenceId": "dsbr-validation-iris-20261007-015439"
+}

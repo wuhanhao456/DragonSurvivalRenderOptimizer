@@ -1,0 +1,288 @@
+{
+  "version": "0.2.0-alpha.5",
+  "finalJarSha256": "db1f8a395b2f8228420c0c0ecf78747de5731702d695973aefe7278c35763c09",
+  "shortReleaseChecksPass": true,
+  "formalAcceptanceComplete": false,
+  "runtimeEvidence": {
+    "no-core": {
+      "path": "runtime/dsbr-validation-plain-20261007-022940",
+      "identity": {
+        "instanceId": "dsbr-validation-plain-20261007-022940",
+        "jarSha256": "db1f8a395b2f8228420c0c0ecf78747de5731702d695973aefe7278c35763c09",
+        "driverSha256": "326ff475daee3c02036d9104d480bf08b6b39f9fa5bf4b16ae1778d93ebfa6a5"
+      },
+      "result": {
+        "pass": true,
+        "stats": {
+          "totals": {
+            "ARMOR_CHECK_NANOS": 1788700,
+            "ARMOR_GENERATE_NANOS": 247500,
+            "COPY": 3,
+            "CPU_VERTEX_SUBMIT_NANOS": 128206700,
+            "FRAME_CPU_NANOS": 718743700,
+            "GENERATED": 2,
+            "GPU_BATCH_CPU_NANOS": 51723700,
+            "GPU_BONE_SUBMIT_NANOS": 12591800,
+            "GPU_DRAW_CALLS": 690,
+            "GPU_DRAW_CPU_NANOS": 48219000,
+            "GPU_PASS": 690,
+            "GPU_POSE_CAPTURE_NANOS": 32461400,
+            "GPU_VERTEX_COUNT": 6259680,
+            "GUI_CPU_PASS": 690,
+            "HIT": 1839,
+            "PLAYER_CPU_BONE": 187680,
+            "PLAYER_CPU_VERTEX_SUBMIT_NANOS": 128206700,
+            "PLAYER_GPU_DRAW_CALLS": 690,
+            "PLAYER_GPU_PASS": 690,
+            "PLAYER_GPU_POSE_CAPTURE_NANOS": 32553100,
+            "POSE_UPLOAD": 690,
+            "RELEASE": 3,
+            "REQUEST": 4,
+            "SKIN_CHECK_NANOS": 982700,
+            "SKIN_GENERATE_NANOS": 716100
+          },
+          "peaks": {
+            "GPU_RESOURCE_BYTES": 1452416,
+            "TEXTURE_RESOURCE_BYTES": 5242880
+          },
+          "fallbacks": {
+            "benchmark cancelled": "validation command test"
+          },
+          "attribution": {
+            "entity": {
+              "GPU_PASS": 460
+            },
+            "glow/entity": {
+              "GPU_PASS": 230
+            },
+            "gui": {
+              "GUI_CPU_PASS": 690
+            }
+          },
+          "dirtyTraces": [],
+          "frameSamples": 230,
+          "quantileSamples": 230,
+          "frameTimeMs": {
+            "p50": 8.3471,
+            "p999": 52.7998,
+            "p99": 13.3621,
+            "p95": 12.4745
+          }
+        },
+        "textureBytes": 5242880,
+        "meshBytes": 1125824,
+        "beforeReloadTextureBytes": 5242880,
+        "beforeReloadMeshBytes": 1125312,
+        "afterClearTextureBytes": 0,
+        "afterClearMeshBytes": 0,
+        "compatibility": "versions=[dragonsurvival=2.0.71, dsbr=0.2.0-alpha.5, geckolib=4.9.3]; texture=true; GPU=true; Iris=false; souls=true; NPC=absent (DS remains enabled)",
+        "modId": "dsbr",
+        "startupMode": "GPU"
+      }
+    },
+    "absent": {
+      "path": "runtime/dsbr-validation-plain-20261007-023051",
+      "identity": {
+        "instanceId": "dsbr-validation-plain-20261007-023051",
+        "jarSha256": "db1f8a395b2f8228420c0c0ecf78747de5731702d695973aefe7278c35763c09",
+        "driverSha256": "e6ceed864c0ee8bc940a3d72187143aa1f9fc8c47bcce4696136c745e481a30d"
+      },
+      "result": {
+        "scenario": "DS and Gecko absent; startup and cleanup remain usable",
+        "configuredMode": "GPU",
+        "pass": true,
+        "compatibility": "versions=[dsbr=0.2.0-alpha.5]; texture=false; GPU=false; Iris=false; souls=false; NPC=absent (DS remains enabled)"
+      }
+    },
+    "mismatch": {
+      "path": "runtime/dsbr-validation-iris-20261007-023412",
+      "identity": {
+        "instanceId": "dsbr-validation-iris-20261007-023412",
+        "jarSha256": "db1f8a395b2f8228420c0c0ecf78747de5731702d695973aefe7278c35763c09",
+        "driverSha256": "326ff475daee3c02036d9104d480bf08b6b39f9fa5bf4b16ae1778d93ebfa6a5"
+      },
+      "result": {
+        "pass": true,
+        "scenes": 1,
+        "stats": {
+          "totals": {
+            "ARMOR_CHECK_NANOS": 6623900,
+            "FRAME_CPU_NANOS": 4075385800,
+            "GPU_BATCH_CPU_NANOS": 198995000,
+            "GPU_BONE_SUBMIT_NANOS": 21913000,
+            "GPU_DRAW_CALLS": 1686,
+            "GPU_DRAW_CPU_NANOS": 188466300,
+            "GPU_PASS": 1686,
+            "GPU_POSE_CAPTURE_NANOS": 92982300,
+            "GPU_VERTEX_COUNT": 15295392,
+            "HIT": 2248,
+            "PLAYER_GPU_DRAW_CALLS": 1686,
+            "PLAYER_GPU_PASS": 1686,
+            "PLAYER_GPU_POSE_CAPTURE_NANOS": 93218800,
+            "POSE_UPLOAD": 1686,
+            "SKIN_CHECK_NANOS": 1539100
+          },
+          "peaks": {
+            "GPU_RESOURCE_BYTES": 2959488,
+            "TEXTURE_RESOURCE_BYTES": 5242880
+          },
+          "fallbacks": {},
+          "attribution": {
+            "entity": {
+              "GPU_PASS": 1124
+            },
+            "glow/entity": {
+              "GPU_PASS": 562
+            }
+          },
+          "dirtyTraces": [],
+          "frameSamples": 562,
+          "quantileSamples": 562,
+          "frameTimeMs": {
+            "p999": 198.6239,
+            "p50": 8.265,
+            "p95": 13.1924,
+            "p99": 18.586
+          }
+        },
+        "meshBytesAfterClear": 0,
+        "textureBytesAfterClear": 0,
+        "compatibility": "versions=[beloong=0.10.2, dragonsurvival=2.0.71, dsbr=0.2.0-alpha.5, geckolib=4.9.3, iris=1.8.14-beta.1+mc1.21.1, sodium=0.8.13+mc1.21.1]; texture=true; GPU=true; Iris=true; souls=true; NPC=unsupported Core version 0.10.2"
+      }
+    },
+    "npc-visual": {
+      "path": "runtime/dsbr-validation-iris-20261007-023558",
+      "identity": {
+        "instanceId": "dsbr-validation-iris-20261007-023558",
+        "jarSha256": "db1f8a395b2f8228420c0c0ecf78747de5731702d695973aefe7278c35763c09",
+        "driverSha256": "326ff475daee3c02036d9104d480bf08b6b39f9fa5bf4b16ae1778d93ebfa6a5"
+      },
+      "completedAssertionsAndScreenshots": 28,
+      "wholeRunPassed": false,
+      "exitAssessedSeparately": true
+    },
+    "npc-lifecycle": {
+      "path": "runtime/dsbr-validation-iris-20261007-024730",
+      "identity": {
+        "instanceId": "dsbr-validation-iris-20261007-024730",
+        "jarSha256": "db1f8a395b2f8228420c0c0ecf78747de5731702d695973aefe7278c35763c09",
+        "driverSha256": "a60b99c2a775dacbc8bbe669022808ce2afe7e0daecb7fe81e77b3fd7f6f48d2"
+      },
+      "result": {
+        "pass": true,
+        "cases": 4,
+        "meshBytesAfterClear": 0,
+        "textureBytesAfterClear": 0,
+        "compatibility": "versions=[beloong=0.10.1, dragonsurvival=2.0.71, dsbr=0.2.0-alpha.5, geckolib=4.9.3, iris=1.8.14-beta.1+mc1.21.1, sodium=0.8.13+mc1.21.1]; texture=true; GPU=true; Iris=true; souls=true; NPC=Core 0.10.1 NPC interfaces verified"
+      }
+    },
+    "ds-actions": {
+      "path": "runtime/dsbr-validation-iris-20261007-030348",
+      "identity": {
+        "instanceId": "dsbr-validation-iris-20261007-030348",
+        "jarSha256": "db1f8a395b2f8228420c0c0ecf78747de5731702d695973aefe7278c35763c09",
+        "driverSha256": "ad20a3afa00e1cbee7631fabd4dca59731d152a3dc3cf7520685aa2fe03cd5fa"
+      },
+      "result": {
+        "pass": true,
+        "failures": [],
+        "repetitions": 1,
+        "candidateOnly": true,
+        "textureBytesAfterClear": 0,
+        "meshBytesAfterClear": 0,
+        "stats": {
+          "totals": {
+            "ARMOR_CHECK_NANOS": 15536500,
+            "ARMOR_GENERATE_NANOS": 3980200,
+            "COPY": 12,
+            "CPU_VERTEX_SUBMIT_NANOS": 549110800,
+            "FRAME_CPU_NANOS": 12101610600,
+            "GENERATED": 12,
+            "GPU_BATCH_CPU_NANOS": 1325287600,
+            "GPU_BONE_SUBMIT_NANOS": 401983500,
+            "GPU_DRAW_CALLS": 11349,
+            "GPU_DRAW_CPU_NANOS": 1262852100,
+            "GPU_PASS": 22698,
+            "GPU_POSE_CAPTURE_NANOS": 1754240200,
+            "GPU_VERTEX_COUNT": 514972224,
+            "GUI_CPU_PASS": 528,
+            "HIT": 16025,
+            "PLAYER_CPU_BONE": 223452,
+            "PLAYER_CPU_VERTEX_SUBMIT_NANOS": 335090500,
+            "PLAYER_GPU_DRAW_CALLS": 7566,
+            "PLAYER_GPU_PASS": 7566,
+            "PLAYER_GPU_POSE_CAPTURE_NANOS": 613603400,
+            "POSE_UPLOAD": 11349,
+            "READBACK": 4,
+            "RELEASE": 13,
+            "SKIN_CHECK_NANOS": 8366300,
+            "SKIN_GENERATE_NANOS": 5060400,
+            "SOUL_CPU_BONE": 52032,
+            "SOUL_CPU_VERTEX_SUBMIT_NANOS": 214020300,
+            "SOUL_GPU_DRAW_CALLS": 3783,
+            "SOUL_GPU_PASS": 15132,
+            "SOUL_GPU_POSE_CAPTURE_NANOS": 1142126500,
+            "SOUL_RENDER": 5108,
+            "SOUL_RENDER_CPU_NANOS": 2518794300
+          },
+          "peaks": {
+            "GPU_RESOURCE_BYTES": 39007616,
+            "TEXTURE_RESOURCE_BYTES": 7340032
+          },
+          "fallbacks": {},
+          "attribution": {
+            "shadow": {
+              "GPU_PASS": 2522
+            },
+            "glow/shadow": {
+              "GPU_PASS": 1261
+            },
+            "entity": {
+              "GPU_PASS": 12610
+            },
+            "glow/entity": {
+              "GPU_PASS": 6305
+            },
+            "gui": {
+              "GUI_CPU_PASS": 528
+            }
+          },
+          "dirtyTraces": [],
+          "frameSamples": 1288,
+          "quantileSamples": 1288,
+          "frameTimeMs": {
+            "p99": 70.9256,
+            "p95": 18.5801,
+            "p50": 8.067,
+            "p999": 973.3373
+          }
+        },
+        "compatibility": "versions=[beloong=0.10.1, dragonsurvival=2.0.71, dsbr=0.2.0-alpha.5, geckolib=4.9.3, iris=1.8.14-beta.1+mc1.21.1, sodium=0.8.13+mc1.21.1]; texture=true; GPU=true; Iris=true; souls=true; NPC=Core 0.10.1 NPC interfaces verified",
+        "scenes": 11
+      }
+    }
+  },
+  "soulBatchingChecks": {
+    "path": "runtime/dsbr-validation-iris-20261007-024924",
+    "completedScenes": 6,
+    "originalWholeRunPassed": false
+  },
+  "manualVisualReview": {
+    "npcCpuGpuPairs": 9,
+    "packs": "disabled, BSL, Bliss, Reimagined, Unbound, MakeUp, Sildur, Solas, Photon",
+    "observation": "No missing/exploded model or obvious pose sharing in inspected screenshots. Animations continue between CPU/GPU snapshots; not a pixel-equality test."
+  },
+  "toolTests": {
+    "tests": 16,
+    "failures": 0
+  },
+  "reloadWarning": "reload-warning.json",
+  "limitations": [
+    "Original NPC visual run stopped at a driver logout bug; 28 completed assertions are retained, cleanup proved separately.",
+    "Earlier DS action driver failures and all replacements remain in INVALID_RUNS.md; no raw pass flag was rewritten.",
+    "The mixed mode/resource reload statistics can contain explicit lazy pixel reads; steady GPU paired samples and no-core preview samples have zero readback.",
+    "Full Curios/held-item/barrel-roll/first-person/skill-particle combinations and every translucent material have not been exhaustively tested.",
+    "Dedicated server startup is not part of this client-only validation; client absence and optional dependency cases were actually launched.",
+    "One short performance pair per scene, not original-server A/B or formal 3 x 300 s Low acceptance."
+  ]
+}

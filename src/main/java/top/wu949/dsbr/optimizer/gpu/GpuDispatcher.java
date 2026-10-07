@@ -1,6 +1,5 @@
 package top.wu949.dsbr.optimizer.gpu;
 
-import by.dragonsurvivalteam.dragonsurvival.client.render.entity.dragon.DragonRenderer;
 import top.wu949.dsbr.optimizer.*;
 import top.wu949.dsbr.optimizer.cache.BudgetCache;
 import top.wu949.dsbr.optimizer.compat.*;
@@ -32,16 +31,13 @@ public final class GpuDispatcher {
         long start;
         boolean glow;
         boolean soul;
+        RendererAdmission.Kind kind;
+        Class<?> family;
     }
-    private record Command(StaticMesh mesh, BudgetCache.Entry<StaticMesh> entry, PoseSnapshot pose, IrisBridge.Attributes attributes, boolean glow, boolean soul) {}
+    private record Command(StaticMesh mesh, BudgetCache.Entry<StaticMesh> entry, PoseSnapshot pose, IrisBridge.Attributes attributes, boolean glow, boolean soul, RendererAdmission.Kind kind, Class<?> family) {}
     private static final ComputeProgram compute = new ComputeProgram();
     private static final PosePool poses = new PosePool();
-    private static boolean originalGeometry(Class<?> type) {
-        try { return type.getMethod("renderCube", PoseStack.class, GeoCube.class, VertexConsumer.class, int.class, int.class, int.class).getDeclaringClass() == software.bernie.geckolib.renderer.GeoRenderer.class
-            && type.getMethod("createVerticesOfQuad", GeoQuad.class, org.joml.Matrix4f.class, org.joml.Vector3f.class, VertexConsumer.class, int.class, int.class, int.class).getDeclaringClass() == software.bernie.geckolib.renderer.GeoRenderer.class;
-        } catch (ReflectiveOperationException e) { return false; }
-    }
-    private static final ClassValue<Boolean> geometry = new ClassValue<>() { protected Boolean computeValue(Class<?> type) { return originalGeometry(type); } };
+    private static final PoseStaging staging = new PoseStaging();
     private static final BudgetCache<ModelKey, StaticMesh> meshes = new BudgetCache<>(StaticMesh::close);
     private static final Map<VertexConsumer, Binding> bindings = new WeakHashMap<>();
     private static final DeferredBatches<Object, RenderType, Command> queues = new DeferredBatches<>();
@@ -65,7 +61,9 @@ public final class GpuDispatcher {
     public static Context begin(Object renderer, BakedGeoModel model, RenderType type, VertexConsumer buffer) {
         var c = new Context(); contexts.push(c);
         c.soul = top.wu949.dsbr.optimizer.soul.SoulRenderContext.active();
-        if (!enabled() || !(renderer instanceof DragonRenderer) || type == null || !(buffer instanceof BufferBuilder)) return c;
+        c.kind = RendererAdmission.kind(renderer); c.family = renderer.getClass();
+        if (!enabled() || !RendererAdmission.gpu(renderer, c.kind) || type == null) return c;
+        if (!(buffer instanceof BufferBuilder)) { fallback("unrecognized buffer consumer"); return c; }
         // GUI previews temporarily replace projection, lighting and model-view state. A deferred
         // world batch cannot retain that state. Keep their original immediate CPU submission.
         if (worldDepth == 0) { Diagnostics.INSTANCE.count(Diagnostics.Counter.GUI_CPU_PASS, "gui"); return c; }
@@ -73,7 +71,7 @@ public final class GpuDispatcher {
         var binding = bindings.get(buffer); if (binding == null) { fallback("unrecognized buffer source/consumer"); return c; }
         try {
             if (!GL.getCapabilities().OpenGL43) { disable("OpenGL 4.3 unavailable", null); return c; }
-            if (!(OptimizationStage.VALUE >= 4 ? geometry.get(renderer.getClass()) : originalGeometry(renderer.getClass()))) {
+            if (!RendererAdmission.originalGeometry(renderer)) {
                 fallback("custom cube/vertex geometry"); return c;
             }
             compute.compile(); // Compile before cancelling any CPU geometry.
@@ -81,10 +79,15 @@ public final class GpuDispatcher {
             var attributes = IrisBridge.capture(buffer);
             var key = new ModelKey(model); var entry = meshes.get(key, System.nanoTime());
             if (entry == null) {
-                var mesh = StaticMesh.bake(model);
+                StaticMesh mesh;
+                try { mesh = StaticMesh.bake(model); }
+                catch (RuntimeException | LinkageError e) {
+                    if (c.kind != RendererAdmission.Kind.NPC) throw e;
+                    RendererAdmission.quarantine(renderer, e); fallback("NPC mesh rejected"); return c;
+                }
                 if (mesh.quads.isEmpty() || mesh.bytes() > OptimizerConfig.MESH_MIB.get() * 1048576L) { fallback("mesh exceeds budget or empty model"); return c; }
                 poses.prune(System.nanoTime(), OptimizerConfig.MESH_MIB.get() * 1048576L - meshes.bytes() - workingBytes - pendingBytes - mesh.bytes());
-                long available = OptimizerConfig.MESH_MIB.get() * 1048576L - workingBytes - pendingBytes - poses.idleBytes() - mesh.bytes();
+                long available = OptimizerConfig.MESH_MIB.get() * 1048576L - workingBytes - pendingBytes - poses.idleBytes() - mesh.bytes() - auxiliaryBytes();
                 meshes.prune(System.nanoTime(), Long.MAX_VALUE, available);
                 if (meshes.bytes() > available) { fallback("leased meshes exhaust budget"); return c; }
                 mesh.upload(); meshes.put(key, mesh, mesh.bytes(), System.nanoTime()); entry = meshes.get(key, System.nanoTime());
@@ -93,7 +96,7 @@ public final class GpuDispatcher {
             if (BatchLimits.instances(entry.value.quads.size(), entry.value.bones.size(), attributes.format().getVertexSize(), OptimizerConfig.MESH_MIB.get() * 1048576L,
                     ssboLimit, workGroupLimit) < 1) { fallback("geometry exceeds GL dispatch limits"); return c; }
             poses.prune(System.nanoTime(), OptimizerConfig.MESH_MIB.get() * 1048576L - meshes.bytes() - workingBytes - pendingBytes - reserve);
-            long singleWorkingBytes = (long)entry.value.quads.size() * attributes.format().getVertexSize() * 4 + (long)entry.value.bones.size() * 144;
+            long singleWorkingBytes = (long)entry.value.quads.size() * attributes.format().getVertexSize() * 4 + (long)entry.value.bones.size() * 288;
             if (bytes() + reserve + singleWorkingBytes > OptimizerConfig.MESH_MIB.get() * 1048576L) { fallback("pending pose/vertex budget exhausted"); return c; }
             c.mesh = entry.value; c.entry = entry; c.binding = binding; c.attributes = attributes;
             c.pose = OptimizationStage.VALUE >= 3 ? poses.acquire(c.mesh.bones.size()) : new PoseSnapshot(c.mesh.bones.size()); c.start = System.nanoTime(); entry.leases++; pendingBytes += reserve;
@@ -116,9 +119,10 @@ public final class GpuDispatcher {
         if (contexts.pop() != context) throw new IllegalStateException("GPU pose stack mismatch");
         if (context.mesh == null) return;
         Diagnostics.INSTANCE.nanos("GPU_POSE_CAPTURE", System.nanoTime() - context.start);
+        Diagnostics.INSTANCE.nanos(context.kind == RendererAdmission.Kind.NPC ? "NPC_GPU_POSE_CAPTURE" : context.kind == RendererAdmission.Kind.SOUL ? "SOUL_GPU_POSE_CAPTURE" : "PLAYER_GPU_POSE_CAPTURE", System.nanoTime() - context.start);
         if (completed && context.pose.anyVisible()) {
-            queues.add(context.binding.source, context.binding.type, new Command(context.mesh, context.entry, context.pose, context.attributes, context.glow, context.soul));
-        } else release(new Command(context.mesh, context.entry, context.pose, context.attributes, context.glow, context.soul));
+            queues.add(context.binding.source, context.binding.type, new Command(context.mesh, context.entry, context.pose, context.attributes, context.glow, context.soul, context.kind, context.family));
+        } else release(new Command(context.mesh, context.entry, context.pose, context.attributes, context.glow, context.soul, context.kind, context.family));
     }
     public static boolean has(Object source, RenderType type) { return queues.has(source, type); }
     /** Caller owns RenderType state and the original Iris phase. */
@@ -128,10 +132,10 @@ public final class GpuDispatcher {
         try (var restore = OptimizationStage.VALUE >= 4 ? new GlBindings() : null) {
             for (int i = 0; i < commands.size();) {
                 var command = commands.get(i); int end = i + 1;
-                long available = OptimizerConfig.MESH_MIB.get() * 1048576L - meshes.bytes() - pendingBytes - poses.idleBytes();
+                long available = OptimizerConfig.MESH_MIB.get() * 1048576L - meshes.bytes() - pendingBytes - poses.idleBytes() - auxiliaryBytes();
                 int max = Math.max(1, BatchLimits.instances(command.mesh.quads.size(), command.mesh.bones.size(), command.attributes.format().getVertexSize(), available,
                         ssboLimit, workGroupLimit));
-                if (command.soul) while (end < commands.size() && end - i < max && compatible(command, commands.get(end))) end++;
+                while (end < commands.size() && end - i < max && compatible(command, commands.get(end))) end++;
                 var batch = commands.subList(i, end); i = end;
                 try { if (OptimizationStage.VALUE >= 4) drawCommands(batch); else try (var perCommand = new GlBindings()) { drawCommands(batch); } }
                 catch (RuntimeException | LinkageError e) { disable("GPU dispatch/draw", e); }
@@ -143,14 +147,16 @@ public final class GpuDispatcher {
         if (!has(source, type)) return;
         type.setupRenderState(); try { draw(source, type); } finally { type.clearRenderState(); }
     }
-    private static boolean compatible(Command a, Command b) { return b.soul && a.mesh == b.mesh && a.glow == b.glow && a.attributes.equals(b.attributes); }
+    private static boolean compatible(Command a, Command b) { return a.kind == b.kind && a.family == b.family && a.mesh == b.mesh && a.glow == b.glow && a.attributes.equals(b.attributes); }
     private static void drawCommands(List<Command> batch) {
         var c = batch.getFirst(); int count = batch.size(), quads = c.mesh.quads.size();
         long drawStart = System.nanoTime();
         try {
             if (poseBuffer == 0) { poseBuffer = GL15.glGenBuffers(); outputBuffer = GL15.glGenBuffers(); arrayObject = GL30.glGenVertexArrays(); }
-            GL15.glBindBuffer(GL43.GL_SHADER_STORAGE_BUFFER, poseBuffer); GL15.glBufferData(GL43.GL_SHADER_STORAGE_BUFFER, (long)c.pose.data.capacity() * count, GL15.GL_STREAM_DRAW);
-            for (int i = 0; i < count; i++) GL15.glBufferSubData(GL43.GL_SHADER_STORAGE_BUFFER, (long)i * c.pose.data.capacity(), batch.get(i).pose.data);
+            var packed = staging.prepare(Math.multiplyExact(c.pose.data.capacity(), count));
+            for (int i = 0; i < count; i++) PoseStaging.copy(packed, i * c.pose.data.capacity(), batch.get(i).pose.data);
+            GL15.glBindBuffer(GL43.GL_SHADER_STORAGE_BUFFER, poseBuffer); GL15.glBufferData(GL43.GL_SHADER_STORAGE_BUFFER, packed, GL15.GL_STREAM_DRAW);
+            Diagnostics.INSTANCE.count(Diagnostics.Counter.POSE_UPLOAD, "upload");
             int stride = c.attributes.format().getVertexSize();
             GL15.glBindBuffer(GL43.GL_SHADER_STORAGE_BUFFER, outputBuffer); GL15.glBufferData(GL43.GL_SHADER_STORAGE_BUFFER, (long)quads * count * 4 * stride, GL15.GL_STREAM_DRAW);
             workingBytes = ((long)quads * 4 * stride + c.pose.data.capacity()) * count;
@@ -182,10 +188,10 @@ public final class GpuDispatcher {
             finally { shader.clear(); c.attributes.format().clearBufferState(); }
             int error = GL11.glGetError(); if (error != GL11.GL_NO_ERROR) throw new IllegalStateException("OpenGL draw error 0x" + Integer.toHexString(error));
             Diagnostics.INSTANCE.count(Diagnostics.Counter.GPU_DRAW_CALLS, "draw");
-            if (c.soul) Diagnostics.INSTANCE.count(Diagnostics.Counter.SOUL_GPU_DRAW_CALLS, "soul");
+            Diagnostics.INSTANCE.count(c.kind == RendererAdmission.Kind.NPC ? Diagnostics.Counter.NPC_GPU_DRAW_CALLS : c.kind == RendererAdmission.Kind.SOUL ? Diagnostics.Counter.SOUL_GPU_DRAW_CALLS : Diagnostics.Counter.PLAYER_GPU_DRAW_CALLS, "family");
             for (var command : batch) {
                 Diagnostics.INSTANCE.count(Diagnostics.Counter.GPU_PASS, c.glow ? (c.attributes.shadow() ? "glow/shadow" : "glow/entity") : (c.attributes.shadow() ? "shadow" : "entity"));
-                if (command.soul) Diagnostics.INSTANCE.count(Diagnostics.Counter.SOUL_GPU_PASS, "soul");
+                Diagnostics.INSTANCE.count(command.kind == RendererAdmission.Kind.NPC ? Diagnostics.Counter.NPC_GPU_PASS : command.kind == RendererAdmission.Kind.SOUL ? Diagnostics.Counter.SOUL_GPU_PASS : Diagnostics.Counter.PLAYER_GPU_PASS, "family");
             }
             Diagnostics.INSTANCE.vertices(quads * count * 4);
         } finally { Diagnostics.INSTANCE.nanos("GPU_DRAW_CPU", System.nanoTime() - drawStart); }
@@ -195,19 +201,24 @@ public final class GpuDispatcher {
         if (OptimizationStage.VALUE >= 3) poses.release(c.pose); else c.pose.close();
     }
     public static boolean enabled() { return !failed && OptimizerMixinPlugin.gpuCompatible && OptimizerConfig.MODE.get() == OptimizerConfig.Mode.GPU; }
-    private static void fallback(String reason) { Diagnostics.INSTANCE.count(Diagnostics.Counter.CPU_FALLBACK, reason); if (top.wu949.dsbr.optimizer.soul.SoulRenderContext.active()) Diagnostics.INSTANCE.count(Diagnostics.Counter.SOUL_CPU_FALLBACK, reason); }
+    private static void fallback(String reason) {
+        Diagnostics.INSTANCE.count(Diagnostics.Counter.CPU_FALLBACK, reason);
+        var c = contexts.peek();
+        if (c != null && c.kind != RendererAdmission.Kind.OTHER) Diagnostics.INSTANCE.count(c.kind == RendererAdmission.Kind.NPC ? Diagnostics.Counter.NPC_CPU_FALLBACK : c.kind == RendererAdmission.Kind.SOUL ? Diagnostics.Counter.SOUL_CPU_FALLBACK : Diagnostics.Counter.PLAYER_CPU_FALLBACK, reason);
+    }
     public static void disable(String reason, Throwable error) { failed = true; Diagnostics.INSTANCE.reason("GPU", reason + (error == null ? "" : ": " + error)); if (error != null) RenderOptimizer.LOGGER.warn("GPU fallback: {}", reason, error); }
-    public static long bytes() { return meshes.bytes() + pendingBytes + workingBytes + poses.idleBytes(); }
+    private static long auxiliaryBytes() { return staging.bytes() + CpuVertexScratch.INSTANCE.bytes(); }
+    public static long bytes() { return meshes.bytes() + pendingBytes + workingBytes + poses.idleBytes() + auxiliaryBytes(); }
     public static void finishFrame() {
         if (!queues.isEmpty()) {
             disable("buffer source left commands unflushed at end of frame", null);
             queues.forEach(GpuDispatcher::release); queues.clear();
         }
     }
-    public static void maintenance() { poses.prune(System.nanoTime(), OptimizerConfig.MESH_MIB.get() * 1048576L - meshes.bytes() - workingBytes - pendingBytes); meshes.prune(System.nanoTime(), 30_000_000_000L, OptimizerConfig.MESH_MIB.get() * 1048576L - workingBytes - pendingBytes - poses.idleBytes()); }
+    public static void maintenance() { poses.prune(System.nanoTime(), OptimizerConfig.MESH_MIB.get() * 1048576L - meshes.bytes() - workingBytes - pendingBytes - auxiliaryBytes()); meshes.prune(System.nanoTime(), 30_000_000_000L, OptimizerConfig.MESH_MIB.get() * 1048576L - workingBytes - pendingBytes - poses.idleBytes() - auxiliaryBytes()); }
     public static void clear() {
         queues.forEach(GpuDispatcher::release); queues.clear(); bindings.clear();
-        poses.clear(); meshes.clear(); compute.close();
+        poses.clear(); meshes.clear(); compute.close(); staging.close(); CpuVertexScratch.INSTANCE.clear();
         if (poseBuffer != 0) { GL15.glDeleteBuffers(poseBuffer); GL15.glDeleteBuffers(outputBuffer); GL30.glDeleteVertexArrays(arrayObject); }
         poseBuffer = outputBuffer = arrayObject = 0; pendingBytes = workingBytes = 0;
     }

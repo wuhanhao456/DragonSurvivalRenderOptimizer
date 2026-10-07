@@ -1,0 +1,164 @@
+{
+  "scene": "souls17-mo4",
+  "version": "baseline",
+  "jarSha256": "754f15bb0ded0b8e393f7a37ca6382ff4f49353d6f796211e50b19acfc037923",
+  "driverSha256": "4ae7f69c7a5932041cfabdf10aec7f054d2d53f6f388918493320ab347e59974",
+  "metrics": {
+    "samples": 3983,
+    "capturedSeconds": 60.0084059,
+    "averageFps": 66.37403444173144,
+    "low1Fps": 31.96470074167695,
+    "low01Fps": 19.700056785413686,
+    "frameTimeMs": {
+      "p50": 14.3792,
+      "p95": 20.8055,
+      "p99": 25.606,
+      "p999": 46.3397
+    },
+    "longFramesAboveMs": {
+      "16.7": 899,
+      "33.3": 10,
+      "50": 3
+    },
+    "maximumFrameMs": 55.723,
+    "definition": "1000 / mean slowest ceil(samples * fraction) frame times in ms"
+  },
+  "row": {
+    "scene": "souls17-mo4",
+    "warmupSeconds": 15.0,
+    "samplingSeconds": 60.0,
+    "width": 1280,
+    "height": 720,
+    "renderDistance": 6,
+    "vsync": false,
+    "effectiveFpsLimit": 260,
+    "swapInterval": 0,
+    "stats": {
+      "totals": {
+        "ARMOR_CHECK_NANOS": 111140300,
+        "FRAME_CPU_NANOS": 52172228400,
+        "GPU_BATCH_CPU_NANOS": 4643467000,
+        "GPU_BONE_SUBMIT_NANOS": 3119988400,
+        "GPU_DRAW_CALLS": 23904,
+        "GPU_DRAW_CPU_NANOS": 4448111200,
+        "GPU_PASS": 215136,
+        "GPU_POSE_CAPTURE_NANOS": 12039496700,
+        "GPU_VERTEX_COUNT": 1951713792,
+        "HIT": 286848,
+        "SKIN_CHECK_NANOS": 48957500,
+        "SOUL_GPU_DRAW_CALLS": 11952,
+        "SOUL_GPU_PASS": 203184,
+        "SOUL_RENDER": 67728,
+        "SOUL_RENDER_CPU_NANOS": 18579175900,
+        "SOUL_TEXTURE_HIT": 203184
+      },
+      "peaks": {
+        "GPU_RESOURCE_BYTES": 41500512,
+        "TEXTURE_RESOURCE_BYTES": 7340032
+      },
+      "fallbacks": {},
+      "attribution": {
+        "entity": {
+          "GPU_PASS": 143424
+        },
+        "glow/entity": {
+          "GPU_PASS": 71712
+        }
+      },
+      "dirtyTraces": [],
+      "frameSamples": 3984,
+      "quantileSamples": 3984,
+      "frameTimeMs": {
+        "p95": 20.7338,
+        "p50": 14.3906,
+        "p999": 50.9626,
+        "p99": 25.6193
+      }
+    },
+    "rawFrames": "souls17-mo4.csv",
+    "actors": [
+      {
+        "scale": 1.0,
+        "type": "beloong:mo"
+      },
+      {
+        "scale": 1.0,
+        "type": "beloong:mo"
+      },
+      {
+        "scale": 1.0,
+        "type": "beloong:mo"
+      },
+      {
+        "scale": 1.0,
+        "type": "beloong:mo"
+      }
+    ],
+    "textureBytes": 7340032,
+    "meshBytes": 6581664,
+    "npcGeometryCalls": 15936,
+    "npcGeometryNanos": 11127659500,
+    "camera": [
+      0.0,
+      -52.0,
+      36.0,
+      180.0,
+      13.0
+    ],
+    "shaderPack": "ComplementaryUnbound_r5.9.zip"
+  },
+  "result": {
+    "pass": true,
+    "scenes": 1,
+    "stats": {
+      "totals": {
+        "ARMOR_CHECK_NANOS": 111140300,
+        "FRAME_CPU_NANOS": 52172228400,
+        "GPU_BATCH_CPU_NANOS": 4643467000,
+        "GPU_BONE_SUBMIT_NANOS": 3119988400,
+        "GPU_DRAW_CALLS": 23904,
+        "GPU_DRAW_CPU_NANOS": 4448111200,
+        "GPU_PASS": 215136,
+        "GPU_POSE_CAPTURE_NANOS": 12039496700,
+        "GPU_VERTEX_COUNT": 1951713792,
+        "HIT": 286848,
+        "SKIN_CHECK_NANOS": 48957500,
+        "SOUL_GPU_DRAW_CALLS": 11952,
+        "SOUL_GPU_PASS": 203184,
+        "SOUL_RENDER": 67728,
+        "SOUL_RENDER_CPU_NANOS": 18579175900,
+        "SOUL_TEXTURE_HIT": 203184
+      },
+      "peaks": {
+        "GPU_RESOURCE_BYTES": 41500512,
+        "TEXTURE_RESOURCE_BYTES": 7340032
+      },
+      "fallbacks": {},
+      "attribution": {
+        "entity": {
+          "GPU_PASS": 143424
+        },
+        "glow/entity": {
+          "GPU_PASS": 71712
+        }
+      },
+      "dirtyTraces": [],
+      "frameSamples": 3984,
+      "quantileSamples": 3984,
+      "frameTimeMs": {
+        "p95": 20.7338,
+        "p50": 14.3906,
+        "p999": 50.9626,
+        "p99": 25.6193
+      }
+    },
+    "meshBytesAfterClear": 0,
+    "textureBytesAfterClear": 0,
+    "compatibility": "versions=[dragonsurvival=2.0.71, dsbr=0.2.0-alpha.4, geckolib=4.9.3, iris=1.8.14-beta.1+mc1.21.1, sodium=0.8.13+mc1.21.1]; texture=true; GPU=true; Iris=true; souls=true"
+  },
+  "rawSha256": "9c7a7fd1ab25d2706aa307ef6f7252cdd437cd3c26ac3979bd9a3364ddb25b22",
+  "runLabel": "initial",
+  "rawFrames": "samples/initial/souls17-mo4-baseline/souls17-mo4.csv",
+  "screenshot": "samples/initial/souls17-mo4-baseline/souls17-mo4.png",
+  "localEvidenceId": "dsbr-validation-iris-20261007-020842"
+}

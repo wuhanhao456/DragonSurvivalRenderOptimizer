@@ -1,0 +1,48 @@
+{
+  "pass": true,
+  "scenes": 1,
+  "stats": {
+    "totals": {
+      "ARMOR_CHECK_NANOS": 6623900,
+      "FRAME_CPU_NANOS": 4075385800,
+      "GPU_BATCH_CPU_NANOS": 198995000,
+      "GPU_BONE_SUBMIT_NANOS": 21913000,
+      "GPU_DRAW_CALLS": 1686,
+      "GPU_DRAW_CPU_NANOS": 188466300,
+      "GPU_PASS": 1686,
+      "GPU_POSE_CAPTURE_NANOS": 92982300,
+      "GPU_VERTEX_COUNT": 15295392,
+      "HIT": 2248,
+      "PLAYER_GPU_DRAW_CALLS": 1686,
+      "PLAYER_GPU_PASS": 1686,
+      "PLAYER_GPU_POSE_CAPTURE_NANOS": 93218800,
+      "POSE_UPLOAD": 1686,
+      "SKIN_CHECK_NANOS": 1539100
+    },
+    "peaks": {
+      "GPU_RESOURCE_BYTES": 2959488,
+      "TEXTURE_RESOURCE_BYTES": 5242880
+    },
+    "fallbacks": {},
+    "attribution": {
+      "entity": {
+        "GPU_PASS": 1124
+      },
+      "glow/entity": {
+        "GPU_PASS": 562
+      }
+    },
+    "dirtyTraces": [],
+    "frameSamples": 562,
+    "quantileSamples": 562,
+    "frameTimeMs": {
+      "p999": 198.6239,
+      "p50": 8.265,
+      "p95": 13.1924,
+      "p99": 18.586
+    }
+  },
+  "meshBytesAfterClear": 0,
+  "textureBytesAfterClear": 0,
+  "compatibility": "versions\u003d[beloong\u003d0.10.2, dragonsurvival\u003d2.0.71, dsbr\u003d0.2.0-alpha.5, geckolib\u003d4.9.3, iris\u003d1.8.14-beta.1+mc1.21.1, sodium\u003d0.8.13+mc1.21.1]; texture\u003dtrue; GPU\u003dtrue; Iris\u003dtrue; souls\u003dtrue; NPC\u003dunsupported Core version 0.10.2"
+}
