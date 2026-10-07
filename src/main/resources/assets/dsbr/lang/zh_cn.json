@@ -18,5 +18,7 @@
   "dsbr.configuration.reuseCpuVertexScratch.tooltip": "GPU 模式下复用已审查回退路径的矩阵和向量，包含物品栏预览。",
   "dsbr.configuration.mode.GPU": "GPU 与纹理优化",
   "dsbr.configuration.mode.TEXTURES": "仅纹理优化",
-  "dsbr.configuration.mode.VANILLA": "原版渲染"
+  "dsbr.configuration.mode.VANILLA": "原版渲染",
+  "dsbr.configuration.lowEndGpuSupport": "低端显卡支持",
+  "dsbr.configuration.lowEndGpuSupport.tooltip": "保留当前模型；隐藏龙魂模型，使用基础皮肤，关闭发光、盔甲外观和背包装饰。32 格内动画降至每秒 5 次，远处固定姿态。也支持 CPU 回退，关闭后恢复。"
 }

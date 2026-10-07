@@ -18,7 +18,10 @@
     "BufferSourceMixin",
     "BufferFormatAccessor",
     "IrisBufferSourceMixin",
-    "SoulRendererMixin"
+    "SoulRendererMixin",
+    "LowEndAnimationMixin",
+    "LowEndLayersMixin",
+    "SoulIndicatorMixin"
   ],
   "injectors": {
     "defaultRequire": 1

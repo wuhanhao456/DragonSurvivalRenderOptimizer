@@ -1,0 +1,197 @@
+{
+  "version": "0.2.1",
+  "jarSha256": "26b839419377d79eed060d803c3bd737f6d75fd871cfe88ec999e46f05eddab3",
+  "pass": true,
+  "status": "Accepted bounded release checks complete; initial failures retained.",
+  "unitTests": {
+    "tests": 26,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "suites": [
+      {
+        "name": "top.wu949.dsbr.optimizer.BatchLimitsTest",
+        "tests": 2,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      {
+        "name": "top.wu949.dsbr.optimizer.CachePolicyTest",
+        "tests": 4,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      {
+        "name": "top.wu949.dsbr.optimizer.ContractTest",
+        "tests": 2,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      {
+        "name": "top.wu949.dsbr.optimizer.CpuGeometryTest",
+        "tests": 1,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      {
+        "name": "top.wu949.dsbr.optimizer.CpuVertexScratchTest",
+        "tests": 2,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      {
+        "name": "top.wu949.dsbr.optimizer.DeferredBatchesTest",
+        "tests": 2,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      {
+        "name": "top.wu949.dsbr.optimizer.DiagnosticsTest",
+        "tests": 2,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      {
+        "name": "top.wu949.dsbr.optimizer.FrameWindowTest",
+        "tests": 3,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      {
+        "name": "top.wu949.dsbr.optimizer.GeometryContractTest",
+        "tests": 1,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      {
+        "name": "top.wu949.dsbr.optimizer.LowEndAnimationTest",
+        "tests": 2,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      {
+        "name": "top.wu949.dsbr.optimizer.OptionalNpcAdapterTest",
+        "tests": 2,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      {
+        "name": "top.wu949.dsbr.optimizer.PosePoolTest",
+        "tests": 1,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      {
+        "name": "top.wu949.dsbr.optimizer.PoseStagingTest",
+        "tests": 1,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      }
+    ],
+    "targetedRegression": {
+      "tests": 1,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "method": "rendererNeckVisibilityOverridesSavedPose"
+    },
+    "initialTests": 25
+  },
+  "openGL": {
+    "vendor": "NVIDIA Corporation",
+    "renderer": "NVIDIA GeForce RTX 5060 Ti/PCIe/SSE2",
+    "version": "4.3.0 NVIDIA 610.88",
+    "gpuTextureCopyAndLazyReadback": "pass",
+    "computeVanillaAndIris54ByteOutput": "pass",
+    "threeIndependentAnimatedInstances": "pass",
+    "batchBindingsRestoredAfterException": "pass",
+    "glError": 0
+  },
+  "runtime": {
+    "cases": 19,
+    "pass": true,
+    "mergedCoverage": true,
+    "exactFinalJarCases": [
+      "breath",
+      "breath-recovery",
+      "far-static",
+      "inventory",
+      "cpu-fallback",
+      "restored",
+      "reload"
+    ]
+  },
+  "benchmark": {
+    "mainRepetitions": 1,
+    "mainPairs": 6,
+    "mainPassedPairs": 5,
+    "targetedRechecks": 1,
+    "recheckComplete": true,
+    "warmupSeconds": 15,
+    "sampleSeconds": 60,
+    "mainSource": "benchmark/main-suite.json",
+    "pass": true,
+    "recheckSource": "benchmark/shader-recheck.json",
+    "acceptedSource": "benchmark/suite.json",
+    "acceptedPairs": 6
+  },
+  "hardware": {
+    "cpu": "AMD EPYC 7F52",
+    "gpu": "NVIDIA GeForce RTX 5060 Ti/PCIe/SSE2",
+    "driver": "610.88",
+    "java": "Microsoft Java 21.0.11",
+    "os": "Windows Server 2025"
+  },
+  "visualReview": {
+    "pass": true,
+    "reviewed": [
+      "runtime/configuration.png",
+      "runtime/inventory.png",
+      "runtime/breath.png",
+      "runtime/breath-recovery.png",
+      "runtime/model-1-walk.png",
+      "runtime/model-2-fly.png",
+      "runtime/restored.png",
+      "benchmark/plain/players-1-on.png",
+      "benchmark/plain/players-12-on.png",
+      "benchmark/plain/players-12-off.png",
+      "benchmark/plain/souls17-npc8-off.png",
+      "benchmark/plain/souls17-npc8-on.png",
+      "benchmark/shader-first/players-1-off.png",
+      "benchmark/shader-first/players-1-on.png",
+      "benchmark/shader-first/players-12-on.png",
+      "benchmark/shader-first/souls17-npc8-on.png",
+      "benchmark/shader-recheck/players-1-on.png"
+    ],
+    "checks": [
+      "Inventory dragon head visible; base skin and model silhouette preserved.",
+      "Representative action poses visible; controller/pose assertions recorded separately.",
+      "Soul models omitted with position blocks retained; NPCs remain visible.",
+      "Plain and shader mixed models retain their geometry; targeted pair image also reviewed."
+    ]
+  },
+  "dsroErrors": [],
+  "limitations": [
+    "One 15s/60s main off/on pair per scene and one triggered shader single-player recheck; not the historical 3x300s Low matrix.",
+    "No actual low-end hardware; CPU support verified through TEXTURES fallback, not a real GL 3.x card.",
+    "Most remote actors in the fixed-camera performance scenes are farther than 32 blocks; nearby actions verified separately.",
+    "Synthetic client players do not measure real multiplayer network load.",
+    "Earlier valid action prefixes retained; final jar separately rechecked transient visibility, breath and lifecycle.",
+    "Not exhaustive for all abilities, editor combinations, held items, transparent materials, shaders, disconnect pressure or whole-pack errors.",
+    "Managed resource bytes are estimates, not total driver VRAM.",
+    "Shader single-player 1% Low first fell 10.46%; one prescribed recheck passed +13.50%. Variability cause remains unconfirmed; no repeat-until-pass search."
+  ]
+}

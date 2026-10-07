@@ -57,5 +57,6 @@ tasks.register('glCheck', JavaExec) {
     dependsOn testClasses
     classpath = sourceSets.test.runtimeClasspath
     mainClass = 'top.wu949.dsbr.optimizer.GlIntegrationCheck'
+    systemProperty 'dsbr.glResults', 'validation/' + project.version
     workingDir = projectDir
 }

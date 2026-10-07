@@ -1,0 +1,19 @@
+{
+  "historical": true,
+  "source": "outputs/dsro-server-analysis-20261007/jfr-summary.json",
+  "sourceSha256": "710741eb2fc297de781e506fe91aef49950ccdd3e043d5b006f81e8dca11d2d0",
+  "durationSeconds": 45.0239436,
+  "animationAllocationClasses": [
+    {
+      "value": 3071084520,
+      "name": "software.bernie.geckolib.animation.keyframe.AnimationPointQueue"
+    },
+    {
+      "value": 814491872,
+      "name": "software.bernie.geckolib.animation.keyframe.BoneAnimationQueue"
+    }
+  ],
+  "method": "JFR stack samples and allocation weights are attribution estimates, not measured whole-frame CPU/GPU percentages. First allocation sample per thread is omitted because its weight can include pre-recording allocation. Thread allocation deltas use periodic cumulative counters. Profiler runs are excluded from acceptance FPS tests.",
+  "newRun": false,
+  "selectionReason": "Use existing texture-readback and animation-allocation hotspots to remove synthesis/layers and throttle animation evaluation; no additional profiling run."
+}

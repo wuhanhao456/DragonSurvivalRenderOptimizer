@@ -2,3 +2,5 @@ validation/low-frames/incidents/*.txt -text -whitespace
 validation/low-frames/**/frames.csv.gz -text
 # Preserve the original frame samples byte-for-byte for recorded SHA-256 checks.
 validation/alpha5/**/*.csv -text
+# Preserve raw evidence bytes and recorded SHA-256 across Windows checkouts.
+validation/0.2.1/** -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol

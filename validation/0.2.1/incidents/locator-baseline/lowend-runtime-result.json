@@ -1,0 +1,9 @@
+{
+  "pass": false,
+  "error": "java.lang.IllegalStateException: Baseline breath locator missing: model\u003ddragonsurvival:dragon_model, bone\u003dBreathSource/tracking\u003dtrue/hidden\u003dfalse, positions\u003d{16\u003d{MountingBone\u003d(0.0, 1.4036946296691895, -0.75)}, 3\u003d{MountingBone\u003d(5.161232143640518, -58.26433563232422, 4.914013028144836)}, 10\u003d{MountingBone\u003d(0.0, 1.4036946296691895, -0.75)}, 12\u003d{MountingBone\u003d(0.0, 1.4036946296691895, -0.75)}, 14\u003d{MountingBone\u003d(0.0, 1.4036946296691895, -0.75)}}",
+  "cases": 0,
+  "textureBytesAfterClear": 0,
+  "meshBytesAfterClear": 0,
+  "animationBytesAfterClear": 0,
+  "compatibility": "versions\u003d[beloong\u003d0.10.1, dragonsurvival\u003d2.0.71, dsbr\u003d0.2.1, geckolib\u003d4.9.3, iris\u003d1.8.14-beta.1+mc1.21.1, sodium\u003d0.8.13+mc1.21.1]; texture\u003dtrue; GPU\u003dtrue; Iris\u003dtrue; souls\u003dtrue; lowEnd\u003dtrue; NPC\u003dCore 0.10.1 NPC interfaces verified"
+}

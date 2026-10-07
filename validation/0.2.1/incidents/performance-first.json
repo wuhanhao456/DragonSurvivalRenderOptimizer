@@ -1,0 +1,17 @@
+{
+  "pass": false,
+  "mainRepetitions": 1,
+  "reason": "Single-player shader 1% Low exceeded the -5% protection line.",
+  "failedPair": {
+    "scene": "players-1",
+    "shader": true,
+    "averageFpsChangePercent": 34.38129628533835,
+    "low1ChangePercent": -10.460358980689632,
+    "low01ChangePercent": 11.811767555255992,
+    "p95ChangePercent": -13.239068658905495,
+    "pass": false
+  },
+  "source": "../benchmark/main-suite.json",
+  "csvArchive": "../benchmark/shader-first/raw",
+  "nextAction": "One targeted off/on recheck for this pair only; no production change or extra profiler run."
+}

@@ -85,19 +85,19 @@ public final class GpuDispatcher {
                     if (c.kind != RendererAdmission.Kind.NPC) throw e;
                     RendererAdmission.quarantine(renderer, e); fallback("NPC mesh rejected"); return c;
                 }
-                if (mesh.quads.isEmpty() || mesh.bytes() > OptimizerConfig.MESH_MIB.get() * 1048576L) { fallback("mesh exceeds budget or empty model"); return c; }
-                poses.prune(System.nanoTime(), OptimizerConfig.MESH_MIB.get() * 1048576L - meshes.bytes() - workingBytes - pendingBytes - mesh.bytes());
-                long available = OptimizerConfig.MESH_MIB.get() * 1048576L - workingBytes - pendingBytes - poses.idleBytes() - mesh.bytes() - auxiliaryBytes();
+                if (mesh.quads.isEmpty() || mesh.bytes() > OptimizerConfig.meshMiB() * 1048576L) { fallback("mesh exceeds budget or empty model"); return c; }
+                poses.prune(System.nanoTime(), OptimizerConfig.meshMiB() * 1048576L - meshes.bytes() - workingBytes - pendingBytes - mesh.bytes());
+                long available = OptimizerConfig.meshMiB() * 1048576L - workingBytes - pendingBytes - poses.idleBytes() - mesh.bytes() - auxiliaryBytes() - top.wu949.dsbr.optimizer.lowend.LowEndAnimations.bytes();
                 meshes.prune(System.nanoTime(), Long.MAX_VALUE, available);
                 if (meshes.bytes() > available) { fallback("leased meshes exhaust budget"); return c; }
                 mesh.upload(); meshes.put(key, mesh, mesh.bytes(), System.nanoTime()); entry = meshes.get(key, System.nanoTime());
             }
             long reserve = (long)entry.value.quads.size() * attributes.format().getVertexSize() * 4 + PoseSnapshot.retainedBytes(entry.value.bones.size());
-            if (BatchLimits.instances(entry.value.quads.size(), entry.value.bones.size(), attributes.format().getVertexSize(), OptimizerConfig.MESH_MIB.get() * 1048576L,
+            if (BatchLimits.instances(entry.value.quads.size(), entry.value.bones.size(), attributes.format().getVertexSize(), OptimizerConfig.meshMiB() * 1048576L,
                     ssboLimit, workGroupLimit) < 1) { fallback("geometry exceeds GL dispatch limits"); return c; }
-            poses.prune(System.nanoTime(), OptimizerConfig.MESH_MIB.get() * 1048576L - meshes.bytes() - workingBytes - pendingBytes - reserve);
+            poses.prune(System.nanoTime(), OptimizerConfig.meshMiB() * 1048576L - meshes.bytes() - workingBytes - pendingBytes - reserve);
             long singleWorkingBytes = (long)entry.value.quads.size() * attributes.format().getVertexSize() * 4 + (long)entry.value.bones.size() * 288;
-            if (bytes() + reserve + singleWorkingBytes > OptimizerConfig.MESH_MIB.get() * 1048576L) { fallback("pending pose/vertex budget exhausted"); return c; }
+            if (bytes() + reserve + singleWorkingBytes > OptimizerConfig.meshMiB() * 1048576L) { fallback("pending pose/vertex budget exhausted"); return c; }
             c.mesh = entry.value; c.entry = entry; c.binding = binding; c.attributes = attributes;
             c.pose = OptimizationStage.VALUE >= 3 ? poses.acquire(c.mesh.bones.size()) : new PoseSnapshot(c.mesh.bones.size()); c.start = System.nanoTime(); entry.leases++; pendingBytes += reserve;
             c.glow = glowDepth > 0;
@@ -132,7 +132,7 @@ public final class GpuDispatcher {
         try (var restore = OptimizationStage.VALUE >= 4 ? new GlBindings() : null) {
             for (int i = 0; i < commands.size();) {
                 var command = commands.get(i); int end = i + 1;
-                long available = OptimizerConfig.MESH_MIB.get() * 1048576L - meshes.bytes() - pendingBytes - poses.idleBytes() - auxiliaryBytes();
+                long available = OptimizerConfig.meshMiB() * 1048576L - meshes.bytes() - pendingBytes - poses.idleBytes() - auxiliaryBytes() - top.wu949.dsbr.optimizer.lowend.LowEndAnimations.bytes();
                 int max = Math.max(1, BatchLimits.instances(command.mesh.quads.size(), command.mesh.bones.size(), command.attributes.format().getVertexSize(), available,
                         ssboLimit, workGroupLimit));
                 while (end < commands.size() && end - i < max && compatible(command, commands.get(end))) end++;
@@ -208,14 +208,14 @@ public final class GpuDispatcher {
     }
     public static void disable(String reason, Throwable error) { failed = true; Diagnostics.INSTANCE.reason("GPU", reason + (error == null ? "" : ": " + error)); if (error != null) RenderOptimizer.LOGGER.warn("GPU fallback: {}", reason, error); }
     private static long auxiliaryBytes() { return staging.bytes() + CpuVertexScratch.INSTANCE.bytes(); }
-    public static long bytes() { return meshes.bytes() + pendingBytes + workingBytes + poses.idleBytes() + auxiliaryBytes(); }
+    public static long bytes() { return meshes.bytes() + pendingBytes + workingBytes + poses.idleBytes() + auxiliaryBytes() + top.wu949.dsbr.optimizer.lowend.LowEndAnimations.bytes(); }
     public static void finishFrame() {
         if (!queues.isEmpty()) {
             disable("buffer source left commands unflushed at end of frame", null);
             queues.forEach(GpuDispatcher::release); queues.clear();
         }
     }
-    public static void maintenance() { poses.prune(System.nanoTime(), OptimizerConfig.MESH_MIB.get() * 1048576L - meshes.bytes() - workingBytes - pendingBytes - auxiliaryBytes()); meshes.prune(System.nanoTime(), 30_000_000_000L, OptimizerConfig.MESH_MIB.get() * 1048576L - workingBytes - pendingBytes - poses.idleBytes() - auxiliaryBytes()); }
+    public static void maintenance() { poses.prune(System.nanoTime(), OptimizerConfig.meshMiB() * 1048576L - meshes.bytes() - workingBytes - pendingBytes - auxiliaryBytes() - top.wu949.dsbr.optimizer.lowend.LowEndAnimations.bytes()); meshes.prune(System.nanoTime(), OptimizerConfig.LOW_END.get() ? 10_000_000_000L : 30_000_000_000L, OptimizerConfig.meshMiB() * 1048576L - workingBytes - pendingBytes - poses.idleBytes() - auxiliaryBytes() - top.wu949.dsbr.optimizer.lowend.LowEndAnimations.bytes()); }
     public static void clear() {
         queues.forEach(GpuDispatcher::release); queues.clear(); bindings.clear();
         poses.clear(); meshes.clear(); compute.close(); staging.close(); CpuVertexScratch.INSTANCE.clear();

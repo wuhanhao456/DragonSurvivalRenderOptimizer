@@ -30,6 +30,7 @@ public final class RenderOptimizer {
     private long frameStart;
     private boolean inWorld;
     private OptimizerConfig.Mode previousMode;
+    private Boolean previousLowEnd;
     public RenderOptimizer(IEventBus bus, ModContainer mod) {
         mod.registerConfig(ModConfig.Type.CLIENT, OptimizerConfig.SPEC, "dsbr-optimizer-client.toml");
         mod.registerExtensionPoint(IConfigScreenFactory.class, ConfigurationScreen::new);
@@ -44,11 +45,14 @@ public final class RenderOptimizer {
     private void reload(RegisterClientReloadListenersEvent e) { e.registerReloadListener((ResourceManagerReloadListener) manager -> onRenderThread(() -> { ClientBenchmark.cancel("resources reloaded"); clear(); })); }
     private void logout(ClientPlayerNetworkEvent.LoggingOut e) { onRenderThread(() -> { ClientBenchmark.cancel("disconnected"); clear(); }); }
     private static void onRenderThread(Runnable r) { if (RenderSystem.isOnRenderThread()) r.run(); else RenderSystem.recordRenderCall(r::run); }
-    public static void clear() { if (OptimizerMixinPlugin.texturesCompatible) { GpuDispatcher.clear(); TextureCache.clear(); top.wu949.dsbr.optimizer.soul.SoulRenderContext.clear(); } }
+    public static void clear() { if (OptimizerMixinPlugin.lowEndCompatible) top.wu949.dsbr.optimizer.lowend.LowEndSupport.clear(); if (OptimizerMixinPlugin.texturesCompatible) { GpuDispatcher.clear(); TextureCache.clear(); top.wu949.dsbr.optimizer.soul.SoulRenderContext.clear(); } }
     private void pre(RenderFrameEvent.Pre e) {
         Diagnostics.INSTANCE.detailed(OptimizerConfig.DETAILED_DIAGNOSTICS.get());
         if (OptimizerMixinPlugin.texturesCompatible) top.wu949.dsbr.optimizer.texture.AppearanceCache.nextFrame();
         if (previousMode != null && previousMode != OptimizerConfig.MODE.get()) clear(); previousMode = OptimizerConfig.MODE.get();
+        boolean low = OptimizerConfig.LOW_END.get();
+        if (previousLowEnd != null && previousLowEnd != low) { ClientBenchmark.cancel("low-end support switched"); clear(); }
+        previousLowEnd = low; if (OptimizerMixinPlugin.lowEndCompatible) top.wu949.dsbr.optimizer.lowend.LowEndAnimations.maintenance();
         long now = System.nanoTime();
         if (frameStart != 0 && Minecraft.getInstance().level != null) Diagnostics.INSTANCE.frame((now - frameStart) / 1e6);
         frameStart = now;
@@ -63,7 +67,7 @@ public final class RenderOptimizer {
     private static void message(CommandSourceStack source, String text) { source.sendSuccess(() -> Component.literal(text), false); }
     private void commands(RegisterClientCommandsEvent event) {
         var root = LiteralArgumentBuilder.<CommandSourceStack>literal("dsbr").executes(c -> {
-            message(c.getSource(), "mode=" + OptimizerConfig.MODE.get() + "; textures=" + (OptimizerMixinPlugin.texturesCompatible && TextureCache.enabled()) + "; GPU=" + (OptimizerMixinPlugin.gpuCompatible && GpuDispatcher.enabled()) + "; " + OptimizerMixinPlugin.status); return 1;
+            message(c.getSource(), "lowEnd=" + (OptimizerMixinPlugin.lowEndCompatible && top.wu949.dsbr.optimizer.lowend.LowEndSupport.enabled()) + "; mode=" + OptimizerConfig.MODE.get() + "; textures=" + (OptimizerMixinPlugin.texturesCompatible && TextureCache.enabled()) + "; GPU=" + (OptimizerMixinPlugin.gpuCompatible && GpuDispatcher.enabled()) + "; " + OptimizerMixinPlugin.status); return 1;
         });
         for (var mode : OptimizerConfig.Mode.values()) root.then(LiteralArgumentBuilder.<CommandSourceStack>literal(mode.name().toLowerCase(java.util.Locale.ROOT)).executes(c -> {
             ClientBenchmark.cancel("manual mode switch"); clear(); OptimizerConfig.MODE.set(mode); OptimizerConfig.SPEC.save(); message(c.getSource(), "DSRO render mode=" + mode); return 1;

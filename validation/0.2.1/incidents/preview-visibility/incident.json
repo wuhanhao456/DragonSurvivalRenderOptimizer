@@ -1,0 +1,6 @@
+{
+  "pass": false,
+  "error": "Pose restore overrode DS preRender transient Neck hiding; GUI head hidden. Candidate benchmark aborted and excluded.",
+  "fix": "Capture full local state but keep current renderer-owned Neck visibility during restoration; remove the provisional locator workaround.",
+  "instance": "dsbr-validation-iris-20261007-175027"
+}

@@ -1,0 +1,8 @@
+{
+  "scenario": "DS and Gecko absent; startup and cleanup remain usable",
+  "configuredMode": "GPU",
+  "pass": true,
+  "compatibility": "versions=[dsbr=0.2.1]; texture=false; GPU=false; Iris=false; souls=false; lowEnd=false; NPC=absent (DS remains enabled)",
+  "jarSha256": "5997e6711b52e00070f73ef58e3c1ed6f97900ce34371d5c19d586531169ee1b",
+  "scope": "Earlier candidate startup check; not a rerun of the final jar. Final full-pack startup and cleanup are recorded separately in runtime/result.json."
+}

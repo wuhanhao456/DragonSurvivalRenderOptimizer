@@ -1,0 +1,282 @@
+[
+  {
+    "poseBytes": 44704,
+    "poses": {
+      "npc-6": 1,
+      "npc-4": 1,
+      "player": 16
+    },
+    "animations": "{npc-6\u003d[idle], npc-4\u003d[idle], player\u003d[continuous_0, idle]}",
+    "case": "far-static",
+    "stats": {
+      "totals": {
+        "FRAME_CPU_NANOS": 2104784500,
+        "GPU_BATCH_CPU_NANOS": 137917900,
+        "GPU_BONE_SUBMIT_NANOS": 67461500,
+        "GPU_DRAW_CALLS": 1437,
+        "GPU_DRAW_CPU_NANOS": 121735700,
+        "GPU_PASS": 1437,
+        "GPU_POSE_CAPTURE_NANOS": 395605800,
+        "GPU_VERTEX_COUNT": 17811136,
+        "LOW_END_ANIMATION_EVALUATE_NANOS": 13284600,
+        "LOW_END_ANIMATION_REUSED": 1422,
+        "LOW_END_ANIMATION_UPDATE": 15,
+        "LOW_END_LAYER_SKIPPED": 86699,
+        "LOW_END_SKIN_BASE": 958,
+        "LOW_END_SOUL_SKIPPED": 1916,
+        "NPC_GPU_DRAW_CALLS": 958,
+        "NPC_GPU_PASS": 958,
+        "NPC_GPU_POSE_CAPTURE_NANOS": 254267700,
+        "PLAYER_GPU_DRAW_CALLS": 479,
+        "PLAYER_GPU_PASS": 479,
+        "PLAYER_GPU_POSE_CAPTURE_NANOS": 141724000,
+        "POSE_UPLOAD": 1437
+      },
+      "peaks": {
+        "GPU_RESOURCE_BYTES": 4913360,
+        "LOW_END_POSE_BYTES": 44704,
+        "TEXTURE_RESOURCE_BYTES": 0
+      },
+      "fallbacks": {},
+      "attribution": {
+        "entity": {
+          "GPU_PASS": 1437
+        }
+      },
+      "dirtyTraces": [],
+      "frameSamples": 479,
+      "quantileSamples": 479,
+      "frameTimeMs": {
+        "p95": 11.0254,
+        "p50": 5.7512,
+        "p999": 17.9766,
+        "p99": 14.0982
+      }
+    }
+  },
+  {
+    "poseBytes": 44704,
+    "poses": {
+      "npc-6": 15,
+      "npc-4": 15,
+      "player": 15
+    },
+    "animations": "{npc-6\u003d[idle], npc-4\u003d[idle], player\u003d[continuous_0, idle]}",
+    "case": "inventory",
+    "stats": {
+      "totals": {
+        "CPU_VERTEX_SUBMIT_NANOS": 148983300,
+        "FRAME_CPU_NANOS": 2274480400,
+        "GPU_BATCH_CPU_NANOS": 53216700,
+        "GPU_BONE_SUBMIT_NANOS": 21817100,
+        "GPU_DRAW_CALLS": 456,
+        "GPU_DRAW_CPU_NANOS": 47962100,
+        "GPU_PASS": 456,
+        "GPU_POSE_CAPTURE_NANOS": 156574700,
+        "GPU_VERTEX_COUNT": 5651968,
+        "GUI_CPU_PASS": 152,
+        "LOW_END_ANIMATION_EVALUATE_NANOS": 23833300,
+        "LOW_END_ANIMATION_REUSED": 564,
+        "LOW_END_ANIMATION_UPDATE": 44,
+        "LOW_END_LAYER_SKIPPED": 83296,
+        "LOW_END_SKIN_BASE": 608,
+        "LOW_END_SOUL_SKIPPED": 608,
+        "NPC_GPU_DRAW_CALLS": 304,
+        "NPC_GPU_PASS": 304,
+        "NPC_GPU_POSE_CAPTURE_NANOS": 89537900,
+        "PLAYER_CPU_BONE": 41344,
+        "PLAYER_CPU_VERTEX_SUBMIT_NANOS": 148983300,
+        "PLAYER_GPU_DRAW_CALLS": 152,
+        "PLAYER_GPU_PASS": 152,
+        "PLAYER_GPU_POSE_CAPTURE_NANOS": 67168100,
+        "POSE_UPLOAD": 456
+      },
+      "peaks": {
+        "GPU_RESOURCE_BYTES": 4913872,
+        "LOW_END_POSE_BYTES": 44704,
+        "TEXTURE_RESOURCE_BYTES": 0
+      },
+      "fallbacks": {},
+      "attribution": {
+        "entity": {
+          "GPU_PASS": 456
+        },
+        "gui": {
+          "GUI_CPU_PASS": 152
+        }
+      },
+      "dirtyTraces": [],
+      "frameSamples": 152,
+      "quantileSamples": 152,
+      "frameTimeMs": {
+        "p95": 27.3645,
+        "p50": 15.7786,
+        "p999": 178.1842,
+        "p99": 130.1414
+      }
+    }
+  },
+  {
+    "poseBytes": 44704,
+    "poses": {
+      "npc-6": 17,
+      "npc-4": 17,
+      "player": 17
+    },
+    "animations": "{npc-6\u003d[idle], npc-4\u003d[idle], player\u003d[continuous_0, idle]}",
+    "case": "cpu-fallback",
+    "stats": {
+      "totals": {
+        "CPU_VERTEX_SUBMIT_NANOS": 834600400,
+        "FRAME_CPU_NANOS": 2277695600,
+        "LOW_END_ANIMATION_EVALUATE_NANOS": 18609300,
+        "LOW_END_ANIMATION_REUSED": 579,
+        "LOW_END_ANIMATION_UPDATE": 51,
+        "LOW_END_LAYER_SKIPPED": 57540,
+        "LOW_END_SKIN_BASE": 420,
+        "LOW_END_SOUL_SKIPPED": 840,
+        "NPC_CPU_BONE": 87360,
+        "NPC_CPU_VERTEX_SUBMIT_NANOS": 638450800,
+        "PLAYER_CPU_BONE": 57120,
+        "PLAYER_CPU_VERTEX_SUBMIT_NANOS": 196149600
+      },
+      "peaks": {
+        "LOW_END_POSE_BYTES": 44704,
+        "TEXTURE_RESOURCE_BYTES": 0
+      },
+      "fallbacks": {},
+      "attribution": {},
+      "dirtyTraces": [],
+      "frameSamples": 210,
+      "quantileSamples": 210,
+      "frameTimeMs": {
+        "p95": 21.1354,
+        "p50": 12.7528,
+        "p999": 130.1013,
+        "p99": 32.5534
+      }
+    }
+  },
+  {
+    "poseBytes": 0,
+    "poses": {
+      "npc-6": 180,
+      "npc-4": 180,
+      "player": 180
+    },
+    "animations": "{npc-6\u003d[idle], npc-4\u003d[idle], player\u003d[continuous_0, idle]}",
+    "case": "restored",
+    "stats": {
+      "totals": {
+        "ARMOR_CHECK_NANOS": 14089500,
+        "ARMOR_GENERATE_NANOS": 412700,
+        "COPY": 5,
+        "FRAME_CPU_NANOS": 2376682600,
+        "GENERATED": 3,
+        "GPU_BATCH_CPU_NANOS": 133682400,
+        "GPU_BONE_SUBMIT_NANOS": 125370900,
+        "GPU_DRAW_CALLS": 1440,
+        "GPU_DRAW_CPU_NANOS": 117126000,
+        "GPU_PASS": 3060,
+        "GPU_POSE_CAPTURE_NANOS": 653463200,
+        "GPU_VERTEX_COUNT": 29554560,
+        "HIT": 3598,
+        "NPC_GPU_DRAW_CALLS": 360,
+        "NPC_GPU_PASS": 360,
+        "NPC_GPU_POSE_CAPTURE_NANOS": 106223700,
+        "PLAYER_GPU_DRAW_CALLS": 540,
+        "PLAYER_GPU_PASS": 540,
+        "PLAYER_GPU_POSE_CAPTURE_NANOS": 146527300,
+        "POSE_UPLOAD": 1440,
+        "REQUEST": 9,
+        "SKIN_CHECK_NANOS": 7435300,
+        "SKIN_GENERATE_NANOS": 5262600,
+        "SOUL_GPU_DRAW_CALLS": 540,
+        "SOUL_GPU_PASS": 2160,
+        "SOUL_GPU_POSE_CAPTURE_NANOS": 401262300,
+        "SOUL_RENDER": 720,
+        "SOUL_RENDER_CPU_NANOS": 808906300,
+        "SOUL_TEXTURE_HIT": 2159,
+        "STATE_SYNC": 4
+      },
+      "peaks": {
+        "GPU_RESOURCE_BYTES": 11672704,
+        "TEXTURE_RESOURCE_BYTES": 7340032
+      },
+      "fallbacks": {},
+      "attribution": {
+        "entity": {
+          "GPU_PASS": 2160
+        },
+        "glow/entity": {
+          "GPU_PASS": 900
+        }
+      },
+      "dirtyTraces": [],
+      "frameSamples": 180,
+      "quantileSamples": 180,
+      "frameTimeMs": {
+        "p95": 22.3195,
+        "p50": 15.0299,
+        "p999": 124.7632,
+        "p99": 111.0157
+      }
+    }
+  },
+  {
+    "poseBytes": 44704,
+    "poses": {
+      "npc-6": 3,
+      "npc-4": 3,
+      "player": 2
+    },
+    "animations": "{npc-6\u003d[idle], npc-4\u003d[idle], player\u003d[continuous_0, idle]}",
+    "case": "reload",
+    "stats": {
+      "totals": {
+        "FRAME_CPU_NANOS": 19282001600,
+        "GPU_BATCH_CPU_NANOS": 1845573300,
+        "GPU_BONE_SUBMIT_NANOS": 1580510700,
+        "GPU_DRAW_CALLS": 7026,
+        "GPU_DRAW_CPU_NANOS": 1788138300,
+        "GPU_PASS": 7026,
+        "GPU_POSE_CAPTURE_NANOS": 4710270000,
+        "GPU_VERTEX_COUNT": 87084928,
+        "LOW_END_ANIMATION_EVALUATE_NANOS": 8575400,
+        "LOW_END_ANIMATION_REUSED": 7014,
+        "LOW_END_ANIMATION_UPDATE": 12,
+        "LOW_END_LAYER_SKIPPED": 641708,
+        "LOW_END_SKIN_BASE": 4684,
+        "LOW_END_SOUL_SKIPPED": 9368,
+        "NPC_GPU_DRAW_CALLS": 4684,
+        "NPC_GPU_PASS": 4684,
+        "NPC_GPU_POSE_CAPTURE_NANOS": 1483757200,
+        "PLAYER_GPU_DRAW_CALLS": 2342,
+        "PLAYER_GPU_PASS": 2342,
+        "PLAYER_GPU_POSE_CAPTURE_NANOS": 3228101400,
+        "POSE_UPLOAD": 7026,
+        "RELEASE": 5
+      },
+      "peaks": {
+        "GPU_RESOURCE_BYTES": 7392208,
+        "LOW_END_POSE_BYTES": 44704,
+        "TEXTURE_RESOURCE_BYTES": 0
+      },
+      "fallbacks": {},
+      "attribution": {
+        "entity": {
+          "GPU_PASS": 7026
+        }
+      },
+      "dirtyTraces": [],
+      "frameSamples": 2342,
+      "quantileSamples": 2342,
+      "frameTimeMs": {
+        "p95": 12.0904,
+        "p50": 7.4482,
+        "p999": 1220.7805,
+        "p99": 28.916
+      }
+    }
+  }
+]

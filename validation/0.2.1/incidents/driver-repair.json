@@ -1,0 +1,8 @@
+{
+  "instance": "dsbr-validation-iris-20261007-170141",
+  "classification": "validation driver error, stopped before performance sampling",
+  "error": "Sampling reset also reset stage clock at tick 20; validation driver repaired",
+  "worldEntered": true,
+  "passed": false,
+  "productionJarSha256": "07405ec7eb84be3da145894daae8524ecd03bb3cca41a3646a63e88ec8cc1ac2"
+}

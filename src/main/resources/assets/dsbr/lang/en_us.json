@@ -18,5 +18,7 @@
   "dsbr.configuration.reuseCpuVertexScratch.tooltip": "GPU mode: reuse temporary matrices and vectors on audited fallback paths, including inventory previews.",
   "dsbr.configuration.mode.GPU": "GPU + textures",
   "dsbr.configuration.mode.TEXTURES": "Textures only",
-  "dsbr.configuration.mode.VANILLA": "Original renderer"
+  "dsbr.configuration.mode.VANILLA": "Original renderer",
+  "dsbr.configuration.lowEndGpuSupport": "Low-end graphics support",
+  "dsbr.configuration.lowEndGpuSupport.tooltip": "Keep current models; hide soul models, use base skins, remove glow, armor and backpack cosmetics. Animations update at 5 Hz within 32 blocks and hold farther away. Works with CPU fallback; disable to restore."
 }

@@ -63,6 +63,12 @@ parser.add_argument('--fixture-mods', type=Path, help='Explicit test-only depend
 parser.add_argument('--visual-scenes', action='store_true')
 parser.add_argument('--single-round', action='store_true', help='One candidate-only soul/config/animation validation launch')
 parser.add_argument('--single-round-actions-only', action='store_true', help='Targeted actions/preview recheck; skip completed soul timing scenes')
+parser.add_argument('--low-end-scenes', default='')
+parser.add_argument('--low-end-runtime', action='store_true')
+parser.add_argument('--low-end-targeted', action='store_true')
+parser.add_argument('--low-end-lifecycle-only', action='store_true')
+parser.add_argument('--low-end-reload-only', action='store_true')
+parser.add_argument('--low-end-preview-only', action='store_true')
 parser.add_argument('--alpha5-scenes', default='', help='Comma-separated isolated players/NPC/soul scenes; same driver for baseline/candidate')
 parser.add_argument('--frame-animations', action='store_true', help='Test-only enable the conservative frame animation candidate')
 parser.add_argument('--shader', default='ComplementaryReimagined_r5.9.zip')
@@ -87,7 +93,7 @@ if args.world_template:
 if args.shaderpacks:
     (root / 'shaderpacks').mkdir()
     for pack in (args.pack / 'shaderpacks').glob('*.zip'): shutil.copyfile(pack, root / 'shaderpacks' / pack.name)
-    if args.default_mode_only or args.multi_dragon_benchmark or args.visual_scenes or args.single_round or args.alpha5_scenes or args.reload_diagnostic:
+    if args.default_mode_only or args.multi_dragon_benchmark or args.visual_scenes or args.single_round or args.alpha5_scenes or args.low_end_scenes or args.reload_diagnostic:
         startup_pack = args.shader
         if not (root / 'shaderpacks' / startup_pack).is_file(): raise ValueError('Default-mode probe requires ' + startup_pack)
         (root / 'config/iris.properties').write_text('shadersEnabled=true\nshaderPack=' + startup_pack + '\n', encoding='utf-8')
@@ -132,8 +138,10 @@ for pattern in ([] if args.compat_only else ['*v2.0.71*', '*4.9.3*'] + (['*tundr
     files = list((args.pack / 'mods').glob(pattern))
     if len(files) != 1: raise ValueError('Ambiguous mod: ' + pattern)
     shutil.copyfile(files[0], root / 'mods' / files[0].name)
-if args.shaderpacks and (args.default_mode_only or args.multi_dragon_benchmark or args.visual_scenes or args.single_round or args.alpha5_scenes or args.reload_diagnostic):
+if args.shaderpacks and (args.default_mode_only or args.multi_dragon_benchmark or args.visual_scenes or args.single_round or args.alpha5_scenes or args.low_end_scenes or args.reload_diagnostic):
     (root / 'config/iris.properties').write_text('shadersEnabled=true\nshaderPack=' + args.shader + '\n', encoding='utf-8')
+if args.iris and not args.shaderpacks:
+    (root / 'config/iris.properties').write_text('shadersEnabled=false\n', encoding='utf-8')
 from artifact_name import artifact_name
 shutil.copyfile(args.optimizer_jar or args.build / 'libs' / (artifact_name(project) + '.jar'), root / 'mods/optimizer.jar')
 shutil.copyfile(args.validation_jar or args.build / 'validation' / ('dsbr-render-fallback-validation.jar' if args.compat_only else 'dsbr-render-validation.jar'), root / 'mods/validation.jar')
@@ -179,7 +187,7 @@ def expand(items):
 jvm = expand(spec['arguments']['jvm'])
 for i, value in enumerate(jvm[:-1]):
     if value in ('-p', '--module-path', '-cp', '-classpath', '--class-path'): jvm[i+1] = os.pathsep.join(map(str, unique_paths(jvm[i+1].split(os.pathsep))))
-argv = ['-Dbeloongrender.alpha5Scenes=' + args.alpha5_scenes, '-Dbeloongrender.frameAnimations=' + str(args.frame_animations).lower(), '-Djdk.net.unixdomain.tmpdir=' + str(root / 'unused-socket-dir'), '-Ddsbr.validationStage=' + str(args.stage), '-Xms1G', '-Xmx' + args.heap, *(['-XX:StartFlightRecording=filename=' + str(root / 'diagnostic.jfr') + ',settings=profile,dumponexit=true'] if args.jfr else []), *['-Dbeloongrender.' + k + '=' + str(v).lower() for k,v in {'reloadDiagnostic':args.reload_diagnostic, 'npcSmoke':args.npc_smoke, 'npcLifecycleOnly':args.npc_lifecycle_only, 'singleRound':args.single_round, 'singleRoundActionsOnly':args.single_round_actions_only, 'visualScenes':args.visual_scenes, 'fullpack':args.fullpack, 'counts':args.counts, 'warm':args.warm, 'sample':args.sample, 'repeats':args.repeats, 'gpuOnly':args.gpu_only, 'scenario':args.scenario, 'prepareWorld':args.prepare_world, 'fixtureWorld':bool(args.world_template)}.items()], '-Dbeloongrender.probe=' + str(not args.compat_only and not args.multi_dragon_benchmark and not args.single_round and not args.alpha5_scenes and not args.npc_smoke and not args.reload_diagnostic).lower(), '-Dbeloongrender.multiBenchmark=' + str(args.multi_dragon_benchmark).lower(), '-Dbeloongrender.compatProbe=' + str(args.compat_only).lower(), '-Dbeloongrender.defaultModeOnly=' + str(args.default_mode_only).lower(), '-Dbeloongrender.shaders=' + str(args.shaderpacks).lower(), '-Dmixin.debug.verbose=true', *jvm, spec['mainClass'], *expand(spec['arguments']['game']), '--width', '1280', '--height', '720']
+argv = ['-Dbeloongrender.lowEndScenes=' + args.low_end_scenes, '-Dbeloongrender.lowEndRuntime=' + str(args.low_end_runtime).lower(), '-Dbeloongrender.lowEndTargeted=' + str(args.low_end_targeted).lower(), '-Dbeloongrender.lowEndLifecycleOnly=' + str(args.low_end_lifecycle_only).lower(), '-Dbeloongrender.lowEndReloadOnly=' + str(args.low_end_reload_only).lower(), '-Dbeloongrender.lowEndPreviewOnly=' + str(args.low_end_preview_only).lower(), '-Dbeloongrender.alpha5Scenes=' + args.alpha5_scenes, '-Dbeloongrender.frameAnimations=' + str(args.frame_animations).lower(), '-Djdk.net.unixdomain.tmpdir=' + str(root / 'unused-socket-dir'), '-Ddsbr.validationStage=' + str(args.stage), '-Xms1G', '-Xmx' + args.heap, *(['-XX:StartFlightRecording=filename=' + str(root / 'diagnostic.jfr') + ',settings=profile,dumponexit=true'] if args.jfr else []), *['-Dbeloongrender.' + k + '=' + str(v).lower() for k,v in {'reloadDiagnostic':args.reload_diagnostic, 'npcSmoke':args.npc_smoke, 'npcLifecycleOnly':args.npc_lifecycle_only, 'singleRound':args.single_round, 'singleRoundActionsOnly':args.single_round_actions_only, 'visualScenes':args.visual_scenes, 'fullpack':args.fullpack, 'counts':args.counts, 'warm':args.warm, 'sample':args.sample, 'repeats':args.repeats, 'gpuOnly':args.gpu_only, 'scenario':args.scenario, 'prepareWorld':args.prepare_world, 'fixtureWorld':bool(args.world_template)}.items()], '-Dbeloongrender.probe=' + str(not args.compat_only and not args.multi_dragon_benchmark and not args.single_round and not args.alpha5_scenes and not args.low_end_scenes and not args.low_end_runtime and not args.npc_smoke and not args.reload_diagnostic).lower(), '-Dbeloongrender.multiBenchmark=' + str(args.multi_dragon_benchmark).lower(), '-Dbeloongrender.compatProbe=' + str(args.compat_only).lower(), '-Dbeloongrender.defaultModeOnly=' + str(args.default_mode_only).lower(), '-Dbeloongrender.shaders=' + str(args.shaderpacks).lower(), '-Dmixin.debug.verbose=true', *jvm, spec['mainClass'], *expand(spec['arguments']['game']), '--width', '1280', '--height', '720']
 argfile = root / 'launch-args.txt'
 argfile.write_text('\n'.join('"' + arg.replace('\\', '\\\\').replace('"', '\\"') + '"' for arg in argv), encoding='utf-8')
 with (root / 'logs/console.log').open('wb') as stream:

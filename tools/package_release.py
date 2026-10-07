@@ -9,6 +9,15 @@ version = next(x.split('=', 1)[1] for x in (project / 'gradle.properties').read_
 name = artifact_name(project)
 formal = False
 single_round = None
+stable_evidence = None
+prerelease = "-" in version
+if a.incomplete_prerelease and not prerelease:
+    raise ValueError("Incomplete evidence cannot be packaged as a stable release")
+if not prerelease:
+    if version != "0.2.1": raise ValueError("No stable acceptance contract for this version")
+    from stable_release_acceptance import validate
+    candidate_hash = hashlib.sha256((a.build / "libs" / (name + ".jar")).read_bytes()).hexdigest()
+    stable_evidence = validate(project / "validation/0.2.1", candidate_hash)
 if version == '0.2.0-alpha.4':
     candidate_hash = hashlib.sha256((a.build / 'libs' / (name + '.jar')).read_bytes()).hexdigest()
     single_round = json.loads((project / 'validation/alpha4/summary.json').read_text(encoding='utf-8'))
@@ -32,7 +41,7 @@ with zipfile.ZipFile(dist / (name + '.jar')) as jar:
     members = jar.namelist()
     assert not any('validation/' in x or x.startswith('by/') or x.endswith(('.dll', '.so')) for x in members), 'Unexpected runtime/test dependency bundled'
     assert 'LICENSE' in members and 'THIRD_PARTY_NOTICES.md' in members and 'dsbr.optimizer.mixins.json' in members and 'dsbr.mixins.json' not in members
-allowed_files = {'.gitignore', 'build.gradle', 'settings.gradle', 'gradle.properties', 'gradlew', 'gradlew.bat', 'LICENSE'}
+allowed_files = {'.gitignore', '.gitattributes', 'build.gradle', 'settings.gradle', 'gradle.properties', 'gradlew', 'gradlew.bat', 'LICENSE'}
 paths = [x for x in project.iterdir() if x.is_file() and (x.name in allowed_files or x.suffix == '.md')]
 for folder in ('src', 'gradle', 'tools', 'validation'):
     paths.extend(x for x in (project / folder).rglob('*') if x.is_file() and '__pycache__' not in x.parts and x.name != 'last-launch.json')
@@ -44,7 +53,14 @@ with tempfile.TemporaryDirectory() as temporary:
             target.write(file, 'DragonSurvivalRenderOptimizer/' + file.relative_to(project).as_posix())
     shutil.copyfile(archive, dist / archive.name)
 manifest = {'name': 'Dragon Survival Render Optimizer', 'abbreviation': 'DSRO', 'version': version, 'modId': 'dsbr', 'defaultMode': 'GPU', 'gpuDefaultEnabled': True, 'formalAcceptanceComplete': formal, 'githubReleaseAssets': [name + '.jar'], 'artifacts': []}
-manifest['prerelease'] = True
+manifest['prerelease'] = prerelease
+manifest['releaseAcceptanceComplete'] = stable_evidence is not None
+if stable_evidence is not None:
+    manifest['stableEvidence'] = 'validation/0.2.1/summary.json'
+    manifest['testedJarSha256'] = candidate_hash
+    manifest['lowEndDefaultEnabled'] = False
+    manifest['startupSmoke'] = {'pass': True, 'path': 'validation/0.2.1/runtime/result.json'}
+    manifest['knownLimitations'] = stable_evidence['limitations']
 if single_round is not None:
     manifest['singleRoundEvidence'] = {'path': 'validation/alpha4/summary.json', 'pass': single_round['pass'],
                                      'complete': single_round['singleRoundComplete'], 'repetitions': 1,

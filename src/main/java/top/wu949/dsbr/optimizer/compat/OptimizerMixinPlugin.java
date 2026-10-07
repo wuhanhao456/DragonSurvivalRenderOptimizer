@@ -10,7 +10,7 @@ import java.util.*;
 
 /** Checks discovery metadata and untransformed bytecode without initializing target classes. */
 public final class OptimizerMixinPlugin implements IMixinConfigPlugin {
-    public static boolean texturesCompatible, gpuCompatible, irisCompatible, soulCompatible;
+    public static boolean texturesCompatible, gpuCompatible, irisCompatible, soulCompatible, lowEndCompatible;
     public static String status = "not checked";
     private static final String DS = "by.dragonsurvivalteam.dragonsurvival.";
     public void onLoad(String pkg) {
@@ -25,6 +25,10 @@ public final class OptimizerMixinPlugin implements IMixinConfigPlugin {
         texturesCompatible &= contract(DS + "client.util.RenderingUtils", "copyTextureFromRenderTarget", "(Lcom/mojang/blaze3d/pipeline/RenderTarget;Lnet/minecraft/resources/ResourceLocation;)V");
         texturesCompatible &= textureContracts();
         soulCompatible = texturesCompatible && contract(DS + "client.render.blocks.DragonSoulRenderer", "render", "(Lby/dragonsurvivalteam/dragonsurvival/server/tileentity/DragonSoulBlockEntity;FLcom/mojang/blaze3d/vertex/PoseStack;Lnet/minecraft/client/renderer/MultiBufferSource;II)V");
+        lowEndCompatible = soulCompatible && contract(DS + "client.render.entity.dragon.DragonRenderer", "renderRecursively", "(Lcom/mojang/blaze3d/vertex/PoseStack;Lby/dragonsurvivalteam/dragonsurvival/common/entity/DragonEntity;Lsoftware/bernie/geckolib/cache/object/GeoBone;Lnet/minecraft/client/renderer/RenderType;Lnet/minecraft/client/renderer/MultiBufferSource;Lcom/mojang/blaze3d/vertex/VertexConsumer;ZFIII)V")
+                && contract("software.bernie.geckolib.model.GeoModel", "handleAnimations", "(Lsoftware/bernie/geckolib/animatable/GeoAnimatable;JLsoftware/bernie/geckolib/animation/AnimationState;F)V")
+                && contract("software.bernie.geckolib.renderer.GeoEntityRenderer", "getRenderLayers", "()Ljava/util/List;")
+                && contract(DS + "client.render.blocks.DragonSoulRenderer", "renderBlock", "(Lnet/minecraft/world/level/block/state/BlockState;Lcom/mojang/blaze3d/vertex/PoseStack;Lnet/minecraft/client/renderer/MultiBufferSource;II)V");
         gpuCompatible = texturesCompatible && contract("software.bernie.geckolib.renderer.GeoRenderer", "renderCubesOfBone", "(Lcom/mojang/blaze3d/vertex/PoseStack;Lsoftware/bernie/geckolib/cache/object/GeoBone;Lcom/mojang/blaze3d/vertex/VertexConsumer;III)V");
         gpuCompatible &= contract("software.bernie.geckolib.renderer.GeoRenderer", "renderCube", "(Lcom/mojang/blaze3d/vertex/PoseStack;Lsoftware/bernie/geckolib/cache/object/GeoCube;Lcom/mojang/blaze3d/vertex/VertexConsumer;III)V")
                 && contract("software.bernie.geckolib.renderer.GeoRenderer", "createVerticesOfQuad", "(Lsoftware/bernie/geckolib/cache/object/GeoQuad;Lorg/joml/Matrix4f;Lorg/joml/Vector3f;Lcom/mojang/blaze3d/vertex/VertexConsumer;III)V");
@@ -45,7 +49,7 @@ public final class OptimizerMixinPlugin implements IMixinConfigPlugin {
         OptionalNpcAdapter.discover(versions.get("beloong"), name -> MixinService.getService().getResourceAsStream(name));
         status = "versions=" + versions.entrySet().stream().filter(e -> Set.of("dragonsurvival", "geckolib", "iris", "sodium", "dsbr", "beloong").contains(e.getKey())).toList()
                 + "; texture=" + texturesCompatible + "; GPU=" + gpuCompatible + "; Iris=" + irisCompatible + "; souls=" + soulCompatible
-                + "; NPC=" + OptionalNpcAdapter.status
+                + "; lowEnd=" + lowEndCompatible + "; NPC=" + OptionalNpcAdapter.status
                 + (versions.containsKey("beloong_render_optimizer") ? "; duplicate standalone optimizer detected: integrated patches disabled" : "");
         org.slf4j.LoggerFactory.getLogger("RenderOptimizer").info(status);
     }
@@ -71,9 +75,11 @@ public final class OptimizerMixinPlugin implements IMixinConfigPlugin {
         } catch (Exception | LinkageError e) { return false; }
     }
     public boolean shouldApplyMixin(String target, String mixin) {
+        if (mixin.endsWith("LowEndAnimationMixin") || mixin.endsWith("LowEndLayersMixin") || mixin.endsWith("SoulIndicatorMixin")) return lowEndCompatible;
         if (mixin.endsWith("SoulRendererMixin")) return texturesCompatible && soulCompatible;
         if (mixin.endsWith("IrisBufferSourceMixin")) return gpuCompatible && irisCompatible;
-        if (mixin.endsWith("GeoRendererMixin") || mixin.endsWith("BufferSourceMixin") || mixin.endsWith("DragonGlowMixin") || mixin.endsWith("GameRendererScopeMixin")) return gpuCompatible;
+        if (mixin.endsWith("GeoRendererMixin")) return gpuCompatible || lowEndCompatible;
+        if ( mixin.endsWith("BufferSourceMixin") || mixin.endsWith("DragonGlowMixin") || mixin.endsWith("GameRendererScopeMixin")) return gpuCompatible;
         return texturesCompatible;
     }
     public String getRefMapperConfig() { return null; }

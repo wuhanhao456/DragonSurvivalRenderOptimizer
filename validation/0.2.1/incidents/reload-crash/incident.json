@@ -1,0 +1,7 @@
+{
+  "pass": false,
+  "error": "UnsupportedOperationException: immutable getRenderLayers list returned to DragonRenderer constructor during resource reload; secondary TimerQuery recovery crash",
+  "fix": "Filter only applyRenderLayers/applyRenderLayersForBone/preApplyRenderLayers execution; preserve original mutable list for registration",
+  "performanceSampled": false,
+  "completedFunctionalCases": 6
+}

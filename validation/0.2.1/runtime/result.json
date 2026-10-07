@@ -1,0 +1,76 @@
+{
+  "pass": true,
+  "cases": 19,
+  "textureBytesAfterClear": 0,
+  "meshBytesAfterClear": 0,
+  "animationBytesAfterClear": 0,
+  "compatibility": "versions=[beloong=0.10.1, dragonsurvival=2.0.71, dsbr=0.2.1, geckolib=4.9.3, iris=1.8.14-beta.1+mc1.21.1, sodium=0.8.13+mc1.21.1]; texture=true; GPU=true; Iris=true; souls=true; lowEnd=true; NPC=Core 0.10.1 NPC interfaces verified",
+  "mergedCoverage": true,
+  "sourceResults": [
+    {
+      "instance": "dsbr-validation-iris-20261007-170739",
+      "selectedCases": [
+        "model-0-idle",
+        "model-0-fly",
+        "model-1-idle",
+        "model-1-fly",
+        "model-2-idle",
+        "model-2-fly"
+      ],
+      "sourceSha256": "6af6996fb768db8b7ba5acca2d0a543b10b7b30e0800d5d3b8b38a19c1a0a0b5",
+      "jarSha256": "07405ec7eb84be3da145894daae8524ecd03bb3cca41a3646a63e88ec8cc1ac2",
+      "sourceRunPass": false,
+      "sourceScenes": "sources/dsbr-validation-iris-20261007-170739/lowend-runtime-scenes.json",
+      "sourceResult": "sources/dsbr-validation-iris-20261007-170739/lowend-runtime-result.json",
+      "sourceResultSha256": "2866685e775216036f9a22ce1fd74c30f42028b7b18196222e713e85a831076d"
+    },
+    {
+      "instance": "dsbr-validation-iris-20261007-171513",
+      "selectedCases": [
+        "model-0-walk",
+        "model-0-attack",
+        "model-1-walk",
+        "model-1-attack",
+        "model-2-walk",
+        "model-2-attack"
+      ],
+      "sourceSha256": "80e6fb7704f3dcce1dbd6d49480582b122cdd69be767dcef1699c6ad77bde162",
+      "jarSha256": "5997e6711b52e00070f73ef58e3c1ed6f97900ce34371d5c19d586531169ee1b",
+      "sourceRunPass": false,
+      "sourceScenes": "sources/dsbr-validation-iris-20261007-171513/lowend-runtime-scenes.json",
+      "sourceResult": "sources/dsbr-validation-iris-20261007-171513/lowend-runtime-result.json",
+      "sourceResultSha256": "ef5f1b38c6cd2566f0aaed9884bb9b40d715d1ffd014501281aa3a7375a90b9f"
+    },
+    {
+      "instance": "dsbr-validation-iris-20261007-175459",
+      "selectedCases": [
+        "breath",
+        "breath-recovery"
+      ],
+      "sourceSha256": "40c06646e196a32e9cc1c1dfe6e4f22e0850923c476351f9b8f4a21877c785cd",
+      "jarSha256": "26b839419377d79eed060d803c3bd737f6d75fd871cfe88ec999e46f05eddab3",
+      "sourceRunPass": false,
+      "sourceScenes": "sources/dsbr-validation-iris-20261007-175459/lowend-runtime-scenes.json",
+      "sourceResult": "sources/dsbr-validation-iris-20261007-175459/lowend-runtime-result.json",
+      "sourceResultSha256": "929827081ed7ec5a0bb1561e3c8c586442ee315ab3f6aab68212ee0106dcce08"
+    },
+    {
+      "instance": "dsbr-validation-iris-20261007-180146",
+      "selectedCases": [
+        "far-static",
+        "inventory",
+        "cpu-fallback",
+        "restored",
+        "reload"
+      ],
+      "sourceSha256": "ccc5194b2fe7f54d9b630d95eee4fe46e207fb2f662368b2264eed972fe7e197",
+      "jarSha256": "26b839419377d79eed060d803c3bd737f6d75fd871cfe88ec999e46f05eddab3",
+      "sourceRunPass": true,
+      "sourceScenes": "sources/dsbr-validation-iris-20261007-180146/lowend-runtime-scenes.json",
+      "sourceResult": "sources/dsbr-validation-iris-20261007-180146/lowend-runtime-result.json",
+      "sourceResultSha256": "e459e96c8593db4104fa56d0bafbaf793f8ebad3bb88ab8e2df7503db2c51c30"
+    }
+  ],
+  "jarSha256": "26b839419377d79eed060d803c3bd737f6d75fd871cfe88ec999e46f05eddab3",
+  "note": "Idle/fly and corrected walk/attack retained from valid earlier prefixes. Exact final jar retested breath, recovery, far actors, inventory head visibility, CPU path, toggle restoration, reload and cleanup. Failed whole runs remain failures in incidents."
+}

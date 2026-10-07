@@ -16,7 +16,7 @@ public final class FramebufferPool {
         if (!owned.contains(target)) { target.destroyBuffers(); return; }
         if (!TextureCache.enabled()) { owned.remove(target); target.destroyBuffers(); return; }
         free.addLast((TextureTarget)target);
-        while (bytes() > Math.min(8 * 1048576L, top.wu949.dsbr.optimizer.OptimizerConfig.TEXTURE_MIB.get() * 1048576L / 8) && !free.isEmpty()) {
+        while (bytes() > Math.min(8 * 1048576L, top.wu949.dsbr.optimizer.OptimizerConfig.textureMiB() * 1048576L / 8) && !free.isEmpty()) {
             var f = free.removeFirst(); owned.remove(f); f.destroyBuffers();
         }
     }

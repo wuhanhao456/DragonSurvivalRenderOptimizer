@@ -1,0 +1,8 @@
+{
+  "pass": true,
+  "cases": 5,
+  "textureBytesAfterClear": 0,
+  "meshBytesAfterClear": 0,
+  "animationBytesAfterClear": 0,
+  "compatibility": "versions=[beloong=0.10.1, dragonsurvival=2.0.71, dsbr=0.2.1, geckolib=4.9.3, iris=1.8.14-beta.1+mc1.21.1, sodium=0.8.13+mc1.21.1]; texture=true; GPU=true; Iris=true; souls=true; lowEnd=true; NPC=Core 0.10.1 NPC interfaces verified"
+}

@@ -1,0 +1,283 @@
+{
+  "rows": [
+    {
+      "scene": "players-1-off",
+      "shader": true,
+      "metrics": {
+        "samples": 9846,
+        "capturedSeconds": 60.0166262,
+        "averageFps": 164.05453994013413,
+        "low1Fps": 62.969816849425435,
+        "low01Fps": 25.21565054739395,
+        "frameTimeMs": {
+          "p50": 5.7813,
+          "p95": 9.6584,
+          "p99": 11.7624,
+          "p999": 18.5539
+        },
+        "longFramesAboveMs": {
+          "16.7": 10,
+          "33.3": 5,
+          "50": 3
+        },
+        "maximumFrameMs": 98.3486,
+        "definition": "1000 / mean slowest ceil(samples * fraction) frame times in ms"
+      },
+      "row": {
+        "scene": "players-1-off",
+        "lowEnd": false,
+        "animationPoseBytes": 0,
+        "warmupSeconds": 15.0,
+        "samplingSeconds": 60.0,
+        "width": 1280,
+        "height": 720,
+        "renderDistance": 6,
+        "vsync": false,
+        "effectiveFpsLimit": 260,
+        "swapInterval": 0,
+        "stats": {
+          "totals": {
+            "ARMOR_CHECK_NANOS": 59048800,
+            "FRAME_CPU_NANOS": 44746055000,
+            "GPU_BATCH_CPU_NANOS": 3097825500,
+            "GPU_BONE_SUBMIT_NANOS": 985692500,
+            "GPU_DRAW_CALLS": 29541,
+            "GPU_DRAW_CPU_NANOS": 2850959700,
+            "GPU_PASS": 29541,
+            "GPU_POSE_CAPTURE_NANOS": 3755266500,
+            "GPU_VERTEX_COUNT": 267995952,
+            "HIT": 39388,
+            "PLAYER_GPU_DRAW_CALLS": 29541,
+            "PLAYER_GPU_PASS": 29541,
+            "PLAYER_GPU_POSE_CAPTURE_NANOS": 3760568600,
+            "POSE_UPLOAD": 29541,
+            "RELEASE": 4,
+            "SKIN_CHECK_NANOS": 22761300
+          },
+          "peaks": {
+            "GPU_RESOURCE_BYTES": 9384864,
+            "TEXTURE_RESOURCE_BYTES": 9437184
+          },
+          "fallbacks": {},
+          "attribution": {
+            "entity": {
+              "GPU_PASS": 19694
+            },
+            "glow/entity": {
+              "GPU_PASS": 9847
+            }
+          },
+          "dirtyTraces": [],
+          "frameSamples": 9847,
+          "quantileSamples": 9847,
+          "frameTimeMs": {
+            "p99": 11.9344,
+            "p999": 19.4833,
+            "p50": 5.8328,
+            "p95": 9.5101
+          }
+        },
+        "rawFrames": "players-1-off.csv",
+        "actors": [
+          {
+            "type": "minecraft:player",
+            "scale": 1.2375,
+            "model": "dragonsurvival:dragon_model",
+            "body": "dragonsurvival:east",
+            "species": "dragonsurvival:cave_dragon"
+          }
+        ],
+        "textureBytes": 5242880,
+        "meshBytes": 1512864,
+        "npcGeometryCalls": 0,
+        "npcGeometryNanos": 0,
+        "camera": [
+          0.0,
+          -52.0,
+          36.0,
+          180.0,
+          13.0
+        ],
+        "shaderPack": "ComplementaryUnbound_r5.9.zip"
+      },
+      "jarSha256": "26b839419377d79eed060d803c3bd737f6d75fd871cfe88ec999e46f05eddab3",
+      "driverSha256": "90d4e6ed6769c91ed4567a92b2b0bbeb8e7fca0c3d4e3306345c0cd890a7c165",
+      "rawSha256": "1afb3141ae897a7da705bc84446f9c5d7d0513263543f6a07115ac358a78c166",
+      "instance": "dsbr-validation-iris-20261007-182759",
+      "rawArchive": "shader-recheck/raw/players-1-off.csv.gz",
+      "screenshotSha256": "d798004fcbb175bb30baadf5babf0b8966b444e8e4bb27165711567e57b1c771"
+    },
+    {
+      "scene": "players-1-on",
+      "shader": true,
+      "metrics": {
+        "samples": 14394,
+        "capturedSeconds": 60.0168828,
+        "averageFps": 239.83251592666855,
+        "low1Fps": 71.4683895313103,
+        "low01Fps": 34.44855556058249,
+        "frameTimeMs": {
+          "p50": 3.7937,
+          "p95": 7.5526,
+          "p99": 10.1084,
+          "p999": 17.4039
+        },
+        "longFramesAboveMs": {
+          "16.7": 18,
+          "33.3": 2,
+          "50": 2
+        },
+        "maximumFrameMs": 101.4482,
+        "definition": "1000 / mean slowest ceil(samples * fraction) frame times in ms"
+      },
+      "row": {
+        "scene": "players-1-on",
+        "lowEnd": true,
+        "animationPoseBytes": 17632,
+        "warmupSeconds": 15.0,
+        "samplingSeconds": 60.0,
+        "width": 1280,
+        "height": 720,
+        "renderDistance": 6,
+        "vsync": false,
+        "effectiveFpsLimit": 260,
+        "swapInterval": 0,
+        "stats": {
+          "totals": {
+            "FRAME_CPU_NANOS": 41375729700,
+            "GPU_BATCH_CPU_NANOS": 1431675600,
+            "GPU_BONE_SUBMIT_NANOS": 526190700,
+            "GPU_DRAW_CALLS": 14395,
+            "GPU_DRAW_CPU_NANOS": 1268416700,
+            "GPU_PASS": 14395,
+            "GPU_POSE_CAPTURE_NANOS": 2175176400,
+            "GPU_VERTEX_COUNT": 130591440,
+            "LOW_END_ANIMATION_EVALUATE_NANOS": 127835900,
+            "LOW_END_ANIMATION_REUSED": 14094,
+            "LOW_END_ANIMATION_UPDATE": 301,
+            "LOW_END_LAYER_SKIPPED": 2605495,
+            "LOW_END_SKIN_BASE": 28790,
+            "PLAYER_GPU_DRAW_CALLS": 14395,
+            "PLAYER_GPU_PASS": 14395,
+            "PLAYER_GPU_POSE_CAPTURE_NANOS": 2183587200,
+            "POSE_UPLOAD": 14395
+          },
+          "peaks": {
+            "GPU_RESOURCE_BYTES": 1796128,
+            "LOW_END_POSE_BYTES": 17632,
+            "TEXTURE_RESOURCE_BYTES": 0
+          },
+          "fallbacks": {},
+          "attribution": {
+            "entity": {
+              "GPU_PASS": 14395
+            }
+          },
+          "dirtyTraces": [],
+          "frameSamples": 14395,
+          "quantileSamples": 14395,
+          "frameTimeMs": {
+            "p99": 10.2805,
+            "p999": 17.8655,
+            "p50": 3.8593,
+            "p95": 7.2866
+          }
+        },
+        "rawFrames": "players-1-on.csv",
+        "actors": [
+          {
+            "type": "minecraft:player",
+            "scale": 1.2375,
+            "model": "dragonsurvival:dragon_model",
+            "body": "dragonsurvival:east",
+            "species": "dragonsurvival:cave_dragon"
+          }
+        ],
+        "textureBytes": 0,
+        "meshBytes": 1306240,
+        "npcGeometryCalls": 0,
+        "npcGeometryNanos": 0,
+        "camera": [
+          0.0,
+          -52.0,
+          36.0,
+          180.0,
+          13.0
+        ],
+        "shaderPack": "ComplementaryUnbound_r5.9.zip"
+      },
+      "jarSha256": "26b839419377d79eed060d803c3bd737f6d75fd871cfe88ec999e46f05eddab3",
+      "driverSha256": "90d4e6ed6769c91ed4567a92b2b0bbeb8e7fca0c3d4e3306345c0cd890a7c165",
+      "rawSha256": "d01db700223e51c17d24337f17835fbec02ffa34c5beb273467a7ed21bb3a01f",
+      "instance": "dsbr-validation-iris-20261007-182759",
+      "rawArchive": "shader-recheck/raw/players-1-on.csv.gz",
+      "screenshotSha256": "7654614652373c55675f06801b2971772547be42d0538e63383294a3351f26b8"
+    }
+  ],
+  "comparisons": [
+    {
+      "scene": "players-1",
+      "shader": true,
+      "averageFpsChangePercent": 46.190721704005796,
+      "low1ChangePercent": 13.496263935794506,
+      "low01ChangePercent": 36.61577160515801,
+      "p95ChangePercent": -21.80278306965957,
+      "pass": true
+    }
+  ],
+  "launch": {
+    "pid": 23716,
+    "instance": "dsbr-validation-iris-20261007-182759",
+    "iris": true,
+    "started": 1791390488.9776688
+  },
+  "result": {
+    "pass": true,
+    "scenes": 2,
+    "stats": {
+      "totals": {
+        "FRAME_CPU_NANOS": 41375729700,
+        "GPU_BATCH_CPU_NANOS": 1431675600,
+        "GPU_BONE_SUBMIT_NANOS": 526190700,
+        "GPU_DRAW_CALLS": 14395,
+        "GPU_DRAW_CPU_NANOS": 1268416700,
+        "GPU_PASS": 14395,
+        "GPU_POSE_CAPTURE_NANOS": 2175176400,
+        "GPU_VERTEX_COUNT": 130591440,
+        "LOW_END_ANIMATION_EVALUATE_NANOS": 127835900,
+        "LOW_END_ANIMATION_REUSED": 14094,
+        "LOW_END_ANIMATION_UPDATE": 301,
+        "LOW_END_LAYER_SKIPPED": 2605495,
+        "LOW_END_SKIN_BASE": 28790,
+        "PLAYER_GPU_DRAW_CALLS": 14395,
+        "PLAYER_GPU_PASS": 14395,
+        "PLAYER_GPU_POSE_CAPTURE_NANOS": 2183587200,
+        "POSE_UPLOAD": 14395
+      },
+      "peaks": {
+        "GPU_RESOURCE_BYTES": 1796128,
+        "LOW_END_POSE_BYTES": 17632,
+        "TEXTURE_RESOURCE_BYTES": 0
+      },
+      "fallbacks": {},
+      "attribution": {
+        "entity": {
+          "GPU_PASS": 14395
+        }
+      },
+      "dirtyTraces": [],
+      "frameSamples": 14395,
+      "quantileSamples": 14395,
+      "frameTimeMs": {
+        "p99": 10.2805,
+        "p999": 17.8655,
+        "p50": 3.8593,
+        "p95": 7.2866
+      }
+    },
+    "meshBytesAfterClear": 0,
+    "textureBytesAfterClear": 0,
+    "animationBytesAfterClear": 0,
+    "compatibility": "versions=[beloong=0.10.1, dragonsurvival=2.0.71, dsbr=0.2.1, geckolib=4.9.3, iris=1.8.14-beta.1+mc1.21.1, sodium=0.8.13+mc1.21.1]; texture=true; GPU=true; Iris=true; souls=true; lowEnd=true; NPC=Core 0.10.1 NPC interfaces verified"
+  }
+}

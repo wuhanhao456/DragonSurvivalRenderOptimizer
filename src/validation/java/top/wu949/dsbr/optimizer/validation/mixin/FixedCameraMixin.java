@@ -19,7 +19,8 @@ abstract class FixedCameraMixin {
     @Inject(method = "setup", at = @At("RETURN"))
     private void dsbrValidation$camera(BlockGetter level, Entity entity, boolean detached, boolean mirrored, float partial, CallbackInfo ci) {
         if ((Object)this != net.minecraft.client.Minecraft.getInstance().gameRenderer.getMainCamera()) return;
-        if (SingleRoundProbe.fixedCamera()) { setPosition(0, -55, 20); setRotation(180, 12); }
-        else if (Alpha5SceneProbe.fixedCamera() || NpcSmokeProbe.fixedCamera() || ReloadTextureProbe.fixedCamera()) { setPosition(0, -52, 36); setRotation(180, 13); }
+        if (top.wu949.dsbr.optimizer.validation.LowEndRuntimeProbe.fixedCamera()) { setPosition(0, -55, top.wu949.dsbr.optimizer.validation.LowEndRuntimeProbe.farCamera()?60:20); setRotation(180, 12); }
+        else if (SingleRoundProbe.fixedCamera()) { setPosition(0, -55, 20); setRotation(180, 12); }
+        else if (top.wu949.dsbr.optimizer.validation.LowEndSceneProbe.fixedCamera() || Alpha5SceneProbe.fixedCamera() || NpcSmokeProbe.fixedCamera() || ReloadTextureProbe.fixedCamera()) { setPosition(0, -52, 36); setRotation(180, 13); }
     }
 }

@@ -22,8 +22,12 @@ public abstract class DragonModelMixin {
         }
         if (TextureCache.enabled() && h.body() != null) ci.setReturnValue(top.wu949.dsbr.optimizer.OptimizationStage.VALUE >= 2 ? top.wu949.dsbr.optimizer.texture.AppearanceCache.texture(h, ci.getReturnValue(), glow) : ci.getReturnValue().withSuffix("_bro_" + AppearanceKey.skin(h).digest()));
     }
-    @Inject(method = "getTextureResource(Lby/dragonsurvivalteam/dragonsurvival/common/entity/DragonEntity;)Lnet/minecraft/resources/ResourceLocation;", at = @At("HEAD"))
+    @Inject(method = "getTextureResource(Lby/dragonsurvivalteam/dragonsurvival/common/entity/DragonEntity;)Lnet/minecraft/resources/ResourceLocation;", at = @At("HEAD"), cancellable = true)
     private void beloong$prepare(DragonEntity dragon, CallbackInfoReturnable<ResourceLocation> ci) {
+        if (overrideTexture == null && top.wu949.dsbr.optimizer.lowend.LowEndSupport.enabled()) {
+            var base = top.wu949.dsbr.optimizer.lowend.LowEndSupport.skin(dragon);
+            if (base != null) { ci.setReturnValue(base); return; }
+        }
         if (overrideTexture == null) TextureCache.demand(dragon.overrideUUIDWithLocalPlayerForTextureFetch ? Minecraft.getInstance().player : dragon.getPlayer());
     }
     @Inject(method = "getTextureResource(Lby/dragonsurvivalteam/dragonsurvival/common/entity/DragonEntity;)Lnet/minecraft/resources/ResourceLocation;", at = @At("RETURN"))

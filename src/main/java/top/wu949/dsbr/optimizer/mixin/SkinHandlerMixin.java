@@ -25,7 +25,7 @@ public abstract class SkinHandlerMixin {
         } finally { SynthesisScope.exit(); }
     }
     @Inject(method = "purgeUnusedSkinTextures", at = @At("HEAD"), cancellable = true)
-    private static void beloong$onDemand(RenderFrameEvent.Pre event, CallbackInfo ci) { if (TextureCache.enabled()) ci.cancel(); }
+    private static void beloong$onDemand(RenderFrameEvent.Pre event, CallbackInfo ci) { if (TextureCache.enabled() || top.wu949.dsbr.optimizer.lowend.LowEndSupport.enabled()) ci.cancel(); }
     @Redirect(method = "generateSkinTextures", at = @At(value = "NEW", target = "(IIZZ)Lcom/mojang/blaze3d/pipeline/TextureTarget;"))
     private static TextureTarget beloong$borrow(int w, int h, boolean depth, boolean osx) { return FramebufferPool.acquire(w, h, depth, osx); }
     @Redirect(method = "generateSkinTextures", at = @At(value = "INVOKE", target = "Lcom/mojang/blaze3d/pipeline/RenderTarget;destroyBuffers()V"))

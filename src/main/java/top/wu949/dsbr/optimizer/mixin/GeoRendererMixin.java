@@ -41,7 +41,7 @@ public interface GeoRendererMixin {
         }
     }
     default boolean dsbr$scratchEligible() {
-        return OptimizerConfig.MODE.get() == OptimizerConfig.Mode.GPU && OptimizerConfig.CPU_SCRATCH.get()
+        return (OptimizerConfig.MODE.get() == OptimizerConfig.Mode.GPU || top.wu949.dsbr.optimizer.lowend.LowEndSupport.enabled()) && OptimizerConfig.CPU_SCRATCH.get()
             && RendererAdmission.kind(this) != RendererAdmission.Kind.OTHER && RendererAdmission.originalGeometry(this);
     }
     @WrapMethod(method = "renderCube")

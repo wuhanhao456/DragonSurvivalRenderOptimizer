@@ -75,7 +75,7 @@ public final class TextureCache {
         AppearanceCache.maintenance();
         // Keep resources used by already queued draw commands alive until this frame finishes.
         if (deferredFailureCleanup) { clear(); return; }
-        if (enabled()) textures.prune(System.nanoTime(), OptimizerConfig.RETENTION_SECONDS.get() * 1_000_000_000L, OptimizerConfig.TEXTURE_MIB.get() * 1048576L - FramebufferPool.bytes());
+        if (enabled()) textures.prune(System.nanoTime(), OptimizerConfig.retentionSeconds() * 1_000_000_000L, OptimizerConfig.textureMiB() * 1048576L - FramebufferPool.bytes());
     }
     private static void dispose(ResourceLocation key) {
         Minecraft.getInstance().getTextureManager().release(key);

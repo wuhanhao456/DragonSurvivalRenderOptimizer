@@ -1,0 +1,11 @@
+{
+  "pass": true,
+  "checks": [
+    "valid evidence",
+    "wrong candidate",
+    "short sample",
+    "fps regression",
+    "runtime error"
+  ],
+  "synthetic": true
+}

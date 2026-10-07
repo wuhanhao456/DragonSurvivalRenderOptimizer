@@ -1,12 +1,12 @@
 # Dragon Survival Render Optimizer — DSRO
 
-当前版本 **0.2.0-alpha.5**。原名 Dragon Survival Bedrock Renderer（DSBR），现为 Dragon Survival Render Optimizer（DSRO）。兼容 mod ID `dsbr`，默认开启 GPU 和纹理缓存。面向 Minecraft 1.21.1、Java 21、NeoForge 21.1.248、Dragon Survival 2.0.71 和 GeckoLib 4.9.3。
+当前版本 **0.2.1 正式版**。原名 Dragon Survival Bedrock Renderer（DSBR），现为 Dragon Survival Render Optimizer（DSRO）。兼容 mod ID `dsbr`，默认开启 GPU 和纹理缓存。面向 Minecraft 1.21.1、Java 21、NeoForge 21.1.248、Dragon Survival 2.0.71 和 GeckoLib 4.9.3。
 
-新增可选 Core 0.10.1 的末、地黄龙 GPU 适配，玩家/NPC 相邻合批、批次姿态一次上传，以及 CPU 回退临时存储复用。**Core 不是必需依赖**，只有龙生及其前置也能使用。未知 Core 版本仅关闭 NPC 适配，不影响龙生路径。保留原动画、渲染层、物品栏 CPU 预览和技能骨骼计算。
+新增可选 Core 0.10.1 的末、地黄龙 GPU 适配，玩家/NPC 相邻合批、批次姿态一次上传，以及 CPU 回退临时存储复用。**Core 不是必需依赖**，只有龙生及其前置也能使用。未知 Core 版本仅关闭 NPC 适配，不影响龙生路径。低端支持关闭时保留原动画与渲染层；物品栏使用 CPU 预览，技能骨骼定位保留。
 
 ## 配置与操作
 
-NeoForge 模组配置界面只有一份有效配置：`config/dsbr-optimizer-client.toml`。八项设置均有中英文说明，旧配置键和值继续有效：
+NeoForge 模组配置界面只有一份有效配置：`config/dsbr-optimizer-client.toml`。九项设置均有中英文说明，旧配置键和值继续有效：
 
 | 设置 | 默认值 | 用途 |
 | --- | --- | --- |
@@ -17,17 +17,28 @@ NeoForge 模组配置界面只有一份有效配置：`config/dsbr-optimizer-cli
 | `traceDirtyFlags` | false | 最多 32 条皮肤失效调用栈，仅排查时开启 |
 | `detailedDiagnostics` | false | 玩家和纹理归因，仅排查时开启 |
 | `beloongNpcGpu` | true | GPU 模式下启用已验证的可选 NPC 适配，缺少 Core 时自然不生效 |
-| `reuseCpuVertexScratch` | true | GPU 模式下复用标准 CPU 回退路径的临时矩阵和向量，包括物品栏 |
+| `reuseCpuVertexScratch` | true | GPU 模式或低端支持下复用标准 CPU 回退的临时矩阵和向量，包括物品栏 |
+| `lowEndGpuSupport` | false | 低端显卡支持；削减外观和动画成本，独立于 `mode` |
 
 `/dsbr` 显示启用状态与兼容检测；`vanilla`、`textures`、`gpu` 切换模式；`stats`、`reset`、`export` 查看、重置、导出统计。保留 `/beloongrender` 别名及玩家基准命令，详见 [BENCHMARK.md](BENCHMARK.md)。不支持的能力、材质、几何或消费器继续原 CPU 路径；物品栏预览保持 CPU 几何提交。
 
+## 低端显卡支持
+
+在模组配置中打开 **低端显卡支持**（`lowEndGpuSupport`）。玩家当前几何模型保持不变；标准模型使用对应种族／成长阶段的默认皮肤，自定义模型使用当前 body 的默认 BASE 基础材质。省去多层皮肤合成、染色、发光、外观盔甲和背包层；手持物与名字保留。找不到对应基础材质时使用原缓存皮肤并记录原因，皮肤编辑器仍显示原预览，不修改外观或服务器数据。
+
+龙魂只显示原方块位置指示，不创建用于显示的假玩家，也不求值龙魂动画或皮肤。玩家及已验证的 Core 0.10.1 末／地黄龙在镜头 32 格内每四个游戏 tick 更新一次动画；远处保持最后姿态，首次出现求值一次。自己的玩家和物品栏视为近处。吐息等玩法继续走原逻辑，骨骼定位每帧按当前模型变换计算。
+
+低端模式的受管纹理缓存软预算上限为 16 MiB，网格与姿态预算上限为 64 MiB，闲置保留上限为 10 秒。独立局部姿态缓存最多 128 个对象、4 MiB，计入网格预算；模型变化、模式切换、资源重载和退出世界会清理。设置中保存的原预算值不变，关闭后恢复。GPU 计算能力不足时这些削减仍在 CPU 路径生效；画面会更简单，动作会有约 5 Hz 的阶梯感。
+
+本版的启动、功能、开关配对短测及限制见 [0.2.1 验证记录](validation/0.2.1/SUMMARY.md)。一次短测不代表所有低端硬件的收益，历史三轮长测标准另行保留。
+
 ## 更新与龙魂优化
 
-发布时用 `dsro-0.2.0-alpha.5.jar` 替换旧 DSBR／DSRO，同一实例保留一份。旧 jar 放在 `mods` 外可回退。GitHub Release 只附最终客户端 jar，源码和测试数据留在仓库。`dsbr-optimizer-client.toml` 与 `/dsbr` 沿用兼容名称。
+发布时用 `dsro-0.2.1.jar` 替换旧 DSBR／DSRO，同一实例保留一份。旧 jar 放在 `mods` 外可回退。GitHub Release 只附最终客户端 jar，源码和测试数据留在仓库。`dsbr-optimizer-client.toml` 与 `/dsbr` 沿用兼容名称。
 
 已移除旧 Bedrock/YSM 引擎、旧菜单、旧接管配置和 `/dsbr legacy`。`dsbr-client.toml` 不再加载。不支持 DS 2.0.67 的旧接管路径。
 
-龙魂沿用 DS 的动画控制器和 GeckoLib 的逐帧骨骼计算。相同外观共享不可变合成纹理；动画存在性查询按资源与动作缓存，重载失效。DS 的假玩家活跃登记、外观同步、朝向、比例和指示底座仍由原渲染器处理。
+低端支持关闭时，龙魂沿用 DS 的动画控制器和 GeckoLib 的逐帧骨骼计算。相同外观共享不可变合成纹理；动画存在性查询按资源与动作缓存，重载失效。DS 的假玩家活跃登记、外观同步、朝向、比例和指示底座仍由原渲染器处理。
 
 在同一缓冲源和渲染阶段中，连续且兼容的龙魂按网格、材质、Iris 属性和发光状态合批。每个实例保留独立姿态、颜色、光照和覆盖值，计算着色器一次转换多个实例，再一次绘制。透明排序材质保持 CPU；能力限制或预算触发拆批。计算故障按原顺序回放已捕获姿态。新增 `SOUL_RENDER`、`SOUL_GPU_PASS`、`SOUL_GPU_DRAW_CALLS`、`SOUL_TEXTURE_HIT` 和 `SOUL_CPU_FALLBACK` 统计，区分实例提交与实际绘制次数。
 
@@ -35,7 +46,7 @@ NeoForge 模组配置界面只有一份有效配置：`config/dsbr-optimizer-cli
 
 网络盘可直接用 Java 启动 Gradle wrapper，并通过 `-PdsbrBuildDir=本地目录` 指定输出，避免 Windows 批处理的 UNC 当前目录限制。标准任务为 `test glCheck jar sourcesJar validationJar`，测试驱动不进入发布 jar。
 
-alpha.5 采用隔离实例，alpha.4/候选 GPU 模式配对短测：每景预热 15 秒、采样 60 秒、一次比较，按场景交替版本顺序。测试使用完整显示循环间隔，Low 是最慢对应比例帧时间的均值取倒数，尾部样本向上取整。主比较使用 Complementary Unbound r5.9、1280×720、视距 6、关闭垂直同步/帧率限制，整包堆上限 8 GiB。记录见 [validation/alpha5](validation/alpha5)；最终客户端运行范围和已知限制见 [RUNTIME.md](validation/alpha5/RUNTIME.md)。不将单轮短测称为正式 Low 验收，不代表原报告机器的收益。
+以下 alpha.5 为历史记录：采用隔离实例，alpha.4/候选 GPU 模式配对短测：每景预热 15 秒、采样 60 秒、一次比较，按场景交替版本顺序。测试使用完整显示循环间隔，Low 是最慢对应比例帧时间的均值取倒数，尾部样本向上取整。主比较使用 Complementary Unbound r5.9、1280×720、视距 6、关闭垂直同步/帧率限制，整包堆上限 8 GiB。记录见 [validation/alpha5](validation/alpha5)；最终客户端运行范围和已知限制见 [RUNTIME.md](validation/alpha5/RUNTIME.md)。不将单轮短测称为正式 Low 验收，不代表原报告机器的收益。
 
 未显示收益的同帧动画复用已移出编译源集与配置，保留 [实验代码和原因](experiments/frame-animations)。FancyMenu 和 KubeJS 保持原样，单独分析其成本，不由 DSRO 修改整包配置。
 

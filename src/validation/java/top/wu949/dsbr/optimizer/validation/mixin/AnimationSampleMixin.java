@@ -22,6 +22,7 @@ public interface AnimationSampleMixin {
         try { original.call(pose, animatable, model, type, source, buffer, rerender, tick, light, overlay, colour); }
         finally { NpcGeometryMeasurements.end(start); }
         if (animatable instanceof DragonEntity dragon && !rerender) AnimationSamples.capture((GeoRenderer<?>)(Object)this, dragon, model);
+        if (!rerender) top.wu949.dsbr.optimizer.validation.LowEndRuntimeProbe.capture(animatable, model);
         if (!rerender) NpcSmokeProbe.capture(animatable, model);
     }
 }

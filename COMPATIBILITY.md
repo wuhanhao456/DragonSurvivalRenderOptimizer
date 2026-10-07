@@ -1,4 +1,4 @@
-# DSRO 0.2.0-alpha.5 兼容边界
+# DSRO 0.2.1 兼容边界
 
 - Minecraft 1.21.1、Java 21、NeoForge 21.1.248。
 - 纹理与 GPU 钩子锁定 Dragon Survival 2.0.71、GeckoLib 4.9.3，并检查目标方法与纹理合成字节码。缺少依赖或签名不符时停用优化。
@@ -14,8 +14,10 @@
 - 发现独立 `beloong_render_optimizer` 时关闭集成补丁，避免重复注入。
 - mod ID 仍为 `dsbr`。旧 Bedrock/YSM 后端及 DS 2.0.67 兼容接管已移除；只有 `dsbr-optimizer-client.toml` 注册为可编辑配置。
 
-同帧动画复用原型在当前 Unbound 短测中未命中，未进入发布源集或配置；动画与技能骨骼定位继续使用原计算。记录见 `experiments/frame-animations`。
+低端支持默认关闭，独立于 GPU 后端。开启后只有 DS 玩家与已审查 Core NPC 降低动画求值频率；原 Gecko 时间推进和每帧坐标变换保留，每个对象恢复自己的局部骨骼姿态。还原姿态时保留 DS 当前渲染阶段负责的临时 Neck 可见性，避免将第一人称隐藏状态带入物品栏和定位计算。外观层只在执行阶段过滤，保留可变注册列表和资源重载。匹配不了静态基础皮肤时回退原缓存皮肤，编辑器使用原预览。
 
-当前验证记录见 `validation/alpha5`；alpha.4 的历史证据保留。短测不替代完整兼容证明或三轮正式 Low 验收，未完成的范围会明确列出。
+旧同帧动画复用原型在 alpha.5 Unbound 短测中未命中，未进入发布源集或配置；0.2.1 使用单独的跨帧局部姿态缓存，未重新启用那个实验。记录见 `experiments/frame-animations`。
+
+当前验证记录见 `validation/0.2.1`；alpha.5 与 alpha.4 的历史证据保留。短测不替代完整兼容证明或三轮正式 Low 验收，未完成的范围会明确列出。
 
 资源重载的 Iris 天空无效纹理警告已在 alpha.4 同场景复现，本轮未修复；具体调用栈及未穷尽范围见 [最终运行记录](validation/alpha5/RUNTIME.md)。

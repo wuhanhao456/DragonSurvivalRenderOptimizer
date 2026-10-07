@@ -1,0 +1,53 @@
+{
+  "pass": true,
+  "scenes": 6,
+  "stats": {
+    "totals": {
+      "FRAME_CPU_NANOS": 43669482200,
+      "GPU_BATCH_CPU_NANOS": 3865883800,
+      "GPU_BONE_SUBMIT_NANOS": 4338834100,
+      "GPU_DRAW_CALLS": 42687,
+      "GPU_DRAW_CPU_NANOS": 3599191200,
+      "GPU_PASS": 128061,
+      "GPU_POSE_CAPTURE_NANOS": 17354263700,
+      "GPU_VERTEX_COUNT": 1729108080,
+      "LOW_END_ANIMATION_EVALUATE_NANOS": 142469600,
+      "LOW_END_ANIMATION_REUSED": 127625,
+      "LOW_END_ANIMATION_UPDATE": 436,
+      "LOW_END_LAYER_SKIPPED": 2575449,
+      "LOW_END_SKIN_BASE": 28458,
+      "LOW_END_SOUL_SKIPPED": 241893,
+      "NPC_GPU_DRAW_CALLS": 28458,
+      "NPC_GPU_PASS": 113832,
+      "NPC_GPU_POSE_CAPTURE_NANOS": 15418200300,
+      "PLAYER_GPU_DRAW_CALLS": 14229,
+      "PLAYER_GPU_PASS": 14229,
+      "PLAYER_GPU_POSE_CAPTURE_NANOS": 1949843000,
+      "POSE_UPLOAD": 42687
+    },
+    "peaks": {
+      "GPU_RESOURCE_BYTES": 9706784,
+      "LOW_END_POSE_BYTES": 125920,
+      "TEXTURE_RESOURCE_BYTES": 0
+    },
+    "fallbacks": {},
+    "attribution": {
+      "entity": {
+        "GPU_PASS": 128061
+      }
+    },
+    "dirtyTraces": [],
+    "frameSamples": 14229,
+    "quantileSamples": 14229,
+    "frameTimeMs": {
+      "p95": 6.5899,
+      "p50": 4.0259,
+      "p999": 10.8778,
+      "p99": 8.2016
+    }
+  },
+  "meshBytesAfterClear": 0,
+  "textureBytesAfterClear": 0,
+  "animationBytesAfterClear": 0,
+  "compatibility": "versions\u003d[beloong\u003d0.10.1, dragonsurvival\u003d2.0.71, dsbr\u003d0.2.1, geckolib\u003d4.9.3, iris\u003d1.8.14-beta.1+mc1.21.1, sodium\u003d0.8.13+mc1.21.1]; texture\u003dtrue; GPU\u003dtrue; Iris\u003dtrue; souls\u003dtrue; lowEnd\u003dtrue; NPC\u003dCore 0.10.1 NPC interfaces verified"
+}

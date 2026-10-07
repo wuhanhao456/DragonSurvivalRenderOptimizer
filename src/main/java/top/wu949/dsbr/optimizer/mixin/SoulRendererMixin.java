@@ -20,6 +20,10 @@ import top.wu949.dsbr.optimizer.texture.TextureCache;
 public abstract class SoulRendererMixin {
     @WrapMethod(method = "render(Lby/dragonsurvivalteam/dragonsurvival/server/tileentity/DragonSoulBlockEntity;FLcom/mojang/blaze3d/vertex/PoseStack;Lnet/minecraft/client/renderer/MultiBufferSource;II)V")
     private void dsbr$soul(DragonSoulBlockEntity soul, float tick, PoseStack pose, MultiBufferSource source, int light, int overlay, Operation<Void> original) {
+        if (top.wu949.dsbr.optimizer.lowend.LowEndSupport.enabled()) {
+            ((top.wu949.dsbr.optimizer.lowend.SoulIndicator)(Object)this).dsro$indicator(soul.getBlockState(), pose, source, light, overlay);
+            Diagnostics.INSTANCE.count(Diagnostics.Counter.LOW_END_SOUL_SKIPPED, "soul"); return;
+        }
         if (!TextureCache.enabled()) { original.call(soul, tick, pose, source, light, overlay); return; }
         SoulRenderContext.enter(soul); long start = System.nanoTime();
         try { original.call(soul, tick, pose, source, light, overlay); }

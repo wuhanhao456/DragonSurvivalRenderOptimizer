@@ -1,0 +1,13 @@
+Caused by: java.lang.UnsupportedOperationException
+	at java.base/java.util.ImmutableCollections.uoe(ImmutableCollections.java:142) ~[?:?]
+	at java.base/java.util.ImmutableCollections$AbstractImmutableCollection.add(ImmutableCollections.java:147) ~[?:?]
+	at TRANSFORMER/dragonsurvival@2.0.71/by.dragonsurvivalteam.dragonsurvival.client.render.entity.dragon.DragonRenderer.<init>(DragonRenderer.java:109) ~[%5B龙之生存%5D%20DragonSurvival-1.21.1-v2.0.71-25.09.2026-all.jar%23550!/:?]
+	at TRANSFORMER/dragonsurvival@2.0.71/by.dragonsurvivalteam.dragonsurvival.client.DragonSurvivalClient.lambda$setup$1(DragonSurvivalClient.java:128) ~[%5B龙之生存%5D%20DragonSurvival-1.21.1-v2.0.71-25.09.2026-all.jar%23550!/:?]
+	at TRANSFORMER/minecraft@1.21.1/net.minecraft.client.renderer.entity.EntityRenderers.lambda$createEntityRenderers$26(EntityRenderers.java:168) ~[client-1.21.1-20240808.144430-srg.jar%23402!/:?]
+	at MC-BOOTSTRAP/it.unimi.dsi.fastutil@8.5.12/it.unimi.dsi.fastutil.objects.Object2ObjectMap.lambda$forEach$0(Object2ObjectMap.java:209) ~[fastutil-8.5.12.jar%23113!/:?]
+	at MC-BOOTSTRAP/it.unimi.dsi.fastutil@8.5.12/it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap$MapEntrySet.fastForEach(Object2ObjectOpenHashMap.java:1004) ~[fastutil-8.5.12.jar%23113!/:?]
+	at MC-BOOTSTRAP/it.unimi.dsi.fastutil@8.5.12/it.unimi.dsi.fastutil.objects.Object2ObjectMap.forEach(Object2ObjectMap.java:211) ~[fastutil-8.5.12.jar%23113!/:?]
+	at TRANSFORMER/minecraft@1.21.1/net.minecraft.client.renderer.entity.EntityRenderers.createEntityRenderers(EntityRenderers.java:166) ~[client-1.21.1-20240808.144430-srg.jar%23402!/:?]
+	at TRANSFORMER/minecraft@1.21.1/net.minecraft.client.renderer.entity.EntityRenderDispatcher.onResourceManagerReload(EntityRenderDispatcher.java:479) ~[client-1.21.1-20240808.144430-srg.jar%23402!/:?]
+	at TRANSFORMER/minecraft@1.21.1/net.minecraft.server.packs.resources.ResourceManagerReloadListener.lambda$reload$0(ResourceManagerReloadListener.java:15) ~[client-1.21.1-20240808.144430-srg.jar%23402!/:?]
+	at java.base/java.util.concurrent.CompletableFuture$UniRun.tryFire(CompletableFuture.java:787) ~[?:?]

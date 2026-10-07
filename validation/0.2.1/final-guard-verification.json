@@ -1,0 +1,59 @@
+{
+  "finalJarSha256": "26b839419377d79eed060d803c3bd737f6d75fd871cfe88ec999e46f05eddab3",
+  "retainedActionPrefixes": [
+    {
+      "sourceInstance": "dsbr-validation-iris-20261007-170739",
+      "jarSha256": "07405ec7eb84be3da145894daae8524ecd03bb3cca41a3646a63e88ec8cc1ac2",
+      "changedClasses": [
+        "top/wu949/dsbr/optimizer/RenderOptimizer.class",
+        "top/wu949/dsbr/optimizer/compat/OptimizerMixinPlugin.class",
+        "top/wu949/dsbr/optimizer/lowend/LocalBonePose.class",
+        "top/wu949/dsbr/optimizer/lowend/LowEndAnimations.class",
+        "top/wu949/dsbr/optimizer/mixin/LowEndLayersMixin.class"
+      ]
+    },
+    {
+      "sourceInstance": "dsbr-validation-iris-20261007-171513",
+      "jarSha256": "5997e6711b52e00070f73ef58e3c1ed6f97900ce34371d5c19d586531169ee1b",
+      "changedClasses": [
+        "top/wu949/dsbr/optimizer/compat/OptimizerMixinPlugin.class",
+        "top/wu949/dsbr/optimizer/lowend/LocalBonePose.class",
+        "top/wu949/dsbr/optimizer/lowend/LowEndAnimations.class",
+        "top/wu949/dsbr/optimizer/mixin/LowEndLayersMixin.class"
+      ]
+    }
+  ],
+  "change": "After initial action checks, execution-layer filtering was corrected for mutable registration; transient DS Neck visibility is now preserved during local-pose restore. The provisional locator mixin was removed.",
+  "validation": "25 initial unit cases, one targeted Neck regression, and exact final-jar breath/recovery plus five preview/lifecycle checks. Cadence and ordinary animation controller calls remain unchanged; earlier prefixes do not pretend to be a full final-jar rerun.",
+  "finalJarTargetedRuntimeSources": [
+    {
+      "instance": "dsbr-validation-iris-20261007-175459",
+      "selectedCases": [
+        "breath",
+        "breath-recovery"
+      ],
+      "sourceSha256": "40c06646e196a32e9cc1c1dfe6e4f22e0850923c476351f9b8f4a21877c785cd",
+      "jarSha256": "26b839419377d79eed060d803c3bd737f6d75fd871cfe88ec999e46f05eddab3",
+      "sourceRunPass": false
+    },
+    {
+      "instance": "dsbr-validation-iris-20261007-180146",
+      "selectedCases": [
+        "far-static",
+        "inventory",
+        "cpu-fallback",
+        "restored",
+        "reload"
+      ],
+      "sourceSha256": "ccc5194b2fe7f54d9b630d95eee4fe46e207fb2f662368b2264eed972fe7e197",
+      "jarSha256": "26b839419377d79eed060d803c3bd737f6d75fd871cfe88ec999e46f05eddab3",
+      "sourceRunPass": true
+    }
+  ],
+  "previewReview": {
+    "pass": true,
+    "inventoryHeadVisible": true,
+    "breathLocatorFiniteAndBounded": true,
+    "farNpcUniquePoses": 1
+  }
+}

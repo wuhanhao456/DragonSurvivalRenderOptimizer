@@ -1,0 +1,25 @@
+#GPU: textures and GPU geometry, including dragon souls. TEXTURES: texture cache only. VANILLA: original DS rendering. Unsupported paths fall back automatically.
+#Allowed Values: VANILLA, TEXTURES, GPU
+mode = "GPU"
+#Texture cache soft budget in MiB; textures used by the current frame remain protected.
+# Default: 64
+# Range: 8 ~ 1024
+textureBudgetMiB = 64
+#GPU geometry, retained poses and working buffer budget in MiB.
+# Default: 128
+# Range: 8 ~ 2048
+meshBudgetMiB = 128
+#Retain unused textures for this many seconds; budgets may evict them sooner.
+# Default: 30
+# Range: 1 ~ 600
+unusedTextureSeconds = 30
+#Capture up to 32 skin invalidation stacks for troubleshooting.
+traceDirtyFlags = false
+#Record per-player and per-texture attribution; adds diagnostic overhead.
+detailedDiagnostics = false
+#GPU mode: accelerate verified optional BeLoong NPC renderers. No Core dependency.
+beloongNpcGpu = true
+#GPU mode: reuse temporary vectors and matrices on audited CPU fallback paths, including inventory previews.
+reuseCpuVertexScratch = true
+#Keep current models, hide soul models, use base skins, remove cosmetic layers and update nearby animations at 5 Hz. Works with CPU fallback. Changes are client-only and reversible.
+lowEndGpuSupport = false

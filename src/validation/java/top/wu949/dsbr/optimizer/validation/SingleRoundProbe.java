@@ -237,7 +237,7 @@ public final class SingleRoundProbe {
         config.getClass().getMethod("setShadersEnabled",boolean.class).invoke(config,enabled); config.getClass().getMethod("save").invoke(config); iris.getMethod("reload").invoke(null);
     }
     private static long number(Map<?,?> map,String key){return map.get(key) instanceof Number n?n.longValue():0;}
-    private static void mana(net.minecraft.world.entity.player.Player player) {
+    static void mana(net.minecraft.world.entity.player.Player player) {
         try { var magic=MagicData.getData(player);
             try { magic.getClass().getMethod("setCurrentMana",net.minecraft.world.entity.player.Player.class,float.class).invoke(magic,player,1000f); }
             catch(NoSuchMethodException ignored){magic.getClass().getMethod("setCurrentMana",float.class).invoke(magic,1000f);}
