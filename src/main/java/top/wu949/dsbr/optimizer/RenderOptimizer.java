@@ -163,7 +163,6 @@ public final class RenderOptimizer {
                 return 0;
             }
         }));
-        var registered = event.getDispatcher().register(root);
-        event.getDispatcher().register(LiteralArgumentBuilder.<CommandSourceStack>literal("beloongrender").executes(registered.getCommand()).redirect(registered));
+        event.getDispatcher().register(root);
     }
 }

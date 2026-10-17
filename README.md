@@ -20,7 +20,7 @@ NeoForge 模组配置界面只有一份有效配置：`config/dsbr-optimizer-cli
 | `reuseCpuVertexScratch` | true | GPU 模式或低端支持下复用标准 CPU 回退的临时矩阵和向量，包括物品栏 |
 | `lowEndGpuSupport` | false | 低端显卡支持；削减外观和动画成本，独立于 `mode` |
 
-`/dsbr` 显示启用状态与兼容检测；`vanilla`、`textures`、`gpu` 切换模式；`stats`、`reset`、`export` 查看、重置、导出统计。保留 `/beloongrender` 别名；游戏内基准命令已移除，性能测试流程见 [BENCHMARK.md](BENCHMARK.md)。切换到当前环境无法完全支持的模式时，命令会说明原因。不支持的能力、材质、几何或消费器继续原 CPU 路径；物品栏预览保持 CPU 几何提交。
+`/dsbr` 显示启用状态与兼容检测；`vanilla`、`textures`、`gpu` 切换模式；`stats`、`reset`、`export` 查看、重置、导出统计。命令只有 `/dsbr`（旧 `/beloongrender` 别名已移除）；游戏内基准命令已移除，性能测试流程见 [BENCHMARK.md](BENCHMARK.md)。切换到当前环境无法完全支持的模式时，命令会说明原因。不支持的能力、材质、几何或消费器继续原 CPU 路径；物品栏预览保持 CPU 几何提交。
 
 ## 低端显卡支持
 
