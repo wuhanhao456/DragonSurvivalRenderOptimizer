@@ -2,6 +2,7 @@
 import argparse,hashlib,json,pathlib,subprocess,sys,time
 from low_metrics import metrics
 from run_low_suite import alive
+from artifact_name import artifact_name
 PROJECT=pathlib.Path(__file__).resolve().parents[1]
 SCENES='players-1-off,players-1-on,players-12-on,players-12-off,souls17-npc8-off,souls17-npc8-on'
 def read(p):return json.loads(p.read_text(encoding='utf-8'))
@@ -22,7 +23,7 @@ def run(a,shader):
  result=read(root/'lowend-result.json')
  if not result['pass']:raise RuntimeError(result)
  assert result['meshBytesAfterClear']==result['textureBytesAfterClear']==result['animationBytesAfterClear']==0
- jar=a.build/'libs/dsro-0.2.1.jar';assert digest(jar)==digest(root/'mods/optimizer.jar')
+ jar=a.build/'libs'/(artifact_name(PROJECT)+'.jar');assert digest(jar)==digest(root/'mods/optimizer.jar')
  rows=[];comparisons=[]
  for row in read(root/'lowend-scenes.json'):
   t=row['stats']['totals'];assert not t.get('READBACK',0)

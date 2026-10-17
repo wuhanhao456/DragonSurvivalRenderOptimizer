@@ -3,21 +3,29 @@ import argparse, hashlib, json, os, pathlib, shutil, tempfile, zipfile
 from artifact_name import artifact_name
 
 project = pathlib.Path(__file__).resolve().parents[1]
-p = argparse.ArgumentParser(); p.add_argument('--build', type=pathlib.Path, default=pathlib.Path(os.environ['LOCALAPPDATA']) / 'Temp/DSBR-build'); p.add_argument('--incomplete-prerelease',action='store_true',help='Package a clearly labelled test build after the user stops remaining runtime tests'); a = p.parse_args()
+p = argparse.ArgumentParser(); p.add_argument('--build', type=pathlib.Path, default=pathlib.Path(os.environ['LOCALAPPDATA']) / 'Temp/DSBR-build'); p.add_argument('--incomplete-prerelease',action='store_true',help='Package a clearly labelled test build after the user stops remaining runtime tests')
+p.add_argument('--without-runtime-evidence', action='store_true', help='Stable version with unit and OpenGL checks only; recorded as releaseAcceptanceComplete=false'); a = p.parse_args()
 dist = project / 'dist'; dist.mkdir(exist_ok=True)
 version = next(x.split('=', 1)[1] for x in (project / 'gradle.properties').read_text().splitlines() if x.startswith('mod_version='))
 name = artifact_name(project)
+evidence_dir = project / 'validation' / version
+evidence_path = evidence_dir.relative_to(project).as_posix()
 formal = False
 single_round = None
 stable_evidence = None
+basic_checks = None
 prerelease = "-" in version
 if a.incomplete_prerelease and not prerelease:
     raise ValueError("Incomplete evidence cannot be packaged as a stable release")
+if a.without_runtime_evidence and prerelease:
+    raise ValueError("--without-runtime-evidence is for stable version numbers; prereleases use their own evidence rules")
 if not prerelease:
-    if version != "0.2.1": raise ValueError("No stable acceptance contract for this version")
-    from stable_release_acceptance import validate
+    from stable_release_acceptance import validate, gl_checks, unit_tests
     candidate_hash = hashlib.sha256((a.build / "libs" / (name + ".jar")).read_bytes()).hexdigest()
-    stable_evidence = validate(project / "validation/0.2.1", candidate_hash)
+    if a.without_runtime_evidence:
+        basic_checks = {'unitTests': unit_tests(a.build), 'openGL': gl_checks(evidence_dir), 'openGLPath': evidence_path + '/gl-results.json'}
+    else:
+        stable_evidence = validate(evidence_dir, candidate_hash, version)
 if version == '0.2.0-alpha.4':
     candidate_hash = hashlib.sha256((a.build / 'libs' / (name + '.jar')).read_bytes()).hexdigest()
     single_round = json.loads((project / 'validation/alpha4/summary.json').read_text(encoding='utf-8'))
@@ -56,11 +64,16 @@ manifest = {'name': 'Dragon Survival Render Optimizer', 'abbreviation': 'DSRO', 
 manifest['prerelease'] = prerelease
 manifest['releaseAcceptanceComplete'] = stable_evidence is not None
 if stable_evidence is not None:
-    manifest['stableEvidence'] = 'validation/0.2.1/summary.json'
+    manifest['stableEvidence'] = evidence_path + '/summary.json'
     manifest['testedJarSha256'] = candidate_hash
     manifest['lowEndDefaultEnabled'] = False
-    manifest['startupSmoke'] = {'pass': True, 'path': 'validation/0.2.1/runtime/result.json'}
+    manifest['startupSmoke'] = {'pass': True, 'path': evidence_path + '/runtime/result.json'}
     manifest['knownLimitations'] = stable_evidence['limitations']
+if basic_checks is not None:
+    manifest['testedJarSha256'] = candidate_hash
+    manifest['lowEndDefaultEnabled'] = False
+    manifest['basicChecks'] = basic_checks
+    manifest['knownLimitations'] = ['No in-game functional or performance acceptance was run for this version.']
 if single_round is not None:
     manifest['singleRoundEvidence'] = {'path': 'validation/alpha4/summary.json', 'pass': single_round['pass'],
                                      'complete': single_round['singleRoundComplete'], 'repetitions': 1,

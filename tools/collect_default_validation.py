@@ -1,5 +1,5 @@
 """Collect fresh-config GPU checks separately from the alpha.1 rendering regression."""
-import argparse, hashlib, json, pathlib, shutil, tomllib, xml.etree.ElementTree as ET
+import argparse, datetime, hashlib, json, pathlib, shutil, tomllib, xml.etree.ElementTree as ET
 from artifact_name import artifact_name
 
 project = pathlib.Path(__file__).resolve().parents[1]
@@ -43,8 +43,8 @@ tests = 0
 for path in (a.build / 'test-results/test').glob('*.xml'):
     suite = ET.parse(path).getroot(); assert suite.attrib['failures'] == suite.attrib['errors'] == '0'
     tests += len(suite.findall('testcase'))
-assert tests == 10
-summary = {'version': version, 'date': '2026-10-06', 'testedJarSha256': jar_hash, 'defaultMode': 'GPU', 'modeCommandsIssued': False,
+assert tests >= 25, 'Unit test results incomplete: ' + str(tests)
+summary = {'version': version, 'date': datetime.date.today().isoformat(), 'testedJarSha256': jar_hash, 'defaultMode': 'GPU', 'modeCommandsIssued': False,
            'javaTestsPassed': tests, 'freshConfigCases': cases, 'missingDependencyFallback': fallback,
            'baseRenderingRegression': 'validation/summary.json', 'eightShaderRegressionRepeated': True,
            'formalAcceptanceComplete': False}

@@ -13,3 +13,7 @@ alpha.3／alpha.2 的 Low 帧比较方法见 [LOW_FPS.md](LOW_FPS.md)。当前�
 普通诊断使用 100,000 个间隔的蓄水池分位数；完整采样与 Low 只由测试驱动的 CSV 计算，它保存真实 Minecraft 显示循环纳秒间隔。详细玩家／纹理诊断默认关闭，启用时归因最多 512 个键；轻量阶段计数和故障原因始终保留。
 
 正式发布另须完成：龙娘/附属龙种、零厚度翅膀、隐藏骨骼、第一/第三人称、物品栏预览、发光、装备/纹饰/Curios、手持物、飞行、桶滚、技能粒子定位；八包阴影、发光、材质与透明回退；反复资源重载、断线、模式切换之后资源不累积。
+
+## 发布打包
+
+`python tools/package_release.py --build <构建目录>` 读取 `gradle.properties` 中的版本，不再写死版本号。正式版本默认要求 `validation/<版本>/` 下有针对同一 jar 的完整验收证据（`summary.json`、`runtime/result.json`、`benchmark/suite.json` 与 `gl-results.json`）。只有单元测试和 `gradlew glCheck` 结果时，可加 `--without-runtime-evidence` 打包，manifest 会记录 `releaseAcceptanceComplete: false` 和 `basicChecks`。预发布版本仍使用各自的证据规则。

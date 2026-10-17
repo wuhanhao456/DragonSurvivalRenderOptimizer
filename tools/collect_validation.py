@@ -1,5 +1,5 @@
 """Collect successful probes and bounded evidence, excluding worlds/accounts/dependency jars."""
-import argparse, hashlib, json, pathlib, shutil, subprocess, sys, xml.etree.ElementTree as ET
+import argparse, datetime, hashlib, json, pathlib, platform, shutil, xml.etree.ElementTree as ET
 from artifact_name import artifact_name
 
 project = pathlib.Path(__file__).resolve().parents[1]
@@ -12,7 +12,7 @@ version = next(x.split('=', 1)[1] for x in (project / 'gradle.properties').read_
 jar = a.build / 'libs' / (artifact_name(project) + '.jar'); tested_hash = digest(a.runtime / 'mods/optimizer.jar')
 assert digest(jar) == tested_hash == digest(a.fallback / 'mods/optimizer.jar'), 'Probe jar differs from delivery jar'
 assert runtime['afterClearTextureBytes'] == runtime['afterClearMeshBytes'] == 0, 'Resource cleanup failed'
-assert runtime['modId'] == 'dsbr', 'Wrong identity or legacy takeover on DS 2.0.71'
+assert runtime['modId'] == 'dsbr', 'Wrong identity or legacy takeover'
 out = project / 'validation'; target = out / 'runtime-iris'; target.mkdir(parents=True, exist_ok=True)
 files = ['probe-result.json', 'baseline-textures.json', 'equivalent-state.json', 'changed-skin.json', 'changed-armor.json', 'restored-skin.json', 'gpu-mode.json', 'after-reload.json', 'plain-textures.png']
 inventory = {}
@@ -44,8 +44,9 @@ for file in sorted((a.build / 'test-results/test').glob('*.xml')):
 sync = read(target / 'equivalent-state.json'); skin = read(target / 'changed-skin.json'); armor = read(target / 'changed-armor.json'); restored = read(target / 'restored-skin.json')
 assert sync['totals']['STATE_SYNC'] >= 100 and sync['totals'].get('GENERATED', 0) == 0
 assert skin['totals']['GENERATED'] == armor['totals']['GENERATED'] == 1 and restored['totals'].get('GENERATED', 0) == 0
-summary = {'date': '2026-10-06', 'version': version, 'testedJarSha256': tested_hash,
-           'hardware': {'cpu': 'Intel Core i7-13700K', 'gpu': 'NVIDIA RTX 5070 Ti', 'driver': '596.49'},
+gl = read(out / 'gl-results.json')
+summary = {'date': datetime.date.today().isoformat(), 'version': version, 'testedJarSha256': tested_hash,
+           'hardware': {'cpu': platform.processor(), 'gpu': gl.get('renderer'), 'driver': gl.get('version')},
            'javaTests': cases,
            'openGLTests': read(out / 'gl-results.json'), 'compatibility': runtime['compatibility'], 'optionalDependencyFallback': fallback,
            'cache': {'equivalentSyncs': sync['totals']['STATE_SYNC'], 'equivalentGenerated': 0, 'changedSkinGenerated': 1, 'changedArmorGenerated': 1, 'restoredGenerated': 0},
