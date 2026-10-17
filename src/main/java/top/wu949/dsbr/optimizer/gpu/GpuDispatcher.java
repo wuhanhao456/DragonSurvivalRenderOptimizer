@@ -53,10 +53,31 @@ public final class GpuDispatcher {
     private static long workingBytes;
     private static int poseBuffer, outputBuffer, arrayObject;
     private static long ssboLimit, workGroupLimit;
+    /** Batches checked with glGetError after a (re)start; later batches are only sampled to avoid a CPU/GPU sync each time. */
+    private static final int VALIDATED_BATCHES = 64, SAMPLED_BATCH_INTERVAL = 256;
+    private static long checkedBatches;
+    /** Unknown buffer sources are never admitted. Iris's unflushable wrapper delegates here. */
+    private static final ClassValue<Boolean> ADMITTED_SOURCE = new ClassValue<>() {
+        @Override protected Boolean computeValue(Class<?> type) {
+            return type == MultiBufferSource.BufferSource.class || type.getName().equals("net.irisshaders.batchedentityrendering.impl.FullyBufferedMultiBufferSource");
+        }
+    };
+    /** Commands that can share one dispatch and draw; order inside a (source, type) queue does not matter (opaque or additive only). */
+    private record BatchKey(RendererAdmission.Kind kind, Class<?> family, StaticMesh mesh, boolean glow, IrisBridge.Attributes attributes) {
+        static BatchKey of(Command c) { return new BatchKey(c.kind, c.family, c.mesh, c.glow, c.attributes); }
+    }
     public static void remember(Object source, RenderType type, VertexConsumer buffer) {
-        // Unknown buffer sources are never admitted. Iris's unflushable wrapper delegates here.
-        if (source.getClass() == MultiBufferSource.BufferSource.class || source.getClass().getName().equals("net.irisshaders.batchedentityrendering.impl.FullyBufferedMultiBufferSource"))
-            bindings.put(buffer, new Binding(source, type));
+        // Runs for every getBuffer in the game: stay allocation-free unless the GPU path is live.
+        if (!enabled()) return;
+        if (ADMITTED_SOURCE.get(source.getClass())) bindings.put(buffer, new Binding(source, type));
+    }
+    private static boolean checkErrors() {
+        long n = checkedBatches++;
+        return n < VALIDATED_BATCHES || n % SAMPLED_BATCH_INTERVAL == 0;
+    }
+    private static void throwOnError(String what) {
+        int error = GL11.glGetError();
+        if (error != GL11.GL_NO_ERROR) throw new IllegalStateException(what + " 0x" + Integer.toHexString(error));
     }
     public static Context begin(Object renderer, BakedGeoModel model, RenderType type, VertexConsumer buffer) {
         var c = new Context(); contexts.push(c);
@@ -130,15 +151,23 @@ public final class GpuDispatcher {
         var commands = queues.take(source, type); if (commands == null) return;
         long stateStart = System.nanoTime();
         try (var restore = OptimizationStage.VALUE >= 4 ? new GlBindings() : null) {
-            for (int i = 0; i < commands.size();) {
-                var command = commands.get(i); int end = i + 1;
+            // Group compatible commands even when other models are interleaved between them.
+            var groups = new LinkedHashMap<BatchKey, List<Command>>();
+            for (var command : commands) groups.computeIfAbsent(BatchKey.of(command), k -> new ArrayList<>()).add(command);
+            for (var group : groups.values()) {
+                var command = group.getFirst();
                 long available = OptimizerConfig.meshMiB() * 1048576L - meshes.bytes() - pendingBytes - poses.idleBytes() - auxiliaryBytes() - top.wu949.dsbr.optimizer.lowend.LowEndAnimations.bytes();
                 int max = Math.max(1, BatchLimits.instances(command.mesh.quads.size(), command.mesh.bones.size(), command.attributes.format().getVertexSize(), available,
                         ssboLimit, workGroupLimit));
-                while (end < commands.size() && end - i < max && compatible(command, commands.get(end))) end++;
-                var batch = commands.subList(i, end); i = end;
-                try { if (OptimizationStage.VALUE >= 4) drawCommands(batch); else try (var perCommand = new GlBindings()) { drawCommands(batch); } }
-                catch (RuntimeException | LinkageError e) { disable("GPU dispatch/draw", e); }
+                for (int i = 0; i < group.size(); i += max) {
+                    var batch = group.subList(i, Math.min(group.size(), i + max));
+                    try {
+                        if (OptimizationStage.VALUE >= 4) drawCommands(batch);
+                        else try (var perCommand = new GlBindings()) { drawCommands(batch); }
+                    } catch (RuntimeException | LinkageError e) {
+                        disable("GPU dispatch/draw", e);
+                    }
+                }
             }
         } catch (RuntimeException | LinkageError e) { disable("GPU batch state", e); }
         finally { for (var command : commands) release(command); Diagnostics.INSTANCE.nanos("GPU_BATCH_CPU", System.nanoTime() - stateStart); }
@@ -147,11 +176,13 @@ public final class GpuDispatcher {
         if (!has(source, type)) return;
         type.setupRenderState(); try { draw(source, type); } finally { type.clearRenderState(); }
     }
-    private static boolean compatible(Command a, Command b) { return a.kind == b.kind && a.family == b.family && a.mesh == b.mesh && a.glow == b.glow && a.attributes.equals(b.attributes); }
     private static void drawCommands(List<Command> batch) {
         var c = batch.getFirst(); int count = batch.size(), quads = c.mesh.quads.size();
         long drawStart = System.nanoTime();
+        boolean check = checkErrors();
         try {
+            // Errors left by unrelated earlier GL calls must not be blamed on (and disable) the GPU path.
+            if (check) for (int i = 0; i < 16 && GL11.glGetError() != GL11.GL_NO_ERROR; i++) {}
             if (poseBuffer == 0) { poseBuffer = GL15.glGenBuffers(); outputBuffer = GL15.glGenBuffers(); arrayObject = GL30.glGenVertexArrays(); }
             var packed = staging.prepare(Math.multiplyExact(c.pose.data.capacity(), count));
             for (int i = 0; i < count; i++) PoseStaging.copy(packed, i * c.pose.data.capacity(), batch.get(i).pose.data);
@@ -165,7 +196,7 @@ public final class GpuDispatcher {
                 if (failed) throw new IllegalStateException("GPU was disabled earlier in this batch");
                 compute.dispatch(c.mesh.buffer, poseBuffer, outputBuffer, quads, count, c.mesh.bones.size(),
                         new ComputeProgram.IrisIds(c.attributes.entity(), c.attributes.blockEntity(), c.attributes.item(), c.attributes.recalculateNormal()), stride);
-                int error = GL11.glGetError(); if (error != GL11.GL_NO_ERROR) throw new IllegalStateException("OpenGL compute error 0x" + Integer.toHexString(error));
+                if (check) throwOnError("OpenGL compute error");
             } catch (RuntimeException | LinkageError e) {
                 disable("compute dispatch; replaying captured geometry on CPU", e);
                 GL15.glBindBuffer(GL15.GL_ARRAY_BUFFER, outputBuffer);
@@ -186,7 +217,7 @@ public final class GpuDispatcher {
             shader.apply();
             try { RenderSystem.drawElements(GL11.GL_TRIANGLES, quads * count * 6, indices.type().asGLType); }
             finally { shader.clear(); c.attributes.format().clearBufferState(); }
-            int error = GL11.glGetError(); if (error != GL11.GL_NO_ERROR) throw new IllegalStateException("OpenGL draw error 0x" + Integer.toHexString(error));
+            if (check) throwOnError("OpenGL draw error");
             Diagnostics.INSTANCE.count(Diagnostics.Counter.GPU_DRAW_CALLS, "draw");
             Diagnostics.INSTANCE.count(c.kind == RendererAdmission.Kind.NPC ? Diagnostics.Counter.NPC_GPU_DRAW_CALLS : c.kind == RendererAdmission.Kind.SOUL ? Diagnostics.Counter.SOUL_GPU_DRAW_CALLS : Diagnostics.Counter.PLAYER_GPU_DRAW_CALLS, "family");
             for (var command : batch) {
@@ -220,6 +251,6 @@ public final class GpuDispatcher {
         queues.forEach(GpuDispatcher::release); queues.clear(); bindings.clear();
         poses.clear(); meshes.clear(); compute.close(); staging.close(); CpuVertexScratch.INSTANCE.clear();
         if (poseBuffer != 0) { GL15.glDeleteBuffers(poseBuffer); GL15.glDeleteBuffers(outputBuffer); GL30.glDeleteVertexArrays(arrayObject); }
-        poseBuffer = outputBuffer = arrayObject = 0; pendingBytes = workingBytes = 0;
+        poseBuffer = outputBuffer = arrayObject = 0; pendingBytes = workingBytes = 0; checkedBatches = 0;
     }
 }

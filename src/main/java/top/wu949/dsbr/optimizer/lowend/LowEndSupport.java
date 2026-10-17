@@ -20,18 +20,30 @@ public final class LowEndSupport {
     private static final Map<SkinKey, Optional<ResourceLocation>> skins = new LinkedHashMap<>();
     public static boolean enabled() { return OptimizerMixinPlugin.lowEndCompatible && OptimizerConfig.LOW_END.get(); }
     public static boolean editor() { return Minecraft.getInstance().screen instanceof DragonEditorScreen; }
+    /** Static base skin for low-end mode, or null to keep the regular (cached) skin. Never throws into the render. */
     public static ResourceLocation skin(DragonEntity dragon) {
         if (editor()) return null;
+        try {
+            return lookup(dragon);
+        } catch (RuntimeException | LinkageError e) {
+            Diagnostics.INSTANCE.reason("low-end skin", e.toString());
+            return null;
+        }
+    }
+
+    private static ResourceLocation lookup(DragonEntity dragon) {
         var p = dragon.overrideUUIDWithLocalPlayerForTextureFetch ? Minecraft.getInstance().player : dragon.getPlayer();
         if (p == null) return null;
         var h = TextureCache.handler(p); if (h == null || h.body() == null) return null;
-        var k = new SkinKey(h.body().getKey().location().toString(), h.getModel().toString(), h.speciesId().toString(), h.stageKey().location().toString());
+        // Direct holders have no registry key; there is no static material to look up for them.
+        var bodyKey = h.body().getKey(); if (bodyKey == null) return null;
+        var k = new SkinKey(bodyKey.location().toString(), h.getModel().toString(), h.speciesId().toString(), h.stageKey().location().toString());
         var found = skins.get(k);
         if (found == null) {
             ResourceLocation texture = null;
             if (h.getModel().equals(DragonBody.DEFAULT_MODEL)) texture = StageResources.getDefaultSkin(h.species(), h.stageKey(), false);
             else {
-                String key = DefaultPartLoader.getDefaultPartKey(h.speciesKey(), h.stageKey(), Either.left(h.body().getKey()), SkinLayer.BASE);
+                String key = DefaultPartLoader.getDefaultPartKey(h.speciesKey(), h.stageKey(), Either.left(bodyKey), SkinLayer.BASE);
                 if (key == null || key.equals(DefaultPartLoader.NO_PART)) key = DefaultPartLoader.getDefaultPartKey(h.speciesKey(), h.stageKey(), Either.right(h.getModel()), SkinLayer.BASE);
                 var part = DragonPartLoader.getDragonPart(SkinLayer.BASE, h.speciesKey(), h.body(), key);
                 if (part != null) texture = part.texture();

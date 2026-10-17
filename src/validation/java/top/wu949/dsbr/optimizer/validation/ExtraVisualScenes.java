@@ -68,7 +68,7 @@ final class ExtraVisualScenes {
         if (mode == 1 && pose != 2 && pose != 3 && !totals.containsKey("GPU_PASS")) throw new IllegalStateException("Model not GPU rendered: " + MODELS[model][0]);
         if (mode == 1 && pose == 3 && !totals.containsKey("GUI_CPU_PASS")) throw new IllegalStateException("Model inventory lost CPU protection");
         if (pose == 3 && !(mc.screen instanceof by.dragonsurvivalteam.dragonsurvival.client.gui.screens.DragonInventoryScreen)) throw new IllegalStateException("Dragon inventory did not stay open");
-        var faults = new HashMap<>((Map<?,?>)stats.get("fallbacks")); faults.remove("benchmark cancelled", "validation command test");
+        var faults = new HashMap<>((Map<?,?>)stats.get("fallbacks"));
         if (!faults.isEmpty()) throw new IllegalStateException("Visual scene backend fault: " + faults);
         String name = "scene-" + model + "-" + POSES[pose] + "-" + mode;
         try (var image = Screenshot.takeScreenshot(mc.getMainRenderTarget())) { image.writeToFile(mc.gameDirectory.toPath().resolve(name + ".png")); }

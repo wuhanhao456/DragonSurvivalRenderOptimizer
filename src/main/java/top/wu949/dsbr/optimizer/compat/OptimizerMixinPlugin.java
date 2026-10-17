@@ -2,89 +2,105 @@ package top.wu949.dsbr.optimizer.compat;
 
 import net.neoforged.fml.loading.FMLEnvironment;
 import net.neoforged.fml.loading.LoadingModList;
-import org.objectweb.asm.ClassReader;
 import org.objectweb.asm.tree.ClassNode;
-import org.spongepowered.asm.mixin.extensibility.*;
+import org.spongepowered.asm.mixin.extensibility.IMixinConfigPlugin;
+import org.spongepowered.asm.mixin.extensibility.IMixinInfo;
 import org.spongepowered.asm.service.MixinService;
-import java.util.*;
 
-/** Checks discovery metadata and untransformed bytecode without initializing target classes. */
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Optional;
+import java.util.Set;
+import java.util.TreeMap;
+import java.util.function.Function;
+
+/**
+ * Decides which mixin groups apply by checking untransformed bytecode, without initializing target classes.
+ * No mod version is pinned; only the contracts in {@link Contracts} gate each group.
+ */
 public final class OptimizerMixinPlugin implements IMixinConfigPlugin {
     public static boolean texturesCompatible, gpuCompatible, irisCompatible, soulCompatible, lowEndCompatible;
     public static String status = "not checked";
-    private static final String DS = "by.dragonsurvivalteam.dragonsurvival.";
+    private static boolean geometryContracts;
+
+    @Override
     public void onLoad(String pkg) {
-        if (!FMLEnvironment.dist.isClient()) { status = "server: no client patches"; return; }
+        var log = org.slf4j.LoggerFactory.getLogger("RenderOptimizer");
+        if (!FMLEnvironment.dist.isClient()) {
+            status = "server: no client patches";
+            return;
+        }
         var mods = LoadingModList.get();
         var versions = new TreeMap<String, String>();
         if (mods != null) mods.getMods().forEach(m -> versions.put(m.getModId(), m.getVersion().toString()));
-        texturesCompatible = "2.0.71".equals(versions.get("dragonsurvival")) && "4.9.3".equals(versions.get("geckolib"));
-        texturesCompatible &= !versions.containsKey("beloong_render_optimizer");
-        texturesCompatible &= contract(DS + "client.skin_editor_system.DragonEditorHandler", "generateSkinTextures", "(Lnet/minecraft/world/entity/player/Player;Lby/dragonsurvivalteam/dragonsurvival/common/capability/DragonStateHandler;)V");
-        texturesCompatible &= contract(DS + "client.render.entity.dragon.DragonArmorRenderLayer", "prepareArmorTexture", "(Lnet/minecraft/world/entity/player/Player;)V");
-        texturesCompatible &= contract(DS + "client.util.RenderingUtils", "copyTextureFromRenderTarget", "(Lcom/mojang/blaze3d/pipeline/RenderTarget;Lnet/minecraft/resources/ResourceLocation;)V");
-        texturesCompatible &= textureContracts();
-        soulCompatible = texturesCompatible && contract(DS + "client.render.blocks.DragonSoulRenderer", "render", "(Lby/dragonsurvivalteam/dragonsurvival/server/tileentity/DragonSoulBlockEntity;FLcom/mojang/blaze3d/vertex/PoseStack;Lnet/minecraft/client/renderer/MultiBufferSource;II)V");
-        lowEndCompatible = soulCompatible && contract(DS + "client.render.entity.dragon.DragonRenderer", "renderRecursively", "(Lcom/mojang/blaze3d/vertex/PoseStack;Lby/dragonsurvivalteam/dragonsurvival/common/entity/DragonEntity;Lsoftware/bernie/geckolib/cache/object/GeoBone;Lnet/minecraft/client/renderer/RenderType;Lnet/minecraft/client/renderer/MultiBufferSource;Lcom/mojang/blaze3d/vertex/VertexConsumer;ZFIII)V")
-                && contract("software.bernie.geckolib.model.GeoModel", "handleAnimations", "(Lsoftware/bernie/geckolib/animatable/GeoAnimatable;JLsoftware/bernie/geckolib/animation/AnimationState;F)V")
-                && contract("software.bernie.geckolib.renderer.GeoEntityRenderer", "getRenderLayers", "()Ljava/util/List;")
-                && contract(DS + "client.render.blocks.DragonSoulRenderer", "renderBlock", "(Lnet/minecraft/world/level/block/state/BlockState;Lcom/mojang/blaze3d/vertex/PoseStack;Lnet/minecraft/client/renderer/MultiBufferSource;II)V");
-        gpuCompatible = texturesCompatible && contract("software.bernie.geckolib.renderer.GeoRenderer", "renderCubesOfBone", "(Lcom/mojang/blaze3d/vertex/PoseStack;Lsoftware/bernie/geckolib/cache/object/GeoBone;Lcom/mojang/blaze3d/vertex/VertexConsumer;III)V");
-        gpuCompatible &= contract("software.bernie.geckolib.renderer.GeoRenderer", "renderCube", "(Lcom/mojang/blaze3d/vertex/PoseStack;Lsoftware/bernie/geckolib/cache/object/GeoCube;Lcom/mojang/blaze3d/vertex/VertexConsumer;III)V")
-                && contract("software.bernie.geckolib.renderer.GeoRenderer", "createVerticesOfQuad", "(Lsoftware/bernie/geckolib/cache/object/GeoQuad;Lorg/joml/Matrix4f;Lorg/joml/Vector3f;Lcom/mojang/blaze3d/vertex/VertexConsumer;III)V");
-        gpuCompatible &= contract("software.bernie.geckolib.renderer.GeoRenderer", "actuallyRender", "(Lcom/mojang/blaze3d/vertex/PoseStack;Lsoftware/bernie/geckolib/animatable/GeoAnimatable;Lsoftware/bernie/geckolib/cache/object/BakedGeoModel;Lnet/minecraft/client/renderer/RenderType;Lnet/minecraft/client/renderer/MultiBufferSource;Lcom/mojang/blaze3d/vertex/VertexConsumer;ZFIII)V")
-                && contract("net.minecraft.client.renderer.MultiBufferSource$BufferSource", "getBuffer", "(Lnet/minecraft/client/renderer/RenderType;)Lcom/mojang/blaze3d/vertex/VertexConsumer;")
-                && contract("net.minecraft.client.renderer.MultiBufferSource$BufferSource", "endBatch", "(Lnet/minecraft/client/renderer/RenderType;Lcom/mojang/blaze3d/vertex/BufferBuilder;)V")
-                && contract("net.minecraft.client.renderer.GameRenderer", "renderLevel", "(Lnet/minecraft/client/DeltaTracker;)V");
+
+        var cache = new HashMap<String, Optional<ClassNode>>();
+        Function<String, ClassNode> loader = name -> cache.computeIfAbsent(name, OptimizerMixinPlugin::read).orElse(null);
+        var problems = new ArrayList<String>();
+
+        // The standalone predecessor patches the same DS methods; running both would double-wrap them.
+        boolean duplicate = versions.containsKey("beloong_render_optimizer");
+        texturesCompatible = !duplicate && check(loader, Contracts.TEXTURE_GROUP, problems);
+        soulCompatible = texturesCompatible && check(loader, Contracts.SOUL_GROUP, problems);
+        lowEndCompatible = soulCompatible && check(loader, Contracts.LOW_END_GROUP, problems);
+        geometryContracts = texturesCompatible && check(loader, Contracts.GPU_GROUP, problems);
+        gpuCompatible = geometryContracts;
         // Do not combine competing geometry backends.
-        if (versions.keySet().stream().anyMatch(id -> !id.equals("dsbr") && id.contains("bedrockrenderer"))) gpuCompatible = false;
+        boolean otherBackend = versions.keySet().stream().anyMatch(id -> !id.equals("dsbr") && id.contains("bedrockrenderer"));
+        if (otherBackend) gpuCompatible = false;
         if (versions.containsKey("iris")) {
-            irisCompatible = "1.8.14-beta.1+mc1.21.1".equals(versions.get("iris"))
-                    && "0.8.13+mc1.21.1".equals(versions.get("sodium"))
-                    && contract("net.irisshaders.batchedentityrendering.impl.FullyBufferedMultiBufferSource", "readyUp", "()V")
-                    && contract("net.irisshaders.batchedentityrendering.impl.FullyBufferedMultiBufferSource", "endBatch", "()V")
-                    && contract("net.irisshaders.batchedentityrendering.impl.FullyBufferedMultiBufferSource", "endBatchWithType", "(Lnet/irisshaders/batchedentityrendering/impl/TransparencyType;)V");
+            irisCompatible = check(loader, Contracts.IRIS_GROUP, problems);
             gpuCompatible &= irisCompatible;
         }
         OptionalNpcAdapter.discover(versions.get("beloong"), name -> MixinService.getService().getResourceAsStream(name));
-        status = "versions=" + versions.entrySet().stream().filter(e -> Set.of("dragonsurvival", "geckolib", "iris", "sodium", "dsbr", "beloong").contains(e.getKey())).toList()
+
+        var relevant = Set.of("dragonsurvival", "geckolib", "iris", "sodium", "dsbr", "beloong");
+        var untested = Contracts.VALIDATED.entrySet().stream()
+                .filter(e -> versions.containsKey(e.getKey()) && !e.getValue().equals(versions.get(e.getKey())))
+                .map(e -> e.getKey() + "=" + versions.get(e.getKey()))
+                .sorted()
+                .toList();
+        status = "versions=" + versions.entrySet().stream().filter(e -> relevant.contains(e.getKey())).toList()
                 + "; texture=" + texturesCompatible + "; GPU=" + gpuCompatible + "; Iris=" + irisCompatible + "; souls=" + soulCompatible
                 + "; lowEnd=" + lowEndCompatible + "; NPC=" + OptionalNpcAdapter.status
-                + (versions.containsKey("beloong_render_optimizer") ? "; duplicate standalone optimizer detected: integrated patches disabled" : "");
-        org.slf4j.LoggerFactory.getLogger("RenderOptimizer").info(status);
+                + (otherBackend ? "; other bedrock renderer detected: GPU disabled" : "")
+                + (duplicate ? "; duplicate standalone optimizer detected: integrated patches disabled" : "")
+                + (untested.isEmpty() ? "" : "; untested=" + untested)
+                + (problems.isEmpty() ? "" : "; missing=" + problems);
+        log.info(status);
+        if (!untested.isEmpty()) log.warn("Untested mod versions {}; patches are gated by bytecode contracts only", untested);
+        if (!problems.isEmpty()) log.warn("Patches disabled because their targets changed or are absent: {}", problems);
     }
-    private static boolean textureContracts() {
-        try {
-            for (var entry : Contracts.TEXTURES.entrySet()) {
-                try (var in = MixinService.getService().getResourceAsStream(entry.getKey().replace('.', '/') + ".class")) {
-                    if (in == null) return false;
-                    var node = Contracts.read(in.readAllBytes());
-                    if (!Contracts.methods(node, entry.getValue())) return false;
-                    if (node.name.endsWith("DragonEditorHandler") && (!Contracts.framebufferCalls(node, "generateSkinTextures") || !Contracts.field(node, "generatedSkinTextures", "Ljava/util/Set;") || !Contracts.field(node, "usedSkinTextures", "Ljava/util/Set;"))) return false;
-                    if (node.name.endsWith("DragonArmorRenderLayer") && (!Contracts.framebufferCalls(node, "generateArmorTexture") || !Contracts.field(node, "generatedArmorTextures", "Ljava/util/Set;") || !Contracts.field(node, "usedArmorTextures", "Ljava/util/Set;"))) return false;
-                }
-            }
-            return true;
-        } catch (Exception | LinkageError e) { return false; }
+
+    private static boolean check(Function<String, ClassNode> loader, Contracts.Group group, List<String> problems) {
+        var missing = Contracts.check(loader, group);
+        problems.addAll(missing);
+        return missing.isEmpty();
     }
-    private static boolean contract(String name, String method, String descriptor) {
+
+    private static Optional<ClassNode> read(String name) {
         try (var stream = MixinService.getService().getResourceAsStream(name.replace('.', '/') + ".class")) {
-            if (stream == null) return false;
-            var node = new ClassNode(); new ClassReader(stream).accept(node, ClassReader.SKIP_CODE);
-            return node.methods.stream().anyMatch(m -> m.name.equals(method) && m.desc.equals(descriptor));
-        } catch (Exception | LinkageError e) { return false; }
+            return stream == null ? Optional.empty() : Optional.of(Contracts.read(stream.readAllBytes()));
+        } catch (Exception | LinkageError e) {
+            return Optional.empty();
+        }
     }
+
+    @Override
     public boolean shouldApplyMixin(String target, String mixin) {
         if (mixin.endsWith("LowEndAnimationMixin") || mixin.endsWith("LowEndLayersMixin") || mixin.endsWith("SoulIndicatorMixin")) return lowEndCompatible;
         if (mixin.endsWith("SoulRendererMixin")) return texturesCompatible && soulCompatible;
         if (mixin.endsWith("IrisBufferSourceMixin")) return gpuCompatible && irisCompatible;
-        if (mixin.endsWith("GeoRendererMixin")) return gpuCompatible || lowEndCompatible;
-        if ( mixin.endsWith("BufferSourceMixin") || mixin.endsWith("DragonGlowMixin") || mixin.endsWith("GameRendererScopeMixin")) return gpuCompatible;
+        // Low-end support reuses the CPU geometry hooks, which need the same GeckoLib targets as the GPU path.
+        if (mixin.endsWith("GeoRendererMixin")) return geometryContracts && (gpuCompatible || lowEndCompatible);
+        if (mixin.endsWith("BufferSourceMixin") || mixin.endsWith("DragonGlowMixin") || mixin.endsWith("GameRendererScopeMixin")) return gpuCompatible;
         return texturesCompatible;
     }
-    public String getRefMapperConfig() { return null; }
-    public List<String> getMixins() { return null; }
-    public void acceptTargets(Set<String> mine, Set<String> others) {}
-    public void preApply(String name, ClassNode node, String mixin, IMixinInfo info) {}
-    public void postApply(String name, ClassNode node, String mixin, IMixinInfo info) {}
+
+    @Override public String getRefMapperConfig() { return null; }
+    @Override public List<String> getMixins() { return null; }
+    @Override public void acceptTargets(Set<String> mine, Set<String> others) {}
+    @Override public void preApply(String name, ClassNode node, String mixin, IMixinInfo info) {}
+    @Override public void postApply(String name, ClassNode node, String mixin, IMixinInfo info) {}
 }

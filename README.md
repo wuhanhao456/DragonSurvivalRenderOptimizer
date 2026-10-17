@@ -1,8 +1,8 @@
 # Dragon Survival Render Optimizer — DSRO
 
-当前版本 **0.2.1 正式版**。原名 Dragon Survival Bedrock Renderer（DSBR），现为 Dragon Survival Render Optimizer（DSRO）。兼容 mod ID `dsbr`，默认开启 GPU 和纹理缓存。面向 Minecraft 1.21.1、Java 21、NeoForge 21.1.248、Dragon Survival 2.0.71 和 GeckoLib 4.9.3。
+当前版本 **0.2.1 正式版**。原名 Dragon Survival Bedrock Renderer（DSBR），现为 Dragon Survival Render Optimizer（DSRO）。兼容 mod ID `dsbr`，默认开启 GPU 和纹理缓存。面向 Minecraft 1.21.1、Java 21、NeoForge 21.1.248；验证于 Dragon Survival 2.0.71 和 GeckoLib 4.9.3，但不锁定版本：启动时按字节码契约逐组决定是否启用补丁，其他版本标为 untested。
 
-新增可选 Core 0.10.1 的末、地黄龙 GPU 适配，玩家/NPC 相邻合批、批次姿态一次上传，以及 CPU 回退临时存储复用。**Core 不是必需依赖**，只有龙生及其前置也能使用。未知 Core 版本仅关闭 NPC 适配，不影响龙生路径。低端支持关闭时保留原动画与渲染层；物品栏使用 CPU 预览，技能骨骼定位保留。
+新增可选 Core（验证于 0.10.1）的末、地黄龙 GPU 适配，玩家/NPC 同类合批、批次姿态一次上传，以及 CPU 回退临时存储复用。**Core 不是必需依赖**，只有龙生及其前置也能使用。Core 不锁版本；所需类缺失或继承关系改变时仅关闭 NPC 适配，不影响龙生路径。低端支持关闭时保留原动画与渲染层；物品栏使用 CPU 预览，技能骨骼定位保留。
 
 ## 配置与操作
 
@@ -20,7 +20,7 @@ NeoForge 模组配置界面只有一份有效配置：`config/dsbr-optimizer-cli
 | `reuseCpuVertexScratch` | true | GPU 模式或低端支持下复用标准 CPU 回退的临时矩阵和向量，包括物品栏 |
 | `lowEndGpuSupport` | false | 低端显卡支持；削减外观和动画成本，独立于 `mode` |
 
-`/dsbr` 显示启用状态与兼容检测；`vanilla`、`textures`、`gpu` 切换模式；`stats`、`reset`、`export` 查看、重置、导出统计。保留 `/beloongrender` 别名及玩家基准命令，详见 [BENCHMARK.md](BENCHMARK.md)。不支持的能力、材质、几何或消费器继续原 CPU 路径；物品栏预览保持 CPU 几何提交。
+`/dsbr` 显示启用状态与兼容检测；`vanilla`、`textures`、`gpu` 切换模式；`stats`、`reset`、`export` 查看、重置、导出统计。保留 `/beloongrender` 别名；游戏内基准命令已移除，性能测试流程见 [BENCHMARK.md](BENCHMARK.md)。切换到当前环境无法完全支持的模式时，命令会说明原因。不支持的能力、材质、几何或消费器继续原 CPU 路径；物品栏预览保持 CPU 几何提交。
 
 ## 低端显卡支持
 

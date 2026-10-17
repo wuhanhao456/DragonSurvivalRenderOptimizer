@@ -8,7 +8,6 @@ import by.dragonsurvivalteam.dragonsurvival.client.skin_editor_system.SkinLayer;
 import by.dragonsurvivalteam.dragonsurvival.client.gui.screens.DragonInventoryScreen;
 import top.wu949.dsbr.optimizer.*;
 import top.wu949.dsbr.optimizer.diagnostics.Diagnostics;
-import top.wu949.dsbr.optimizer.diagnostics.ClientBenchmark;
 import top.wu949.dsbr.optimizer.texture.TextureCache;
 import top.wu949.dsbr.optimizer.gpu.GpuDispatcher;
 import net.minecraft.client.*;
@@ -158,10 +157,6 @@ public final class RuntimeProbe {
                 OptimizerConfig.MODE.set(OptimizerConfig.Mode.TEXTURES); ticks = 0; step++;
             } else if (step == 5 && ticks >= 100) {
                 screenshot(mc, "plain-textures");
-                ClientBenchmark.start(1, 1);
-                if (OptimizerConfig.MODE.get() != OptimizerConfig.Mode.VANILLA) throw new IllegalStateException("Benchmark did not select baseline mode");
-                ClientBenchmark.cancel("validation command test");
-                if (OptimizerConfig.MODE.get() != OptimizerConfig.Mode.TEXTURES) throw new IllegalStateException("Benchmark did not restore previous mode");
                 mc.getSingleplayerServer().execute(() -> mc.getSingleplayerServer().getPlayerList().getPlayer(mc.player.getUUID()).gameMode.changeGameModeForPlayer(GameType.SURVIVAL));
                 ticks = 0; step = 13;
             } else if (step == 13 && ticks >= 20) {

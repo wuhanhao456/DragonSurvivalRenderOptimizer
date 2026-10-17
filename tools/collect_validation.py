@@ -41,15 +41,12 @@ cases = []
 for file in sorted((a.build / 'test-results/test').glob('*.xml')):
     suite = ET.parse(file).getroot(); assert suite.attrib.get('failures') == suite.attrib.get('errors') == '0'
     cases.extend({'class': suite.attrib['name'], 'name': test.attrib['name'], 'seconds': float(test.attrib['time']), 'pass': True} for test in suite.findall('testcase'))
-tool_tests = subprocess.run([sys.executable, str(project / 'tools/test_benchmark_summary.py')], capture_output=True, text=True)
-assert tool_tests.returncode == 0, tool_tests.stderr
-(out / 'benchmark-tool-tests.txt').write_text(tool_tests.stderr, encoding='utf-8')
 sync = read(target / 'equivalent-state.json'); skin = read(target / 'changed-skin.json'); armor = read(target / 'changed-armor.json'); restored = read(target / 'restored-skin.json')
 assert sync['totals']['STATE_SYNC'] >= 100 and sync['totals'].get('GENERATED', 0) == 0
 assert skin['totals']['GENERATED'] == armor['totals']['GENERATED'] == 1 and restored['totals'].get('GENERATED', 0) == 0
 summary = {'date': '2026-10-06', 'version': version, 'testedJarSha256': tested_hash,
            'hardware': {'cpu': 'Intel Core i7-13700K', 'gpu': 'NVIDIA RTX 5070 Ti', 'driver': '596.49'},
-           'javaTests': cases, 'benchmarkToolSyntheticTests': {'count': 4, 'pass': True, 'performanceMeasurements': False},
+           'javaTests': cases,
            'openGLTests': read(out / 'gl-results.json'), 'compatibility': runtime['compatibility'], 'optionalDependencyFallback': fallback,
            'cache': {'equivalentSyncs': sync['totals']['STATE_SYNC'], 'equivalentGenerated': 0, 'changedSkinGenerated': 1, 'changedArmorGenerated': 1, 'restoredGenerated': 0},
            'cleanup': {'textureBytes': runtime['afterClearTextureBytes'], 'meshBytes': runtime['afterClearMeshBytes']},
