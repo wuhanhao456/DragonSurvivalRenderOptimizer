@@ -1,4 +1,4 @@
-# DSRO 0.2.1 兼容边界
+# DSRO 0.2.2 兼容边界
 
 - Minecraft 1.21.1、Java 21、NeoForge 21.1.248。
 - 不锁定任何模组版本。验证版本为 Dragon Survival 2.0.71、GeckoLib 4.9.3、Iris 1.8.14-beta.1+mc1.21.1、Sodium 0.8.13+mc1.21.1、Core 0.10.1；其他版本在状态与日志中标为 `untested`。
