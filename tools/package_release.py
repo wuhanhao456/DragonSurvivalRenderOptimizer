@@ -26,6 +26,11 @@ if not prerelease:
         basic_checks = {'unitTests': unit_tests(a.build), 'openGL': gl_checks(evidence_dir), 'openGLPath': evidence_path + '/gl-results.json'}
     else:
         stable_evidence = validate(evidence_dir, candidate_hash, version)
+elif (evidence_dir / 'gl-results.json').is_file():
+    # Beta and other test builds: record the unit and OpenGL checks run for this version.
+    from stable_release_acceptance import gl_checks, unit_tests
+    candidate_hash = hashlib.sha256((a.build / "libs" / (name + ".jar")).read_bytes()).hexdigest()
+    basic_checks = {'unitTests': unit_tests(a.build), 'openGL': gl_checks(evidence_dir), 'openGLPath': evidence_path + '/gl-results.json'}
 if version == '0.2.0-alpha.4':
     candidate_hash = hashlib.sha256((a.build / 'libs' / (name + '.jar')).read_bytes()).hexdigest()
     single_round = json.loads((project / 'validation/alpha4/summary.json').read_text(encoding='utf-8'))
@@ -73,7 +78,8 @@ if basic_checks is not None:
     manifest['testedJarSha256'] = candidate_hash
     manifest['lowEndDefaultEnabled'] = False
     manifest['basicChecks'] = basic_checks
-    manifest['knownLimitations'] = ['No in-game functional or performance acceptance was run for this version.']
+    manifest['knownLimitations'] = (['Test build: beyond unit and OpenGL checks, only the short runs archived under ' + evidence_path + ' were made; no formal acceptance.']
+                                    if prerelease else ['No in-game functional or performance acceptance was run for this version.'])
 if single_round is not None:
     manifest['singleRoundEvidence'] = {'path': 'validation/alpha4/summary.json', 'pass': single_round['pass'],
                                      'complete': single_round['singleRoundComplete'], 'repetitions': 1,

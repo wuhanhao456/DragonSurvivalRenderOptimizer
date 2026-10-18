@@ -1,0 +1,179 @@
+{
+  "scenes": "players-1-off,players-12-off,souls17-npc8-off",
+  "warmupSeconds": 15,
+  "sampleSeconds": 60,
+  "repetitions": 1,
+  "comparisons": [
+    {
+      "scene": "players-1-off",
+      "shader": false,
+      "averageFps": [
+        257.92627600559376,
+        262.3825927885585
+      ],
+      "averageFpsChangePercent": 1.7277482744209038,
+      "low1Fps": [
+        82.57794932207233,
+        80.39504292306606
+      ],
+      "low1ChangePercent": -2.64344951276575,
+      "poseCaptureMsPerFrame": [
+        0.3233557378107846,
+        0.16754284534772942
+      ],
+      "frameCpuMsPerFrame": [
+        2.485270752340975,
+        2.410039822165767
+      ],
+      "candidateReused": 31492,
+      "candidateMissed": 0,
+      "baselineReused": 0,
+      "pass": true
+    },
+    {
+      "scene": "players-12-off",
+      "shader": false,
+      "averageFps": [
+        58.88693917690893,
+        74.70443883139198
+      ],
+      "averageFpsChangePercent": 26.860794389336327,
+      "low1Fps": [
+        27.03939775449819,
+        30.44446071155876
+      ],
+      "low1ChangePercent": 12.592968926218461,
+      "poseCaptureMsPerFrame": [
+        6.345308746108123,
+        2.7942643829502343
+      ],
+      "frameCpuMsPerFrame": [
+        14.470569459382961,
+        11.050827426913635
+      ],
+      "candidateReused": 107568,
+      "candidateMissed": 0,
+      "baselineReused": 0,
+      "pass": true
+    },
+    {
+      "scene": "souls17-npc8-off",
+      "shader": false,
+      "averageFps": [
+        48.58897961451526,
+        60.99026843510664
+      ],
+      "averageFpsChangePercent": 25.52284266716043,
+      "low1Fps": [
+        23.26143636888358,
+        27.259031451249474
+      ],
+      "low1ChangePercent": 17.185504020351082,
+      "poseCaptureMsPerFrame": [
+        8.291573491083676,
+        4.325107679693906
+      ],
+      "frameCpuMsPerFrame": [
+        17.99846073388203,
+        14.004534435638153
+      ],
+      "candidateReused": 131760,
+      "candidateMissed": 0,
+      "baselineReused": 0,
+      "pass": true
+    },
+    {
+      "scene": "players-1-off",
+      "shader": true,
+      "averageFps": [
+        164.89367664062385,
+        172.98862486675864
+      ],
+      "averageFpsChangePercent": 4.909192633127613,
+      "low1Fps": [
+        59.821478206854216,
+        62.35462080116574
+      ],
+      "low1ChangePercent": 4.234503509846865,
+      "poseCaptureMsPerFrame": [
+        0.3254500050530571,
+        0.17115829160246532
+      ],
+      "frameCpuMsPerFrame": [
+        4.331099828196059,
+        4.09070468990755
+      ],
+      "candidateReused": 20770,
+      "candidateMissed": 0,
+      "baselineReused": 0,
+      "pass": true
+    },
+    {
+      "scene": "players-12-off",
+      "shader": true,
+      "averageFps": [
+        51.68594693560119,
+        67.86316054965812
+      ],
+      "averageFpsChangePercent": 31.299056268066728,
+      "low1Fps": [
+        24.4415133299049,
+        30.389150865605316
+      ],
+      "low1ChangePercent": 24.334162354927958,
+      "poseCaptureMsPerFrame": [
+        6.151762088974855,
+        2.5413588206388207
+      ],
+      "frameCpuMsPerFrame": [
+        16.589184300451322,
+        12.357289312039311
+      ],
+      "candidateReused": 97704,
+      "candidateMissed": 0,
+      "baselineReused": 0,
+      "pass": true
+    },
+    {
+      "scene": "souls17-npc8-off",
+      "shader": true,
+      "averageFps": [
+        43.669276051474995,
+        56.03305063728459
+      ],
+      "averageFpsChangePercent": 28.312295745951555,
+      "low1Fps": [
+        21.880002771467016,
+        24.633261452510407
+      ],
+      "low1ChangePercent": 12.583447588196028,
+      "poseCaptureMsPerFrame": [
+        8.171787213740458,
+        4.073025855400179
+      ],
+      "frameCpuMsPerFrame": [
+        20.11369671755725,
+        15.47555813745909
+      ],
+      "candidateReused": 121032,
+      "candidateMissed": 0,
+      "baselineReused": 0,
+      "pass": true
+    }
+  ],
+  "runs": [
+    "C:\\Users\\Administrator\\AppData\\Local\\Temp\\dsbr-validation-iris-20261018-203721",
+    "C:\\Users\\Administrator\\AppData\\Local\\Temp\\dsbr-validation-iris-20261018-204517",
+    "C:\\Users\\Administrator\\AppData\\Local\\Temp\\dsbr-validation-iris-20261018-205301",
+    "C:\\Users\\Administrator\\AppData\\Local\\Temp\\dsbr-validation-iris-20261018-210054"
+  ],
+  "verify": {
+    "reused": 197446,
+    "verified": 197446,
+    "mismatched": 0,
+    "trackedVerified": 344268,
+    "trackedMismatched": 0,
+    "pass": true
+  },
+  "pass": true
+}

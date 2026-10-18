@@ -1,6 +1,8 @@
 package top.wu949.dsbr.optimizer.gpu;
 
 import top.wu949.dsbr.optimizer.compat.IrisBridge;
+import org.joml.Matrix3f;
+import org.joml.Matrix4f;
 import org.joml.Vector3f;
 import org.lwjgl.system.MemoryUtil;
 import java.nio.ByteBuffer;
@@ -11,10 +13,12 @@ public final class CpuVertexEncoder {
         int stride = attributes.format().getVertexSize();
         var out = MemoryUtil.memCalloc(mesh.quads.size() * 4 * stride);
         int quadIndex = 0;
+        var position = new Matrix4f(); var normalMatrix = new Matrix3f();
         for (var q : mesh.quads) {
             int bone = q.bone(); if (!pose.visible[bone]) { quadIndex++; continue; }
-            var p = new Vector3f[4]; for (int i = 0; i < 4; i++) p[i] = pose.positions[bone].transformPosition(new Vector3f(q.positions()[i]));
-            var normal = pose.normals[bone].transform(new Vector3f(q.normal()));
+            pose.position(bone, position); pose.normal(bone, normalMatrix);
+            var p = new Vector3f[4]; for (int i = 0; i < 4; i++) p[i] = position.transformPosition(new Vector3f(q.positions()[i]));
+            var normal = normalMatrix.transform(new Vector3f(q.normal()));
             if ((q.flatMask() & 1) != 0) normal.x = Math.abs(normal.x);
             if ((q.flatMask() & 2) != 0) normal.y = Math.abs(normal.y);
             if ((q.flatMask() & 4) != 0) normal.z = Math.abs(normal.z);

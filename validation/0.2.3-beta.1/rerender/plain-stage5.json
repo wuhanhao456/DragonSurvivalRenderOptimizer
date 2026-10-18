@@ -1,0 +1,129 @@
+{
+  "shader": false,
+  "stage": 5,
+  "verify": false,
+  "jarSha256": "c865cb328db1a61b4664231b8eb284877d8dcd86ebd306edda74f2ddef0acc1b",
+  "instance": "C:\\Users\\Administrator\\AppData\\Local\\Temp\\dsbr-validation-iris-20261018-204517",
+  "rows": [
+    {
+      "scene": "players-1-off",
+      "metrics": {
+        "samples": 15745,
+        "capturedSeconds": 60.0077918,
+        "averageFps": 262.3825927885585,
+        "low1Fps": 80.39504292306606,
+        "low01Fps": 39.08291929865701,
+        "frameTimeMs": {
+          "p50": 3.4478,
+          "p95": 7.0103,
+          "p99": 9.3522,
+          "p999": 14.6059
+        },
+        "longFramesAboveMs": {
+          "16.7": 3,
+          "33.3": 3,
+          "50": 3
+        },
+        "maximumFrameMs": 107.5747,
+        "definition": "1000 / mean slowest ceil(samples * fraction) frame times in ms"
+      },
+      "fallbacks": {},
+      "perFrameMs": {
+        "FRAME_CPU": 2.410039822165767,
+        "GPU_POSE_CAPTURE": 0.16754284534772942,
+        "GPU_BATCH_CPU": 0.22831690060336615,
+        "SOUL_RENDER_CPU": 0.0
+      },
+      "passesPerFrame": 3.0001905366783106,
+      "drawsPerFrame": 3.0001905366783106,
+      "reused": 31492,
+      "missed": 0,
+      "verified": 0,
+      "mismatched": 0,
+      "trackedVerified": 0,
+      "trackedMismatched": 0,
+      "cpuFallbacks": 0,
+      "rawSha256": "31a422766840c58ed0924c714a8a9ed2d55c429027c9beb86f12ea3c111b30de"
+    },
+    {
+      "scene": "players-12-off",
+      "metrics": {
+        "samples": 4481,
+        "capturedSeconds": 59.9830488,
+        "averageFps": 74.70443883139198,
+        "low1Fps": 30.44446071155876,
+        "low01Fps": 11.462242913353696,
+        "frameTimeMs": {
+          "p50": 12.9747,
+          "p95": 18.8588,
+          "p99": 22.8176,
+          "p999": 64.3886
+        },
+        "longFramesAboveMs": {
+          "16.7": 574,
+          "33.3": 8,
+          "50": 5
+        },
+        "maximumFrameMs": 100.4973,
+        "definition": "1000 / mean slowest ceil(samples * fraction) frame times in ms"
+      },
+      "fallbacks": {},
+      "perFrameMs": {
+        "FRAME_CPU": 11.050827426913635,
+        "GPU_POSE_CAPTURE": 2.7942643829502343,
+        "GPU_BATCH_CPU": 1.3858588038384287,
+        "SOUL_RENDER_CPU": 0.0
+      },
+      "passesPerFrame": 36.00803392099978,
+      "drawsPerFrame": 15.003347467083241,
+      "reused": 107568,
+      "missed": 0,
+      "verified": 0,
+      "mismatched": 0,
+      "trackedVerified": 0,
+      "trackedMismatched": 0,
+      "cpuFallbacks": 0,
+      "rawSha256": "89744fcb044dc6b6e9e275d60ea66234657ed7f341ba0c7cb270945d5637e3d8"
+    },
+    {
+      "scene": "souls17-npc8-off",
+      "metrics": {
+        "samples": 3659,
+        "capturedSeconds": 59.993177499999994,
+        "averageFps": 60.99026843510664,
+        "low1Fps": 27.259031451249474,
+        "low01Fps": 11.767478161766935,
+        "frameTimeMs": {
+          "p50": 15.9969,
+          "p95": 21.7771,
+          "p99": 24.9297,
+          "p999": 74.3753
+        },
+        "longFramesAboveMs": {
+          "16.7": 1508,
+          "33.3": 11,
+          "50": 5
+        },
+        "maximumFrameMs": 96.1856,
+        "definition": "1000 / mean slowest ceil(samples * fraction) frame times in ms"
+      },
+      "fallbacks": {},
+      "perFrameMs": {
+        "FRAME_CPU": 14.004534435638153,
+        "GPU_POSE_CAPTURE": 4.325107679693906,
+        "GPU_BATCH_CPU": 1.1262290243235857,
+        "SOUL_RENDER_CPU": 7.73374815523367
+      },
+      "passesPerFrame": 62.01694452036075,
+      "drawsPerFrame": 8.002186389723969,
+      "reused": 131760,
+      "missed": 0,
+      "verified": 0,
+      "mismatched": 0,
+      "trackedVerified": 0,
+      "trackedMismatched": 0,
+      "cpuFallbacks": 0,
+      "rawSha256": "cda2c43d728c03d9fa1644a7315f5f3824696f544eaa32cc05d85e60f67e04c6"
+    }
+  ]
+}

@@ -40,8 +40,9 @@ class CachePolicyTest {
         try (var snapshot = new PoseSnapshot(2)) {
             snapshot.bone(0, stack.last(), 0xff112233, 0xf000f0, 0);
             stack.translate(100, 200, 300);
-            assertEquals(1, snapshot.positions[0].m30()); assertEquals(2, snapshot.positions[0].m31());
-            assertEquals(3, snapshot.positions[0].m32()); assertFalse(snapshot.visible[1]);
+            var position = snapshot.position(0, new org.joml.Matrix4f());
+            assertEquals(1, position.m30()); assertEquals(2, position.m31());
+            assertEquals(3, position.m32()); assertFalse(snapshot.visible[1]);
             assertEquals(0, snapshot.data.getInt(144 + 140));
         }
     }

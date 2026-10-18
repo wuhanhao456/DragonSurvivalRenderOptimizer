@@ -20,7 +20,7 @@ import java.util.function.Function;
  * No mod version is pinned; only the contracts in {@link Contracts} gate each group.
  */
 public final class OptimizerMixinPlugin implements IMixinConfigPlugin {
-    public static boolean texturesCompatible, gpuCompatible, irisCompatible, soulCompatible, lowEndCompatible;
+    public static boolean texturesCompatible, gpuCompatible, irisCompatible, soulCompatible, lowEndCompatible, rerenderCompatible;
     public static String status = "not checked";
     private static boolean geometryContracts;
 
@@ -53,6 +53,11 @@ public final class OptimizerMixinPlugin implements IMixinConfigPlugin {
             irisCompatible = check(loader, Contracts.IRIS_GROUP, problems);
             gpuCompatible &= irisCompatible;
         }
+        if (gpuCompatible) {
+            var missing = Contracts.rerender(loader);
+            problems.addAll(missing);
+            rerenderCompatible = missing.isEmpty();
+        }
         OptionalNpcAdapter.discover(versions.get("beloong"), name -> MixinService.getService().getResourceAsStream(name));
 
         var relevant = Set.of("dragonsurvival", "geckolib", "iris", "sodium", "dsbr", "beloong");
@@ -63,7 +68,7 @@ public final class OptimizerMixinPlugin implements IMixinConfigPlugin {
                 .toList();
         status = "versions=" + versions.entrySet().stream().filter(e -> relevant.contains(e.getKey())).toList()
                 + "; texture=" + texturesCompatible + "; GPU=" + gpuCompatible + "; Iris=" + irisCompatible + "; souls=" + soulCompatible
-                + "; lowEnd=" + lowEndCompatible + "; NPC=" + OptionalNpcAdapter.status
+                + "; lowEnd=" + lowEndCompatible + "; rerenderReuse=" + rerenderCompatible + "; NPC=" + OptionalNpcAdapter.status
                 + (otherBackend ? "; other bedrock renderer detected: GPU disabled" : "")
                 + (duplicate ? "; duplicate standalone optimizer detected: integrated patches disabled" : "")
                 + (untested.isEmpty() ? "" : "; untested=" + untested)

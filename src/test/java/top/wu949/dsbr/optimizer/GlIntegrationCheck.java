@@ -29,7 +29,7 @@ public final class GlIntegrationCheck {
         results.put("vendor", GL11.glGetString(GL11.GL_VENDOR)); results.put("renderer", GL11.glGetString(GL11.GL_RENDERER)); results.put("version", GL11.glGetString(GL11.GL_VERSION));
         try {
             textureCheck(); results.put("gpuTextureCopyAndLazyReadback", "pass");
-            shaderCheck(); results.put("computeVanillaAndIris54ByteOutput", "pass"); results.put("threeIndependentAnimatedInstances", "pass");
+            shaderCheck(); results.put("computeVanillaAndIris54ByteOutput", "pass"); results.put("threeIndependentAnimatedInstances", "pass"); results.put("rerenderPoseReuseMatchesFreshCapture", "pass");
             bindingCheck(); results.put("batchBindingsRestoredAfterException", "pass");
             int error = GL11.glGetError(); if (error != GL11.GL_NO_ERROR) throw new AssertionError("GL error " + error);
             results.put("glError", error);
@@ -150,7 +150,35 @@ public final class GlIntegrationCheck {
                     } finally { MemoryUtil.memFree(actual); }
                 }
             } finally { snapshots.get(1).close(); snapshots.get(2).close(); }
+            rerenderCheck(compute, mesh, poses, output, extended);
         } finally { GL15.glDeleteBuffers(poses); GL15.glDeleteBuffers(output); mesh.close(); }
+    }
+    /** A re-render reusing the base pass's bones must produce exactly the bytes a fresh traversal would. */
+    private static void rerenderCheck(ComputeProgram compute, StaticMesh mesh, int poses, int output, VertexFormat extended) {
+        try (var base = new PoseSnapshot(3); var fresh = new PoseSnapshot(3); var reused = new PoseSnapshot(3)) {
+            for (var pair : List.of(new Object[]{base, 0xffffffff, 0xf000f0, 0}, new Object[]{fresh, 0x80ff8040, 0x00f000f0, 0x000a000b})) {
+                var stack = new PoseStack(); stack.translate(2, 1, -3); stack.mulPose(new Quaternionf().rotationXYZ(.7f, -.1f, .2f)); stack.scale(.9f, -.9f, .9f);
+                var pose = (PoseSnapshot)pair[0]; int colour = (int)pair[1], light = (int)pair[2], overlay = (int)pair[3];
+                pose.bone(0, stack.last(), colour, light, overlay); stack.translate(1, 2, 3); pose.bone(1, stack.last(), colour, light, overlay);
+            }
+            reused.copyFrom(base.data, base.visible, 0x80ff8040, 0x00f000f0, 0x000a000b);
+            if (reused.data.compareTo(fresh.data) != 0) throw new AssertionError("reused pose bytes differ from a fresh capture");
+            for (var format : List.of(DefaultVertexFormat.NEW_ENTITY, extended)) {
+                int size = mesh.quads.size() * 4 * format.getVertexSize();
+                var outputs = new ArrayList<ByteBuffer>();
+                try {
+                    for (var pose : List.of(fresh, reused)) {
+                        GL15.glBindBuffer(GL43.GL_SHADER_STORAGE_BUFFER, poses); GL15.glBufferData(GL43.GL_SHADER_STORAGE_BUFFER, pose.data, GL15.GL_STREAM_DRAW);
+                        GL15.glBindBuffer(GL43.GL_SHADER_STORAGE_BUFFER, output); GL15.glBufferData(GL43.GL_SHADER_STORAGE_BUFFER, size, GL15.GL_STREAM_DRAW);
+                        compute.dispatch(mesh.buffer, poses, output, mesh.quads.size(), new ComputeProgram.IrisIds(65530, 124, 25000, false), format.getVertexSize());
+                        GL42.glMemoryBarrier(GL43.GL_BUFFER_UPDATE_BARRIER_BIT);
+                        var bytes = MemoryUtil.memAlloc(size); outputs.add(bytes);
+                        GL15.glBindBuffer(GL43.GL_SHADER_STORAGE_BUFFER, output); GL15.glGetBufferSubData(GL43.GL_SHADER_STORAGE_BUFFER, 0, bytes);
+                    }
+                    if (outputs.get(0).compareTo(outputs.get(1)) != 0) throw new AssertionError("re-render reuse changed compute output");
+                } finally { outputs.forEach(MemoryUtil::memFree); }
+            }
+        }
     }
     private static void compare(ByteBuffer actual, ByteBuffer expected, int stride, StaticMesh mesh) {
         for (int v = 0; v < mesh.quads.size() * 4; v++) {

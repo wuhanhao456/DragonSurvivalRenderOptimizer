@@ -20,19 +20,30 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 @Mixin(value = GeoRenderer.class, remap = false)
 public interface GeoRendererMixin {
     @WrapMethod(method = "actuallyRender")
+    @SuppressWarnings("unchecked")
     default void beloong$pose(PoseStack pose, GeoAnimatable animatable, BakedGeoModel model, RenderType type, MultiBufferSource source, VertexConsumer buffer,
                              boolean rerender, float tick, int light, int overlay, int colour, Operation<Void> original) {
-        var context = GpuDispatcher.begin(this, model, type, buffer); boolean completed = false;
-        try { original.call(pose, animatable, model, type, source, buffer, rerender, tick, light, overlay, colour); completed = true; }
+        var context = GpuDispatcher.begin(this, pose, animatable, model, type, buffer, rerender, light, overlay, colour); boolean completed = false;
+        try {
+            // A reused re-render already holds this frame's bones; the original would only rebuild the same matrices.
+            // updateAnimatedTextureFrame is the original's only other effect (contract-checked).
+            if (GpuDispatcher.reused(context)) ((GeoRenderer<GeoAnimatable>)(Object)this).updateAnimatedTextureFrame(animatable);
+            else original.call(pose, animatable, model, type, source, buffer, rerender, tick, light, overlay, colour);
+            completed = true;
+        }
         finally { GpuDispatcher.end(context, completed); }
     }
     @WrapMethod(method = "renderCubesOfBone")
     default void beloong$cubes(PoseStack pose, GeoBone bone, VertexConsumer buffer, int light, int overlay, int colour, Operation<Void> original) {
         var kind = RendererAdmission.kind(this);
         if (kind == RendererAdmission.Kind.OTHER) { original.call(pose, bone, buffer, light, overlay, colour); return; }
-        long start = System.nanoTime();
-        if (GpuDispatcher.bone(pose, bone, buffer, light, overlay, colour)) Diagnostics.INSTANCE.nanos("GPU_BONE_SUBMIT", System.nanoTime() - start);
+        // Per-bone timing of the GPU capture costs two clock reads per bone; only detailed diagnostics pay for it.
+        // CPU submission is always timed: validation relies on it and the CPU path dwarfs the clock reads.
+        boolean timed = Diagnostics.INSTANCE.detailed();
+        long start = timed ? System.nanoTime() : 0;
+        if (GpuDispatcher.bone(pose, bone, buffer, light, overlay, colour)) { if (timed) Diagnostics.INSTANCE.nanos("GPU_BONE_SUBMIT", System.nanoTime() - start); }
         else {
+            if (!timed) start = System.nanoTime();
             original.call(pose, bone, buffer, light, overlay, colour);
             long elapsed = System.nanoTime() - start;
             Diagnostics.INSTANCE.nanos("CPU_VERTEX_SUBMIT", elapsed);

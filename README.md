@@ -1,12 +1,12 @@
 # Dragon Survival Render Optimizer — DSRO
 
-当前版本 **0.2.2**。原名 Dragon Survival Bedrock Renderer（DSBR），现为 Dragon Survival Render Optimizer（DSRO）。兼容 mod ID `dsbr`，默认开启 GPU 和纹理缓存。面向 Minecraft 1.21.1、Java 21、NeoForge 21.1.248；验证于 Dragon Survival 2.0.71 和 GeckoLib 4.9.3，但不锁定版本：启动时按字节码契约逐组决定是否启用补丁，其他版本标为 untested。
+当前版本 **0.2.3-beta.1**（测试版，最新正式版仍为 0.2.2；新增重渲染姿态复用，见 [验证记录](validation/0.2.3-beta.1/SUMMARY.md)）。原名 Dragon Survival Bedrock Renderer（DSBR），现为 Dragon Survival Render Optimizer（DSRO）。兼容 mod ID `dsbr`，默认开启 GPU 和纹理缓存。面向 Minecraft 1.21.1、Java 21、NeoForge 21.1.248；验证于 Dragon Survival 2.0.71 和 GeckoLib 4.9.3，但不锁定版本：启动时按字节码契约逐组决定是否启用补丁，其他版本标为 untested。
 
 新增可选 Core（验证于 0.10.1）的末、地黄龙 GPU 适配，玩家/NPC 同类合批、批次姿态一次上传，以及 CPU 回退临时存储复用。**Core 不是必需依赖**，只有龙生及其前置也能使用。Core 不锁版本；所需类缺失或继承关系改变时仅关闭 NPC 适配，不影响龙生路径。低端支持关闭时保留原动画与渲染层；物品栏使用 CPU 预览，技能骨骼定位保留。
 
 ## 配置与操作
 
-NeoForge 模组配置界面只有一份有效配置：`config/dsbr-optimizer-client.toml`。九项设置均有中英文说明，旧配置键和值继续有效：
+NeoForge 模组配置界面只有一份有效配置：`config/dsbr-optimizer-client.toml`。十项设置均有中英文说明，旧配置键和值继续有效：
 
 | 设置 | 默认值 | 用途 |
 | --- | --- | --- |
@@ -18,6 +18,7 @@ NeoForge 模组配置界面只有一份有效配置：`config/dsbr-optimizer-cli
 | `detailedDiagnostics` | false | 玩家和纹理归因，仅排查时开启 |
 | `beloongNpcGpu` | true | GPU 模式下启用已验证的可选 NPC 适配，缺少 Core 时自然不生效 |
 | `reuseCpuVertexScratch` | true | GPU 模式或低端支持下复用标准 CPU 回退的临时矩阵和向量，包括物品栏 |
+| `reuseRerenderPoses` | true | GPU 模式下，DS 发光层和盔甲层在同一帧重渲染龙模型时复用已算好的骨骼矩阵，只在完全一致时复用（0.2.3-beta.1 新增） |
 | `lowEndGpuSupport` | false | 低端显卡支持；削减外观和动画成本，独立于 `mode` |
 
 `/dsbr` 显示启用状态与兼容检测；`vanilla`、`textures`、`gpu` 切换模式；`stats`、`reset`、`export` 查看、重置、导出统计。命令只有 `/dsbr`（旧 `/beloongrender` 别名已移除）；游戏内基准命令已移除，性能测试流程见 [BENCHMARK.md](BENCHMARK.md)。切换到当前环境无法完全支持的模式时，命令会说明原因。不支持的能力、材质、几何或消费器继续原 CPU 路径；物品栏预览保持 CPU 几何提交。
@@ -34,7 +35,7 @@ NeoForge 模组配置界面只有一份有效配置：`config/dsbr-optimizer-cli
 
 ## 更新与龙魂优化
 
-发布时用 `dsro-0.2.2.jar` 替换旧 DSBR／DSRO，同一实例保留一份。旧 jar 放在 `mods` 外可回退。GitHub Release 只附最终客户端 jar，源码和测试数据留在仓库。`dsbr-optimizer-client.toml` 与 `/dsbr` 沿用兼容名称。
+发布时用对应版本的 jar（如 `dsro-0.2.3-beta.1.jar`）替换旧 DSBR／DSRO，同一实例保留一份。旧 jar 放在 `mods` 外可回退。GitHub Release 只附最终客户端 jar，源码和测试数据留在仓库。`dsbr-optimizer-client.toml` 与 `/dsbr` 沿用兼容名称。
 
 已移除旧 Bedrock/YSM 引擎、旧菜单、旧接管配置和 `/dsbr legacy`。`dsbr-client.toml` 不再加载。不支持 DS 2.0.67 的旧接管路径。
 

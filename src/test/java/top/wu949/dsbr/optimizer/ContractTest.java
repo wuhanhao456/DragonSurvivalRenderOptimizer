@@ -26,6 +26,14 @@ class ContractTest {
         for (var group : List.of(Contracts.TEXTURE_GROUP, Contracts.SOUL_GROUP, Contracts.LOW_END_GROUP, Contracts.GPU_GROUP))
             assertEquals(List.of(), Contracts.check(this::load, group));
     }
+    @Test void rerenderReuseContractHoldsAndFailsClosedOnExtraWork() {
+        assertEquals(List.of(), Contracts.rerender(this::load));
+        var geo = load("software.bernie.geckolib.renderer.GeoRenderer");
+        var method = geo.methods.stream().filter(m -> m.name.equals("actuallyRender")).findFirst().orElseThrow();
+        method.instructions.insert(new org.objectweb.asm.tree.MethodInsnNode(org.objectweb.asm.Opcodes.INVOKESTATIC, "some/Mod", "sideEffect", "()V", false));
+        var problems = Contracts.rerender(name -> name.equals("software.bernie.geckolib.renderer.GeoRenderer") ? geo : load(name));
+        assertTrue(problems.contains("GeoRenderer#actuallyRender -> some/Mod.sideEffect"), problems.toString());
+    }
     @Test void absentModReportsMissingClassesInsteadOfThrowing() {
         var problems = Contracts.check(name -> null, Contracts.IRIS_GROUP);
         assertTrue(problems.contains("class FullyBufferedMultiBufferSource"), problems.toString());

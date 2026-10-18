@@ -13,13 +13,15 @@ import java.util.*;
 public final class StaticMesh implements AutoCloseable {
     public record Quad(int bone, Vector3f[] positions, Vector3f normal, float[] uv, int flatMask) {}
     public final IdentityHashMap<GeoBone, Integer> bones = new IdentityHashMap<>();
+    /** Bones by snapshot index. */
+    public final List<GeoBone> order = new ArrayList<>();
     public final List<Quad> quads = new ArrayList<>();
     public int buffer;
     public static StaticMesh bake(BakedGeoModel model) {
         var mesh = new StaticMesh(); for (var bone : model.topLevelBones()) mesh.bakeBone(bone); return mesh;
     }
     private void bakeBone(GeoBone bone) {
-        int index = bones.size(); bones.put(bone, index);
+        int index = bones.size(); bones.put(bone, index); order.add(bone);
         for (var cube : bone.getCubes()) {
             var stack = new PoseStack(); RenderUtil.translateToPivotPoint(stack, cube);
             RenderUtil.rotateMatrixAroundCube(stack, cube); RenderUtil.translateAwayFromPivotPoint(stack, cube);

@@ -2,12 +2,14 @@ package top.wu949.dsbr.optimizer.compat;
 
 import org.objectweb.asm.ClassReader;
 import org.objectweb.asm.tree.ClassNode;
+import org.objectweb.asm.tree.InvokeDynamicInsnNode;
 import org.objectweb.asm.tree.MethodInsnNode;
 import org.objectweb.asm.tree.MethodNode;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.TreeSet;
 import java.util.function.Function;
 
@@ -149,6 +151,62 @@ public final class Contracts {
                     GAME_RENDERER, List.of(new Method("renderLevel", "(Lnet/minecraft/client/DeltaTracker;)V"))),
             Map.of(),
             Map.of());
+
+    private static final String RENDER_ARGS = RENDER_TYPE + SOURCE + CONSUMER + "ZFIII)V";
+    private static final String ACTUALLY_RENDER = "(" + LAYER_ARGS + BAKED + RENDER_ARGS;
+    private static final String GEO_BONE = "software.bernie.geckolib.cache.object.GeoBone";
+
+    /**
+     * Same-frame re-render pose reuse. DS's glow and armor layers re-render the dragon; a reused re-render skips
+     * GeoRenderer.actuallyRender's traversal, so that method may do nothing else than {@link #ACTUALLY_RENDER_CALLS}.
+     */
+    public static final Group RERENDER_GROUP = new Group(
+            Map.of(
+                    GEO_RENDERER, List.of(new Method("updateAnimatedTextureFrame", "(" + ANIMATABLE + ")V")),
+                    GEO_BONE, List.of(
+                            new Method("getRotX", "()F"), new Method("getRotY", "()F"), new Method("getRotZ", "()F"),
+                            new Method("getPosX", "()F"), new Method("getPosY", "()F"), new Method("getPosZ", "()F"),
+                            new Method("getScaleX", "()F"), new Method("getScaleY", "()F"), new Method("getScaleZ", "()F"),
+                            new Method("getPivotX", "()F"), new Method("getPivotY", "()F"), new Method("getPivotZ", "()F"),
+                            new Method("isHidden", "()Z"), new Method("isHidingChildren", "()Z"))),
+            Map.of(),
+            Map.of(
+                    GLOW, List.of(new Call("render", null, "by/dragonsurvivalteam/dragonsurvival/client/render/entity/dragon/DragonRenderer", "actuallyRender",
+                            "(" + POSE + "Lby/dragonsurvivalteam/dragonsurvival/common/entity/DragonEntity;" + BAKED + RENDER_ARGS)),
+                    ARMOR, List.of(new Call("renderArmor", null, "software/bernie/geckolib/renderer/GeoEntityRenderer", "actuallyRender",
+                            "(" + POSE + "Lnet/minecraft/world/entity/Entity;" + BAKED + RENDER_ARGS)),
+                    GEO_RENDERER, List.of(new Call("actuallyRender", ACTUALLY_RENDER, "software/bernie/geckolib/renderer/GeoRenderer", "updateAnimatedTextureFrame",
+                            "(" + ANIMATABLE + ")V"))));
+
+    /** Every invocation GeoRenderer.actuallyRender may contain for a reused re-render to replace it. */
+    public static final Set<String> ACTUALLY_RENDER_CALLS = Set.of(
+            "net/minecraft/client/renderer/MultiBufferSource.getBuffer",
+            "software/bernie/geckolib/renderer/GeoRenderer.updateAnimatedTextureFrame",
+            "software/bernie/geckolib/cache/object/BakedGeoModel.topLevelBones",
+            "java/util/List.iterator", "java/util/Iterator.hasNext", "java/util/Iterator.next",
+            "software/bernie/geckolib/renderer/GeoRenderer.renderRecursively");
+
+    /** Problems that disable re-render pose reuse only; the GPU path itself is unaffected. */
+    public static List<String> rerender(Function<String, ClassNode> loader) {
+        var problems = new ArrayList<>(check(loader, RERENDER_GROUP));
+        var node = loader.apply(GEO_RENDERER);
+        if (node != null) for (var call : calls(node, "actuallyRender", ACTUALLY_RENDER))
+            if (!ACTUALLY_RENDER_CALLS.contains(call)) problems.add("GeoRenderer#actuallyRender -> " + call);
+        return problems;
+    }
+
+    /** owner.name of every call in a method, including invokedynamic bootstraps as {@code indy.name}. */
+    public static List<String> calls(ClassNode node, String method, String descriptor) {
+        var out = new ArrayList<String>();
+        for (MethodNode m : node.methods) {
+            if (!m.name.equals(method) || !m.desc.equals(descriptor)) continue;
+            for (var insn : m.instructions) {
+                if (insn instanceof MethodInsnNode invoke) out.add(invoke.owner + "." + invoke.name);
+                else if (insn instanceof InvokeDynamicInsnNode indy) out.add("indy." + indy.name);
+            }
+        }
+        return out;
+    }
 
     public static final Group IRIS_GROUP = new Group(
             Map.of(
